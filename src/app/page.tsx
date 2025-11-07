@@ -1,9 +1,11 @@
 import HeroNotification from "@/components/landing/hero-notification";
 import HeroStats from "@/components/landing/hero-stats";
+import Nav from "@/components/nav";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen w-full items-center justify-center bg-background p-4">
+    <div className="flex min-h-screen w-full flex-col items-center gap-6 bg-background p-4">
+      <Nav />
       <main className="flex flex-col items-center justify-center gap-6">
         <HeroNotification />
         <HeroStats />
