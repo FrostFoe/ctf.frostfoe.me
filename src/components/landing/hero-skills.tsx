@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const ArrowIcon = () => (
   <svg
@@ -30,25 +31,19 @@ export default function HeroSkills() {
       title: "Learning Paths",
       description:
         "Fully guided journeys into a wide range of skills or proficiency in specific security job-roles.",
-      imageUrl:
-        "https://www.hackthebox.com/images/landingv3/learning-paths-asset.png",
-      alt: "Learning Paths",
+      image: PlaceHolderImages.find((img) => img.id === "learning-paths-asset")!,
     },
     {
       title: "Real-world Scenarios",
       description:
         "Cutting-edge labs focusing on the latest technologies and attack vectors — released every week!",
-      imageUrl:
-        "https://www.hackthebox.com/images/landingv3/real-world-scenarios.png",
-      alt: "Real-world Scenarios",
+      image: PlaceHolderImages.find((img) => img.id === "real-world-scenarios-asset")!,
     },
     {
       title: "Industry Certifications",
       description:
         "Innovative courses and exams that will make a market-ready professional out of you!",
-      imageUrl:
-        "https://www.hackthebox.com/images/landingv3/industry-certifications.png",
-      alt: "Industry Certifications",
+      image: PlaceHolderImages.find((img) => img.id === "industry-certifications-asset")!,
     },
   ];
 
@@ -99,13 +94,11 @@ export default function HeroSkills() {
               <CardContent className="flex justify-center items-center p-4 pt-0">
                 <Image
                   className="w-full h-auto"
-                  src={card.imageUrl}
-                  alt={card.alt}
+                  src={card.image.imageUrl}
+                  alt={card.image.description}
+                  data-ai-hint={card.image.imageHint}
                   width={400}
                   height={250}
-                  onError={(e) => {
-                    e.currentTarget.src = `https://placehold.co/400x250/111927/FFFFFF?text=${encodeURIComponent(card.alt)}`;
-                  }}
                 />
               </CardContent>
             </Card>

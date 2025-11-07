@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const Typewriter = () => {
   const [text, setText] = useState("");
@@ -33,7 +34,7 @@ const Typewriter = () => {
 
     const timer = setTimeout(handleType, typingSpeed);
     return () => clearTimeout(timer);
-  }, [text, isDeleting, loopNum, typingSpeed, toRotate]);
+  }, [text, isDeleting, loopNum, toRotate, typingSpeed]);
 
   return (
     <span className="inline-block">
@@ -44,8 +45,11 @@ const Typewriter = () => {
 };
 
 export default function Footer() {
+  const discordButton = PlaceHolderImages.find((img) => img.id === "discord-button")!;
+  const g2Rating = PlaceHolderImages.find((img) => img.id === "g2-rating")!;
+
   return (
-    <section className="w-full max-w-7xl py-8">
+    <footer className="w-full max-w-7xl py-8">
       <div className="container mx-auto">
         <div className="bg-gray-800 border border-gray-700 rounded-lg">
           <div className="py-12 px-4 flex flex-col justify-center items-center">
@@ -66,14 +70,11 @@ export default function Footer() {
               >
                 <Image
                   className="mx-auto"
-                  src="https://www.hackthebox.com/images/landingv3/discord-button.svg"
-                  alt="Join Discord"
+                  src={discordButton.imageUrl}
+                  alt={discordButton.description}
+                  data-ai-hint={discordButton.imageHint}
                   width={200}
                   height={50}
-                  onError={(e) => {
-                    e.currentTarget.src =
-                      "https://placehold.co/200x50/5865F2/FFFFFF?text=Join+Discord";
-                  }}
                 />
               </a>
             </div>
@@ -84,20 +85,17 @@ export default function Footer() {
               >
                 <Image
                   className="mx-auto"
-                  src="https://www.hackthebox.com/images/landingv3/rating.png"
-                  alt="G2 Rating"
+                  src={g2Rating.imageUrl}
+                  alt={g2Rating.description}
+                  data-ai-hint={g2Rating.imageHint}
                   width={195}
                   height={50}
-                  onError={(e) => {
-                    e.currentTarget.src =
-                      "https://placehold.co/195x50/111927/FFFFFF?text=G2+Rating";
-                  }}
                 />
               </a>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </footer>
   );
 }

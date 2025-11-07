@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const ArrowIcon = () => (
   <svg
@@ -45,6 +46,9 @@ const ArrowIconWhite = () => (
 );
 
 export default function HeroWork() {
+  const toyotaLogo = PlaceHolderImages.find((img) => img.id === "toyota-logo")!;
+  const bookIcon = PlaceHolderImages.find((img) => img.id === "book-icon")!;
+
   return (
     <section className="w-full max-w-7xl py-12">
       <div className="container mx-auto">
@@ -110,14 +114,11 @@ export default function HeroWork() {
               <div className="pb-4">
                 <Image
                   className="h-8 w-auto"
-                  src="https://www.hackthebox.com/images/landingv3/toyota-white-logo.png"
-                  alt="Toyota logo"
+                  src={toyotaLogo.imageUrl}
+                  alt={toyotaLogo.description}
+                  data-ai-hint={toyotaLogo.imageHint}
                   width={120}
                   height={32}
-                  onError={(e) => {
-                    e.currentTarget.src =
-                      "https://placehold.co/120x32/111927/FFFFFF?text=Toyota";
-                  }}
                 />
               </div>
               <div>
@@ -142,14 +143,11 @@ export default function HeroWork() {
               <div className="pb-4">
                 <Image
                   className="w-auto h-16"
-                  src="https://www.hackthebox.com/images/landingv3/book-icon.png"
-                  alt="book icon"
+                  src={bookIcon.imageUrl}
+                  alt={bookIcon.description}
+                  data-ai-hint={bookIcon.imageHint}
                   width={62}
                   height={64}
-                  onError={(e) => {
-                    e.currentTarget.src =
-                      "https://placehold.co/62x64/111927/FFFFFF?text=Guide";
-                  }}
                 />
               </div>
               <div>

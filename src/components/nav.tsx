@@ -10,18 +10,21 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown, Menu, X } from "lucide-react";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const htbLogo = PlaceHolderImages.find((img) => img.id === "htb-logo")!;
 
   return (
-    <nav className="w-full max-w-7xl bg-rich-black rounded-lg shadow-lg px-6 py-4">
-      <div className="flex items-center justify-between">
+    <header className="w-full max-w-7xl bg-rich-black rounded-lg shadow-lg px-6 py-4">
+      <nav className="flex items-center justify-between">
         <div className="flex items-center gap-10">
           <a href="#">
             <Image
-              src="https://www.hackthebox.com/images/landingv3/mega-menu-logo-htb.svg"
-              alt="Hack The Box Logo"
+              src={htbLogo.imageUrl}
+              alt={htbLogo.description}
+              data-ai-hint={htbLogo.imageHint}
               width={150}
               height={32}
               className="h-8 w-auto"
@@ -135,6 +138,7 @@ export default function Nav() {
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="text-gray-300 hover:text-white focus:outline-none"
+            aria-label="Toggle mobile menu"
           >
             {mobileOpen ? (
               <X className="w-6 h-6" />
@@ -143,7 +147,7 @@ export default function Nav() {
             )}
           </button>
         </div>
-      </div>
+      </nav>
 
       {mobileOpen && (
         <div className="lg:hidden mt-4 space-y-2">
@@ -195,6 +199,6 @@ export default function Nav() {
           </Button>
         </div>
       )}
-    </nav>
+    </header>
   );
 }

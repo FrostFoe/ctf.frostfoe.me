@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const ArrowIcon = () => (
   <svg
@@ -45,27 +46,12 @@ const ArrowIconWhite = () => (
 );
 
 export default function HeroCarrer() {
+  const garyImage = PlaceHolderImages.find((img) => img.id === "gary-ruddell")!;
   const logos = [
-    {
-      src: "https://www.hackthebox.com/images/landingv3/security-metrics-logo.svg",
-      alt: "Security Metrics logo",
-      placeholder: "Security Metrics",
-    },
-    {
-      src: "https://www.hackthebox.com/images/landingv3/synack-the-white-logo.svg",
-      alt: "Synack logo",
-      placeholder: "Synack",
-    },
-    {
-      src: "https://www.hackthebox.com/images/landingv3/lufthansa-logo.svg",
-      alt: "Lufthansa logo",
-      placeholder: "Lufthansa",
-    },
-    {
-      src: "https://www.hackthebox.com/images/landingv3/booking-holdings-logo.svg",
-      alt: "Booking Holdings logo",
-      placeholder: "Booking Holdings",
-    },
+    PlaceHolderImages.find((img) => img.id === "company-security-metrics")!,
+    PlaceHolderImages.find((img) => img.id === "company-synack")!,
+    PlaceHolderImages.find((img) => img.id === "company-lufthansa")!,
+    PlaceHolderImages.find((img) => img.id === "company-booking")!,
   ];
 
   return (
@@ -149,14 +135,11 @@ export default function HeroCarrer() {
                 <div className="w-full sm:w-2/5 lg:w-full xl:w-5/12 h-48 sm:h-auto">
                   <Image
                     className="w-full h-full object-cover"
-                    src="https://www.hackthebox.com/images/landingv3/gary-ruddell-mobile.png"
-                    alt="Gary Ruddell"
+                    src={garyImage.imageUrl}
+                    alt={garyImage.description}
+                    data-ai-hint={garyImage.imageHint}
                     width={200}
                     height={300}
-                    onError={(e) => {
-                      e.currentTarget.src =
-                        "https://placehold.co/200x300/111927/FFFFFF?text=Gary+R.";
-                    }}
                   />
                 </div>
               </div>
@@ -173,15 +156,13 @@ export default function HeroCarrer() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 items-center">
             {logos.map((logo) => (
               <Image
-                key={logo.src}
+                key={logo.id}
                 className="w-full h-auto"
-                src={logo.src}
-                alt={logo.alt}
+                src={logo.imageUrl}
+                alt={logo.description}
+                data-ai-hint={logo.imageHint}
                 width={200}
                 height={50}
-                onError={(e) => {
-                  e.currentTarget.src = `https://placehold.co/200x50/111927/808080?text=${encodeURIComponent(logo.placeholder)}`;
-                }}
               />
             ))}
           </div>

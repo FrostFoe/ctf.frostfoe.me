@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const domainTabs = [
   { id: "red", title: "Red Teams" },
@@ -14,7 +15,7 @@ const domainTabs = [
 const domainContent = {
   red: {
     href: "https://www.hackthebox.com/red-teams",
-    bgImage: "https://www.hackthebox.com/images/landingv3/red-bg.png",
+    bgImage: PlaceHolderImages.find((img) => img.id === "red-team-bg")!.imageUrl,
     description:
       "Test and grow your skills in all penetration testing and adversarial domains, from information gathering to documentation and reporting.",
     features: [
@@ -26,7 +27,7 @@ const domainContent = {
   },
   blue: {
     href: "https://www.hackthebox.com/blue-teams",
-    bgImage: "https://www.hackthebox.com/images/landingv3/blue-bg.png",
+    bgImage: PlaceHolderImages.find((img) => img.id === "blue-team-bg")!.imageUrl,
     description:
       "Stay connected to the threat landscape and learn how to detect techniques, tactics, and procedures used by real adversaries.",
     features: [
@@ -38,7 +39,7 @@ const domainContent = {
   },
   purple: {
     href: "https://www.hackthebox.com/purple-teams",
-    bgImage: "https://www.hackthebox.com/images/landingv3/purple-bg.png",
+    bgImage: PlaceHolderImages.find((img) => img.id === "purple-team-bg")!.imageUrl,
     description:
       "Master offensive strategies to enable effective defensive operations. For modern, 360° cyber professionals and organizations.",
     features: [
@@ -53,12 +54,12 @@ const domainContent = {
 export default function HeroDomains() {
   const [activeTab, setActiveTab] = useState("purple");
   const activeContent = domainContent[activeTab as keyof typeof domainContent];
+  const checkIcon = PlaceHolderImages.find((img) => img.id === "check-icon")!;
 
   return (
     <section className="w-full max-w-7xl py-12">
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row gap-8">
-          {/* Left Column: Title & Accordion Menu */}
           <div className="w-full xl:w-1/2 flex flex-col">
             <h3 className="text-white text-4xl font-bold mb-8">
               Solutions for all <br /> cybersecurity domains.
@@ -91,13 +92,13 @@ export default function HeroDomains() {
             </div>
           </div>
 
-          {/* Right Column: Tab Content */}
           <div className="w-full xl:w-1/2">
             <div className="h-full">
               <a href={activeContent.href} className="block h-full">
                 <div
                   style={{ backgroundImage: `url('${activeContent.bgImage}')` }}
                   className="h-full rounded-lg flex flex-col justify-end p-8 bg-cover bg-center"
+                  data-ai-hint="abstract background"
                 >
                   <p className="text-xl text-gray-200 mb-8">
                     {activeContent.description}
@@ -106,15 +107,12 @@ export default function HeroDomains() {
                     {activeContent.features.map((feature, index) => (
                       <div key={index} className="flex items-start">
                         <Image
-                          src="https://www.hackthebox.com/images/landingv3/check-icon.png"
-                          alt="check icon"
+                          src={checkIcon.imageUrl}
+                          alt={checkIcon.description}
+                          data-ai-hint={checkIcon.imageHint}
                           width={20}
                           height={20}
                           className="w-5 h-5 mr-3"
-                          onError={(e) => {
-                            e.currentTarget.src =
-                              "https://placehold.co/20/111927/FFFFFF?text=C";
-                          }}
                         />
                         <span className="text-gray-300">{feature}</span>
                       </div>

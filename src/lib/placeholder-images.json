@@ -1,3 +1,112 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "discord-button",
+      "description": "Discord Join Button",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/discord-button.svg",
+      "imageHint": "discord logo"
+    },
+    {
+      "id": "g2-rating",
+      "description": "G2 Rating",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/rating.png",
+      "imageHint": "rating stars"
+    },
+    {
+      "id": "gary-ruddell",
+      "description": "Gary Ruddell",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/gary-ruddell-mobile.png",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "company-security-metrics",
+      "description": "Security Metrics logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/security-metrics-logo.svg",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "company-synack",
+      "description": "Synack logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/synack-the-white-logo.svg",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "company-lufthansa",
+      "description": "Lufthansa logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/lufthansa-logo.svg",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "company-booking",
+      "description": "Booking Holdings logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/booking-holdings-logo.svg",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "red-team-bg",
+      "description": "Red Team Background",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/red-bg.png",
+      "imageHint": "abstract background"
+    },
+    {
+      "id": "blue-team-bg",
+      "description": "Blue Team Background",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/blue-bg.png",
+      "imageHint": "abstract background"
+    },
+    {
+      "id": "purple-team-bg",
+      "description": "Purple Team Background",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/purple-bg.png",
+      "imageHint": "abstract background"
+    },
+    {
+      "id": "check-icon",
+      "description": "Check icon",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/check-icon.png",
+      "imageHint": "checkmark icon"
+    },
+    {
+      "id": "megaphone-icon",
+      "description": "Megaphone icon",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/megaphone.webp",
+      "imageHint": "megaphone illustration"
+    },
+    {
+      "id": "learning-paths-asset",
+      "description": "Learning Paths",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/learning-paths-asset.png",
+      "imageHint": "abstract nodes"
+    },
+    {
+      "id": "real-world-scenarios-asset",
+      "description": "Real-world Scenarios",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/real-world-scenarios.png",
+      "imageHint": "data graph"
+    },
+    {
+      "id": "industry-certifications-asset",
+      "description": "Industry Certifications",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/industry-certifications.png",
+      "imageHint": "certificate badge"
+    },
+    {
+      "id": "toyota-logo",
+      "description": "Toyota logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/toyota-white-logo.png",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "book-icon",
+      "description": "Book icon",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/book-icon.png",
+      "imageHint": "book icon"
+    },
+    {
+      "id": "htb-logo",
+      "description": "Hack The Box Logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/mega-menu-logo-htb.svg",
+      "imageHint": "company logo"
+    }
+  ]
 }
