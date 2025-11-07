@@ -1,4 +1,5 @@
 import HeroCarrer from "@/components/landing/hero-carrer";
+import HeroDomains from "@/components/landing/hero-domains";
 import HeroNotification from "@/components/landing/hero-notification";
 import HeroSkills from "@/components/landing/hero-skills";
 import HeroStats from "@/components/landing/hero-stats";
@@ -13,6 +14,7 @@ export default function Home() {
         <HeroNotification />
         <HeroStats />
         <HeroSkills />
+        <HeroDomains />
         <HeroWork />
         <HeroCarrer />
       </main>
