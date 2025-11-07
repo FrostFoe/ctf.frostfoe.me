@@ -5,7 +5,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
 const domainTabs = [
   { id: "red", title: "Red Teams" },
@@ -55,7 +55,6 @@ const domainContent = {
 export default function HeroDomains() {
   const [activeTab, setActiveTab] = useState("purple");
   const activeContent = domainContent[activeTab as keyof typeof domainContent];
-  const checkIcon = PlaceHolderImages.find((img) => img.id === "check-icon")!;
 
   return (
     <section className="w-full max-w-7xl py-12">
@@ -107,14 +106,7 @@ export default function HeroDomains() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 mb-8">
                     {activeContent.features.map((feature, index) => (
                       <div key={index} className="flex items-start">
-                        <Image
-                          src={checkIcon.imageUrl}
-                          alt={checkIcon.description}
-                          data-ai-hint={checkIcon.imageHint}
-                          width={20}
-                          height={20}
-                          className="w-5 h-5 mr-3 flex-shrink-0"
-                        />
+                        <Check className="w-5 h-5 mr-3 flex-shrink-0 text-lime-400" />
                         <span className="text-gray-300 text-sm">{feature}</span>
                       </div>
                     ))}

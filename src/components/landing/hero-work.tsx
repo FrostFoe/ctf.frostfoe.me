@@ -1,12 +1,9 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { ArrowRight, Book } from "lucide-react";
 
 export default function HeroWork() {
-  const bookIcon = PlaceHolderImages.find((img) => img.id === "book-icon")!;
-
   return (
     <section className="w-full max-w-7xl py-12">
       <div className="container mx-auto px-4">
@@ -92,7 +89,7 @@ export default function HeroWork() {
                 <ArrowRight className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity absolute top-6 right-6" />
               </div>
               <div className="pb-4">
-                <Book className="w-16 h-16 text-white" />
+                <Book className="w-12 h-12 text-white" />
               </div>
               <div>
                 <p className="text-white text-lg leading-snug">
