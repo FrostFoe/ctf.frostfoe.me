@@ -73,7 +73,7 @@ export default function HeroSkills() {
           {skillCards.map((card) => (
             <Card
               key={card.title}
-              className="bg-gray-800 border-gray-700 h-full flex flex-col justify-between text-left"
+              className="bg-gray-800 border-gray-700 h-full flex flex-col justify-between text-left transition-all duration-300 ease-in-out hover:scale-105 hover:border-gray-500"
             >
               <CardHeader>
                 <CardTitle className="text-white">{card.title}</CardTitle>

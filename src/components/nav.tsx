@@ -17,7 +17,7 @@ export default function Nav() {
   const htbLogo = PlaceHolderImages.find((img) => img.id === "htb-logo")!;
 
   return (
-    <header className="w-full max-w-7xl bg-gray-900 rounded-lg shadow-lg px-6 py-4">
+    <header className="w-full max-w-7xl bg-gray-900 rounded-lg shadow-lg px-6 py-4 animate-slide-in-from-top">
       <nav className="flex items-center justify-between">
         <div className="flex items-center gap-10">
           <a href="#">

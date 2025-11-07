@@ -8,7 +8,6 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 
 export default function HeroCarrer() {
@@ -54,7 +53,7 @@ export default function HeroCarrer() {
             className="group w-full h-full"
             href="https://www.hackthebox.com/blog/a-blueprint-for-onboarding-new-cybersecurity-professionals"
           >
-            <Card className="bg-gray-800 border-gray-700 h-full p-6 md:p-8 relative hover:border-gray-500 transition-colors">
+            <Card className="bg-gray-800 border-gray-700 h-full p-6 md:p-8 relative hover:border-gray-500 transition-all duration-300 ease-in-out group-hover:scale-[1.02] group-hover:shadow-lime-800/20">
               <ArrowRight className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity absolute top-6 right-6" />
               <CardContent className="p-0">
                 <div className="flex flex-col sm:flex-row gap-8">
@@ -81,7 +80,7 @@ export default function HeroCarrer() {
           </a>
         </div>
 
-        <Card className="bg-gray-800 border-gray-700 p-6 md:p-8 text-center lg:text-left">
+        <Card className="bg-gray-800 border-gray-700 p-6 md:p-8 text-center lg:text-left transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lime-800/20">
           <CardHeader className="p-0 mb-6">
             <CardDescription className="text-gray-400 text-base">
               হ্যাক দ্য বক্স-এ নিয়োগকারী সংস্থাগুলি

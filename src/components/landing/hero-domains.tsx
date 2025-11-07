@@ -80,7 +80,7 @@ export default function HeroDomains() {
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={cn(
-                    "cursor-pointer transition-colors bg-gray-800",
+                    "cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 bg-gray-800",
                     {
                       "border-gray-700 hover:border-gray-500":
                         activeTab !== tab.id,
@@ -109,7 +109,7 @@ export default function HeroDomains() {
                 style={{
                   backgroundImage: `url('${activeContent.bgImage}')`,
                 }}
-                className="h-full min-h-[600px] xl:min-h-0 rounded-lg flex flex-col justify-end bg-cover bg-center border-gray-700 group-hover:border-gray-500 transition-colors"
+                className="h-full min-h-[600px] xl:min-h-0 rounded-lg flex flex-col justify-end bg-cover bg-center border-gray-700 group-hover:border-gray-500 transition-all duration-300 ease-in-out group-hover:scale-[1.02]"
                 data-ai-hint="abstract background"
               >
                 <CardContent className="p-6 sm:p-8">
@@ -127,7 +127,13 @@ export default function HeroDomains() {
                     ))}
                   </div>
                   <div className="flex justify-center md:justify-start">
-                    <Button className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-sm hover:bg-lime-300 transition-colors">
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.open(activeContent.href, "_blank");
+                      }}
+                      className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-sm hover:bg-lime-300 transition-colors"
+                    >
                       আরও দেখুন <ArrowRight />
                     </Button>
                   </div>

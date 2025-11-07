@@ -13,13 +13,27 @@ export default function Home() {
     <div className="flex min-h-screen w-full flex-col items-center gap-6 bg-background p-4">
       <Nav />
       <main className="flex w-full flex-col items-center justify-center gap-6">
-        <HeroNotification />
-        <HeroStats />
-        <HeroSkills />
-        <HeroDomains />
-        <HeroWork />
-        <HeroCarrer />
-        <Partners />
+        <div className="w-full animate-fade-in animation-delay-300">
+          <HeroNotification />
+        </div>
+        <div className="w-full animate-slide-in-from-bottom animation-delay-400">
+          <HeroStats />
+        </div>
+        <div className="w-full animate-slide-in-from-bottom animation-delay-500">
+          <HeroSkills />
+        </div>
+        <div className="w-full animate-slide-in-from-bottom animation-delay-600">
+          <HeroDomains />
+        </div>
+        <div className="w-full animate-slide-in-from-bottom animation-delay-700">
+          <HeroWork />
+        </div>
+        <div className="w-full animate-slide-in-from-bottom animation-delay-800">
+          <HeroCarrer />
+        </div>
+        <div className="w-full animate-slide-in-from-bottom animation-delay-900">
+          <Partners />
+        </div>
       </main>
       <Footer />
     </div>
