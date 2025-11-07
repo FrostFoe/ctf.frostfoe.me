@@ -5,7 +5,6 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { ArrowRight } from "lucide-react";
 
 export default function HeroCarrer() {
-  const garyImage = PlaceHolderImages.find((img) => img.id === "gary-ruddell")!;
   const logos = [
     PlaceHolderImages.find((img) => img.id === "company-security-metrics")!,
     PlaceHolderImages.find((img) => img.id === "company-synack")!,
@@ -18,9 +17,8 @@ export default function HeroCarrer() {
       <div className="container mx-auto px-4">
         <div className="mb-8 text-center lg:text-left">
           <h4 className="text-white text-3xl sm:text-4xl font-extrabold leading-tight mb-8">
-            Clear career path programs and retention{" "}
-            <br className="hidden md:block" />
-            strategies fighting burnout, fatigue, or skill gaps.
+            বার্নআউট, ক্লান্তি বা দক্ষতার ব্যবধানের বিরুদ্ধে লড়াই করার জন্য স্পষ্ট
+            ক্যারিয়ার পাথ প্রোগ্রাম এবং ধরে রাখার কৌশল।
           </h4>
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
             <Button
@@ -28,7 +26,7 @@ export default function HeroCarrer() {
               className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-base hover:bg-lime-300 transition-colors"
             >
               <a href="https://jobs.hackthebox.com" target="_blank">
-                Find a job
+                চাকরি খুঁজুন
                 <ArrowRight />
               </a>
             </Button>
@@ -38,7 +36,7 @@ export default function HeroCarrer() {
               className="text-gray-300 bg-transparent border border-gray-600 hover:bg-gray-700 font-medium py-2 px-5 rounded-md transition-colors text-base"
             >
               <a href="https://www.hackthebox.com/business/talent-search">
-                For business
+                ব্যবসার জন্য
               </a>
             </Button>
           </div>
@@ -55,19 +53,19 @@ export default function HeroCarrer() {
                 <div className="flex flex-col sm:flex-row gap-8">
                   <div className="flex-1 border-b sm:border-b-0 sm:border-r border-gray-700 pb-6 sm:pb-0 sm:pr-6">
                     <span className="text-sm text-gray-400 block mb-4 sm:mb-12">
-                      Available candidates
+                      উপলব্ধ প্রার্থী
                     </span>
                     <span className="text-lime-400 text-5xl md:text-7xl font-extrabold block">
-                      908k+
+                      ৯০৮ হাজার+
                     </span>
                   </div>
                   <div className="flex-1 pt-6 sm:pt-0">
                     <span className="text-sm text-gray-400 block mb-4 sm:mb-12">
-                      Onboarding & retention
+                      অনবোর্ডিং এবং ধরে রাখা
                     </span>
                     <p className="text-white text-lg md:text-xl leading-relaxed">
-                      A blueprint for onboarding cybersecurity professionals:
-                      hire & retain!
+                      সাইবারসিকিউরিটি পেশাদারদের অনবোর্ডিংয়ের জন্য একটি
+                      ব্লুপ্রিন্ট: নিয়োগ এবং ধরে রাখুন!
                     </p>
                   </div>
                 </div>
@@ -79,7 +77,7 @@ export default function HeroCarrer() {
         <div className="bg-gray-800 rounded-lg border border-gray-700 p-6 md:p-8 text-center lg:text-left">
           <div className="mb-6">
             <span className="text-gray-400 text-base">
-              Companies hiring on Hack The Box
+              হ্যাক দ্য বক্স-এ নিয়োগকারী সংস্থাগুলি
             </span>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 items-center">

@@ -9,22 +9,28 @@ import { ArrowRight } from "lucide-react";
 export default function HeroSkills() {
   const skillCards = [
     {
-      title: "Learning Paths",
+      title: "লার্নিং পাথ",
       description:
-        "Fully guided journeys into a wide range of skills or proficiency in specific security job-roles.",
-      image: PlaceHolderImages.find((img) => img.id === "learning-paths-asset")!,
+        "বিভিন্ন দক্ষতার উপর সম্পূর্ণ নির্দেশিত যাত্রা অথবা নির্দিষ্ট নিরাপত্তা চাকরির ভূমিকায় দক্ষতা অর্জন।",
+      image: PlaceHolderImages.find(
+        (img) => img.id === "learning-paths-asset",
+      )!,
     },
     {
-      title: "Real-world Scenarios",
+      title: "বাস্তব-বিশ্বের দৃশ্য",
       description:
-        "Cutting-edge labs focusing on the latest technologies and attack vectors — released every week!",
-      image: PlaceHolderImages.find((img) => img.id === "real-world-scenarios-asset")!,
+        "সর্বশেষ প্রযুক্তি এবং আক্রমণের ভেক্টরের উপর কেন্দ্র করে অত্যাধুনিক ল্যাব — প্রতি সপ্তাহে প্রকাশিত হয়!",
+      image: PlaceHolderImages.find(
+        (img) => img.id === "real-world-scenarios-asset",
+      )!,
     },
     {
-      title: "Industry Certifications",
+      title: "শিল্প সার্টিফিকেশন",
       description:
-        "Innovative courses and exams that will make a market-ready professional out of you!",
-      image: PlaceHolderImages.find((img) => img.id === "industry-certifications-asset")!,
+        "উদ্ভাবনী কোর্স এবং পরীক্ষা যা আপনাকে বাজারের জন্য প্রস্তুত একজন পেশাদার করে তুলবে!",
+      image: PlaceHolderImages.find(
+        (img) => img.id === "industry-certifications-asset",
+      )!,
     },
   ];
 
@@ -33,9 +39,8 @@ export default function HeroSkills() {
       <div className="container mx-auto px-4">
         <div className="mb-8 text-center lg:text-left">
           <h4 className="text-white text-3xl sm:text-4xl font-extrabold leading-tight mb-8">
-            Gamified, hands-on upskilling from{" "}
-            <br className="hidden sm:block" /> cybersecurity fundamentals to
-            advanced scenarios.
+            সাইবারসিকিউরিটি মৌলিক বিষয় থেকে শুরু করে <br /> উন্নত দৃশ্যকল্প
+            পর্যন্ত গ্যামিফাইড, হ্যান্ডস-অন আপস্কিলিং।
           </h4>
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
             <Button
@@ -43,7 +48,7 @@ export default function HeroSkills() {
               className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-base hover:bg-lime-300 transition-colors"
             >
               <a href="https://www.hackthebox.com/hacker" target="_blank">
-                Get started <ArrowRight />
+                শুরু করুন <ArrowRight />
               </a>
             </Button>
             <Button
@@ -52,7 +57,7 @@ export default function HeroSkills() {
               className="text-gray-300 bg-transparent border border-gray-600 hover:bg-gray-700 font-medium py-2 px-5 rounded-md transition-colors text-base"
             >
               <a href="https://www.hackthebox.com/business-cyber-security-training">
-                For teams
+                টিমের জন্য
               </a>
             </Button>
           </div>

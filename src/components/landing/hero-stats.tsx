@@ -5,11 +5,11 @@ export default function HeroStats() {
         <div className="bg-gray-800 rounded-2xl p-8 md:p-10 flex flex-col justify-center h-full text-center lg:text-left">
           <div>
             <p className="text-6xl md:text-8xl font-extrabold text-lime-400 mb-4">
-              50%
+              ৫০%
             </p>
             <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 leading-snug">
-              and more of significant cyber incidents are caused by a lack of
-              skills or human failure.
+              এবং আরও গুরুত্বপূর্ণ সাইবার ঘটনা দক্ষতার অভাব বা মানুষের ভুলের কারণে
+              ঘটে।
             </p>
           </div>
         </div>
@@ -17,11 +17,11 @@ export default function HeroStats() {
         <div className="bg-gray-800 rounded-2xl p-8 md:p-10 flex flex-col justify-center h-full relative overflow-hidden min-h-[250px] lg:min-h-0 text-center lg:text-left">
           <div>
             <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 leading-snug">
-              Beat the odds.
+              অসম্ভবকে হার মানান।
               <br />
-              Optimize your
+              আপনার কর্মক্ষমতা
               <br />
-              performance.
+              অনুকূল করুন।
             </p>
           </div>
 

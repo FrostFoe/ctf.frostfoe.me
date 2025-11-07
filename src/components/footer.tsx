@@ -5,7 +5,9 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import Typewriter from "@/components/ui/typewriter";
 
 export default function Footer() {
-  const discordButton = PlaceHolderImages.find((img) => img.id === "discord-button")!;
+  const discordButton = PlaceHolderImages.find(
+    (img) => img.id === "discord-button",
+  )!;
   const g2Rating = PlaceHolderImages.find((img) => img.id === "g2-rating")!;
 
   return (
@@ -15,13 +17,13 @@ export default function Footer() {
           <div className="py-12 px-4 flex flex-col justify-center items-center">
             <div className="flex flex-col justify-center text-center">
               <h3 className="text-lime-400 text-4xl sm:text-6xl lg:text-8xl font-bold pb-4 mb-0">
-                <span className="whitespace-nowrap">4.1m+ </span>
-                <Typewriter toRotate={["hackers"]} />
+                <span className="whitespace-nowrap">৪.১ মিলিয়নেরও বেশি </span>
+                <Typewriter toRotate={["হ্যাকার"]} />
               </h3>
               <p className="text-base md:text-lg text-gray-300 pb-6 mb-0 max-w-md mx-auto">
-                Chat about labs, share resources and jobs.
-                <br className="hidden sm:block" /> Connect with 200k+ hackers
-                from all over the world.
+                ল্যাব সম্পর্কে চ্যাট করুন, রিসোর্স এবং চাকরি শেয়ার করুন।
+                <br className="hidden sm:block" /> সারা বিশ্ব থেকে ২ লক্ষেরও
+                বেশি হ্যাকারের সাথে সংযোগ করুন।
               </p>
               <a
                 href="https://discord.com/invite/hackthebox"

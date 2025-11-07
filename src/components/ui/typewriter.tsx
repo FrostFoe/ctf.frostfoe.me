@@ -38,9 +38,9 @@ export default function Typewriter({ toRotate }: TypewriterProps) {
   }, [text, isDeleting, loopNum, toRotate, typingSpeed]);
 
   return (
-    <span className="inline-block min-w-[240px] md:min-w-[380px] lg:min-w-[480px]">
+    <span className="inline-block min-w-[120px] md:min-w-[200px] lg:min-w-[240px]">
       <span>{text}</span>
       <span className="animate-ping">|</span>
     </span>
   );
-};
+}

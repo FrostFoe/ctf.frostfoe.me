@@ -37,18 +37,18 @@ export default function Nav() {
                   variant="ghost"
                   className="text-gray-300 hover:text-white text-sm font-medium transition-colors flex items-center gap-1"
                 >
-                  Products <ChevronDown className="w-4 h-4" />
+                  পণ্য <ChevronDown className="w-4 h-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-48 bg-gray-800 border-gray-700 text-gray-300">
                 <DropdownMenuItem className="hover:bg-gray-700 hover:text-white">
-                  For Individuals
+                  ব্যক্তিদের জন্য
                 </DropdownMenuItem>
                 <DropdownMenuItem className="hover:bg-gray-700 hover:text-white">
-                  For Teams
+                  দলের জন্য
                 </DropdownMenuItem>
                 <DropdownMenuItem className="hover:bg-gray-700 hover:text-white">
-                  For Schools
+                  স্কুলের জন্য
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -57,13 +57,13 @@ export default function Nav() {
               href="#"
               className="text-gray-300 hover:text-white text-sm font-medium transition-colors"
             >
-              Solutions
+              সমাধান
             </a>
             <a
               href="#"
               className="text-gray-300 hover:text-white text-sm font-medium transition-colors"
             >
-              Pricing
+              মূল্য নির্ধারণ
             </a>
 
             <DropdownMenu>
@@ -72,18 +72,18 @@ export default function Nav() {
                   variant="ghost"
                   className="text-gray-300 hover:text-white text-sm font-medium transition-colors flex items-center gap-1"
                 >
-                  Resources <ChevronDown className="w-4 h-4" />
+                  রিসোর্স <ChevronDown className="w-4 h-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-48 bg-gray-800 border-gray-700 text-gray-300">
                 <DropdownMenuItem className="hover:bg-gray-700 hover:text-white">
-                  Community
+                  সম্প্রদায়
                 </DropdownMenuItem>
                 <DropdownMenuItem className="hover:bg-gray-700 hover:text-white">
-                  Get Help
+                  সাহায্য পান
                 </DropdownMenuItem>
                 <DropdownMenuItem className="hover:bg-gray-700 hover:text-white">
-                  Blog
+                  ব্লগ
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -92,7 +92,7 @@ export default function Nav() {
               href="#"
               className="text-gray-300 hover:text-white text-sm font-medium transition-colors"
             >
-              Company
+              কোম্পানি
             </a>
           </div>
         </div>
@@ -104,20 +104,20 @@ export default function Nav() {
                 variant="ghost"
                 className="text-gray-300 hover:text-white text-sm font-medium transition-colors flex items-center gap-1"
               >
-                Business <ChevronDown className="w-4 h-4" />
+                ব্যবসা <ChevronDown className="w-4 h-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-64 bg-gray-800 border-gray-700 text-gray-300 -right-10">
               <DropdownMenuItem className="hover:bg-gray-700 hover:text-white flex flex-col items-start">
-                <span className="font-bold block">Start free trial</span>
+                <span className="font-bold block">বিনামূল্যে ট্রায়াল শুরু করুন</span>
                 <span className="text-xs text-gray-400">
-                  All-in-one platform free for 14 days.
+                  ১৪ দিনের জন্য বিনামূল্যে অল-ইন-ওয়ান প্ল্যাটফর্ম।
                 </span>
               </DropdownMenuItem>
               <DropdownMenuItem className="hover:bg-gray-700 hover:text-white flex flex-col items-start">
-                <span className="font-bold block">Get a demo</span>
+                <span className="font-bold block">একটি ডেমো পান</span>
                 <span className="text-xs text-gray-400">
-                  Get in touch with our team.
+                  আমাদের দলের সাথে যোগাযোগ করুন।
                 </span>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -127,10 +127,10 @@ export default function Nav() {
             href="#"
             className="text-gray-300 hover:text-white text-sm font-medium transition-colors"
           >
-            Login
+            লগইন
           </a>
           <Button className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-sm hover:bg-lime-300 transition-colors">
-            Get Started
+            শুরু করুন
           </Button>
         </div>
 
@@ -155,47 +155,47 @@ export default function Nav() {
             href="#"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700"
           >
-            Products
+            পণ্য
           </a>
           <a
             href="#"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700"
           >
-            Solutions
+            সমাধান
           </a>
           <a
             href="#"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700"
           >
-            Pricing
+            মূল্য নির্ধারণ
           </a>
           <a
             href="#"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700"
           >
-            Resources
+            রিসোর্স
           </a>
           <a
             href="#"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700"
           >
-            Company
+            কোম্পানি
           </a>
           <hr className="border-gray-700 my-2" />
           <a
             href="#"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700"
           >
-            Business
+            ব্যবসা
           </a>
           <a
             href="#"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700"
           >
-            Login
+            লগইন
           </a>
           <Button className="w-full text-center bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-base hover:bg-lime-300 transition-colors">
-            Get Started
+            শুরু করুন
           </Button>
         </div>
       )}

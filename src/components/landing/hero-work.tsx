@@ -1,6 +1,5 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { ArrowRight, Book } from "lucide-react";
 
 export default function HeroWork() {
@@ -9,9 +8,8 @@ export default function HeroWork() {
       <div className="container mx-auto px-4">
         <div className="mb-8 text-center lg:text-left">
           <h5 className="text-white text-3xl sm:text-4xl font-extrabold leading-tight mb-8">
-            Cyber workforce development plans baked{" "}
-            <br className="hidden lg:block" />
-            into the fabric and objectives of your organization.
+            সাইবার কর্মশক্তি উন্নয়ন পরিকল্পনা আপনার প্রতিষ্ঠানের <br /> গঠন এবং
+            উদ্দেশ্যের সাথে যুক্ত।
           </h5>
 
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
@@ -23,7 +21,7 @@ export default function HeroWork() {
                 href="https://www.hackthebox.com/business/contact-us"
                 target="_blank"
               >
-                Get a demo
+                একটি ডেমো পান
                 <ArrowRight />
               </a>
             </Button>
@@ -36,7 +34,7 @@ export default function HeroWork() {
                 href="https://enterprise.hackthebox.com/create-company"
                 target="_blank"
               >
-                Start free trial
+                বিনামূল্যে ট্রায়াল শুরু করুন
               </a>
             </Button>
           </div>
@@ -46,7 +44,7 @@ export default function HeroWork() {
           <div className="aspect-video">
             <iframe
               src="https://demo.arcade.software/b4VLzUIzD6jJlVwT6LaP?embed&amp;show_copy_link=true"
-              title="HTB Enterprise: Reporting"
+              title="HTB এন্টারপ্রাইজ: রিপোর্টিং"
               frameBorder="0"
               loading="lazy"
               allowFullScreen
@@ -63,7 +61,7 @@ export default function HeroWork() {
           >
             <div className="bg-gray-800 rounded-lg border border-gray-700 p-6 h-full flex flex-col justify-between relative hover:border-gray-500 transition-colors">
               <div className="flex items-center justify-between pb-4">
-                <span className="text-sm text-gray-400">Case study</span>
+                <span className="text-sm text-gray-400">কেস স্টাডি</span>
                 <ArrowRight className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity absolute top-6 right-6" />
               </div>
               <div className="pb-4">
@@ -71,8 +69,8 @@ export default function HeroWork() {
               </div>
               <div>
                 <p className="text-white text-lg leading-snug">
-                  Discover how to bridge the knowledge gap between teams and
-                  prepare for any cyber incident.
+                  কীভাবে দলের মধ্যে জ্ঞানের ব্যবধান পূরণ করতে হয় এবং যেকোনো
+                  সাইবার ঘটনার জন্য প্রস্তুত থাকতে হয় তা আবিষ্কার করুন।
                 </p>
               </div>
             </div>
@@ -85,7 +83,9 @@ export default function HeroWork() {
           >
             <div className="bg-gray-800 rounded-lg border border-gray-700 p-6 h-full flex flex-col justify-between relative hover:border-gray-500 transition-colors">
               <div className="flex items-center justify-between pb-4">
-                <span className="text-sm text-gray-400">Why Hack The Box?</span>
+                <span className="text-sm text-gray-400">
+                  কেন হ্যাক দ্য বক্স?
+                </span>
                 <ArrowRight className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity absolute top-6 right-6" />
               </div>
               <div className="pb-4">
@@ -93,8 +93,9 @@ export default function HeroWork() {
               </div>
               <div>
                 <p className="text-white text-lg leading-snug">
-                  High-performing cyber teams need to continuously adapt to new
-                  threats, benchmark skills, and retain talent.
+                  উচ্চ-কর্মক্ষমতাসম্পন্ন সাইবার দলগুলিকে ক্রমাগত নতুন হুমকির সাথে
+                  খাপ খাইয়ে নিতে, দক্ষতার মানদণ্ড তৈরি করতে এবং প্রতিভা ধরে
+                  রাখতে হবে।
                 </p>
               </div>
             </div>
