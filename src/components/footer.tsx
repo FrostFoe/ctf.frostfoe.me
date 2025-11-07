@@ -13,7 +13,7 @@ export default function Footer() {
   return (
     <footer className="w-full max-w-7xl py-8 animate-slide-in-from-bottom animation-delay-1000">
       <div className="container mx-auto px-4">
-        <div className="border border-gray-700 rounded-lg transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lime-800/20">
+        <div className="rounded-lg transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lime-800/20">
           <div className="py-12 px-2 flex flex-col justify-center items-center">
             <div className="flex flex-col justify-center text-center">
               <h3 className="text-lime-400 text-4xl sm:text-6xl lg:text-8xl font-bold pb-4 mb-0">
