@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { ArrowIcon } from "../icons";
+import { ArrowRight } from "lucide-react";
 
 export default function HeroSkills() {
   const skillCards = [
@@ -43,7 +43,7 @@ export default function HeroSkills() {
               className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-base hover:bg-lime-300 transition-colors"
             >
               <a href="https://www.hackthebox.com/hacker" target="_blank">
-                Get started <ArrowIcon />
+                Get started <ArrowRight />
               </a>
             </Button>
             <Button

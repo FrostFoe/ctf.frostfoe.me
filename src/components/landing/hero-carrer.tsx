@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { ArrowIcon, ArrowIconWhite } from "../icons";
+import { ArrowRight } from "lucide-react";
 
 export default function HeroCarrer() {
   const garyImage = PlaceHolderImages.find((img) => img.id === "gary-ruddell")!;
@@ -29,7 +29,7 @@ export default function HeroCarrer() {
             >
               <a href="https://jobs.hackthebox.com" target="_blank">
                 Find a job
-                <ArrowIcon />
+                <ArrowRight />
               </a>
             </Button>
             <Button
@@ -51,7 +51,7 @@ export default function HeroCarrer() {
               href="https://www.hackthebox.com/blog/a-blueprint-for-onboarding-new-cybersecurity-professionals"
             >
               <div className="bg-gray-800 rounded-lg border border-gray-700 h-full p-6 md:p-8 relative hover:border-gray-500 transition-colors">
-                <ArrowIconWhite />
+                <ArrowRight className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity absolute top-6 right-6" />
                 <div className="flex flex-col sm:flex-row gap-8">
                   <div className="flex-1 border-b sm:border-b-0 sm:border-r border-gray-700 pb-6 sm:pb-0 sm:pr-6">
                     <span className="text-sm text-gray-400 block mb-4 sm:mb-12">
@@ -84,7 +84,7 @@ export default function HeroCarrer() {
                 <div className="p-6 md:p-8 flex flex-col justify-between w-full sm:w-3/5 lg:w-full xl:w-7/12">
                   <div className="flex items-center justify-between pb-8 sm:pb-12">
                     <span className="text-sm text-gray-400">Success story</span>
-                    <ArrowIconWhite />
+                    <ArrowRight className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity absolute top-6 right-6" />
                   </div>
                   <p className="text-white text-lg md:text-xl leading-relaxed">
                     From Military Operator to Head of Cyber Threat Intelligence:

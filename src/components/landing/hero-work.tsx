@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { ArrowIcon, ArrowIconWhite } from "../icons";
+import { ArrowRight } from "lucide-react";
 
 export default function HeroWork() {
   const toyotaLogo = PlaceHolderImages.find((img) => img.id === "toyota-logo")!;
@@ -28,7 +28,7 @@ export default function HeroWork() {
                 target="_blank"
               >
                 Get a demo
-                <ArrowIcon />
+                <ArrowRight />
               </a>
             </Button>
             <Button
@@ -68,7 +68,7 @@ export default function HeroWork() {
             <div className="bg-gray-800 rounded-lg border border-gray-700 p-6 h-full flex flex-col justify-between relative hover:border-gray-500 transition-colors">
               <div className="flex items-center justify-between pb-4">
                 <span className="text-sm text-gray-400">Case study</span>
-                <ArrowIconWhite />
+                <ArrowRight className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity absolute top-6 right-6" />
               </div>
               <div className="pb-4">
                 <Image
@@ -97,7 +97,7 @@ export default function HeroWork() {
             <div className="bg-gray-800 rounded-lg border border-gray-700 p-6 h-full flex flex-col justify-between relative hover:border-gray-500 transition-colors">
               <div className="flex items-center justify-between pb-4">
                 <span className="text-sm text-gray-400">Why Hack The Box?</span>
-                <ArrowIconWhite />
+                <ArrowRight className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity absolute top-6 right-6" />
               </div>
               <div className="pb-4">
                 <Image
