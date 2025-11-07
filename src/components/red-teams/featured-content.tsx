@@ -48,7 +48,7 @@ export default function FeaturedContent() {
             href="#"
             className="group block h-full text-decoration-none"
           >
-            <Card className="flex h-full transform flex-col justify-between rounded-xl border border-red-500/30 bg-gradient-to-t from-red-950/40 to-transparent p-4 transition-transform duration-300 group-hover:scale-105 group-hover:border-red-500/60">
+            <Card className="flex h-full transform flex-col justify-between rounded-xl border border-red-500/30 bg-gradient-to-t from-red-950/40 to-transparent p-4 transition-all duration-300 ease-in-out group-hover:scale-105 group-hover:border-red-500/60 group-hover:shadow-lg group-hover:shadow-red-950/50">
               <CardHeader className="p-0">
                 <div className="mb-4 overflow-hidden rounded-lg">
                   <Image

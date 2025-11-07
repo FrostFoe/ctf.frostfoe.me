@@ -34,7 +34,7 @@ export default function Stats() {
         {stats.map((stat, index) => (
           <Card
             key={index}
-            className="rounded-xl border-2 border-red-500/20 bg-gradient-to-bl from-red-950/30 to-gray-900/20 p-6 shadow-lg"
+            className="rounded-xl border-2 border-red-500/20 bg-gradient-to-bl from-red-950/30 to-gray-900/20 p-6 shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:border-red-500/40"
           >
             <CardHeader className="p-0">
               <CardTitle className="text-7xl font-bold text-white md:text-8xl">

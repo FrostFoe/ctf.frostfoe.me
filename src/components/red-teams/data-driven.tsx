@@ -53,7 +53,7 @@ export default function DataDriven() {
               key={item.id}
               onClick={() => setActiveTab(item.id)}
               className={cn(
-                "cursor-pointer border-gray-700 bg-transparent p-4 transition-all duration-300 hover:bg-gray-800/50",
+                "cursor-pointer border-gray-700 bg-transparent p-4 transition-all duration-300 ease-in-out hover:bg-gray-800/50 hover:scale-105",
                 activeTab === item.id && "border-red-500/50 bg-gray-800/50",
               )}
             >
