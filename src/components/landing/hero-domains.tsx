@@ -112,10 +112,8 @@ export default function HeroDomains() {
                     ))}
                   </div>
                   <div className="flex justify-center md:justify-start">
-                    <Button asChild className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-sm hover:bg-lime-300 transition-colors">
-                      <a href={activeContent.href}>
-                        See more <ArrowRight />
-                      </a>
+                    <Button className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-sm hover:bg-lime-300 transition-colors">
+                      See more <ArrowRight />
                     </Button>
                   </div>
                 </div>
