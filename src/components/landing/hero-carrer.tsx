@@ -44,8 +44,8 @@ export default function HeroCarrer() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8 text-left">
-          <div className="lg:col-span-7">
+        <div className="grid grid-cols-1 gap-6 mb-8 text-left">
+          <div>
             <a
               className="group w-full h-full"
               href="https://www.hackthebox.com/blog/a-blueprint-for-onboarding-new-cybersecurity-professionals"
@@ -70,36 +70,6 @@ export default function HeroCarrer() {
                       hire & retain!
                     </p>
                   </div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div className="lg:col-span-5">
-            <a
-              className="group w-full h-full"
-              href="https://www.hackthebox.com/blog/military-operator-to-cyber-threat-intelligence-gary-success-story"
-            >
-              <div className="bg-gray-800 rounded-lg border border-gray-700 h-full flex flex-col sm:flex-row overflow-hidden relative hover:border-gray-500 transition-colors">
-                <div className="p-6 md:p-8 flex flex-col justify-between w-full sm:w-3/5 lg:w-full xl:w-7/12">
-                  <div className="flex items-center justify-between pb-8 sm:pb-12">
-                    <span className="text-sm text-gray-400">Success story</span>
-                    <ArrowRight className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity absolute top-6 right-6" />
-                  </div>
-                  <p className="text-white text-lg md:text-xl leading-relaxed">
-                    From Military Operator to Head of Cyber Threat Intelligence:
-                    Gary's story
-                  </p>
-                </div>
-                <div className="w-full sm:w-2/5 lg:w-full xl:w-5/12 h-48 sm:h-auto">
-                  <Image
-                    className="w-full h-full object-cover"
-                    src={garyImage.imageUrl}
-                    alt={garyImage.description}
-                    data-ai-hint={garyImage.imageHint}
-                    width={200}
-                    height={300}
-                  />
                 </div>
               </div>
             </a>
