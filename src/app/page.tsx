@@ -1,3 +1,4 @@
+import HeroCarrer from "@/components/landing/hero-carrer";
 import HeroNotification from "@/components/landing/hero-notification";
 import HeroSkills from "@/components/landing/hero-skills";
 import HeroStats from "@/components/landing/hero-stats";
@@ -13,6 +14,7 @@ export default function Home() {
         <HeroStats />
         <HeroSkills />
         <HeroWork />
+        <HeroCarrer />
       </main>
     </div>
   );
