@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Book } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function HeroWork() {
   return (
@@ -51,33 +51,6 @@ export default function HeroWork() {
               className="w-full h-full rounded-lg"
             ></iframe>
           </div>
-        </div>
-
-        <div className="grid grid-cols-1 gap-6 text-left">
-          <a
-            className="group"
-            href="https://resources.hackthebox.com/hubfs/HTB%20Cybersecurity%20Professional%20Development%20Buyers%20Guide%202025.pdf"
-            target="_blank"
-          >
-            <div className="bg-gray-800 rounded-lg border border-gray-700 p-6 h-full flex flex-col justify-between relative hover:border-gray-500 transition-colors">
-              <div className="flex items-center justify-between pb-4">
-                <span className="text-sm text-gray-400">
-                  কেন হ্যাক দ্য বক্স?
-                </span>
-                <ArrowRight className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity absolute top-6 right-6" />
-              </div>
-              <div className="pb-4">
-                <Book className="w-12 h-12 text-white" />
-              </div>
-              <div>
-                <p className="text-white text-lg leading-snug">
-                  উচ্চ-কর্মক্ষমতাসম্পন্ন সাইবার দলগুলিকে ক্রমাগত নতুন হুমকির সাথে
-                  খাপ খাইয়ে নিতে, দক্ষতার মানদণ্ড তৈরি করতে এবং প্রতিভা ধরে
-                  রাখতে হবে।
-                </p>
-              </div>
-            </div>
-          </a>
         </div>
       </div>
     </section>
