@@ -1,6 +1,7 @@
 import HeroNotification from "@/components/landing/hero-notification";
 import HeroSkills from "@/components/landing/hero-skills";
 import HeroStats from "@/components/landing/hero-stats";
+import HeroWork from "@/components/landing/hero-work";
 import Nav from "@/components/nav";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
         <HeroNotification />
         <HeroStats />
         <HeroSkills />
+        <HeroWork />
       </main>
     </div>
   );
