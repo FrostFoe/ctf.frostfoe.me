@@ -53,29 +53,7 @@ export default function HeroWork() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-left">
-          <a
-            className="group"
-            href="https://www.hackthebox.com/blog/customer-story-toyota"
-            target="_blank"
-          >
-            <div className="bg-gray-800 rounded-lg border border-gray-700 p-6 h-full flex flex-col justify-between relative hover:border-gray-500 transition-colors">
-              <div className="flex items-center justify-between pb-4">
-                <span className="text-sm text-gray-400">কেস স্টাডি</span>
-                <ArrowRight className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity absolute top-6 right-6" />
-              </div>
-              <div className="pb-4">
-                <span className="text-white font-bold text-2xl">TOYOTA</span>
-              </div>
-              <div>
-                <p className="text-white text-lg leading-snug">
-                  কীভাবে দলের মধ্যে জ্ঞানের ব্যবধান পূরণ করতে হয় এবং যেকোনো
-                  সাইবার ঘটনার জন্য প্রস্তুত থাকতে হয় তা আবিষ্কার করুন।
-                </p>
-              </div>
-            </div>
-          </a>
-
+        <div className="grid grid-cols-1 gap-6 text-left">
           <a
             className="group"
             href="https://resources.hackthebox.com/hubfs/HTB%20Cybersecurity%20Professional%20Development%20Buyers%20Guide%202025.pdf"
