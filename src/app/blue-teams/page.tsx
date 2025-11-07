@@ -6,7 +6,6 @@ import Methodology from "@/components/blue-teams/methodology";
 import UseCases from "@/components/blue-teams/use-cases";
 import FeaturedContent from "@/components/blue-teams/featured-content";
 import DataDriven from "@/components/blue-teams/data-driven";
-import Testimonials from "@/components/blue-teams/testimonials";
 
 export default function BlueTeamsPage() {
   return (
@@ -30,9 +29,6 @@ export default function BlueTeamsPage() {
         </div>
         <div className="w-full animate-slide-in-from-bottom animation-delay-900">
           <DataDriven />
-        </div>
-        <div className="w-full animate-slide-in-from-bottom animation-delay-1000">
-          <Testimonials />
         </div>
       </main>
       <Footer />
