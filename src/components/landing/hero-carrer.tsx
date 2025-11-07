@@ -15,14 +15,14 @@ export default function HeroCarrer() {
 
   return (
     <section className="w-full max-w-7xl py-12">
-      <div className="container mx-auto">
-        <div className="mb-8">
+      <div className="container mx-auto px-4">
+        <div className="mb-8 text-center lg:text-left">
           <h4 className="text-white text-3xl sm:text-4xl font-extrabold leading-tight mb-8">
             Clear career path programs and retention{" "}
             <br className="hidden md:block" />
             strategies fighting burnout, fatigue, or skill gaps.
           </h4>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
             <Button
               asChild
               className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-base hover:bg-lime-300 transition-colors"
@@ -44,7 +44,7 @@ export default function HeroCarrer() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8 text-left">
           <div className="lg:col-span-7">
             <a
               className="group w-full h-full"
@@ -106,7 +106,7 @@ export default function HeroCarrer() {
           </div>
         </div>
 
-        <div className="bg-gray-800 rounded-lg border border-gray-700 p-6 md:p-8">
+        <div className="bg-gray-800 rounded-lg border border-gray-700 p-6 md:p-8 text-center lg:text-left">
           <div className="mb-6">
             <span className="text-gray-400 text-base">
               Companies hiring on Hack The Box
@@ -116,7 +116,7 @@ export default function HeroCarrer() {
             {logos.map((logo) => (
               <Image
                 key={logo.id}
-                className="w-full h-auto"
+                className="w-full h-auto mx-auto"
                 src={logo.imageUrl}
                 alt={logo.description}
                 data-ai-hint={logo.imageHint}

@@ -30,14 +30,14 @@ export default function HeroSkills() {
 
   return (
     <section className="w-full max-w-7xl py-12">
-      <div className="container mx-auto">
-        <div className="mb-8">
+      <div className="container mx-auto px-4">
+        <div className="mb-8 text-center lg:text-left">
           <h4 className="text-white text-3xl sm:text-4xl font-extrabold leading-tight mb-8">
             Gamified, hands-on upskilling from{" "}
             <br className="hidden sm:block" /> cybersecurity fundamentals to
             advanced scenarios.
           </h4>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
             <Button
               asChild
               className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-base hover:bg-lime-300 transition-colors"
@@ -62,7 +62,7 @@ export default function HeroSkills() {
           {skillCards.map((card) => (
             <Card
               key={card.title}
-              className="bg-gray-800 border-gray-700 h-full flex flex-col justify-between"
+              className="bg-gray-800 border-gray-700 h-full flex flex-col justify-between text-left"
             >
               <CardHeader>
                 <CardTitle className="text-2xl text-white font-semibold pb-3 mb-0">

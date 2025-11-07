@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen w-full flex-col items-center gap-6 bg-background p-4">
       <Nav />
-      <main className="flex flex-col items-center justify-center gap-6">
+      <main className="flex w-full flex-col items-center justify-center gap-6">
         <HeroNotification />
         <HeroStats />
         <HeroSkills />
@@ -20,8 +20,8 @@ export default function Home() {
         <HeroWork />
         <HeroCarrer />
         <Partners />
-        <Footer />
       </main>
+      <Footer />
     </div>
   );
 }

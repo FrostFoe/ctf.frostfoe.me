@@ -10,7 +10,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full max-w-7xl py-8">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4">
         <div className="bg-gray-800 border border-gray-700 rounded-lg">
           <div className="py-12 px-4 flex flex-col justify-center items-center">
             <div className="flex flex-col justify-center text-center">

@@ -59,9 +59,9 @@ export default function HeroDomains() {
 
   return (
     <section className="w-full max-w-7xl py-12">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4">
         <div className="flex flex-col xl:flex-row gap-8">
-          <div className="w-full xl:w-1/2 flex flex-col">
+          <div className="w-full xl:w-1/2 flex flex-col text-center xl:text-left">
             <h3 className="text-white text-3xl sm:text-4xl font-bold mb-8">
               Solutions for all <br /> cybersecurity domains.
             </h3>
@@ -119,7 +119,7 @@ export default function HeroDomains() {
                       </div>
                     ))}
                   </div>
-                  <div className="flex">
+                  <div className="flex justify-center md:justify-start">
                     <Button asChild className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-sm hover:bg-lime-300 transition-colors">
                       <a href={activeContent.href}>
                         See more <ArrowRight />

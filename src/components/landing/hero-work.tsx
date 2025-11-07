@@ -10,15 +10,15 @@ export default function HeroWork() {
 
   return (
     <section className="w-full max-w-7xl py-12">
-      <div className="container mx-auto">
-        <div className="mb-8">
+      <div className="container mx-auto px-4">
+        <div className="mb-8 text-center lg:text-left">
           <h5 className="text-white text-3xl sm:text-4xl font-extrabold leading-tight mb-8">
             Cyber workforce development plans baked{" "}
             <br className="hidden lg:block" />
             into the fabric and objectives of your organization.
           </h5>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
             <Button
               asChild
               className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-base hover:bg-lime-300 transition-colors"
@@ -59,7 +59,7 @@ export default function HeroWork() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-left">
           <a
             className="group"
             href="https://www.hackthebox.com/blog/customer-story-toyota"
