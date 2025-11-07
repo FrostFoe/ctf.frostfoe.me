@@ -233,6 +233,66 @@
       "description": "Portrait of Conrad Bell",
       "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/conrad-bell.jpeg",
       "imageHint": "man portrait"
+    },
+    {
+      "id": "purple-team-learning",
+      "description": "Threat-informed learning model",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/purple-team-learning.webp",
+      "imageHint": "diagram chart"
+    },
+    {
+      "id": "purple-team-learning-logo-1",
+      "description": "Threat emulation icon",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/learning-logo-1.svg",
+      "imageHint": "abstract icon"
+    },
+    {
+      "id": "purple-team-learning-logo-2",
+      "description": "Continuous skill measurement icon",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/learning-logo-2.svg",
+      "imageHint": "abstract icon"
+    },
+    {
+      "id": "purple-team-learning-logo-3",
+      "description": "Team collaboration icon",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/learning-logo-3.svg",
+      "imageHint": "abstract icon"
+    },
+    {
+      "id": "purple-team-monitoring",
+      "description": "Purple Team Monitoring",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/monitoring.svg",
+      "imageHint": "code screen"
+    },
+    {
+      "id": "purple-team-openhouse",
+      "description": "Purple Team Openhouse",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/openhouse.svg",
+      "imageHint": "network diagram"
+    },
+    {
+      "id": "purple-team-encrypted-filled",
+      "description": "Purple Team Encrypted",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/encrypted-filled.svg",
+      "imageHint": "lock icon"
+    },
+    {
+      "id": "purple-team-analytics",
+      "description": "Individual & team analytics",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/individual-team-analytics.webp",
+      "imageHint": "dashboard chart"
+    },
+    {
+      "id": "purple-team-heatmaps",
+      "description": "Skill coverage heatmaps",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/skill-coverage-heatmaps.webp",
+      "imageHint": "dashboard chart"
+    },
+    {
+      "id": "purple-team-integration",
+      "description": "Customization and integration",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/customization-and-integration.webp",
+      "imageHint": "dashboard chart"
     }
   ]
 }

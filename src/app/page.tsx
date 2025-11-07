@@ -13,7 +13,7 @@ export default function Home() {
     <div className="flex min-h-screen w-full flex-col items-center gap-6 bg-background p-4">
       <Nav />
       <main className="flex w-full flex-col items-center justify-center gap-6">
-        <div className="w-full animate-fade-in animation-delay-300">
+        <div className="w-full animate-slide-in-from-bottom animation-delay-300">
           <HeroNotification />
         </div>
         <div className="w-full animate-slide-in-from-bottom animation-delay-400">
