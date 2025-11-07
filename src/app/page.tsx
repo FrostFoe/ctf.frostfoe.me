@@ -1,4 +1,5 @@
 import HeroNotification from "@/components/landing/hero-notification";
+import HeroSkills from "@/components/landing/hero-skills";
 import HeroStats from "@/components/landing/hero-stats";
 import Nav from "@/components/nav";
 
@@ -9,6 +10,7 @@ export default function Home() {
       <main className="flex flex-col items-center justify-center gap-6">
         <HeroNotification />
         <HeroStats />
+        <HeroSkills />
       </main>
     </div>
   );
