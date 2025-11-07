@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Book } from "lucide-react";
 
 export default function HeroWork() {
   const bookIcon = PlaceHolderImages.find((img) => img.id === "book-icon")!;
@@ -92,14 +92,7 @@ export default function HeroWork() {
                 <ArrowRight className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity absolute top-6 right-6" />
               </div>
               <div className="pb-4">
-                <Image
-                  className="w-auto h-16"
-                  src={bookIcon.imageUrl}
-                  alt={bookIcon.description}
-                  data-ai-hint={bookIcon.imageHint}
-                  width={62}
-                  height={64}
-                />
+                <Book className="w-16 h-16 text-white" />
               </div>
               <div>
                 <p className="text-white text-lg leading-snug">
