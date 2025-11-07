@@ -7,16 +7,16 @@ export default function HeroStats() {
             <p className="text-6xl md:text-8xl font-extrabold text-lime-400 mb-4">
               50%
             </p>
-            <p className="text-xl md:text-3xl text-gray-200 leading-snug">
+            <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 leading-snug">
               and more of significant cyber incidents are caused by a lack of
               skills or human failure.
             </p>
           </div>
         </div>
 
-        <div className="bg-gray-800 rounded-2xl p-8 md:p-10 flex flex-col justify-between h-full relative overflow-hidden">
+        <div className="bg-gray-800 rounded-2xl p-8 md:p-10 flex flex-col justify-between h-full relative overflow-hidden min-h-[250px] lg:min-h-0">
           <div>
-            <p className="text-xl md:text-3xl text-gray-200 leading-snug">
+            <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 leading-snug">
               Beat the odds.
               <br />
               Optimize your

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { ArrowRight } from "lucide-react";
 
 const domainTabs = [
   { id: "red", title: "Red Teams" },
@@ -61,7 +62,7 @@ export default function HeroDomains() {
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row gap-8">
           <div className="w-full xl:w-1/2 flex flex-col">
-            <h3 className="text-white text-4xl font-bold mb-8">
+            <h3 className="text-white text-3xl sm:text-4xl font-bold mb-8">
               Solutions for all <br /> cybersecurity domains.
             </h3>
             <div className="flex flex-col gap-4">
@@ -72,14 +73,14 @@ export default function HeroDomains() {
                   className={cn(
                     "rounded-lg border cursor-pointer transition-colors bg-gray-800",
                     {
-                      "border-gray-700": activeTab !== tab.id,
+                      "border-gray-700 hover:border-gray-500": activeTab !== tab.id,
                       "border-lime-400": activeTab === tab.id,
                     },
                   )}
                 >
                   <div className="p-6">
                     <h4
-                      className={cn("text-3xl font-bold transition-colors", {
+                      className={cn("text-2xl sm:text-3xl font-bold transition-colors", {
                         "text-gray-500": activeTab !== tab.id,
                         "text-white": activeTab === tab.id,
                       })}
@@ -93,14 +94,14 @@ export default function HeroDomains() {
           </div>
 
           <div className="w-full xl:w-1/2">
-            <div className="h-full">
-              <a href={activeContent.href} className="block h-full">
+            <div className="h-full min-h-[600px] xl:min-h-0">
+              <a href={activeContent.href} className="block h-full group">
                 <div
                   style={{ backgroundImage: `url('${activeContent.bgImage}')` }}
-                  className="h-full rounded-lg flex flex-col justify-end p-8 bg-cover bg-center"
+                  className="h-full rounded-lg flex flex-col justify-end p-6 sm:p-8 bg-cover bg-center border border-gray-700 group-hover:border-gray-500 transition-colors"
                   data-ai-hint="abstract background"
                 >
-                  <p className="text-lg text-gray-200 mb-8">
+                  <p className="text-base sm:text-lg text-gray-200 mb-8">
                     {activeContent.description}
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 mb-8">
@@ -119,8 +120,10 @@ export default function HeroDomains() {
                     ))}
                   </div>
                   <div className="flex">
-                    <Button className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-sm hover:bg-lime-300 transition-colors">
-                      See more
+                    <Button asChild className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-sm hover:bg-lime-300 transition-colors">
+                      <a href={activeContent.href}>
+                        See more <ArrowRight />
+                      </a>
                     </Button>
                   </div>
                 </div>
