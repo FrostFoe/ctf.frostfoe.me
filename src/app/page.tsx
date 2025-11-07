@@ -1,3 +1,4 @@
+import Footer from "@/components/footer";
 import HeroCarrer from "@/components/landing/hero-carrer";
 import HeroDomains from "@/components/landing/hero-domains";
 import HeroNotification from "@/components/landing/hero-notification";
@@ -17,6 +18,7 @@ export default function Home() {
         <HeroDomains />
         <HeroWork />
         <HeroCarrer />
+        <Footer />
       </main>
     </div>
   );
