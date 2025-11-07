@@ -79,7 +79,7 @@ export default function HeroDomains() {
                 >
                   <div className="p-6">
                     <h4
-                      className={cn("text-4xl font-bold transition-colors", {
+                      className={cn("text-3xl font-bold transition-colors", {
                         "text-gray-500": activeTab !== tab.id,
                         "text-white": activeTab === tab.id,
                       })}
@@ -100,7 +100,7 @@ export default function HeroDomains() {
                   className="h-full rounded-lg flex flex-col justify-end p-8 bg-cover bg-center"
                   data-ai-hint="abstract background"
                 >
-                  <p className="text-xl text-gray-200 mb-8">
+                  <p className="text-lg text-gray-200 mb-8">
                     {activeContent.description}
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 mb-8">
@@ -112,9 +112,9 @@ export default function HeroDomains() {
                           data-ai-hint={checkIcon.imageHint}
                           width={20}
                           height={20}
-                          className="w-5 h-5 mr-3"
+                          className="w-5 h-5 mr-3 flex-shrink-0"
                         />
-                        <span className="text-gray-300">{feature}</span>
+                        <span className="text-gray-300 text-sm">{feature}</span>
                       </div>
                     ))}
                   </div>

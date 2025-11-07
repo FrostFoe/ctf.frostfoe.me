@@ -37,7 +37,7 @@ const Typewriter = () => {
   }, [text, isDeleting, loopNum, toRotate, typingSpeed]);
 
   return (
-    <span className="inline-block">
+    <span className="inline-block min-w-[240px] md:min-w-[380px] lg:min-w-[480px]">
       <span>{text}</span>
       <span className="animate-ping">|</span>
     </span>
@@ -53,9 +53,9 @@ export default function Footer() {
       <div className="container mx-auto">
         <div className="bg-gray-800 border border-gray-700 rounded-lg">
           <div className="py-12 px-4 flex flex-col justify-center items-center">
-            <div className="col-12 flex flex-col justify-center text-center">
-              <h3 className="text-lime-400 text-5xl sm:text-7xl lg:text-8xl font-bold pb-4 mb-0">
-                <span>4.1m+ </span>
+            <div className="flex flex-col justify-center text-center">
+              <h3 className="text-lime-400 text-4xl sm:text-6xl lg:text-8xl font-bold pb-4 mb-0">
+                <span className="whitespace-nowrap">4.1m+ </span>
                 <Typewriter />
               </h3>
               <p className="text-base md:text-lg text-gray-300 pb-6 mb-0 max-w-md mx-auto">
@@ -78,7 +78,7 @@ export default function Footer() {
                 />
               </a>
             </div>
-            <div className="col-12 text-center">
+            <div className="text-center">
               <a
                 href="https://www.g2.com/products/hack-the-box/reviews"
                 target="_blank"

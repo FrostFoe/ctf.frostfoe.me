@@ -119,7 +119,7 @@ const logos = [
 
 export default function Partners() {
   return (
-    <div className="w-full overflow-hidden py-10 bg-rich-black">
+    <div className="w-full overflow-hidden py-10 bg-gray-900">
       <div className="flex animate-marquee-infinite">
         {[...logos, ...logos].map((logo, index) => (
           <div key={index} className="mx-5 flex-shrink-0">
@@ -130,7 +130,9 @@ export default function Partners() {
               width={125}
               height={30}
               onError={(e) => {
-                e.currentTarget.src = `https://placehold.co/125x30/111827/FFFFFF?text=${encodeURIComponent(logo.alt)}`;
+                e.currentTarget.src = `https://placehold.co/125x30/111827/FFFFFF?text=${encodeURIComponent(
+                  logo.alt,
+                )}`;
               }}
             />
           </div>

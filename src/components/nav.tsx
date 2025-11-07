@@ -17,7 +17,7 @@ export default function Nav() {
   const htbLogo = PlaceHolderImages.find((img) => img.id === "htb-logo")!;
 
   return (
-    <header className="w-full max-w-7xl bg-rich-black rounded-lg shadow-lg px-6 py-4">
+    <header className="w-full max-w-7xl bg-gray-900 rounded-lg shadow-lg px-6 py-4">
       <nav className="flex items-center justify-between">
         <div className="flex items-center gap-10">
           <a href="#">
@@ -40,7 +40,7 @@ export default function Nav() {
                   Products <ChevronDown className="w-4 h-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-48 bg-rich-black border-gray-700 text-gray-300">
+              <DropdownMenuContent className="w-48 bg-gray-800 border-gray-700 text-gray-300">
                 <DropdownMenuItem className="hover:bg-gray-700 hover:text-white">
                   For Individuals
                 </DropdownMenuItem>
@@ -75,7 +75,7 @@ export default function Nav() {
                   Resources <ChevronDown className="w-4 h-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-48 bg-rich-black border-gray-700 text-gray-300">
+              <DropdownMenuContent className="w-48 bg-gray-800 border-gray-700 text-gray-300">
                 <DropdownMenuItem className="hover:bg-gray-700 hover:text-white">
                   Community
                 </DropdownMenuItem>
@@ -107,7 +107,7 @@ export default function Nav() {
                 Business <ChevronDown className="w-4 h-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-64 bg-rich-black border-gray-700 text-gray-300 -right-10">
+            <DropdownMenuContent className="w-64 bg-gray-800 border-gray-700 text-gray-300 -right-10">
               <DropdownMenuItem className="hover:bg-gray-700 hover:text-white flex flex-col items-start">
                 <span className="font-bold block">Start free trial</span>
                 <span className="text-xs text-gray-400">
