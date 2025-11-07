@@ -1,54 +1,57 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const domainTabs = [
-  { id: 'red', title: 'Red Teams' },
-  { id: 'blue', title: 'Blue Teams' },
-  { id: 'purple', title: 'Purple Approach' },
+  { id: "red", title: "Red Teams" },
+  { id: "blue", title: "Blue Teams" },
+  { id: "purple", title: "Purple Approach" },
 ];
 
 const domainContent = {
   red: {
-    href: 'https://www.hackthebox.com/red-teams',
-    bgImage: 'https://www.hackthebox.com/images/landingv3/red-bg.png',
-    description: 'Test and grow your skills in all penetration testing and adversarial domains, from information gathering to documentation and reporting.',
+    href: "https://www.hackthebox.com/red-teams",
+    bgImage: "https://www.hackthebox.com/images/landingv3/red-bg.png",
+    description:
+      "Test and grow your skills in all penetration testing and adversarial domains, from information gathering to documentation and reporting.",
     features: [
-      'Industry-recognized certifications',
-      'Corporate red team scenarios',
-      'Hands-on penetration testing labs',
-      'MITRE ATT&CK framework mapping',
+      "Industry-recognized certifications",
+      "Corporate red team scenarios",
+      "Hands-on penetration testing labs",
+      "MITRE ATT&CK framework mapping",
     ],
   },
   blue: {
-    href: 'https://www.hackthebox.com/blue-teams',
-    bgImage: 'https://www.hackthebox.com/images/landingv3/blue-bg.png',
-    description: 'Stay connected to the threat landscape and learn how to detect techniques, tactics, and procedures used by real adversaries.',
+    href: "https://www.hackthebox.com/blue-teams",
+    bgImage: "https://www.hackthebox.com/images/landingv3/blue-bg.png",
+    description:
+      "Stay connected to the threat landscape and learn how to detect techniques, tactics, and procedures used by real adversaries.",
     features: [
-      'Market-connected courses',
-      'Gamified blue team assessments',
-      'Hands-on investigation labs',
-      'NIST/NICE framework mapping',
+      "Market-connected courses",
+      "Gamified blue team assessments",
+      "Hands-on investigation labs",
+      "NIST/NICE framework mapping",
     ],
   },
   purple: {
-    href: 'https://www.hackthebox.com/purple-teams',
-    bgImage: 'https://www.hackthebox.com/images/landingv3/purple-bg.png',
-    description: 'Master offensive strategies to enable effective defensive operations. For modern, 360° cyber professionals and organizations.',
+    href: "https://www.hackthebox.com/purple-teams",
+    bgImage: "https://www.hackthebox.com/images/landingv3/purple-bg.png",
+    description:
+      "Master offensive strategies to enable effective defensive operations. For modern, 360° cyber professionals and organizations.",
     features: [
-      'CVE-based vulnerable labs',
-      'Real-time attack/defense simulation',
-      'Realistic enterprise scenarios',
-      'Extensive mapping and reporting',
+      "CVE-based vulnerable labs",
+      "Real-time attack/defense simulation",
+      "Realistic enterprise scenarios",
+      "Extensive mapping and reporting",
     ],
   },
 };
 
 export default function HeroDomains() {
-  const [activeTab, setActiveTab] = useState('purple');
+  const [activeTab, setActiveTab] = useState("purple");
   const activeContent = domainContent[activeTab as keyof typeof domainContent];
 
   return (
@@ -66,22 +69,19 @@ export default function HeroDomains() {
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={cn(
-                    'rounded-lg border cursor-pointer transition-colors bg-gray-800',
+                    "rounded-lg border cursor-pointer transition-colors bg-gray-800",
                     {
-                      'border-gray-700': activeTab !== tab.id,
-                      'border-lime-400': activeTab === tab.id,
-                    }
+                      "border-gray-700": activeTab !== tab.id,
+                      "border-lime-400": activeTab === tab.id,
+                    },
                   )}
                 >
                   <div className="p-6">
                     <h4
-                      className={cn(
-                        'text-4xl font-bold transition-colors',
-                        {
-                          'text-gray-500': activeTab !== tab.id,
-                          'text-white': activeTab === tab.id,
-                        }
-                      )}
+                      className={cn("text-4xl font-bold transition-colors", {
+                        "text-gray-500": activeTab !== tab.id,
+                        "text-white": activeTab === tab.id,
+                      })}
                     >
                       {tab.title}
                     </h4>
@@ -111,7 +111,10 @@ export default function HeroDomains() {
                           width={20}
                           height={20}
                           className="w-5 h-5 mr-3"
-                          onError={(e) => { e.currentTarget.src = 'https://placehold.co/20/111927/FFFFFF?text=C' }}
+                          onError={(e) => {
+                            e.currentTarget.src =
+                              "https://placehold.co/20/111927/FFFFFF?text=C";
+                          }}
                         />
                         <span className="text-gray-300">{feature}</span>
                       </div>

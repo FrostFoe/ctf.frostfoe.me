@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import Image from 'next/image';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
 
 const ArrowIcon = () => (
   <svg
@@ -27,25 +27,28 @@ const ArrowIcon = () => (
 export default function HeroSkills() {
   const skillCards = [
     {
-      title: 'Learning Paths',
+      title: "Learning Paths",
       description:
-        'Fully guided journeys into a wide range of skills or proficiency in specific security job-roles.',
-      imageUrl: 'https://www.hackthebox.com/images/landingv3/learning-paths-asset.png',
-      alt: 'Learning Paths',
+        "Fully guided journeys into a wide range of skills or proficiency in specific security job-roles.",
+      imageUrl:
+        "https://www.hackthebox.com/images/landingv3/learning-paths-asset.png",
+      alt: "Learning Paths",
     },
     {
-      title: 'Real-world Scenarios',
+      title: "Real-world Scenarios",
       description:
-        'Cutting-edge labs focusing on the latest technologies and attack vectors — released every week!',
-      imageUrl: 'https://www.hackthebox.com/images/landingv3/real-world-scenarios.png',
-      alt: 'Real-world Scenarios',
+        "Cutting-edge labs focusing on the latest technologies and attack vectors — released every week!",
+      imageUrl:
+        "https://www.hackthebox.com/images/landingv3/real-world-scenarios.png",
+      alt: "Real-world Scenarios",
     },
     {
-      title: 'Industry Certifications',
+      title: "Industry Certifications",
       description:
-        'Innovative courses and exams that will make a market-ready professional out of you!',
-      imageUrl: 'https://www.hackthebox.com/images/landingv3/industry-certifications.png',
-      alt: 'Industry Certifications',
+        "Innovative courses and exams that will make a market-ready professional out of you!",
+      imageUrl:
+        "https://www.hackthebox.com/images/landingv3/industry-certifications.png",
+      alt: "Industry Certifications",
     },
   ];
 
@@ -54,7 +57,9 @@ export default function HeroSkills() {
       <div className="container mx-auto">
         <div className="mb-8">
           <h4 className="text-white text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight mb-8">
-            Gamified, hands-on upskilling from <br className="hidden sm:block" /> cybersecurity fundamentals to advanced scenarios.
+            Gamified, hands-on upskilling from{" "}
+            <br className="hidden sm:block" /> cybersecurity fundamentals to
+            advanced scenarios.
           </h4>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <Button

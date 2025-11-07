@@ -1,15 +1,15 @@
 "use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { ChevronDown, Menu, X } from 'lucide-react';
+} from "@/components/ui/dropdown-menu";
+import { ChevronDown, Menu, X } from "lucide-react";
 
 export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
