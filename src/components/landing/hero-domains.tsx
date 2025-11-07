@@ -120,9 +120,7 @@ export default function HeroDomains() {
                     {activeContent.features.map((feature, index) => (
                       <div key={index} className="flex items-start">
                         <Check className="w-5 h-5 mr-3 flex-shrink-0 text-lime-400" />
-                        <span className="text-gray-300 text-sm">
-                          {feature}
-                        </span>
+                        <span className="text-gray-300 text-sm">{feature}</span>
                       </div>
                     ))}
                   </div>

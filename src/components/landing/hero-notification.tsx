@@ -33,10 +33,10 @@ export default function HeroNotification() {
                 </CardTitle>
                 <CardDescription className="text-sm md:text-lg text-lime-200 opacity-80 leading-relaxed max-w-3xl mx-auto lg:mx-0">
                   HTB থ্রেট রেঞ্জ একটি টিম-ভিত্তিক লাইভ-ফায়ার সিমুলেশন যা
-                  বাস্তবসম্মত সাইবার আক্রমণ পরিস্থিতিতে SOC এবং DFIR পরীক্ষা করে।
-                  সনাক্তকরণ এবং তদন্ত তীক্ষ্ণ করুন, বাস্তব নিরাপত্তা মেট্রিক্সের
-                  সাথে কর্মক্ষমতা বেঞ্চমার্ক করুন, এবং একটি সহযোগী গেমপ্লেতে
-                  টিমের মধ্যে বাধাগুলি ভেঙে ফেলুন।
+                  বাস্তবসম্মত সাইবার আক্রমণ পরিস্থিতিতে SOC এবং DFIR পরীক্ষা
+                  করে। সনাক্তকরণ এবং তদন্ত তীক্ষ্ণ করুন, বাস্তব নিরাপত্তা
+                  মেট্রিক্সের সাথে কর্মক্ষমতা বেঞ্চমার্ক করুন, এবং একটি সহযোগী
+                  গেমপ্লেতে টিমের মধ্যে বাধাগুলি ভেঙে ফেলুন।
                 </CardDescription>
               </div>
               <div className="lg:col-span-1 flex items-center justify-center row-start-1 lg:row-start-auto">

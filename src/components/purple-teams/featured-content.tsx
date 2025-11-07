@@ -11,7 +11,9 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const featuredItems = [
   {
-    image: PlaceHolderImages.find((img) => img.id === "purple-team-monitoring")!,
+    image: PlaceHolderImages.find(
+      (img) => img.id === "purple-team-monitoring",
+    )!,
     category: "RANGE",
     title: "Windows Attack & Defense",
     description:

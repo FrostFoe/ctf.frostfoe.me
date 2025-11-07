@@ -1,10 +1,5 @@
 import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const stats = [
@@ -24,19 +19,25 @@ const stats = [
 
 const features = [
   {
-    icon: PlaceHolderImages.find((img) => img.id === "red-team-learning-logo-1")!,
+    icon: PlaceHolderImages.find(
+      (img) => img.id === "red-team-learning-logo-1",
+    )!,
     title: "Full-scope adversary",
     description:
       "Replicate full kill chains, from open-source recon to final data exfiltration, to understand how early actions cascade into business critical impact.",
   },
   {
-    icon: PlaceHolderImages.find((img) => img.id === "red-team-learning-logo-2")!,
+    icon: PlaceHolderImages.find(
+      (img) => img.id === "red-team-learning-logo-2",
+    )!,
     title: "Continuous skill measurement",
     description:
       "Use advanced reporting and analytics to have accurate, real-time visibility into teams' skill proficiency at any time. Identify critical gaps and build future plans.",
   },
   {
-    icon: PlaceHolderImages.find((img) => img.id === "red-team-learning-logo-3")!,
+    icon: PlaceHolderImages.find(
+      (img) => img.id === "red-team-learning-logo-3",
+    )!,
     title: "Framework alignment",
     description:
       "All our content library maps to NIST and MITRE frameworks, ensuring your team builds skills keeping up with the threat landscape and regulatory requirements.",
@@ -44,9 +45,9 @@ const features = [
 ];
 
 export default function Methodology() {
-    const methodologyImage = PlaceHolderImages.find(
-        (img) => img.id === "red-team-learning"
-    )!;
+  const methodologyImage = PlaceHolderImages.find(
+    (img) => img.id === "red-team-learning",
+  )!;
 
   return (
     <section className="w-full">
@@ -68,7 +69,9 @@ export default function Methodology() {
                   className="rounded-lg border border-red-500/30 bg-black/30 p-4 text-center"
                 >
                   <CardHeader className="p-0">
-                    <CardTitle className="text-3xl font-bold text-white">{stat.value}</CardTitle>
+                    <CardTitle className="text-3xl font-bold text-white">
+                      {stat.value}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="p-0 pt-2">
                     <p className="text-sm text-gray-400">{stat.label}</p>

@@ -26,7 +26,9 @@ const content = [
     title: "Customization and integration",
     description:
       "Export or connect skill metrics and progression to your LMS system to track growth as part of career advancement.",
-    image: PlaceHolderImages.find((img) => img.id === "purple-team-integration")!,
+    image: PlaceHolderImages.find(
+      (img) => img.id === "purple-team-integration",
+    )!,
   },
 ];
 

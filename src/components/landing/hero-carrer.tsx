@@ -23,8 +23,8 @@ export default function HeroCarrer() {
       <div className="container mx-auto px-4">
         <div className="mb-8 text-center lg:text-left">
           <h4 className="text-white text-3xl sm:text-4xl font-extrabold leading-tight mb-8">
-            বার্নআউট, ক্লান্তি বা দক্ষতার ব্যবধানের বিরুদ্ধে লড়াই করার জন্য স্পষ্ট
-            ক্যারিয়ার পাথ প্রোগ্রাম এবং ধরে রাখার কৌশল।
+            বার্নআউট, ক্লান্তি বা দক্ষতার ব্যবধানের বিরুদ্ধে লড়াই করার জন্য
+            স্পষ্ট ক্যারিয়ার পাথ প্রোগ্রাম এবং ধরে রাখার কৌশল।
           </h4>
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
             <Button

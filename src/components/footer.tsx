@@ -21,8 +21,8 @@ export default function Footer() {
             </h3>
             <p className="text-base md:text-lg text-gray-300 pb-6 mb-0 max-w-md mx-auto">
               ল্যাব সম্পর্কে চ্যাট করুন, রিসোর্স এবং চাকরি শেয়ার করুন।
-              <br className="hidden sm:block" /> সারা বিশ্ব থেকে ২ লক্ষেরও
-              বেশি হ্যাকারের সাথে সংযোগ করুন।
+              <br className="hidden sm:block" /> সারা বিশ্ব থেকে ২ লক্ষেরও বেশি
+              হ্যাকারের সাথে সংযোগ করুন।
             </p>
             <a
               href="https://discord.com/invite/hackthebox"

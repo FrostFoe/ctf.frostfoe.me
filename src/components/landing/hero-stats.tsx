@@ -18,8 +18,8 @@ export default function HeroStats() {
           </CardHeader>
           <CardContent>
             <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 leading-snug">
-              এবং আরও গুরুত্বপূর্ণ সাইবার ঘটনা দক্ষতার অভাব বা মানুষের ভুলের কারণে
-              ঘটে।
+              এবং আরও গুরুত্বপূর্ণ সাইবার ঘটনা দক্ষতার অভাব বা মানুষের ভুলের
+              কারণে ঘটে।
             </p>
           </CardContent>
         </Card>

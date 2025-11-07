@@ -10,7 +10,5 @@ export default function RedTeamsLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <div className="bg-[#0e1012] text-white font-body">{children}</div>
-  );
+  return <div className="bg-[#0e1012] text-white font-body">{children}</div>;
 }

@@ -66,7 +66,11 @@ export default function Hero() {
             >
               Launch exploit lab
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white/10"
+            >
               Watch a demo
             </Button>
           </div>

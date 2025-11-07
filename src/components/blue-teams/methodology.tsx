@@ -1,10 +1,5 @@
 import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const stats = [
@@ -24,19 +19,25 @@ const stats = [
 
 const features = [
   {
-    icon: PlaceHolderImages.find((img) => img.id === "blue-team-learning-logo-1")!,
+    icon: PlaceHolderImages.find(
+      (img) => img.id === "blue-team-learning-logo-1",
+    )!,
     title: "Learn-by-doing",
     description:
       "Replicate accurate adversarial behaviors and SIEM or EDR tool stack instead of simplified simulations that don't prepare for real-world readiness.",
   },
   {
-    icon: PlaceHolderImages.find((img) => img.id === "blue-team-learning-logo-2")!,
+    icon: PlaceHolderImages.find(
+      (img) => img.id === "blue-team-learning-logo-2",
+    )!,
     title: "Continuous skill measurement",
     description:
       "Use advanced reporting and analytics to have accurate, real-time visibility into teams' skill proficiency at any time. Identify critical gaps and build future plans.",
   },
   {
-    icon: PlaceHolderImages.find((img) => img.id === "blue-team-learning-logo-3")!,
+    icon: PlaceHolderImages.find(
+      (img) => img.id === "blue-team-learning-logo-3",
+    )!,
     title: "Framework alignment",
     description:
       "All our content library maps to NIST and MITRE frameworks, ensuring your team builds skills keeping up with the threat landscape and regulatory requirements.",
