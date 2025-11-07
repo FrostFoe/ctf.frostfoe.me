@@ -6,6 +6,13 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { ArrowRight, Check } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const domainTabs = [
   { id: "red", title: "রেড টিম" },
@@ -19,11 +26,11 @@ const domainContent = {
     bgImage: PlaceHolderImages.find((img) => img.id === "red-team-bg")!
       .imageUrl,
     description:
-      "তথ্য সংগ্রহ থেকে শুরু করে ডকুমেন্টেশন এবং রিপোর্টিং পর্যন্ত সমস্ত পেনিট্রেশন টেস্টিং এবং অ্যাডভারসারিয়াল ডোমেইনে আপনার দক্ষতা পরীক্ষা করুন এবং বাড়ান।",
+      "তথ্য সংগ্রহ থেকে শুরু করে ডকুমেন্টেশন এবং রিপোর্টিং পর্যন্ত সমস্ত পেনিട്രেশন টেস্টিং এবং অ্যাডভারসারিয়াল ডোমেইনে আপনার দক্ষতা পরীক্ষা করুন এবং বাড়ান।",
     features: [
       "শিল্প-স্বীকৃত সার্টিফিকেশন",
       "কর্পোরেট রেড টিম দৃশ্য",
-      "হ্যান্ডস-অন পেনিট্রেশন টেস্টিং ল্যাব",
+      "হ্যান্ডস-অন পেনিട്രেশন টেস্টিং ল্যাব",
       "MITRE ATT&CK ফ্রেমওয়ার্ক ম্যাপিং",
     ],
   },
@@ -69,11 +76,11 @@ export default function HeroDomains() {
             </h3>
             <div className="flex flex-col gap-4">
               {domainTabs.map((tab) => (
-                <div
+                <Card
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={cn(
-                    "rounded-lg border cursor-pointer transition-colors bg-gray-800",
+                    "cursor-pointer transition-colors bg-gray-800",
                     {
                       "border-gray-700 hover:border-gray-500":
                         activeTab !== tab.id,
@@ -81,56 +88,52 @@ export default function HeroDomains() {
                     },
                   )}
                 >
-                  <div className="p-6">
-                    <h4
-                      className={cn(
-                        "text-2xl sm:text-3xl font-bold transition-colors",
-                        {
-                          "text-gray-500": activeTab !== tab.id,
-                          "text-white": activeTab === tab.id,
-                        },
-                      )}
+                  <CardHeader>
+                    <CardTitle
+                      className={cn("transition-colors", {
+                        "text-gray-500": activeTab !== tab.id,
+                        "text-white": activeTab === tab.id,
+                      })}
                     >
                       {tab.title}
-                    </h4>
-                  </div>
-                </div>
+                    </CardTitle>
+                  </CardHeader>
+                </Card>
               ))}
             </div>
           </div>
 
           <div className="w-full xl:w-1/2">
-            <div className="h-full min-h-[600px] xl:min-h-0">
-              <div
+            <a href={activeContent.href} className="block h-full group">
+              <Card
                 style={{
                   backgroundImage: `url('${activeContent.bgImage}')`,
                 }}
-                className="h-full rounded-lg flex flex-col justify-end p-6 sm:p-8 bg-cover bg-center border border-gray-700 hover:border-gray-500 transition-colors"
+                className="h-full min-h-[600px] xl:min-h-0 rounded-lg flex flex-col justify-end bg-cover bg-center border-gray-700 group-hover:border-gray-500 transition-colors"
                 data-ai-hint="abstract background"
               >
-                <p className="text-base sm:text-lg text-gray-200 mb-8">
-                  {activeContent.description}
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 mb-8">
-                  {activeContent.features.map((feature, index) => (
-                    <div key={index} className="flex items-start">
-                      <Check className="w-5 h-5 mr-3 flex-shrink-0 text-lime-400" />
-                      <span className="text-gray-300 text-sm">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex justify-center md:justify-start">
-                  <Button
-                    asChild
-                    className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-sm hover:bg-lime-300 transition-colors"
-                  >
-                    <a href={activeContent.href}>
+                <CardContent className="p-6 sm:p-8">
+                  <p className="text-base sm:text-lg text-gray-200 mb-8">
+                    {activeContent.description}
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 mb-8">
+                    {activeContent.features.map((feature, index) => (
+                      <div key={index} className="flex items-start">
+                        <Check className="w-5 h-5 mr-3 flex-shrink-0 text-lime-400" />
+                        <span className="text-gray-300 text-sm">
+                          {feature}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex justify-center md:justify-start">
+                    <Button className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-sm hover:bg-lime-300 transition-colors">
                       আরও দেখুন <ArrowRight />
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </div>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </a>
           </div>
         </div>
       </div>

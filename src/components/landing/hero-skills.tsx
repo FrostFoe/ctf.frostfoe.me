@@ -1,7 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { ArrowRight } from "lucide-react";
@@ -70,12 +76,10 @@ export default function HeroSkills() {
               className="bg-gray-800 border-gray-700 h-full flex flex-col justify-between text-left"
             >
               <CardHeader>
-                <CardTitle className="text-2xl text-white font-semibold pb-3 mb-0">
-                  {card.title}
-                </CardTitle>
-                <p className="text-base text-gray-300 leading-relaxed">
+                <CardTitle className="text-white">{card.title}</CardTitle>
+                <CardDescription className="text-gray-300 leading-relaxed pt-2">
                   {card.description}
-                </p>
+                </CardDescription>
               </CardHeader>
               <CardContent className="flex justify-center items-center p-4 pt-0">
                 <Image

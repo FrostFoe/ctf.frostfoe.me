@@ -1,21 +1,31 @@
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
 export default function HeroStats() {
   return (
     <section className="w-full max-w-7xl">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-gray-800 rounded-2xl p-8 md:p-10 flex flex-col justify-center h-full text-center lg:text-left">
-          <div>
-            <p className="text-6xl md:text-8xl font-extrabold text-lime-400 mb-4">
+        <Card className="bg-gray-800 rounded-2xl flex flex-col justify-center h-full text-center lg:text-left">
+          <CardHeader>
+            <CardTitle className="text-6xl md:text-8xl font-extrabold text-lime-400">
               ৫০%
-            </p>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
             <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 leading-snug">
               এবং আরও গুরুত্বপূর্ণ সাইবার ঘটনা দক্ষতার অভাব বা মানুষের ভুলের কারণে
               ঘটে।
             </p>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
-        <div className="bg-gray-800 rounded-2xl p-8 md:p-10 flex flex-col justify-center h-full relative overflow-hidden min-h-[250px] lg:min-h-0 text-center lg:text-left">
-          <div>
+        <Card className="bg-gray-800 rounded-2xl flex flex-col justify-center h-full relative overflow-hidden min-h-[250px] lg:min-h-0 text-center lg:text-left">
+          <CardContent className="p-8 md:p-10">
             <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 leading-snug">
               অসম্ভবকে হার মানান।
               <br />
@@ -23,7 +33,7 @@ export default function HeroStats() {
               <br />
               অনুকূল করুন।
             </p>
-          </div>
+          </CardContent>
 
           <div className="absolute bottom-0 left-0 w-full h-1/2">
             <svg
@@ -45,7 +55,7 @@ export default function HeroStats() {
               ></path>
             </svg>
           </div>
-        </div>
+        </Card>
       </div>
     </section>
   );
