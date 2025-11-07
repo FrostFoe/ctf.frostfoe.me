@@ -6,6 +6,7 @@ import HeroSkills from "@/components/landing/hero-skills";
 import HeroStats from "@/components/landing/hero-stats";
 import HeroWork from "@/components/landing/hero-work";
 import Nav from "@/components/nav";
+import Partners from "@/components/landing/partners";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <HeroDomains />
         <HeroWork />
         <HeroCarrer />
+        <Partners />
         <Footer />
       </main>
     </div>
