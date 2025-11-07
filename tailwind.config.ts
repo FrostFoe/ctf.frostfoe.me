@@ -65,6 +65,14 @@ export default {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+        lime: {
+          200: '#d9f99d',
+          300: '#bef264',
+          700: '#65a30d',
+          800: '#4d7c0f',
+          900: '#365314',
+          950: '#1a2e05',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
