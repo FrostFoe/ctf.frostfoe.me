@@ -12,22 +12,22 @@ export default function RedTeamsPage() {
     <div className="flex min-h-screen w-full flex-col items-center gap-6 p-4">
       <Nav />
       <main className="flex w-full max-w-7xl flex-col items-center justify-center gap-12 md:gap-16 lg:gap-20">
-        <div className="w-full animate-slide-in-from-bottom animation-delay-400">
+        <div className="w-full">
           <Hero />
         </div>
-        <div className="w-full animate-slide-in-from-bottom animation-delay-500">
+        <div className="w-full">
           <Stats />
         </div>
-        <div className="w-full animate-slide-in-from-bottom animation-delay-600">
+        <div className="w-full">
           <Methodology />
         </div>
-        <div className="w-full animate-slide-in-from-bottom animation-delay-700">
+        <div className="w-full">
           <UseCases />
         </div>
-        <div className="w-full animate-slide-in-from-bottom animation-delay-800">
+        <div className="w-full">
           <FeaturedContent />
         </div>
-        <div className="w-full animate-slide-in-from-bottom animation-delay-900">
+        <div className="w-full">
           <DataDriven />
         </div>
       </main>

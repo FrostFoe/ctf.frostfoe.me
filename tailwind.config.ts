@@ -117,97 +117,15 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
-        "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
-        },
-        "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
-        },
         "marquee-infinite": {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
-        "fade-in": {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        "slide-in-from-top": {
-          "0%": { transform: "translateY(-20px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
-        },
-        "slide-in-from-bottom": {
-          "0%": { transform: "translateY(20px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
-        },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
         "marquee-infinite": "marquee-infinite 60s linear infinite",
-        "fade-in": "fade-in 0.5s ease-in-out",
-        "slide-in-from-top": "slide-in-from-top 0.5s ease-in-out",
-        "slide-in-from-bottom": "slide-in-from-bottom 0.5s ease-in-out",
-      },
-      animationDelay: {
-        "100": "100ms",
-        "200": "200ms",
-        "300": "300ms",
-        "400": "400ms",
-        "500": "500ms",
-        "600": "600ms",
-        "700": "700ms",
-        "800": "800ms",
-        "900": "900ms",
-        "1000": "1000ms",
       },
     },
   },
-  plugins: [
-    require("tailwindcss-animate"),
-    function ({ addUtilities, theme }: { addUtilities: any; theme: any }) {
-      const newUtilities = {
-        ".animation-delay-100": {
-          "animation-delay": theme("animationDelay.100"),
-        },
-        ".animation-delay-200": {
-          "animation-delay": theme("animationDelay.200"),
-        },
-        ".animation-delay-300": {
-          "animation-delay": theme("animationDelay.300"),
-        },
-        ".animation-delay-400": {
-          "animation-delay": theme("animationDelay.400"),
-        },
-        ".animation-delay-500": {
-          "animation-delay": theme("animationDelay.500"),
-        },
-        ".animation-delay-600": {
-          "animation-delay": theme("animationDelay.600"),
-        },
-        ".animation-delay-700": {
-          "animation-delay": theme("animationDelay.700"),
-        },
-        ".animation-delay-800": {
-          "animation-delay": theme("animationDelay.800"),
-        },
-        ".animation-delay-900": {
-          "animation-delay": theme("animationDelay.900"),
-        },
-        ".animation-delay-1000": {
-          "animation-delay": theme("animationDelay.1000"),
-        },
-      };
-      addUtilities(newUtilities, ["responsive", "hover"]);
-    },
-  ],
+  plugins: [],
 } satisfies Config;
