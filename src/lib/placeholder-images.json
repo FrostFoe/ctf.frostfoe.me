@@ -161,6 +161,78 @@
       "description": "Customization and integration",
       "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/customization-and-integration.webp",
       "imageHint": "dashboard chart"
+    },
+    {
+      "id": "blue-team-learning",
+      "description": "Adaptive learning methodology",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/blue-team-learning.webp",
+      "imageHint": "diagram chart"
+    },
+    {
+      "id": "blue-team-learning-logo-1",
+      "description": "Learn-by-doing icon",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/learning-logo-1.svg",
+      "imageHint": "abstract icon"
+    },
+    {
+      "id": "blue-team-learning-logo-2",
+      "description": "Continuous skill measurement icon",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/learning-logo-2.svg",
+      "imageHint": "abstract icon"
+    },
+    {
+      "id": "blue-team-learning-logo-3",
+      "description": "Framework alignment icon",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/learning-logo-3.svg",
+      "imageHint": "abstract icon"
+    },
+    {
+      "id": "blue-team-monitoring",
+      "description": "Blue Team Monitoring",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/monitoring.svg",
+      "imageHint": "code screen"
+    },
+    {
+      "id": "blue-team-openhouse",
+      "description": "Blue Team Openhouse",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/openhouse.svg",
+      "imageHint": "network diagram"
+    },
+    {
+      "id": "blue-team-encrypted-filled",
+      "description": "Blue Team Encrypted",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/encrypted-filled.svg",
+      "imageHint": "lock icon"
+    },
+    {
+      "id": "blue-team-analytics",
+      "description": "Individual & team analytics",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/individual-team-analytics.webp",
+      "imageHint": "dashboard chart"
+    },
+    {
+      "id": "blue-team-heatmaps",
+      "description": "Skill coverage heatmaps",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/skill-coverage-heatmaps.webp",
+      "imageHint": "dashboard chart"
+    },
+    {
+      "id": "blue-team-integration",
+      "description": "Customization and integration",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/customization-and-integration.webp",
+      "imageHint": "dashboard chart"
+    },
+    {
+      "id": "cspire-logo",
+      "description": "C Spire company logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/cspire.svg",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "conrad-bell",
+      "description": "Portrait of Conrad Bell",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/conrad-bell.jpeg",
+      "imageHint": "man portrait"
     }
   ]
 }
