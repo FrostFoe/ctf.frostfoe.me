@@ -101,6 +101,66 @@
       "description": "Hack The Box Logo",
       "imageUrl": "https://www.hackthebox.com/images/landingv3/mega-menu-logo-htb.svg",
       "imageHint": "company logo"
+    },
+    {
+      "id": "red-team-learning",
+      "description": "Hands-on-first learning methodology",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/red-team-learning.webp",
+      "imageHint": "diagram chart"
+    },
+    {
+      "id": "red-team-learning-logo-1",
+      "description": "Full-scope adversary icon",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/learning-logo-1.svg",
+      "imageHint": "abstract icon"
+    },
+    {
+      "id": "red-team-learning-logo-2",
+      "description": "Continuous skill measurement icon",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/learning-logo-2.svg",
+      "imageHint": "abstract icon"
+    },
+    {
+      "id": "red-team-learning-logo-3",
+      "description": "Framework alignment icon",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/learning-logo-3.svg",
+      "imageHint": "abstract icon"
+    },
+    {
+      "id": "red-team-monitoring",
+      "description": "Red Team Monitoring",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/monitoring.webp",
+      "imageHint": "code screen"
+    },
+    {
+      "id": "red-team-openhouse",
+      "description": "Red Team Openhouse",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/openhouse.webp",
+      "imageHint": "network diagram"
+    },
+    {
+      "id": "red-team-encrypted-filled",
+      "description": "Red Team Encrypted",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/encrypted_filled.webp",
+      "imageHint": "lock icon"
+    },
+    {
+      "id": "red-team-analytics",
+      "description": "Individual & team analytics",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/individual-team-analytics.webp",
+      "imageHint": "dashboard chart"
+    },
+    {
+      "id": "red-team-heatmaps",
+      "description": "Skill coverage heatmaps",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/skill-coverage-heatmaps.webp",
+      "imageHint": "dashboard chart"
+    },
+    {
+      "id": "red-team-integration",
+      "description": "Customization and integration",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/customization-and-integration.webp",
+      "imageHint": "dashboard chart"
     }
   ]
 }
