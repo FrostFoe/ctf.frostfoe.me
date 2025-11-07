@@ -91,12 +91,6 @@
       "imageHint": "certificate badge"
     },
     {
-      "id": "toyota-logo",
-      "description": "Toyota logo",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/toyota-white-logo.png",
-      "imageHint": "company logo"
-    },
-    {
       "id": "book-icon",
       "description": "Book icon",
       "imageUrl": "https://www.hackthebox.com/images/landingv3/book-icon.png",

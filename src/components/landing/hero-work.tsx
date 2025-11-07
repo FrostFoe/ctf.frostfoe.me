@@ -5,7 +5,6 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { ArrowRight } from "lucide-react";
 
 export default function HeroWork() {
-  const toyotaLogo = PlaceHolderImages.find((img) => img.id === "toyota-logo")!;
   const bookIcon = PlaceHolderImages.find((img) => img.id === "book-icon")!;
 
   return (
@@ -71,14 +70,7 @@ export default function HeroWork() {
                 <ArrowRight className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity absolute top-6 right-6" />
               </div>
               <div className="pb-4">
-                <Image
-                  className="h-8 w-auto"
-                  src={toyotaLogo.imageUrl}
-                  alt={toyotaLogo.description}
-                  data-ai-hint={toyotaLogo.imageHint}
-                  width={120}
-                  height={32}
-                />
+                <span className="text-white font-bold text-2xl">TOYOTA</span>
               </div>
               <div>
                 <p className="text-white text-lg leading-snug">
