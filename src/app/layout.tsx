@@ -4,7 +4,8 @@ import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "ctf.frostfoe.me",
-  description: "হ্যালো ওয়ার্ল্ড",
+  description:
+    "হ্যাকিং এবং সাইবারসিকিউরিটি দক্ষতা অর্জনের একটি মজাদার এবং ইন্টারেক্টিভ উপায়।",
 };
 
 export default function RootLayout({
@@ -26,7 +27,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="font-body antialiased">
+      <body className="font-body antialiased" suppressHydrationWarning={true}>
         {children}
         <Toaster />
       </body>
