@@ -36,12 +36,6 @@ export default function Nav() {
               href="#"
               className="text-sm font-medium text-gray-300 transition-colors hover:text-white"
             >
-              সমাধান
-            </a>
-            <a
-              href="#"
-              className="text-sm font-medium text-gray-300 transition-colors hover:text-white"
-            >
               মূল্য নির্ধারণ
             </a>
 
@@ -98,12 +92,6 @@ export default function Nav() {
 
       {mobileOpen && (
         <div className="mt-4 space-y-2 lg:hidden">
-          <a
-            href="#"
-            className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-          >
-            সমাধান
-          </a>
           <a
             href="#"
             className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
