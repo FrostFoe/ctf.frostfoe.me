@@ -32,28 +32,6 @@ export default function Nav() {
             />
           </Link>
           <div className="hidden lg:flex items-center gap-6">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="flex items-center gap-1 text-sm font-medium text-gray-300 transition-colors hover:text-white"
-                >
-                  পণ্য <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-48 border-gray-700 bg-gray-800 text-gray-300">
-                <DropdownMenuItem className="hover:bg-gray-700 hover:text-white">
-                  <Link href="/red-teams">Red Teams</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-gray-700 hover:text-white">
-                  <Link href="/blue-teams">Blue Teams</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-gray-700 hover:text-white">
-                  <Link href="/purple-teams">Purple Teams</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
             <a
               href="#"
               className="text-sm font-medium text-gray-300 transition-colors hover:text-white"
@@ -154,12 +132,6 @@ export default function Nav() {
 
       {mobileOpen && (
         <div className="mt-4 space-y-2 lg:hidden">
-          <a
-            href="#"
-            className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-          >
-            পণ্য
-          </a>
           <a
             href="#"
             className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"

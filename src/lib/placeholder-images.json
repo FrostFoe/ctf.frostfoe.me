@@ -61,12 +61,6 @@
       "imageHint": "abstract background"
     },
     {
-      "id": "check-icon",
-      "description": "Check icon",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/check-icon.png",
-      "imageHint": "checkmark icon"
-    },
-    {
       "id": "megaphone-icon",
       "description": "Megaphone icon",
       "imageUrl": "https://www.hackthebox.com/images/landingv3/megaphone.webp",
@@ -91,136 +85,184 @@
       "imageHint": "certificate badge"
     },
     {
-      "id": "book-icon",
-      "description": "Book icon",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/book-icon.png",
-      "imageHint": "book icon"
-    },
-    {
       "id": "htb-logo",
       "description": "Hack The Box Logo",
       "imageUrl": "https://www.hackthebox.com/images/landingv3/mega-menu-logo-htb.svg",
       "imageHint": "company logo"
     },
     {
-      "id": "red-team-learning",
-      "description": "Hands-on-first learning methodology",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/red-team-learning.webp",
-      "imageHint": "diagram chart"
+      "id": "logo-ea-sports",
+      "description": "EA Sports logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-easports.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "red-team-learning-logo-1",
-      "description": "Full-scope adversary icon",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/learning-logo-1.svg",
-      "imageHint": "abstract icon"
+      "id": "logo-deloitte",
+      "description": "Deloitte logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-deloitte.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "red-team-learning-logo-2",
-      "description": "Continuous skill measurement icon",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/learning-logo-2.svg",
-      "imageHint": "abstract icon"
+      "id": "logo-intel",
+      "description": "Intel logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-intel.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "red-team-learning-logo-3",
-      "description": "Framework alignment icon",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/learning-logo-3.svg",
-      "imageHint": "abstract icon"
+      "id": "logo-siemens",
+      "description": "Siemens logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-siemens.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "red-team-monitoring",
-      "description": "Red Team Monitoring",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/monitoring.webp",
-      "imageHint": "code screen"
+      "id": "logo-adeptis",
+      "description": "Adeptis logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-adeptis.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "red-team-openhouse",
-      "description": "Red Team Openhouse",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/openhouse.webp",
-      "imageHint": "network diagram"
+      "id": "logo-aws",
+      "description": "AWS logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-aws.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "red-team-encrypted-filled",
-      "description": "Red Team Encrypted",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/encrypted_filled.webp",
-      "imageHint": "lock icon"
+      "id": "logo-context",
+      "description": "Context logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-context.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "red-team-analytics",
-      "description": "Individual & team analytics",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/individual-team-analytics.webp",
-      "imageHint": "dashboard chart"
+      "id": "logo-faraday",
+      "description": "Faraday logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-faraday.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "red-team-heatmaps",
-      "description": "Skill coverage heatmaps",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/skill-coverage-heatmaps.webp",
-      "imageHint": "dashboard chart"
+      "id": "logo-dassaultsystems",
+      "description": "Dassault Systems logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-dassaultsystems.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "red-team-integration",
-      "description": "Customization and integration",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/red_teams/customization-and-integration.webp",
-      "imageHint": "dashboard chart"
+      "id": "logo-nordea",
+      "description": "Nordea logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-nordea.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "blue-team-learning",
-      "description": "Adaptive learning methodology",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/blue-team-learning.webp",
-      "imageHint": "diagram chart"
+      "id": "logo-nviso",
+      "description": "Nviso logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-nviso.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "blue-team-learning-logo-1",
-      "description": "Learn-by-doing icon",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/learning-logo-1.svg",
-      "imageHint": "abstract icon"
+      "id": "logo-university-of-south-florida",
+      "description": "University of South Florida logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-universityofsouthflorida.svg",
+      "imageHint": "university logo"
     },
     {
-      "id": "blue-team-learning-logo-2",
-      "description": "Continuous skill measurement icon",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/learning-logo-2.svg",
-      "imageHint": "abstract icon"
+      "id": "logo-the-university-of-sydney",
+      "description": "The University of Sydney logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-the-university-of-sydney.svg",
+      "imageHint": "university logo"
     },
     {
-      "id": "blue-team-learning-logo-3",
-      "description": "Framework alignment icon",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/learning-logo-3.svg",
-      "imageHint": "abstract icon"
+      "id": "logo-google",
+      "description": "Google logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-google.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "blue-team-monitoring",
-      "description": "Blue Team Monitoring",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/monitoring.svg",
-      "imageHint": "code screen"
+      "id": "logo-toyota",
+      "description": "Toyota logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-toyota.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "blue-team-openhouse",
-      "description": "Blue Team Openhouse",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/openhouse.svg",
-      "imageHint": "network diagram"
+      "id": "logo-booking",
+      "description": "Booking.com logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-booking.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "blue-team-encrypted-filled",
-      "description": "Blue Team Encrypted",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/encrypted-filled.svg",
-      "imageHint": "lock icon"
+      "id": "logo-raytheon",
+      "description": "Raytheon logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-raytheon.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "blue-team-analytics",
-      "description": "Individual & team analytics",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/individual-team-analytics.webp",
-      "imageHint": "dashboard chart"
+      "id": "logo-standard-chartered",
+      "description": "Standard Chartered logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-standard-chartered.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "blue-team-heatmaps",
-      "description": "Skill coverage heatmaps",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/skill-coverage-heatmaps.webp",
-      "imageHint": "dashboard chart"
+      "id": "logo-state-farm",
+      "description": "State Farm logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-state-farm.svg",
+      "imageHint": "company logo"
     },
     {
-      "id": "blue-team-integration",
-      "description": "Customization and integration",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/customization-and-integration.webp",
-      "imageHint": "dashboard chart"
+      "id": "logo-arizona-university",
+      "description": "Arizona University logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-arizona-university.png",
+      "imageHint": "university logo"
+    },
+    {
+      "id": "logo-drake",
+      "description": "Drake University logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-drake.png",
+      "imageHint": "university logo"
+    },
+    {
+      "id": "logo-security-risk",
+      "description": "Security Risk logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-security-risk.png",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "logo-puma",
+      "description": "Puma logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-puma.svg",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "logo-nyu",
+      "description": "NYU logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-nyu.png",
+      "imageHint": "university logo"
+    },
+    {
+      "id": "logo-ynov-campus",
+      "description": "Ynov Campus logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-ynov-campus.svg",
+      "imageHint": "university logo"
+    },
+    {
+      "id": "logo-bugcrowd",
+      "description": "Bugcrowd logo",
+      "imageUrl": "https://www.hackthebox.com/images/landingv3/banner-logo-bugcrowd.svg",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "user-1",
+      "description": "User 1 portrait",
+      "imageUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "user-2",
+      "description": "User 2 portrait",
+      "imageUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "user-3",
+      "description": "User 3 portrait",
+      "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+      "imageHint": "woman portrait"
     },
     {
       "id": "cspire-logo",
@@ -233,66 +275,6 @@
       "description": "Portrait of Conrad Bell",
       "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/blue_teams/conrad-bell.jpeg",
       "imageHint": "man portrait"
-    },
-    {
-      "id": "purple-team-learning",
-      "description": "Threat-informed learning model",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/purple-team-learning.webp",
-      "imageHint": "diagram chart"
-    },
-    {
-      "id": "purple-team-learning-logo-1",
-      "description": "Threat emulation icon",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/learning-logo-1.svg",
-      "imageHint": "abstract icon"
-    },
-    {
-      "id": "purple-team-learning-logo-2",
-      "description": "Continuous skill measurement icon",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/learning-logo-2.svg",
-      "imageHint": "abstract icon"
-    },
-    {
-      "id": "purple-team-learning-logo-3",
-      "description": "Team collaboration icon",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/learning-logo-3.svg",
-      "imageHint": "abstract icon"
-    },
-    {
-      "id": "purple-team-monitoring",
-      "description": "Purple Team Monitoring",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/monitoring.svg",
-      "imageHint": "code screen"
-    },
-    {
-      "id": "purple-team-openhouse",
-      "description": "Purple Team Openhouse",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/openhouse.svg",
-      "imageHint": "network diagram"
-    },
-    {
-      "id": "purple-team-encrypted-filled",
-      "description": "Purple Team Encrypted",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/encrypted-filled.svg",
-      "imageHint": "lock icon"
-    },
-    {
-      "id": "purple-team-analytics",
-      "description": "Individual & team analytics",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/individual-team-analytics.webp",
-      "imageHint": "dashboard chart"
-    },
-    {
-      "id": "purple-team-heatmaps",
-      "description": "Skill coverage heatmaps",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/skill-coverage-heatmaps.webp",
-      "imageHint": "dashboard chart"
-    },
-    {
-      "id": "purple-team-integration",
-      "description": "Customization and integration",
-      "imageUrl": "https://www.hackthebox.com/images/landingv3/job_roles/purple_teams/customization-and-integration.webp",
-      "imageHint": "dashboard chart"
     }
   ]
 }
