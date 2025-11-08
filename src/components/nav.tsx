@@ -70,33 +70,6 @@ export default function Nav() {
         </div>
 
         <div className="hidden lg:flex items-center gap-6">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="flex items-center gap-1 text-sm font-medium text-gray-300 transition-colors hover:text-white"
-              >
-                ব্যবসা <ChevronDown className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-64 border-gray-700 bg-gray-800 text-gray-300 -right-10">
-              <DropdownMenuItem className="flex flex-col items-start hover:bg-gray-700 hover:text-white">
-                <span className="font-bold block">
-                  বিনামূল্যে ট্রায়াল শুরু করুন
-                </span>
-                <span className="text-xs text-gray-400">
-                  ১৪ দিনের জন্য বিনামূল্যে অল-ইন-ওয়ান প্ল্যাটফর্ম।
-                </span>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="flex flex-col items-start hover:bg-gray-700 hover:text-white">
-                <span className="font-bold block">একটি ডেমো পান</span>
-                <span className="text-xs text-gray-400">
-                  আমাদের দলের সাথে যোগাযোগ করুন।
-                </span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
           <a
             href="#"
             className="text-sm font-medium text-gray-300 transition-colors hover:text-white"
@@ -144,12 +117,6 @@ export default function Nav() {
             রিসোর্স
           </a>
           <hr className="my-2 border-gray-700" />
-          <a
-            href="#"
-            className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-          >
-            ব্যবসা
-          </a>
           <a
             href="#"
             className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
