@@ -15,9 +15,21 @@ import {
 } from "@/components/ui/card";
 
 const domainTabs = [
-  { id: "red", title: "রেড টিম" },
-  { id: "blue", title: "ব্লু টিম" },
-  { id: "purple", title: "পার্পল অ্যাপ্রোচ" },
+  {
+    id: "red",
+    title: "রেড টিম",
+    href: "/red-teams",
+  },
+  {
+    id: "blue",
+    title: "ব্লু টিম",
+    href: "/blue-teams",
+  },
+  {
+    id: "purple",
+    title: "পার্পল অ্যাপ্রোচ",
+    href: "/purple-teams",
+  },
 ];
 
 const domainContent = {
@@ -80,7 +92,7 @@ export default function HeroDomains() {
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={cn(
-                    "cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 bg-gray-800",
+                    "cursor-pointer transition-all duration-300 ease-in-out bg-gray-800",
                     {
                       "border-gray-700 hover:border-gray-500":
                         activeTab !== tab.id,
@@ -109,7 +121,7 @@ export default function HeroDomains() {
                 style={{
                   backgroundImage: `url('${activeContent.bgImage}')`,
                 }}
-                className="h-full min-h-[600px] xl:min-h-0 rounded-lg flex flex-col justify-end bg-cover bg-center border-gray-700 group-hover:border-gray-500 transition-all duration-300 ease-in-out group-hover:scale-[1.02]"
+                className="h-full min-h-[600px] xl:min-h-0 rounded-lg flex flex-col justify-end bg-cover bg-center border-gray-700 group-hover:border-gray-500 transition-all duration-300 ease-in-out"
                 data-ai-hint="abstract background"
               >
                 <CardContent className="p-6 sm:p-8">

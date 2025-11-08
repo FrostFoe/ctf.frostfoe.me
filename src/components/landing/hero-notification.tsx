@@ -19,7 +19,7 @@ export default function HeroNotification() {
         className="block group text-decoration-none"
         aria-label="Threat Range সম্পর্কে সর্বশেষ খবর পড়ুন"
       >
-        <Card className="bg-lime-950 border border-lime-800/70 rounded-2xl shadow-2xl shadow-lime-950/30 transition-all duration-300 ease-in-out group-hover:scale-[1.02] group-hover:shadow-lime-800/20 group-hover:border-lime-700">
+        <Card className="bg-lime-950 border border-lime-800/70 rounded-2xl shadow-2xl shadow-lime-950/30 transition-all duration-300 ease-in-out group-hover:shadow-lime-800/20 group-hover:border-lime-700">
           <CardContent className="p-6 md:p-12">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
               <div className="lg:col-span-2 text-center lg:text-left">
@@ -46,7 +46,8 @@ export default function HeroNotification() {
                   data-ai-hint={megaphoneIcon.imageHint}
                   width={160}
                   height={160}
-                  className="w-24 h-24 md:w-40 md:h-40 object-contain opacity-70 transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:scale-110"
+                  priority
+                  className="w-24 h-24 md:w-40 md:h-40 object-contain opacity-70 transition-all duration-300 ease-in-out group-hover:opacity-100"
                 />
               </div>
             </div>

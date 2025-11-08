@@ -44,10 +44,10 @@ export default function HeroSkills() {
     <section className="w-full max-w-7xl py-12">
       <div className="container mx-auto px-4">
         <div className="mb-8 text-center lg:text-left">
-          <h4 className="text-white text-3xl sm:text-4xl font-extrabold leading-tight mb-8">
+          <h2 className="text-white text-3xl sm:text-4xl font-extrabold leading-tight mb-8">
             সাইবারসিকিউরিটি মৌলিক বিষয় থেকে শুরু করে <br /> উন্নত দৃশ্যকল্প
             পর্যন্ত গ্যামিফাইড, হ্যান্ডস-অন আপস্কিলিং।
-          </h4>
+          </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
             <Button
               asChild
@@ -73,7 +73,7 @@ export default function HeroSkills() {
           {skillCards.map((card) => (
             <Card
               key={card.title}
-              className="bg-gray-800 border-gray-700 h-full flex flex-col justify-between text-left transition-all duration-300 ease-in-out hover:scale-105 hover:border-gray-500"
+              className="bg-gray-800 border-gray-700 h-full flex flex-col justify-between text-left transition-all duration-300 ease-in-out hover:border-gray-500"
             >
               <CardHeader>
                 <CardTitle className="text-white">{card.title}</CardTitle>
