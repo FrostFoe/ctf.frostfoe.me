@@ -5,8 +5,6 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import Typewriter from "@/components/ui/typewriter";
 
 export default function Footer() {
-  const g2Rating = PlaceHolderImages.find((img) => img.id === "g2-rating")!;
-
   return (
     <footer className="w-full max-w-7xl py-8">
       <div className="container mx-auto px-4">
@@ -21,21 +19,6 @@ export default function Footer() {
               <br className="hidden sm:block" /> সারা বিশ্ব থেকে ২ লক্ষেরও বেশি
               হ্যাকারের সাথে সংযোগ করুন।
             </p>
-          </div>
-          <div className="text-center mt-10">
-            <a
-              href="https://www.g2.com/products/hack-the-box/reviews"
-              target="_blank"
-            >
-              <Image
-                className="mx-auto"
-                src={g2Rating.imageUrl}
-                alt={g2Rating.description}
-                data-ai-hint={g2Rating.imageHint}
-                width={195}
-                height={50}
-              />
-            </a>
           </div>
         </div>
       </div>
