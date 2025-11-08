@@ -66,13 +66,6 @@ export default function Nav() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-
-            <a
-              href="#"
-              className="text-sm font-medium text-gray-300 transition-colors hover:text-white"
-            >
-              কোম্পানি
-            </a>
           </div>
         </div>
 
@@ -149,12 +142,6 @@ export default function Nav() {
             className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
           >
             রিসোর্স
-          </a>
-          <a
-            href="#"
-            className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-          >
-            কোম্পানি
           </a>
           <hr className="my-2 border-gray-700" />
           <a
