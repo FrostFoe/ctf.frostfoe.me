@@ -1,12 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, PlayCircle } from "lucide-react";
-import { useState } from "react";
-import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 export default function HeroWork() {
-  const [showVideo, setShowVideo] = useState(false);
-
   return (
     <section className="w-full max-w-7xl py-12">
       <div className="container mx-auto px-4">
@@ -46,38 +42,15 @@ export default function HeroWork() {
 
         <div className="mb-8">
           <div className="aspect-video bg-gray-900 rounded-lg overflow-hidden relative group">
-            {showVideo ? (
-              <iframe
-                src="https://demo.arcade.software/b4VLzUIzD6jJlVwT6LaP?embed&show_copy_link=true"
-                title="HTB এন্টারপ্রাইজ: রিপোর্টিং"
-                frameBorder="0"
-                loading="lazy"
-                allow="fullscreen; autoplay"
-                allowFullScreen
-                className="w-full h-full"
-              ></iframe>
-            ) : (
-              <>
-                <Image
-                  src="https://picsum.photos/seed/arcade/1280/720"
-                  alt="HTB Enterprise Reporting Video Thumbnail"
-                  layout="fill"
-                  objectFit="cover"
-                  className="transition-transform duration-300 ease-in-out"
-                  data-ai-hint="dashboard"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                  <button
-                    onClick={() => setShowVideo(true)}
-                    className="group/button flex flex-col items-center justify-center text-white"
-                    aria-label="Play video"
-                  >
-                    <PlayCircle className="w-20 h-20 text-white text-opacity-80 transition-all duration-300 ease-in-out group-hover/button:text-opacity-100 mb-2" />
-                    <span className="font-bold text-lg">ডেমো দেখুন</span>
-                  </button>
-                </div>
-              </>
-            )}
+            <iframe
+              src="https://demo.arcade.software/b4VLzUIzD6jJlVwT6LaP?embed&show_copy_link=true"
+              title="HTB এন্টারপ্রাইজ: রিপোর্টিং"
+              frameBorder="0"
+              loading="lazy"
+              allow="fullscreen; autoplay"
+              allowFullScreen
+              className="w-full h-full"
+            ></iframe>
           </div>
         </div>
       </div>
