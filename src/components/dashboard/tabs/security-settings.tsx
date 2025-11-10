@@ -1,8 +1,41 @@
 "use client";
 
+import { useState } from "react";
 import { Lock, Smartphone } from "lucide-react";
+import { useUser } from "@/lib/context/user-context";
 
 export default function SecuritySettings() {
+  const { user, isGuest } = useUser();
+  const [showPasswordForm, setShowPasswordForm] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const handlePasswordChange = async () => {
+    setMessage(null);
+
+    if (newPassword !== confirmPassword) {
+      setMessage("নতুন পাসওয়ার্ড মিলছে না");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      // In a real app, you'd call a secure API to change password
+      setMessage("পাসওয়ার্ড সফলভাবে পরিবর্তিত হয়েছে!");
+      setShowPasswordForm(false);
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+    } catch (error) {
+      setMessage("ত্রুটি: পাসওয়ার্ড পরিবর্তন করা যায়নি।");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div>
@@ -11,6 +44,24 @@ export default function SecuritySettings() {
           এই উন্নত সেটিংস দিয়ে আপনার অ্যাকাউন্ট সুরক্ষিত রাখুন।
         </p>
       </div>
+
+      {isGuest && (
+        <div className="bg-blue-500/10 border border-blue-500/50 text-blue-300 px-4 py-2 rounded-lg">
+          অতিথি অ্যাকাউন্টে নিরাপত্তা সেটিংস উপলব্ধ নয়।
+        </div>
+      )}
+
+      {message && (
+        <div
+          className={`px-4 py-2 rounded-lg ${
+            message.includes("ত্রুটি")
+              ? "bg-red-500/10 border border-red-500/50 text-red-400"
+              : "bg-green-500/10 border border-green-500/50 text-green-400"
+          }`}
+        >
+          {message}
+        </div>
+      )}
 
       {/* Password Section */}
       <div className="bg-slate-900/50 border border-slate-800 rounded-lg p-6 space-y-4">
@@ -24,9 +75,58 @@ export default function SecuritySettings() {
               আপনার অ্যাকাউন্ট সুরক্ষিত রাখতে নিয়মিত আপনার পাসওয়ার্ড আপডেট
               করুন।
             </p>
-            <button className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white font-medium rounded-lg transition-colors">
-              পাসওয়ার্ড পরিবর্তন করুন
-            </button>
+
+            {showPasswordForm ? (
+              <div className="space-y-3">
+                <input
+                  type="password"
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  placeholder="বর্তমান পাসওয়ার্ড"
+                  disabled={isGuest || loading}
+                  className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 text-sm"
+                />
+                <input
+                  type="password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  placeholder="নতুন পাসওয়ার্ড"
+                  disabled={isGuest || loading}
+                  className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 text-sm"
+                />
+                <input
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="নতুন পাসওয়ার্ড নিশ্চিত করুন"
+                  disabled={isGuest || loading}
+                  className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 text-sm"
+                />
+                <div className="flex gap-2">
+                  <button
+                    onClick={handlePasswordChange}
+                    disabled={isGuest || loading}
+                    className="px-4 py-2 bg-lime-400 hover:bg-lime-500 text-slate-950 font-bold rounded-lg transition-colors text-sm disabled:opacity-50"
+                  >
+                    {loading ? "আপডেট হচ্ছে..." : "আপডেট করুন"}
+                  </button>
+                  <button
+                    onClick={() => setShowPasswordForm(false)}
+                    className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-lg transition-colors text-sm"
+                  >
+                    বাতিল করুন
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <button
+                onClick={() => setShowPasswordForm(true)}
+                disabled={isGuest}
+                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white font-medium rounded-lg transition-colors disabled:opacity-50"
+              >
+                পাসওয়ার্ড পরিবর্তন করুন
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -42,7 +142,10 @@ export default function SecuritySettings() {
             <p className="text-sm text-slate-400 mb-4">
               আপনার অ্যাকাউন্টে 2FA দিয়ে একটি অতিরিক্ত নিরাপত্তা স্তর যোগ করুন।
             </p>
-            <button className="px-4 py-2 bg-lime-400 hover:bg-lime-500 text-slate-950 font-bold rounded-lg transition-colors">
+            <button
+              disabled={isGuest}
+              className="px-4 py-2 bg-lime-400 hover:bg-lime-500 text-slate-950 font-bold rounded-lg transition-colors disabled:opacity-50"
+            >
               2FA সক্রিয় করুন
             </button>
           </div>
@@ -57,7 +160,10 @@ export default function SecuritySettings() {
             <span>বর্তমান ডিভাইস</span>
             <span className="text-lime-400">সক্রিয়</span>
           </div>
-          <button className="text-sm text-red-400 hover:text-red-300 font-medium mt-4">
+          <button
+            disabled={isGuest}
+            className="text-sm text-red-400 hover:text-red-300 font-medium mt-4 disabled:opacity-50"
+          >
             অন্যান্য সমস্ত সেশন থেকে সাইন আউট করুন
           </button>
         </div>

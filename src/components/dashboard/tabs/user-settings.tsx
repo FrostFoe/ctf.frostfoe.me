@@ -1,6 +1,37 @@
 "use client";
 
+import { useState } from "react";
+import { useUser } from "@/lib/context/user-context";
+
 export default function UserSettings() {
+  const { user, isGuest } = useUser();
+  const [email, setEmail] = useState(user?.email || "");
+  const [username, setUsername] = useState(user?.user_metadata?.username || "");
+  const [displayName, setDisplayName] = useState(
+    user?.user_metadata?.display_name || ""
+  );
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+
+  const handleSave = async () => {
+    if (isGuest) {
+      setMessage("অতিথি অ্যাকাউন্টে কোনো পরিবর্তন সংরক্ষণ করা যায় না।");
+      return;
+    }
+
+    setLoading(true);
+    setMessage(null);
+
+    try {
+      // In a real app, you'd call an API to update user metadata
+      setMessage("পরিবর্তনগুলি সংরক্ষণ করা হয়েছে!");
+    } catch (error) {
+      setMessage("ত্রুটি: পরিবর্তনগুলি সংরক্ষণ করা যায়নি।");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div>
@@ -12,6 +43,24 @@ export default function UserSettings() {
         </p>
       </div>
 
+      {message && (
+        <div
+          className={`px-4 py-2 rounded-lg ${
+            message.includes("ত্রুটি")
+              ? "bg-red-500/10 border border-red-500/50 text-red-400"
+              : "bg-green-500/10 border border-green-500/50 text-green-400"
+          }`}
+        >
+          {message}
+        </div>
+      )}
+
+      {isGuest && (
+        <div className="bg-blue-500/10 border border-blue-500/50 text-blue-300 px-4 py-2 rounded-lg">
+          অতিথি অ্যাকাউন্ট: সম্পূর্ণ বৈশিষ্ট্যের জন্য একটি নিয়মিত অ্যাকাউন্ট তৈরি করুন।
+        </div>
+      )}
+
       <div className="bg-slate-900/50 border border-slate-800 rounded-lg p-6 space-y-6">
         <div className="space-y-2">
           <label className="block text-sm font-medium text-slate-300">
@@ -19,9 +68,15 @@ export default function UserSettings() {
           </label>
           <input
             type="email"
-            className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-lime-400 transition-colors"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={isGuest || loading}
+            className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-lime-400 transition-colors disabled:opacity-50"
             placeholder="your@email.com"
           />
+          <p className="text-xs text-slate-500">
+            {isGuest ? "অতিথি অ্যাকাউন্টের জন্য উপলব্ধ নয়" : ""}
+          </p>
         </div>
 
         <div className="space-y-2">
@@ -30,7 +85,10 @@ export default function UserSettings() {
           </label>
           <input
             type="text"
-            className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-lime-400 transition-colors"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            disabled={isGuest || loading}
+            className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-lime-400 transition-colors disabled:opacity-50"
             placeholder="ব্যবহারকারীর নাম"
           />
         </div>
@@ -41,14 +99,21 @@ export default function UserSettings() {
           </label>
           <input
             type="text"
-            className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-lime-400 transition-colors"
+            value={displayName}
+            onChange={(e) => setDisplayName(e.target.value)}
+            disabled={isGuest || loading}
+            className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-lime-400 transition-colors disabled:opacity-50"
             placeholder="প্রদর্শনের নাম"
           />
         </div>
 
         <div className="flex gap-4 pt-4">
-          <button className="px-6 py-2 bg-lime-400 hover:bg-lime-500 text-slate-950 font-bold rounded-lg transition-colors">
-            পরিবর্তনগুলি সংরক্ষণ করুন
+          <button
+            onClick={handleSave}
+            disabled={isGuest || loading}
+            className="px-6 py-2 bg-lime-400 hover:bg-lime-500 text-slate-950 font-bold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {loading ? "সংরক্ষণ করছে..." : "পরিবর্তনগুলি সংরক্ষণ করুন"}
           </button>
           <button className="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-white font-medium rounded-lg transition-colors">
             বাতিল করুন

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { UserProvider } from "@/lib/context/user-context";
 
 export const metadata: Metadata = {
   title: "ctf.frostfoe.me",
@@ -33,7 +34,9 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased" suppressHydrationWarning={true}>
-        {children}
+        <UserProvider>
+          {children}
+        </UserProvider>
         <Toaster />
       </body>
     </html>
