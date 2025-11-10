@@ -88,8 +88,8 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
           <div className="flex items-center gap-2 text-slate-300">
             <Users2 className="w-4 h-4 text-lime-400" />
             <span>
-              <strong className="text-white">{event.teams}</strong> টি দল
-              যোগ দিয়েছে
+              <strong className="text-white">{event.teams}</strong> টি দল যোগ
+              দিয়েছে
             </span>
           </div>
         </div>
@@ -121,9 +121,7 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
 
           {/* Location */}
           <div>
-            <p className="text-slate-500 text-xs font-semibold mb-2">
-              অবস্থান
-            </p>
+            <p className="text-slate-500 text-xs font-semibold mb-2">অবস্থান</p>
             <p className="text-white font-semibold flex items-center gap-2">
               <Globe className="w-4 h-4 text-lime-400" />
               {event.location}

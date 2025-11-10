@@ -40,7 +40,9 @@ export default function CtfDetailHeader({ event }: CtfDetailHeaderProps) {
               <div className="w-10 h-10 bg-lime-400 rounded-lg flex items-center justify-center">
                 <span className="text-sm font-bold text-slate-900">⬜</span>
               </div>
-              <span className="text-sm font-bold text-slate-400">এইচটিবি সিটিএফ</span>
+              <span className="text-sm font-bold text-slate-400">
+                এইচটিবি সিটিএফ
+              </span>
             </div>
 
             {/* Close Button Area - Can be implemented */}

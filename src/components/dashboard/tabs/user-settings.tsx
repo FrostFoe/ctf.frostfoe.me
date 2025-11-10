@@ -4,7 +4,9 @@ export default function UserSettings() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-white mb-2">ব্যবহারকারী সেটিংস</h2>
+        <h2 className="text-2xl font-bold text-white mb-2">
+          ব্যবহারকারী সেটিংস
+        </h2>
         <p className="text-slate-400">
           আপনার ব্যবহারকারী পছন্দ এবং অ্যাকাউন্ট তথ্য পরিচালনা করুন।
         </p>

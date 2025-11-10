@@ -22,7 +22,8 @@ export default function CtfEventGrid({ events }: CtfEventGridProps) {
     return (
       <div className="py-12 text-center">
         <p className="text-slate-400 text-base sm:text-lg">
-          কোন ইভেন্ট পাওয়া যায়নি। একটি ভিন্ন অনুসন্ধান চেষ্টা করুন বা পরে আবার দেখুন!
+          কোন ইভেন্ট পাওয়া যায়নি। একটি ভিন্ন অনুসন্ধান চেষ্টা করুন বা পরে আবার
+          দেখুন!
         </p>
       </div>
     );

@@ -36,8 +36,8 @@ export default function CtfDetailAbout({ event }: CtfDetailAboutProps) {
               className="text-lime-400 hover:text-lime-300 underline font-semibold transition-colors"
             >
               পাবলিক হেল্প সেন্টার
-            </a>
-            {" "}দেখুন
+            </a>{" "}
+            দেখুন
           </p>
         </div>
       </div>

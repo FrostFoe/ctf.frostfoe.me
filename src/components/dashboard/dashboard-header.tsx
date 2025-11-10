@@ -12,7 +12,8 @@ export default function DashboardHeader() {
             🎮
           </div>
           <span className="text-white font-bold text-lg tracking-wide">
-            এইচটিবি <span className="text-slate-400 font-normal">অ্যাকাউন্ট</span>
+            এইচটিবি{" "}
+            <span className="text-slate-400 font-normal">অ্যাকাউন্ট</span>
           </span>
         </div>
 
