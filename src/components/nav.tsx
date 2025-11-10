@@ -79,7 +79,7 @@ export default function Nav() {
 
         <div className="hidden lg:flex items-center gap-3 sm:gap-6">
           <motion.a
-            href="#"
+            href="/login"
             whileHover={{ color: "#ffffff" }}
             className="text-xs sm:text-sm font-medium text-gray-300 transition-colors"
           >
