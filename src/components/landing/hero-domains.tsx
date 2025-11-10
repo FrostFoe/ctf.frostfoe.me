@@ -132,7 +132,9 @@ export default function HeroDomains() {
                     {activeContent.features.map((feature, index) => (
                       <div key={index} className="flex items-start">
                         <Check className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0 text-lime-400 mt-0.5" />
-                        <span className="text-gray-300 text-xs sm:text-sm">{feature}</span>
+                        <span className="text-gray-300 text-xs sm:text-sm">
+                          {feature}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -144,7 +146,8 @@ export default function HeroDomains() {
                       }}
                       className="bg-lime-400 text-gray-900 font-bold px-3 sm:px-5 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm hover:bg-lime-300 transition-colors"
                     >
-                      আরও দেখুন <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2" />
+                      আরও দেখুন{" "}
+                      <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2" />
                     </Button>
                   </div>
                 </CardContent>

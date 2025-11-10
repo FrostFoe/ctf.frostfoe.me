@@ -76,7 +76,9 @@ export default function HeroSkills() {
               className="bg-gray-800 border-gray-700 h-full flex flex-col justify-between text-left transition-all duration-300 ease-in-out hover:border-gray-500"
             >
               <CardHeader className="pb-3 sm:pb-4">
-                <CardTitle className="text-white text-lg sm:text-xl">{card.title}</CardTitle>
+                <CardTitle className="text-white text-lg sm:text-xl">
+                  {card.title}
+                </CardTitle>
                 <CardDescription className="text-gray-300 leading-relaxed pt-2 text-sm">
                   {card.description}
                 </CardDescription>
