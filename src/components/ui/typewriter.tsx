@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 
-type TypewriterProps = {
+interface TypewriterProps {
   toRotate: string[];
-};
+}
 
 export default function Typewriter({ toRotate }: TypewriterProps) {
   const [text, setText] = useState("");

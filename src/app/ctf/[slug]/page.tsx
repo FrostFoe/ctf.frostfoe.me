@@ -1,10 +1,8 @@
 "use client";
 
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import CtfDetailHeader from "@/components/ctf/ctf-detail-header";
 import CtfDetailInfo from "@/components/ctf/ctf-detail-info";
 import CtfDetailAbout from "@/components/ctf/ctf-detail-about";

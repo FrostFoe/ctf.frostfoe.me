@@ -2,7 +2,7 @@
 
 interface CtfEvent {
   description: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface CtfDetailAboutProps {
@@ -15,7 +15,7 @@ export default function CtfDetailAbout({ event }: CtfDetailAboutProps) {
       <div className="max-w-3xl">
         {/* Title */}
         <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
-          About the Event
+          ইভেন্ট সম্পর্কে
         </h2>
 
         {/* Description */}
@@ -30,13 +30,14 @@ export default function CtfDetailAbout({ event }: CtfDetailAboutProps) {
         {/* Optional Help Link */}
         <div className="mt-8 pt-8 border-t border-slate-700">
           <p className="text-slate-400 text-sm">
-            Need help? Check our{" "}
+            সাহায্য প্রয়োজন? আমাদের{" "}
             <a
               href="/help"
               className="text-lime-400 hover:text-lime-300 underline font-semibold transition-colors"
             >
-              Public Help Center
+              পাবলিক হেল্প সেন্টার
             </a>
+            {" "}দেখুন
           </p>
         </div>
       </div>

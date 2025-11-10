@@ -9,7 +9,7 @@ interface CtfEvent {
   startTime: string;
   endDate: string;
   endTime: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface CtfDetailInfoProps {
@@ -27,7 +27,7 @@ export default function CtfDetailInfo({ event, onSignUp }: CtfDetailInfoProps) {
             {/* Start Date */}
             <div>
               <p className="text-slate-400 text-sm font-semibold uppercase tracking-wide mb-2">
-                Start Date
+                শুরুর তারিখ
               </p>
               <p className="text-white text-lg md:text-xl font-semibold">
                 {event.startDate}
@@ -38,7 +38,7 @@ export default function CtfDetailInfo({ event, onSignUp }: CtfDetailInfoProps) {
             {/* End Date */}
             <div>
               <p className="text-slate-400 text-sm font-semibold uppercase tracking-wide mb-2">
-                End Date
+                শেষ তারিখ
               </p>
               <p className="text-white text-lg md:text-xl font-semibold">
                 {event.endDate}
@@ -55,7 +55,7 @@ export default function CtfDetailInfo({ event, onSignUp }: CtfDetailInfoProps) {
               className="flex-1 sm:flex-none px-8 py-3 bg-lime-400 hover:bg-lime-500 text-slate-900 font-bold rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group"
             >
               <LogIn className="w-4 h-4 group-hover:scale-110 transition-transform" />
-              Sign Up
+              নিবন্ধন করুন
             </Button>
 
             {/* Share Button */}
@@ -64,7 +64,7 @@ export default function CtfDetailInfo({ event, onSignUp }: CtfDetailInfoProps) {
               className="flex-1 sm:flex-none px-8 py-3 bg-slate-700/50 hover:bg-slate-600 text-white border border-slate-600 font-semibold rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
             >
               <Share2 className="w-4 h-4" />
-              Share
+              শেয়ার করুন
             </Button>
           </div>
         </div>

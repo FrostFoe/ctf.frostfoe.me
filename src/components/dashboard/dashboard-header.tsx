@@ -1,7 +1,6 @@
 "use client";
 
 import { HelpCircle, Grid3x3, User } from "lucide-react";
-import Image from "next/image";
 
 export default function DashboardHeader() {
   return (
@@ -13,7 +12,7 @@ export default function DashboardHeader() {
             🎮
           </div>
           <span className="text-white font-bold text-lg tracking-wide">
-            HTB <span className="text-slate-400 font-normal">ACCOUNT</span>
+            এইচটিবি <span className="text-slate-400 font-normal">অ্যাকাউন্ট</span>
           </span>
         </div>
 
@@ -21,19 +20,19 @@ export default function DashboardHeader() {
         <div className="flex items-center gap-4 sm:gap-6">
           <button
             className="p-2 hover:bg-slate-800 rounded-lg transition-colors"
-            aria-label="Help"
+            aria-label="সাহায্য"
           >
             <HelpCircle className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
           </button>
           <button
             className="p-2 hover:bg-slate-800 rounded-lg transition-colors"
-            aria-label="Apps"
+            aria-label="অ্যাপস"
           >
             <Grid3x3 className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
           </button>
           <button
             className="p-2 hover:bg-slate-800 rounded-lg transition-colors"
-            aria-label="Profile"
+            aria-label="প্রোফাইল"
           >
             <User className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
           </button>

@@ -87,7 +87,7 @@ export default function CtfEventCard({
             )}
           </div>
           <p className="text-xs sm:text-sm text-slate-400">
-            {players} <span className="text-slate-500">players going</span>
+            {players} <span className="text-slate-500">খেলোয়াড় যাচ্ছেন</span>
           </p>
         </div>
       </div>

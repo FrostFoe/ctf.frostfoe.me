@@ -12,12 +12,7 @@ import {
 import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  slideInLeft,
-  fadeInUp,
-  staggerContainer,
-  staggerItem,
-} from "@/lib/motion-variants";
+// motion variants not used in this file
 
 export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -44,7 +39,7 @@ export default function Nav() {
           </motion.div>
           <div className="hidden lg:flex items-center gap-4 md:gap-6">
             <motion.a
-              href="#"
+              href="/login"
               whileHover={{ color: "#ffffff" }}
               className="text-xs sm:text-sm font-medium text-gray-300 transition-colors"
             >

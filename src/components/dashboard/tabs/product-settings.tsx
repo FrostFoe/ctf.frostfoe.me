@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight } from "lucide-react";
+// ChevronRight not used
 import AcademyCard from "../cards/academy-card";
 import LabCard from "../cards/lab-card";
 import CTFCard from "../cards/ctf-card";
@@ -13,11 +13,10 @@ export default function ProductSettings() {
       {/* Welcome Section */}
       <div className="space-y-3">
         <h1 className="text-3xl sm:text-4xl font-bold text-white">
-          Welcome frostfoe1,
+          স্বাগতম frostfoe1,
         </h1>
         <p className="text-slate-400 text-sm sm:text-base">
-          Access the Hack The Box multiverse and develop yourself as a
-          cybersecurity professional.
+          হ্যাক দ্য বক্স মাল্টিভার্স অ্যাক্সেস করুন এবং একজন সাইবারসিকিউরিটি পেশাদার হিসাবে নিজেকে বিকাশ করুন।
         </p>
       </div>
 

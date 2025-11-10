@@ -8,10 +8,10 @@ export default function EnterpriseCard() {
       <div className="flex items-center justify-between">
         <div>
           <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">
-            HTB Enterprise Platform
+            এইচটিবি এন্টারপ্রাইজ প্ল্যাটফর্ম
           </p>
           <h3 className="text-lg font-bold text-white">
-            Upskill your cyber team
+            আপনার সাইবার টিমকে আপস্কিল করুন
           </h3>
         </div>
         <ChevronRight className="w-5 h-5 text-slate-600 group-hover:text-slate-400 transition-colors flex-shrink-0" />

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+// ArrowRight not used here
 
 export default function JobsCard() {
   return (
@@ -12,20 +12,19 @@ export default function JobsCard() {
               💼
             </div>
             <div className="w-16 h-8 bg-slate-700 rounded flex items-center justify-center">
-              <span className="text-xs font-bold text-slate-300">JOBS</span>
+              <span className="text-xs font-bold text-slate-300">জবস</span>
             </div>
           </div>
           <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
-            Find your next job in cybersecurity with Hack The Box
+            হ্যাক দ্য বক্সের সাথে সাইবারসিকিউরিটিতে আপনার পরবর্তী চাকরি খুঁজুন
           </h3>
           <p className="text-sm text-slate-400">
-            The best resource to discover and connect with cybersecurity experts
-            and jobs globally.
+            বিশ্বব্যাপী সাইবারসিকিউরিটি বিশেষজ্ঞ এবং চাকরির সাথে আবিষ্কার এবং সংযোগ স্থাপনের জন্য সেরা সম্পদ।
           </p>
         </div>
 
         <button className="flex-shrink-0 px-4 sm:px-6 py-2 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg transition-all duration-300 text-sm sm:text-base group/btn">
-          Search jobs
+          চাকরি খুঁজুন
         </button>
       </div>
     </div>

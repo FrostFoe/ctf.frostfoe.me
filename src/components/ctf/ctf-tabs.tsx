@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+// no runtime UI button needed here
 
 interface CtfTabsProps {
   activeTab: string;
@@ -9,10 +9,10 @@ interface CtfTabsProps {
 
 export default function CtfTabs({ activeTab, onTabChange }: CtfTabsProps) {
   const tabs = [
-    { id: "ongoing", label: "Ongoing" },
-    { id: "upcoming", label: "Upcoming" },
-    { id: "joined", label: "Joined" },
-    { id: "past", label: "Past" },
+    { id: "ongoing", label: "চলমান" },
+    { id: "upcoming", label: "আসন্ন" },
+    { id: "joined", label: "যোগ দেওয়া হয়েছে" },
+    { id: "past", label: "অতীত" },
   ];
 
   return (

@@ -8,10 +8,10 @@ export default function CTFCard() {
       <div className="flex items-center justify-between">
         <div>
           <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">
-            HTB CTF
+            এইচটিবি সিটিএফ
           </p>
           <h3 className="text-lg font-bold text-white">
-            Play or host a hacking competition
+            একটি হ্যাকিং প্রতিযোগিতা খেলুন বা হোস্ট করুন
           </h3>
         </div>
         <ChevronRight className="w-5 h-5 text-slate-600 group-hover:text-slate-400 transition-colors flex-shrink-0" />

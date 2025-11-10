@@ -1,12 +1,6 @@
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 
 export default function HeroNotification() {
   const megaphoneIcon = PlaceHolderImages.find(

@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, Grid3x3, User } from "lucide-react";
+import { Bell, Grid3x3 } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
@@ -13,13 +13,13 @@ export default function CtfHeader() {
           <div className="flex items-center gap-2 sm:gap-3">
             <Image
               src="/flag-wave.gif"
-              alt="HTB CTF"
+              alt="এইচটিবি সিটিএফ"
               width={32}
               height={32}
               className="h-8 w-8 sm:h-10 sm:w-10"
             />
             <span className="text-sm sm:text-lg font-bold text-white">
-              HTB <span className="text-slate-400">CTF</span>
+              এইচটিবি <span className="text-slate-400">সিটিএফ</span>
             </span>
           </div>
 
@@ -90,7 +90,7 @@ export default function CtfHeader() {
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" />
               </svg>
-              Build a CTF
+              একটি সিটিএফ তৈরি করুন
             </Button>
             <Button
               variant="ghost"
@@ -131,7 +131,7 @@ export default function CtfHeader() {
             >
               <Image
                 src="/flag-wave.gif"
-                alt="Profile"
+                alt="প্রোফাইল"
                 width={20}
                 height={20}
                 className="h-5 w-5 rounded"

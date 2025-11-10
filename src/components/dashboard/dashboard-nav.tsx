@@ -8,9 +8,9 @@ export default function DashboardNav({
   setActiveTab: (tab: string) => void;
 }) {
   const tabs = [
-    { id: "product", label: "Product Settings" },
-    { id: "user", label: "User Settings" },
-    { id: "security", label: "Security Settings" },
+    { id: "product", label: "প্রোডাক্ট সেটিংস" },
+    { id: "user", label: "ব্যবহারকারী সেটিংস" },
+    { id: "security", label: "নিরাপত্তা সেটিংস" },
   ];
 
   return (

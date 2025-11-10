@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 
 interface CtfEvent {
   id: number;
@@ -10,7 +9,7 @@ interface CtfEvent {
   image: string;
   badge: string;
   tags: string[];
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface CtfDetailHeaderProps {
@@ -41,7 +40,7 @@ export default function CtfDetailHeader({ event }: CtfDetailHeaderProps) {
               <div className="w-10 h-10 bg-lime-400 rounded-lg flex items-center justify-center">
                 <span className="text-sm font-bold text-slate-900">⬜</span>
               </div>
-              <span className="text-sm font-bold text-slate-400">HTB CTF</span>
+              <span className="text-sm font-bold text-slate-400">এইচটিবি সিটিএফ</span>
             </div>
 
             {/* Close Button Area - Can be implemented */}
@@ -61,7 +60,7 @@ export default function CtfDetailHeader({ event }: CtfDetailHeaderProps) {
             <div className="hidden md:flex flex-shrink-0">
               <Image
                 src="https://images.unsplash.com/photo-1550439062-609e7e7dfa6a?w=200&h=200&fit=crop"
-                alt="CTF Icon"
+                alt="সিটিএফ আইকন"
                 width={150}
                 height={150}
                 className="w-32 h-32 object-contain opacity-80"

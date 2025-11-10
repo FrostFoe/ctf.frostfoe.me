@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
+// Image and placeholder data not needed in this footer
 import Typewriter from "@/components/ui/typewriter";
 
 export default function Footer() {
