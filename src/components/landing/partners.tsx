@@ -119,12 +119,12 @@ const logos = [
 
 export default function Partners() {
   return (
-    <div className="w-full overflow-hidden py-10">
+    <div className="w-full overflow-hidden py-8 sm:py-10 md:py-12">
       <div className="flex animate-marquee-infinite">
         {[...logos, ...logos].map((logo, index) => (
-          <div key={index} className="mx-5 flex-shrink-0">
+          <div key={index} className="mx-3 sm:mx-4 md:mx-5 flex-shrink-0">
             <Image
-              className="max-w-[125px] h-[30px] object-contain"
+              className="max-w-[100px] sm:max-w-[125px] h-[24px] sm:h-[30px] object-contain"
               src={logo.src}
               alt={logo.alt}
               width={125}

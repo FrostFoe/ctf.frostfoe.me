@@ -10,28 +10,28 @@ import Partners from "@/components/landing/partners";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen w-full flex-col items-center gap-6 bg-background p-4">
+    <div className="flex min-h-screen w-full flex-col items-center bg-background">
       <Nav />
-      <main className="flex w-full flex-col items-center justify-center gap-6">
-        <div className="w-full">
+      <main className="flex w-full flex-col items-center justify-center gap-6 px-4 py-6 sm:px-6 md:px-8 lg:px-0">
+        <div className="w-full max-w-7xl">
           <HeroNotification />
         </div>
-        <div className="w-full">
+        <div className="w-full max-w-7xl">
           <HeroStats />
         </div>
-        <div className="w-full">
+        <div className="w-full max-w-7xl">
           <HeroSkills />
         </div>
-        <div className="w-full">
+        <div className="w-full max-w-7xl">
           <HeroDomains />
         </div>
-        <div className="w-full">
+        <div className="w-full max-w-7xl">
           <HeroWork />
         </div>
-        <div className="w-full">
+        <div className="w-full max-w-7xl">
           <HeroCarrer />
         </div>
-        <div className="w-full">
+        <div className="w-full max-w-7xl">
           <Partners />
         </div>
       </main>

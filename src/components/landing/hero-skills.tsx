@@ -41,26 +41,26 @@ export default function HeroSkills() {
   ];
 
   return (
-    <section className="w-full max-w-7xl py-12">
-      <div className="container mx-auto px-4">
-        <div className="mb-8 text-center lg:text-left">
-          <h2 className="text-white text-3xl sm:text-4xl font-extrabold leading-tight mb-8">
+    <section className="w-full py-6 sm:py-8 md:py-10 lg:py-12">
+      <div className="w-full">
+        <div className="mb-6 sm:mb-8 text-center lg:text-left px-4 sm:px-6 md:px-8 lg:px-0">
+          <h2 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-extrabold leading-tight mb-6 sm:mb-8">
             সাইবারসিকিউরিটি মৌলিক বিষয় থেকে শুরু করে <br /> উন্নত দৃশ্যকল্প
             পর্যন্ত গ্যামিফাইড, হ্যান্ডস-অন আপস্কিলিং।
           </h2>
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full">
             <Button
               asChild
-              className="bg-lime-400 text-gray-900 font-bold px-5 py-2 rounded-md text-base hover:bg-lime-300 transition-colors"
+              className="bg-lime-400 text-gray-900 font-bold px-4 sm:px-5 py-2 rounded-md text-sm sm:text-base hover:bg-lime-300 transition-colors w-full sm:w-auto"
             >
               <a href="https://www.hackthebox.com/hacker" target="_blank">
-                শুরু করুন <ArrowRight />
+                শুরু করুন <ArrowRight className="w-4 h-4" />
               </a>
             </Button>
             <Button
               asChild
               variant="outline"
-              className="text-gray-300 bg-transparent border border-gray-600 hover:bg-gray-700 font-medium py-2 px-5 rounded-md transition-colors text-base"
+              className="text-gray-300 bg-transparent border border-gray-600 hover:bg-gray-700 font-medium py-2 px-4 sm:px-5 rounded-md transition-colors text-sm sm:text-base w-full sm:w-auto"
             >
               <a href="https://www.hackthebox.com/business-cyber-security-training">
                 টিমের জন্য
@@ -69,19 +69,19 @@ export default function HeroSkills() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 px-4 sm:px-6 md:px-8 lg:px-0">
           {skillCards.map((card) => (
             <Card
               key={card.title}
               className="bg-gray-800 border-gray-700 h-full flex flex-col justify-between text-left transition-all duration-300 ease-in-out hover:border-gray-500"
             >
-              <CardHeader>
-                <CardTitle className="text-white">{card.title}</CardTitle>
-                <CardDescription className="text-gray-300 leading-relaxed pt-2">
+              <CardHeader className="pb-3 sm:pb-4">
+                <CardTitle className="text-white text-lg sm:text-xl">{card.title}</CardTitle>
+                <CardDescription className="text-gray-300 leading-relaxed pt-2 text-sm">
                   {card.description}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex justify-center items-center p-4 pt-0">
+              <CardContent className="flex justify-center items-center p-3 sm:p-4 pt-0">
                 <Image
                   className="w-full h-auto"
                   src={card.image.imageUrl}

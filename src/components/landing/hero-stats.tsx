@@ -8,25 +8,25 @@ import {
 
 export default function HeroStats() {
   return (
-    <section className="w-full max-w-7xl">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-gray-800 rounded-2xl flex flex-col justify-center h-full text-center lg:text-left">
-          <CardHeader>
-            <CardTitle className="text-6xl md:text-8xl font-extrabold text-lime-400">
+    <section className="w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+        <Card className="bg-gray-800 rounded-lg sm:rounded-2xl flex flex-col justify-center h-full text-center lg:text-left p-4 sm:p-6 md:p-8">
+          <CardHeader className="p-0">
+            <CardTitle className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-lime-400">
               ৫০%
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 leading-snug">
+          <CardContent className="p-0 mt-4">
+            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-200 leading-snug">
               এবং আরও গুরুত্বপূর্ণ সাইবার ঘটনা দক্ষতার অভাব বা মানুষের ভুলের
               কারণে ঘটে।
             </p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gray-800 rounded-2xl flex flex-col justify-center h-full relative overflow-hidden min-h-[250px] lg:min-h-0 text-center lg:text-left">
-          <CardContent className="p-8 md:p-10">
-            <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 leading-snug">
+        <Card className="bg-gray-800 rounded-lg sm:rounded-2xl flex flex-col justify-center h-full relative overflow-hidden min-h-[250px] lg:min-h-0 text-center lg:text-left p-4 sm:p-6 md:p-8">
+          <CardContent className="p-0">
+            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-200 leading-snug">
               অসম্ভবকে হার মানান।
               <br />
               আপনার কর্মক্ষমতা
