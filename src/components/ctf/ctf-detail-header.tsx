@@ -29,7 +29,7 @@ export default function CtfDetailHeader({ event }: CtfDetailHeaderProps) {
       />
 
       {/* Overlay Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900" />
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-slate-900" />
 
       {/* Content - Dark Card in Center */}
       <div className="absolute inset-0 flex items-center justify-center px-4">
@@ -59,7 +59,7 @@ export default function CtfDetailHeader({ event }: CtfDetailHeaderProps) {
             </div>
 
             {/* Illustration/Icon Area */}
-            <div className="hidden md:flex flex-shrink-0">
+            <div className="hidden md:flex shrink-0">
               <Image
                 src="https://images.unsplash.com/photo-1550439062-609e7e7dfa6a?w=200&h=200&fit=crop"
                 alt="সিটিএফ আইকন"

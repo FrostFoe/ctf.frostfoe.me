@@ -50,7 +50,7 @@ export function StateIndicator({ state, message, children, className = '' }: Sta
       aria-label={`State: ${state}. ${message || ''}`}
     >
       <div className="flex items-center gap-3">
-        {config.icon && <div className="flex-shrink-0">{config.icon}</div>}
+        {config.icon && <div className="shrink-0">{config.icon}</div>}
         <div className="flex-1">
           {message && <p className="font-medium text-sm">{message}</p>}
           {children}

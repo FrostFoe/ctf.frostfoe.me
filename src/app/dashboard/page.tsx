@@ -31,14 +31,14 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
+      <div className="flex min-h-screen items-center justify-center bg-linear-to-b from-slate-900 via-slate-800 to-slate-900">
         <p className="text-white">লোড হচ্ছে...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950">
       {isGuest && (
         <div className="bg-blue-600/20 border-b border-blue-500/50 px-4 py-3">
           <div className="max-w-7xl mx-auto flex items-center justify-between">

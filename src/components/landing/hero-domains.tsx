@@ -124,7 +124,7 @@ export default function HeroDomains() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 sm:gap-x-6 gap-y-2 sm:gap-y-4 mb-4 sm:mb-8">
                     {activeContent.features.map((feature, index) => (
                       <div key={index} className="flex items-start">
-                        <Check className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0 text-lime-400 mt-0.5" />
+                        <Check className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 shrink-0 text-lime-400 mt-0.5" />
                         <span className="text-gray-300 text-xs sm:text-sm">
                           {feature}
                         </span>

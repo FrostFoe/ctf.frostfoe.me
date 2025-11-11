@@ -4,9 +4,9 @@ import { ArrowRight } from "lucide-react";
 
 export default function LabCard() {
   return (
-    <div className="group relative overflow-hidden rounded-lg bg-gradient-to-br from-purple-950/40 to-purple-900/20 border border-purple-900/50 hover:border-purple-700/80 transition-all duration-300 p-6 sm:p-8">
+    <div className="group relative overflow-hidden rounded-lg bg-linear-to-br from-purple-950/40 to-purple-900/20 border border-purple-900/50 hover:border-purple-700/80 transition-all duration-300 p-6 sm:p-8">
       {/* Background Glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute inset-0 bg-linear-to-br from-purple-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       {/* Content */}
       <div className="relative space-y-4">

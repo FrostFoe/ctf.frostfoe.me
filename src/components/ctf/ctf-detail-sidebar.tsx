@@ -30,7 +30,7 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
           আয়োজন করেছে
         </h3>
         <div className="flex items-center gap-4">
-          <div className="flex-shrink-0 w-16 h-16 bg-slate-700 rounded-lg overflow-hidden">
+          <div className="shrink-0 w-16 h-16 bg-slate-700 rounded-lg overflow-hidden">
             <Image
               src={event.hostedByLogo}
               alt={event.hostedBy}

@@ -90,7 +90,7 @@ export default function Nav() {
         <div className="lg:hidden">
           <motion.button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="text-gray-300 hover:text-white focus:outline-none"
+            className="text-gray-300 hover:text-white focus:outline-hidden"
             aria-label="Toggle mobile menu"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}

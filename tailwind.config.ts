@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-export default {
+const config = {
   darkMode: ["class"],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,8 +10,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ["'Hind Siliguri'", "sans-serif"],
-        headline: ["'Hind Siliguri'", "sans-serif"],
+        body: ["Hind Siliguri", "sans-serif"],
+        headline: ["Hind Siliguri", "sans-serif"],
         code: ["monospace"],
       },
       colors: {
@@ -129,3 +129,5 @@ export default {
   },
   plugins: [],
 } satisfies Config;
+
+export default config;

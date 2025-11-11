@@ -32,7 +32,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
               </span>
             )}
             {index < items.length - 1 && (
-              <ChevronRight size={14} className="text-slate-600 flex-shrink-0" />
+              <ChevronRight size={14} className="text-slate-600 shrink-0" />
             )}
           </li>
         ))}

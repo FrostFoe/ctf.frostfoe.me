@@ -79,25 +79,25 @@ export const stateStyles = {
   // Difficulty levels
   difficulty: {
     সহজ: {
-      bar: 'bg-gradient-to-r from-green-400 to-green-500',
+      bar: 'bg-linear-to-r from-green-400 to-green-500',
       text: 'text-green-400',
       bg: 'bg-green-900/20',
       border: 'border-green-600/30',
     },
     মধ্যম: {
-      bar: 'bg-gradient-to-r from-yellow-400 to-yellow-500',
+      bar: 'bg-linear-to-r from-yellow-400 to-yellow-500',
       text: 'text-yellow-400',
       bg: 'bg-yellow-900/20',
       border: 'border-yellow-600/30',
     },
     কঠিন: {
-      bar: 'bg-gradient-to-r from-orange-400 to-orange-500',
+      bar: 'bg-linear-to-r from-orange-400 to-orange-500',
       text: 'text-orange-400',
       bg: 'bg-orange-900/20',
       border: 'border-orange-600/30',
     },
     অসম্ভব: {
-      bar: 'bg-gradient-to-r from-red-400 to-red-500',
+      bar: 'bg-linear-to-r from-red-400 to-red-500',
       text: 'text-red-400',
       bg: 'bg-red-900/20',
       border: 'border-red-600/30',

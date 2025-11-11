@@ -53,7 +53,7 @@ export function Countdown({ targetDate, isUpcoming }: CountdownProps) {
 
   return (
     <div className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-blue-300 bg-blue-900/20 border border-blue-800/50 rounded px-2 sm:px-3 py-1 sm:py-1.5 whitespace-nowrap">
-      <Clock size={14} className="flex-shrink-0" />
+      <Clock size={14} className="shrink-0" />
       <span className="truncate">{timeLeft}</span>
     </div>
   );

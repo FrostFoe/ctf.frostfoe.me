@@ -40,9 +40,9 @@ export default function CtfEventCard({
 
   return (
     <Link href={`/ctf/${slug}`}>
-      <div className="group cursor-pointer overflow-hidden rounded-lg border border-slate-700 bg-slate-800/50 backdrop-blur hover:border-slate-600 transition-all h-full flex flex-col">
+      <div className="group cursor-pointer overflow-hidden rounded-lg border border-slate-700 bg-slate-800/50 backdrop-blur-sm hover:border-slate-600 transition-all h-full flex flex-col">
         {/* Image Container */}
-        <div className="relative h-32 sm:h-40 md:h-48 w-full overflow-hidden bg-slate-900 flex-shrink-0">
+        <div className="relative h-32 sm:h-40 md:h-48 w-full overflow-hidden bg-slate-900 shrink-0">
           <Image
             src={image}
             alt={title}
@@ -102,7 +102,7 @@ export default function CtfEventCard({
                 (_, i) => (
                   <div
                     key={i}
-                    className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-full border-2 border-slate-800 flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
+                    className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-full border-2 border-slate-800 flex items-center justify-center text-white text-xs font-bold shrink-0"
                     style={{
                       backgroundColor: avatarColors[i % avatarColors.length],
                     }}

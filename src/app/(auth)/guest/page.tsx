@@ -59,7 +59,7 @@ export default function GuestLoginPage() {
           <div className="w-full border-t border-slate-700" />
         </div>
         <div className="relative flex justify-center text-sm">
-          <span className="px-2 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-slate-400">
+          <span className="px-2 bg-linear-to-b from-slate-900 via-slate-800 to-slate-900 text-slate-400">
             অথবা
           </span>
         </div>

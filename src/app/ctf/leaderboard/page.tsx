@@ -91,7 +91,7 @@ export default function LeaderboardPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900">
       <CtfHeader />
 
       <div className="container-centered">
@@ -177,7 +177,7 @@ export default function LeaderboardPage() {
                       </td>
                       <td className="px-4 sm:px-6 py-4">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-lime-400 to-lime-600 flex items-center justify-center text-slate-900 font-bold text-xs">
+                          <div className="w-8 h-8 rounded-full bg-linear-to-br from-lime-400 to-lime-600 flex items-center justify-center text-slate-900 font-bold text-xs">
                             {entry.name.charAt(0)}
                           </div>
                           <div>

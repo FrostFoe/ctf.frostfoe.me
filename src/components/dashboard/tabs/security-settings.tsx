@@ -66,7 +66,7 @@ export default function SecuritySettings() {
       {/* Password Section */}
       <div className="bg-slate-900/50 border border-slate-800 rounded-lg p-6 space-y-4">
         <div className="flex items-start gap-3">
-          <Lock className="w-5 h-5 text-lime-400 mt-1 flex-shrink-0" />
+          <Lock className="w-5 h-5 text-lime-400 mt-1 shrink-0" />
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-white mb-2">
               পাসওয়ার্ড
@@ -134,7 +134,7 @@ export default function SecuritySettings() {
       {/* 2FA Section */}
       <div className="bg-slate-900/50 border border-slate-800 rounded-lg p-6 space-y-4">
         <div className="flex items-start gap-3">
-          <Smartphone className="w-5 h-5 text-lime-400 mt-1 flex-shrink-0" />
+          <Smartphone className="w-5 h-5 text-lime-400 mt-1 shrink-0" />
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-white mb-2">
               দুই-ফ্যাক্টর প্রমাণীকরণ

@@ -4,7 +4,7 @@
 
 export default function JobsCard() {
   return (
-    <div className="group relative overflow-hidden rounded-lg bg-gradient-to-r from-slate-900/80 to-slate-800/40 border border-slate-800 hover:border-slate-700 transition-all duration-300 p-6 md:p-8">
+    <div className="group relative overflow-hidden rounded-lg bg-linear-to-r from-slate-900/80 to-slate-800/40 border border-slate-800 hover:border-slate-700 transition-all duration-300 p-6 md:p-8">
       <div className="flex items-center justify-between gap-6">
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-3">
@@ -24,7 +24,7 @@ export default function JobsCard() {
           </p>
         </div>
 
-        <button className="flex-shrink-0 px-4 sm:px-6 py-2 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg transition-all duration-300 text-sm sm:text-base group/btn">
+        <button className="shrink-0 px-4 sm:px-6 py-2 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg transition-all duration-300 text-sm sm:text-base group/btn">
           চাকরি খুঁজুন
         </button>
       </div>

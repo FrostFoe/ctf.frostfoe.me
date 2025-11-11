@@ -52,7 +52,7 @@ export default function ChallengesFilter({
             {categories.map((cat) => (
               <Button
                 key={cat}
-                variant={selectedCategory === cat ? "default" : "outline"}
+                variant={selectedCategory === cat ? "default" : "outline-solid"}
                 size="sm"
                 onClick={() => onCategoryChange(cat)}
                 className={`${
@@ -73,7 +73,7 @@ export default function ChallengesFilter({
             {difficulties.map((diff) => (
               <Button
                 key={diff}
-                variant={selectedDifficulty === diff ? "default" : "outline"}
+                variant={selectedDifficulty === diff ? "default" : "outline-solid"}
                 size="sm"
                 onClick={() => onDifficultyChange(diff)}
                 className={`${

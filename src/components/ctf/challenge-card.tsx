@@ -62,27 +62,27 @@ export default function ChallengeCard({
   };
 
   return (
-    <Card className="group relative overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 hover:border-lime-400/50 transition-all duration-300 h-full flex flex-col">
+    <Card className="group relative overflow-hidden bg-linear-to-br from-slate-800 to-slate-900 border-slate-700 hover:border-lime-400/50 transition-all duration-300 h-full flex flex-col">
       {/* Background gradient effect on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-lime-400/0 to-lime-400/0 group-hover:from-lime-400/5 group-hover:to-lime-400/10 transition-all duration-300" />
+      <div className="absolute inset-0 bg-linear-to-br from-lime-400/0 to-lime-400/0 group-hover:from-lime-400/5 group-hover:to-lime-400/10 transition-all duration-300" />
 
       <div className="relative p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-3 md:space-y-4 flex-1 flex flex-col">
         {/* Header */}
         <div className="space-y-2 sm:space-y-3">
           <div className="flex items-start justify-between gap-2 sm:gap-3">
-            <Flag className="w-4 h-4 sm:w-5 sm:h-5 text-lime-400 flex-shrink-0 mt-0.5" />
+            <Flag className="w-4 h-4 sm:w-5 sm:h-5 text-lime-400 shrink-0 mt-0.5" />
             <div className="text-right text-sm sm:text-base md:text-lg font-bold text-lime-400 whitespace-nowrap">
               {points} pts
             </div>
           </div>
 
-          <h3 className="text-sm sm:text-base md:text-lg font-bold text-white group-hover:text-lime-400 transition-colors line-clamp-2 break-words">
+          <h3 className="text-sm sm:text-base md:text-lg font-bold text-white group-hover:text-lime-400 transition-colors line-clamp-2 wrap-break-word">
             {title}
           </h3>
         </div>
 
         {/* Description */}
-        <p className="text-xs sm:text-sm text-slate-400 line-clamp-2 break-words">{description}</p>
+        <p className="text-xs sm:text-sm text-slate-400 line-clamp-2 wrap-break-word">{description}</p>
 
         {/* Badges */}
         <div className="flex flex-wrap gap-1.5 sm:gap-2">
@@ -103,11 +103,11 @@ export default function ChallengeCard({
         {/* Stats */}
         <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-slate-400 pt-2 mt-auto border-t border-slate-700">
           <div className="flex items-center gap-1 whitespace-nowrap">
-            <Users className="w-3 h-3 sm:w-4 sm:h-4 text-slate-500 flex-shrink-0" />
+            <Users className="w-3 h-3 sm:w-4 sm:h-4 text-slate-500 shrink-0" />
             <span className="truncate">{solves} সমাধান</span>
           </div>
           <div className="flex items-center gap-1 whitespace-nowrap">
-            <Trophy className="w-3 h-3 sm:w-4 sm:h-4 text-slate-500 flex-shrink-0" />
+            <Trophy className="w-3 h-3 sm:w-4 sm:h-4 text-slate-500 shrink-0" />
             <span className="truncate">{Math.round(100 / solves)}%</span>
           </div>
         </div>

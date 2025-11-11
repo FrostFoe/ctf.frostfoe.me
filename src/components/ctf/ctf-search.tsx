@@ -20,7 +20,7 @@ export default function CtfSearch({
           placeholder="সরাসরি ক্যাপচার দ্য ফ্ল্যাগ ইভেন্ট অনুসন্ধান করুন"
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="w-full bg-slate-800 border border-slate-700 text-white placeholder-slate-500 rounded-lg pl-10 pr-4 py-2 sm:py-3 text-sm focus:outline-none focus:border-slate-600 transition-colors"
+          className="w-full bg-slate-800 border border-slate-700 text-white placeholder-slate-500 rounded-lg pl-10 pr-4 py-2 sm:py-3 text-sm focus:outline-hidden focus:border-slate-600 transition-colors"
         />
       </div>
     </div>

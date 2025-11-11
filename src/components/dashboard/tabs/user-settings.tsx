@@ -71,7 +71,7 @@ export default function UserSettings() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={isGuest || loading}
-            className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-lime-400 transition-colors disabled:opacity-50"
+            className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-hidden focus:border-lime-400 transition-colors disabled:opacity-50"
             placeholder="your@email.com"
           />
           <p className="text-xs text-slate-500">
@@ -88,7 +88,7 @@ export default function UserSettings() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             disabled={isGuest || loading}
-            className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-lime-400 transition-colors disabled:opacity-50"
+            className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-hidden focus:border-lime-400 transition-colors disabled:opacity-50"
             placeholder="ব্যবহারকারীর নাম"
           />
         </div>
@@ -102,7 +102,7 @@ export default function UserSettings() {
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
             disabled={isGuest || loading}
-            className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-lime-400 transition-colors disabled:opacity-50"
+            className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-hidden focus:border-lime-400 transition-colors disabled:opacity-50"
             placeholder="প্রদর্শনের নাম"
           />
         </div>

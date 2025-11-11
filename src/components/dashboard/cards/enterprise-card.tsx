@@ -14,7 +14,7 @@ export default function EnterpriseCard() {
             আপনার সাইবার টিমকে আপস্কিল করুন
           </h3>
         </div>
-        <ChevronRight className="w-5 h-5 text-slate-600 group-hover:text-slate-400 transition-colors flex-shrink-0" />
+        <ChevronRight className="w-5 h-5 text-slate-600 group-hover:text-slate-400 transition-colors shrink-0" />
       </div>
     </div>
   );

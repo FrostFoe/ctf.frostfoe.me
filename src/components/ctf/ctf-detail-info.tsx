@@ -70,7 +70,7 @@ export default function CtfDetailInfo({ event, onSignUp }: CtfDetailInfoProps) {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700" />
+        <div className="h-px bg-linear-to-r from-slate-700 via-slate-600 to-slate-700" />
       </div>
     </div>
   );

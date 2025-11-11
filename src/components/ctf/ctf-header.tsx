@@ -6,17 +6,17 @@ import { Button } from "@/components/ui/button";
 
 export default function CtfHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-700/50 bg-slate-900/95 backdrop-blur-sm w-full">
+    <header className="sticky top-0 z-50 border-b border-slate-700/50 bg-slate-900/95 backdrop-blur-xs w-full">
       <div className="container-centered">
         <div className="flex h-14 sm:h-16 items-center justify-between py-2 sm:py-4 gap-2 sm:gap-4">
           {/* Left side - Logo */}
-          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 shrink-0">
             <Image
               src="/flag-wave.gif"
               alt="এইচটিবি সিটিএফ"
               width={32}
               height={32}
-              className="h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0"
+              className="h-7 w-7 sm:h-8 sm:w-8 shrink-0"
             />
             <span className="text-xs sm:text-sm md:text-base font-bold text-white truncate">
               এইচটিবি <span className="text-slate-400 hidden sm:inline">সিটিএফ</span>
@@ -24,7 +24,7 @@ export default function CtfHeader() {
           </div>
 
           {/* Center - Icons */}
-          <div className="hidden sm:flex items-center gap-1 md:gap-2 flex-shrink-0">
+          <div className="hidden sm:flex items-center gap-1 md:gap-2 shrink-0">
             <Button
               variant="ghost"
               size="icon"
@@ -66,9 +66,9 @@ export default function CtfHeader() {
           </div>
 
           {/* Right side - Actions */}
-          <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0 ml-auto">
+          <div className="flex items-center gap-1 sm:gap-2 shrink-0 ml-auto">
             <Button className="hidden md:flex gap-1.5 bg-lime-400 hover:bg-lime-500 text-slate-900 font-bold text-xs md:text-sm px-2 sm:px-3 py-1.5 sm:py-2 h-8 sm:h-9">
-              <svg className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3 md:w-4 md:h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" />
               </svg>
               <span className="hidden lg:inline">তৈরি করুন</span>

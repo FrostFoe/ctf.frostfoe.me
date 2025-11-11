@@ -54,7 +54,7 @@ export function AccessibleButton({
       disabled={disabled}
       aria-label={ariaLabel}
       aria-disabled={disabled}
-      className={`focus:outline-none focus:ring-2 focus:ring-lime-400 focus:ring-offset-2 focus:ring-offset-slate-900 rounded transition-all ${className}`}
+      className={`focus:outline-hidden focus:ring-2 focus:ring-lime-400 focus:ring-offset-2 focus:ring-offset-slate-900 rounded transition-all ${className}`}
     >
       {children}
     </button>
@@ -63,7 +63,7 @@ export function AccessibleButton({
 
 interface AccessibleBadgeProps {
   children: ReactNode;
-  variant?: 'default' | 'outline' | 'status';
+  variant?: 'default' | 'outline-solid' | 'status';
   className?: string;
   ariaLabel?: string;
 }
