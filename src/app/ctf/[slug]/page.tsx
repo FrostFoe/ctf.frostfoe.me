@@ -1,5 +1,3 @@
-"use client";
-
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
@@ -8,16 +6,17 @@ import CtfDetailInfo from "@/components/ctf/ctf-detail-info";
 import CtfDetailAbout from "@/components/ctf/ctf-detail-about";
 import CtfDetailSidebar from "@/components/ctf/ctf-detail-sidebar";
 import CtfDetailFooter from "@/components/ctf/ctf-detail-footer";
-import ctfEventsData from "@/data/ctf-events.json";
+import ctfData from "@/data/ctf-data.json";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default function CtfDetailPage({ params }: PageProps) {
-  const event = ctfEventsData.find((e) => e.slug === params.slug);
+export default async function CtfDetailPage({ params }: PageProps) {
+  const { slug } = await params;
+  const event = ctfData.events.find((e) => e.slug === slug);
 
   if (!event) {
     notFound();

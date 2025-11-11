@@ -3,6 +3,8 @@
 import ProductSettings from "./tabs/product-settings";
 import UserSettings from "./tabs/user-settings";
 import SecuritySettings from "./tabs/security-settings";
+import CtfEvents from "./tabs/ctf-events";
+import ChallengesTab from "./tabs/challenges";
 
 export default function DashboardContent({ activeTab }: { activeTab: string }) {
   return (
@@ -11,6 +13,8 @@ export default function DashboardContent({ activeTab }: { activeTab: string }) {
         {activeTab === "product" && <ProductSettings />}
         {activeTab === "user" && <UserSettings />}
         {activeTab === "security" && <SecuritySettings />}
+        {activeTab === "ctf-events" && <CtfEvents />}
+        {activeTab === "challenges" && <ChallengesTab />}
       </div>
     </div>
   );

@@ -11,6 +11,8 @@ export default function DashboardNav({
     { id: "product", label: "প্রোডাক্ট সেটিংস" },
     { id: "user", label: "ব্যবহারকারী সেটিংস" },
     { id: "security", label: "নিরাপত্তা সেটিংস" },
+    { id: "ctf-events", label: "সিটিএফ ইভেন্টস" },
+    { id: "challenges", label: "চ্যালেঞ্জেস" },
   ];
 
   return (

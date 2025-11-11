@@ -4,6 +4,7 @@ import CtfEventCard from "./ctf-event-card";
 
 interface Event {
   id: number;
+  slug: string;
   title: string;
   subtitle: string;
   date: string;

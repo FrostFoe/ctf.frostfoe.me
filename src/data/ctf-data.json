@@ -1,0 +1,88 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "slug": "ctf-try-out",
+      "title": "CTF ট্রাই আউট",
+      "subtitle": "CTF ট্রাই আউট",
+      "date": "01 Jan 2024, 18:00 - 31 Dec, 18:00",
+      "image": "https://images.unsplash.com/photo-1557821552-17105176677c?w=500&h=300&fit=crop",
+      "badge": "সরাসরি",
+      "tags": ["FEATURED"],
+      "players": 4818,
+      "description": "এই CTF প্রতিযোগিতায় আপনার সাইবার সিকিউরিটি দক্ষতা পরীক্ষা করুন এবং বিভিন্ন চ্যালেঞ্জ সমাধান করুন।",
+      "format": "Jeopardy",
+      "teamSize": "1-4 জন",
+      "difficulty": "সকল স্তর",
+      "startDate": "01 Jan 2024",
+      "startTime": "18:00 GMT",
+      "endDate": "31 Dec 2024",
+      "endTime": "18:00 GMT",
+      "hostedBy": "HackTheBox",
+      "hostedByLogo": "https://images.unsplash.com/photo-1550439062-609e7e7dfa6a?w=200&h=200&fit=crop",
+      "going": 4818,
+      "teams": 1245,
+      "playerAvatars": [
+        "https://images.unsplash.com/photo-1535713047d9628aa75d72e9611f7d5b5bb12e6f7?w=50&h=50&fit=crop",
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop",
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop",
+        "https://images.unsplash.com/photo-1506157786151-b8491531f063?w=50&h=50&fit=crop",
+        "https://images.unsplash.com/photo-1517849845537-1d51a20414de?w=50&h=50&fit=crop"
+      ],
+      "type": "অনলাইন",
+      "location": "বিশ্বব্যাপী",
+      "scenarios": "৫০+ নিরাপত্তা পরিস্থিতি"
+    },
+    {
+      "id": 2,
+      "slug": "mcp-try-out",
+      "title": "MCP ট্রাইআউট",
+      "subtitle": "MCP ট্রাইআউট",
+      "date": "24 Jul 2025, 18:00 - 30 Dec, 15:00",
+      "image": "https://images.unsplash.com/photo-1526374965328-7f5ae4e8cf11?w=500&h=300&fit=crop",
+      "badge": "সরাসরি",
+      "tags": ["FEATURED", "MCP-ONLY"],
+      "players": 109,
+      "description": "MCP বিশেষ প্রতিযোগিতা যেখানে শুধুমাত্র MCP সদস্যরা অংশগ্রহণ করতে পারেন। এই প্রতিযোগিতায় উন্নত পর্যায়ের চ্যালেঞ্জ থাকবে।",
+      "format": "Attack-Defense",
+      "teamSize": "2-5 জন",
+      "difficulty": "মধ্যম থেকে কঠিন",
+      "startDate": "24 Jul 2025",
+      "startTime": "18:00 GMT",
+      "endDate": "30 Dec 2025",
+      "endTime": "15:00 GMT",
+      "hostedBy": "MCP Community",
+      "hostedByLogo": "https://images.unsplash.com/photo-1550439062-609e7e7dfa6a?w=200&h=200&fit=crop",
+      "going": 109,
+      "teams": 28,
+      "playerAvatars": [
+        "https://images.unsplash.com/photo-1535713047d9628aa75d72e9611f7d5b5bb12e6f7?w=50&h=50&fit=crop",
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop",
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop"
+      ],
+      "type": "অনলাইন",
+      "location": "বিশ্বব্যাপী",
+      "scenarios": "৩০+ উন্নত নিরাপত্তা পরিস্থিতি"
+    }
+  ],
+  "challenges": [
+    {
+      "id": 1,
+      "title": "সিম্পল ওয়েব স্ক্র্যাপার",
+      "category": "ওয়েব",
+      "difficulty": "সহজ",
+      "description": "একটি সাধারণ ওয়েব ফর্মে লুকানো ফ্ল্যাগ খুঁজে বের করুন",
+      "points": 50,
+      "solves": 234
+    },
+    {
+      "id": 2,
+      "title": "বেসিক ক্রিপ্টো চ্যালেঞ্জ",
+      "category": "ক্রিপ্টোগ্রাফি",
+      "difficulty": "সহজ",
+      "description": "একটি সহজ সিজার সাইফার ডিকোড করুন",
+      "points": 50,
+      "solves": 189
+    }
+  ]
+}
