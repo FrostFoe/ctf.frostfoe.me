@@ -66,56 +66,56 @@ export default function ChallengeCard({
       {/* Background gradient effect on hover */}
       <div className="absolute inset-0 bg-gradient-to-br from-lime-400/0 to-lime-400/0 group-hover:from-lime-400/5 group-hover:to-lime-400/10 transition-all duration-300" />
 
-      <div className="relative p-6 space-y-4 flex-1 flex flex-col">
+      <div className="relative p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-3 md:space-y-4 flex-1 flex flex-col">
         {/* Header */}
-        <div className="space-y-3">
-          <div className="flex items-start justify-between gap-3">
-            <Flag className="w-5 h-5 text-lime-400 flex-shrink-0 mt-0.5" />
-            <div className="text-right text-lg font-bold text-lime-400">
-              {points} পয়েন্ট
+        <div className="space-y-2 sm:space-y-3">
+          <div className="flex items-start justify-between gap-2 sm:gap-3">
+            <Flag className="w-4 h-4 sm:w-5 sm:h-5 text-lime-400 flex-shrink-0 mt-0.5" />
+            <div className="text-right text-sm sm:text-base md:text-lg font-bold text-lime-400 whitespace-nowrap">
+              {points} pts
             </div>
           </div>
 
-          <h3 className="text-lg font-bold text-white group-hover:text-lime-400 transition-colors line-clamp-2">
+          <h3 className="text-sm sm:text-base md:text-lg font-bold text-white group-hover:text-lime-400 transition-colors line-clamp-2 break-words">
             {title}
           </h3>
         </div>
 
         {/* Description */}
-        <p className="text-sm text-slate-400 line-clamp-2">{description}</p>
+        <p className="text-xs sm:text-sm text-slate-400 line-clamp-2 break-words">{description}</p>
 
         {/* Badges */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2">
           <Badge
             variant="outline"
-            className={`border ${getCategoryBg(category)}`}
+            className={`border text-xs sm:text-sm ${getCategoryBg(category)}`}
           >
             {category}
           </Badge>
           <Badge
             variant="outline"
-            className={`border ${getDifficultyBg(difficulty)}`}
+            className={`border text-xs sm:text-sm ${getDifficultyBg(difficulty)}`}
           >
             {difficulty}
           </Badge>
         </div>
 
         {/* Stats */}
-        <div className="flex items-center gap-4 text-sm text-slate-400 pt-2 mt-auto border-t border-slate-700">
-          <div className="flex items-center gap-1">
-            <Users className="w-4 h-4 text-slate-500" />
-            <span>{solves} সমাধান</span>
+        <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-slate-400 pt-2 mt-auto border-t border-slate-700">
+          <div className="flex items-center gap-1 whitespace-nowrap">
+            <Users className="w-3 h-3 sm:w-4 sm:h-4 text-slate-500 flex-shrink-0" />
+            <span className="truncate">{solves} সমাধান</span>
           </div>
-          <div className="flex items-center gap-1">
-            <Trophy className="w-4 h-4 text-slate-500" />
-            <span>{Math.round(100 / solves)}% রেট</span>
+          <div className="flex items-center gap-1 whitespace-nowrap">
+            <Trophy className="w-3 h-3 sm:w-4 sm:h-4 text-slate-500 flex-shrink-0" />
+            <span className="truncate">{Math.round(100 / solves)}%</span>
           </div>
         </div>
 
         {/* Action Button */}
-        <Link href={`/ctf/challenge/${id}`} className="mt-4">
-          <Button className="w-full bg-lime-400 hover:bg-lime-500 text-slate-900 font-bold transition-all group-hover:shadow-lg group-hover:shadow-lime-400/20">
-            চ্যালেঞ্জ সমাধান করুন
+        <Link href={`/ctf/challenge/${id}`} className="mt-3 sm:mt-4">
+          <Button className="w-full bg-lime-400 hover:bg-lime-500 text-slate-900 font-bold transition-all group-hover:shadow-lg group-hover:shadow-lime-400/20 text-xs sm:text-sm py-1.5 sm:py-2">
+            সমাধান করুন
           </Button>
         </Link>
       </div>

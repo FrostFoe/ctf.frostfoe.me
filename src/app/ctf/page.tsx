@@ -6,6 +6,7 @@ import CtfTabs from "@/components/ctf/ctf-tabs";
 import CtfSearch from "@/components/ctf/ctf-search";
 import CtfEventGrid from "@/components/ctf/ctf-event-grid";
 import CtfMainNav from "@/components/ctf/ctf-main-nav";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import ctfData from "@/data/ctf-data.json";
 
 export default function CtfPage() {
@@ -13,10 +14,10 @@ export default function CtfPage() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const events = {
-    ongoing: ctfData.events,
-    upcoming: [],
+    ongoing: ctfData.events.filter((e) => e.status === "ongoing"),
+    upcoming: ctfData.events.filter((e) => e.status === "upcoming"),
     joined: [],
-    past: [],
+    past: ctfData.events.filter((e) => e.status === "ended"),
   };
 
   const filteredEvents = events[activeTab as keyof typeof events].filter(
@@ -28,6 +29,13 @@ export default function CtfPage() {
       <CtfHeader />
 
       <div className="container-centered">
+        <Breadcrumb
+          items={[
+            { label: "হোম", href: "/" },
+            { label: "সিটিএফ ইভেন্টস" },
+          ]}
+        />
+
         <div className="mt-6 sm:mt-8">
           <CtfMainNav activeSection="events" />
         </div>

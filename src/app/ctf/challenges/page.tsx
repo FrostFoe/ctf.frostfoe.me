@@ -6,6 +6,7 @@ import ChallengesFilter from "@/components/ctf/challenges-filter";
 import ChallengesGrid from "@/components/ctf/challenges-grid";
 import CtfHeader from "@/components/ctf/ctf-header";
 import CtfMainNav from "@/components/ctf/ctf-main-nav";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import ctfData from "@/data/ctf-data.json";
 
 export default function ChallengesPage() {
@@ -35,6 +36,14 @@ export default function ChallengesPage() {
       <CtfHeader />
 
       <div className="container-centered">
+        <Breadcrumb
+          items={[
+            { label: "হোম", href: "/" },
+            { label: "সিটিএফ ইভেন্টস", href: "/ctf" },
+            { label: "চ্যালেঞ্জেস" },
+          ]}
+        />
+
         <div className="mt-6 sm:mt-8">
           <CtfMainNav activeSection="challenges" />
         </div>

@@ -12,6 +12,7 @@ export default function CtfMainNav({ activeSection = "events" }: CtfMainNavProps
   
   const isEvents = pathname === "/ctf" || pathname.startsWith("/ctf/[");
   const isChallenges = pathname.includes("/challenges");
+  const isLeaderboard = pathname.includes("/leaderboard");
 
   const navItems = [
     { 
@@ -24,6 +25,11 @@ export default function CtfMainNav({ activeSection = "events" }: CtfMainNavProps
       label: "চ্যালেঞ্জেস",
       href: "/ctf/challenges" 
     },
+    { 
+      id: "leaderboard", 
+      label: "লিডারবোর্ড",
+      href: "/ctf/leaderboard" 
+    },
   ];
 
   return (
@@ -32,10 +38,11 @@ export default function CtfMainNav({ activeSection = "events" }: CtfMainNavProps
         {navItems.map((item) => {
           const isActive = 
             (item.id === "events" && isEvents) || 
-            (item.id === "challenges" && isChallenges);
+            (item.id === "challenges" && isChallenges) ||
+            (item.id === "leaderboard" && isLeaderboard);
           
           return (
-            <Link
+            <a
               key={item.id}
               href={item.href}
               className={`pb-3 sm:pb-4 px-1 font-medium text-sm sm:text-base whitespace-nowrap transition-colors relative ${
@@ -48,7 +55,7 @@ export default function CtfMainNav({ activeSection = "events" }: CtfMainNavProps
               {isActive && (
                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-lime-400" />
               )}
-            </Link>
+            </a>
           );
         })}
       </div>
