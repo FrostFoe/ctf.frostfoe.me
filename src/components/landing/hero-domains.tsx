@@ -96,7 +96,7 @@ export default function HeroDomains() {
                 >
                   <CardHeader className="p-0">
                     <CardTitle
-                      className={cn("text-lg sm:text-xl transition-colors", {
+                      className={cn("text-lg sm:text-xl transition-colors break-words", {
                         "text-gray-500": activeTab !== tab.id,
                         "text-white": activeTab === tab.id,
                       })}
@@ -119,7 +119,7 @@ export default function HeroDomains() {
                 data-ai-hint="abstract background"
               >
                 <CardContent className="p-4 sm:p-6 md:p-8">
-                  <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-200 mb-4 sm:mb-8">
+                  <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-200 mb-4 sm:mb-8 break-words">
                     {activeContent.description}
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 sm:gap-x-6 gap-y-2 sm:gap-y-4 mb-4 sm:mb-8">

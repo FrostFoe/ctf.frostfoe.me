@@ -11,7 +11,7 @@ export default function HeroStats() {
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0 mt-4">
-            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-200 leading-snug">
+            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-200 leading-snug break-words">
               এবং আরও গুরুত্বপূর্ণ সাইবার ঘটনা দক্ষতার অভাব বা মানুষের ভুলের
               কারণে ঘটে।
             </p>
@@ -20,7 +20,7 @@ export default function HeroStats() {
 
         <Card className="bg-gray-800 rounded-lg sm:rounded-2xl flex flex-col justify-center h-full relative overflow-hidden min-h-[250px] lg:min-h-0 text-center lg:text-left p-4 sm:p-6 md:p-8">
           <CardContent className="p-0">
-            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-200 leading-snug">
+            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-200 leading-snug break-words">
               অসম্ভবকে হার মানান।
               <br />
               আপনার কর্মক্ষমতা

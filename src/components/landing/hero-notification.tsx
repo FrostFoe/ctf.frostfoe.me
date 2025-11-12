@@ -25,12 +25,12 @@ export default function HeroNotification() {
                 <span className="inline-block bg-lime-900/80 text-lime-300 text-xs font-bold tracking-wider px-3 sm:px-4 py-1 rounded-full uppercase mb-3 sm:mb-5">
                   সর্বশেষ সংবাদ
                 </span>
-                <CardTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-lime-200 mb-3 sm:mb-4">
+                <CardTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-lime-200 mb-3 sm:mb-4 break-words">
                   থ্রেট রেঞ্জ উপস্থাপন করা হচ্ছে:
                   <br className="hidden md:block" /> প্রতিরক্ষামূলক টিমের জন্য
                   একটি নতুন লাইভ-ফায়ার সিমুলেশন
                 </CardTitle>
-                <CardDescription className="text-xs sm:text-sm md:text-base lg:text-lg text-lime-200 opacity-80 leading-relaxed max-w-3xl mx-auto lg:mx-0">
+                <CardDescription className="text-xs sm:text-sm md:text-base lg:text-lg text-lime-200 opacity-80 leading-relaxed max-w-3xl mx-auto lg:mx-0 break-words">
                   HTB থ্রেট রেঞ্জ একটি টিম-ভিত্তিক লাইভ-ফায়ার সিমুলেশন যা
                   বাস্তবসম্মত সাইবার আক্রমণ পরিস্থিতিতে SOC এবং DFIR পরীক্ষা
                   করে। সনাক্তকরণ এবং তদন্ত তীক্ষ্ণ করুন, বাস্তব নিরাপত্তা
