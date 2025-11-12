@@ -11,6 +11,7 @@ import {
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function HeroSkills() {
   const skillCards = [
@@ -53,18 +54,18 @@ export default function HeroSkills() {
               asChild
               className="bg-lime-400 text-gray-900 font-bold px-4 sm:px-5 py-2 rounded-md text-sm sm:text-base hover:bg-lime-300 transition-colors w-full sm:w-auto"
             >
-              <a href="https://www.hackthebox.com/hacker" target="_blank">
+              <Link href="/hacker">
                 শুরু করুন <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
             </Button>
             <Button
               asChild
               variant="outline"
               className="text-gray-300 bg-transparent border border-gray-600 hover:bg-gray-700 font-medium py-2 px-4 sm:px-5 rounded-md transition-colors text-sm sm:text-base w-full sm:w-auto"
             >
-              <a href="https://www.hackthebox.com/business-cyber-security-training">
+              <Link href="/business-cyber-security-training">
                 টিমের জন্য
-              </a>
+              </Link>
             </Button>
           </div>
         </div>

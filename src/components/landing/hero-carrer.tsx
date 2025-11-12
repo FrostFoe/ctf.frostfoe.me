@@ -9,6 +9,7 @@ import {
   CardDescription,
   CardHeader,
 } from "@/components/ui/card";
+import Link from "next/link";
 
 export default function HeroCarrer() {
   const logos = [
@@ -31,27 +32,27 @@ export default function HeroCarrer() {
               asChild
               className="bg-lime-400 text-gray-900 font-bold px-4 sm:px-5 py-2 rounded-md text-sm sm:text-base hover:bg-lime-300 transition-colors w-full sm:w-auto"
             >
-              <a href="https://jobs.hackthebox.com" target="_blank">
+              <Link href="/jobs">
                 চাকরি খুঁজুন
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
             </Button>
             <Button
               asChild
               variant="outline"
               className="text-gray-300 bg-transparent border border-gray-600 hover:bg-gray-700 font-medium py-2 px-4 sm:px-5 rounded-md transition-colors text-sm sm:text-base w-full sm:w-auto"
             >
-              <a href="https://www.hackthebox.com/business/talent-search">
+              <Link href="/business/talent-search">
                 ব্যবসার জন্য
-              </a>
+              </Link>
             </Button>
           </div>
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:gap-6 mb-6 sm:mb-8 text-left">
-          <a
+          <Link
             className="group w-full h-full"
-            href="https://www.hackthebox.com/blog/a-blueprint-for-onboarding-new-cybersecurity-professionals"
+            href="/blog/a-blueprint-for-onboarding-new-cybersecurity-professionals"
           >
             <Card className="bg-gray-800 border-gray-700 h-full p-4 sm:p-6 md:p-8 relative hover:border-gray-500 transition-all duration-300 ease-in-out group-hover:shadow-lime-800/20">
               <ArrowRight className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity absolute top-4 sm:top-6 right-4 sm:right-6" />
@@ -77,7 +78,7 @@ export default function HeroCarrer() {
                 </div>
               </CardContent>
             </Card>
-          </a>
+          </Link>
         </div>
 
         <Card className="bg-gray-800 border-gray-700 p-4 sm:p-6 md:p-8 text-center lg:text-left transition-all duration-300 ease-in-out hover:shadow-lime-800/20">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -27,7 +28,7 @@ const domainTabs = [
 
 const domainContent = {
   red: {
-    href: "https://www.hackthebox.com/red-teams",
+    href: "/red-teams",
     bgImage: PlaceHolderImages.find((img) => img.id === "red-team-bg")!
       .imageUrl,
     description:
@@ -40,7 +41,7 @@ const domainContent = {
     ],
   },
   blue: {
-    href: "https://www.hackthebox.com/blue-teams",
+    href: "/blue-teams",
     bgImage: PlaceHolderImages.find((img) => img.id === "blue-team-bg")!
       .imageUrl,
     description:
@@ -53,7 +54,7 @@ const domainContent = {
     ],
   },
   purple: {
-    href: "https://www.hackthebox.com/purple-teams",
+    href: "/purple-teams",
     bgImage: PlaceHolderImages.find((img) => img.id === "purple-team-bg")!
       .imageUrl,
     description:
@@ -109,7 +110,7 @@ export default function HeroDomains() {
           </div>
 
           <div className="w-full xl:w-1/2">
-            <a href={activeContent.href} className="block h-full group">
+            <Link href={activeContent.href} className="block h-full group">
               <Card
                 style={{
                   backgroundImage: `url('${activeContent.bgImage}')`,
@@ -133,10 +134,6 @@ export default function HeroDomains() {
                   </div>
                   <div className="flex justify-center md:justify-start">
                     <Button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        window.open(activeContent.href, "_blank");
-                      }}
                       className="bg-lime-400 text-gray-900 font-bold px-3 sm:px-5 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm hover:bg-lime-300 transition-colors"
                     >
                       আরও দেখুন{" "}
@@ -145,7 +142,7 @@ export default function HeroDomains() {
                   </div>
                 </CardContent>
               </Card>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
