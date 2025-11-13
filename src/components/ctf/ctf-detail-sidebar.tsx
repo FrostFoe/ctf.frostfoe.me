@@ -29,7 +29,7 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
         <h3 className="text-slate-400 text-sm font-bold uppercase tracking-wide mb-4">
           আয়োজন করেছে
         </h3>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
           <div className="shrink-0 w-16 h-16 bg-slate-700 rounded-lg overflow-hidden">
             <Image
               src={event.hostedByLogo}
@@ -53,7 +53,7 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
         </h3>
         <div className="space-y-4">
           {/* Player Avatars */}
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex items-center gap-2 mb-3 overflow-x-auto">
             <div className="flex -space-x-2">
               {event.playerAvatars.slice(0, 4).map((avatar, idx) => (
                 <Image
@@ -100,7 +100,7 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
         <h3 className="text-slate-400 text-sm font-bold uppercase tracking-wide mb-4">
           স্পেসিফিকেশন
         </h3>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Format */}
           <div>
             <p className="text-slate-500 text-xs font-semibold mb-2">ফরম্যাট</p>

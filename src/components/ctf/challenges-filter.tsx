@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, Filter } from "lucide-react";
+import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -52,13 +52,13 @@ export default function ChallengesFilter({
             {categories.map((cat) => (
               <Button
                 key={cat}
-                variant={selectedCategory === cat ? "default" : "outline-solid"}
+                variant={selectedCategory === cat ? "default" : "outline"}
                 size="sm"
                 onClick={() => onCategoryChange(cat)}
                 className={`${
                   selectedCategory === cat
                     ? "bg-lime-400 text-slate-900 hover:bg-lime-500"
-                    : "border-slate-700 text-slate-300 hover:border-slate-600 hover:text-slate-200"
+                    : "bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-slate-200"
                 }`}
               >
                 {cat}
@@ -73,13 +73,13 @@ export default function ChallengesFilter({
             {difficulties.map((diff) => (
               <Button
                 key={diff}
-                variant={selectedDifficulty === diff ? "default" : "outline-solid"}
+                variant={selectedDifficulty === diff ? "default" : "outline"}
                 size="sm"
                 onClick={() => onDifficultyChange(diff)}
                 className={`${
                   selectedDifficulty === diff
                     ? "bg-lime-400 text-slate-900 hover:bg-lime-500"
-                    : "border-slate-700 text-slate-300 hover:border-slate-600 hover:text-slate-200"
+                    : "bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-slate-200"
                 }`}
               >
                 {diff}

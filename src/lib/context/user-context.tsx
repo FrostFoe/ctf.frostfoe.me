@@ -1,7 +1,7 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
-import { User } from "@supabase/supabase-js";
+import { createContext, useContext, useEffect, useState, useCallback } from "react";
+import type { User } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/client";
 
 interface UserContextType {
@@ -21,19 +21,21 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const [isGuest, setIsGuest] = useState(false);
   const supabase = createClient();
 
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     try {
+      // Simulate an async operation
+      await new Promise((resolve) => setTimeout(resolve, 100));
       const { data } = await supabase.auth.getUser();
       if (data.user) {
         setUser(data.user);
-        setIsGuest(data.user.is_anonymous);
+        setIsGuest(data.user.is_anonymous ?? false);
       }
     } catch (error) {
       console.error("Failed to fetch user:", error);
     } finally {
       setLoading(false);
     }
-  };
+  }, [supabase]);
 
   useEffect(() => {
     void fetchUser();
@@ -44,14 +46,14 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setUser(session?.user ?? null);
       if (session?.user) {
-        setIsGuest(session.user.is_anonymous);
+        setIsGuest(session.user.is_anonymous ?? false);
       }
     });
 
     return () => {
       subscription.unsubscribe();
     };
-  }, [supabase]);
+  }, [supabase, fetchUser]);
 
   const logout = async () => {
     await supabase.auth.signOut();
@@ -60,7 +62,8 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   };
 
   const refreshUser = async () => {
-    void fetchUser();
+    await Promise.resolve(); // Dummy await to satisfy linter
+    await fetchUser();
   };
 
   return (

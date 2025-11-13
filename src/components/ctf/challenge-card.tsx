@@ -14,8 +14,6 @@ interface ChallengeCardProps {
   description: string;
   points: number;
   solves: number;
-  difficulty_color: string;
-  category_color: string;
 }
 
 export default function ChallengeCard({
@@ -26,8 +24,6 @@ export default function ChallengeCard({
   description,
   points,
   solves,
-  difficulty_color,
-  category_color,
 }: ChallengeCardProps) {
   const getDifficultyBg = (diff: string) => {
     switch (diff) {

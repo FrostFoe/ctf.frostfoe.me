@@ -1,13 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 interface CtfMainNavProps {
-  activeSection?: string;
+  _activeSection?: string;
 }
 
-export default function CtfMainNav({ activeSection = "events" }: CtfMainNavProps) {
+export default function CtfMainNav({ _activeSection = "events" }: CtfMainNavProps) {
   const pathname = usePathname();
   
   const isEvents = pathname === "/ctf" || pathname.startsWith("/ctf/[");

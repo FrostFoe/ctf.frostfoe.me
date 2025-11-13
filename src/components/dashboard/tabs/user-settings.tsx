@@ -5,10 +5,12 @@ import { useUser } from "@/lib/context/user-context";
 
 export default function UserSettings() {
   const { user, isGuest } = useUser();
-  const [email, setEmail] = useState(user?.email || "");
-  const [username, setUsername] = useState(user?.user_metadata?.username || "");
+  const [email, setEmail] = useState(user?.email ?? "");
+  const [username, setUsername] = useState(
+    (user?.user_metadata as { username?: string })?.username ?? ""
+  );
   const [displayName, setDisplayName] = useState(
-    user?.user_metadata?.display_name || ""
+    (user?.user_metadata as { display_name?: string })?.display_name ?? ""
   );
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -24,8 +26,9 @@ export default function UserSettings() {
 
     try {
       // In a real app, you'd call an API to update user metadata
+      await new Promise((resolve) => setTimeout(resolve, 500)); // Dummy await
       setMessage("পরিবর্তনগুলি সংরক্ষণ করা হয়েছে!");
-    } catch (error) {
+    } catch {
       setMessage("ত্রুটি: পরিবর্তনগুলি সংরক্ষণ করা যায়নি।");
     } finally {
       setLoading(false);
@@ -109,7 +112,7 @@ export default function UserSettings() {
 
         <div className="flex gap-4 pt-4">
           <button
-            onClick={handleSave}
+            onClick={() => void handleSave()}
             disabled={isGuest || loading}
             className="px-6 py-2 bg-lime-400 hover:bg-lime-500 text-slate-950 font-bold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >

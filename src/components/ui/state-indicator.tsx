@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { AlertCircle, CheckCircle, Loader } from 'lucide-react';
 
 type StateType = 'idle' | 'loading' | 'success' | 'error';
@@ -47,7 +47,7 @@ export function StateIndicator({ state, message, children, className = '' }: Sta
       className={`${config.bgColor} border ${config.borderColor} rounded-lg p-4 ${config.textColor} ${className}`}
       role="status"
       aria-live="polite"
-      aria-label={`State: ${state}. ${message || ''}`}
+      aria-label={`State: ${state}. ${message ?? ''}`}
     >
       <div className="flex items-center gap-3">
         {config.icon && <div className="shrink-0">{config.icon}</div>}

@@ -115,14 +115,14 @@ export default function HeroDomains() {
                 style={{
                   backgroundImage: `url('${activeContent.bgImage}')`,
                 }}
-                className="h-full min-h-[400px] sm:min-h-[500px] xl:min-h-0 rounded-lg flex flex-col justify-end bg-cover bg-center border-gray-700 group-hover:border-gray-500 transition-all duration-300 ease-in-out"
+                className="h-full rounded-lg flex flex-col justify-end bg-cover bg-center border-gray-700 group-hover:border-gray-500 transition-all duration-300 ease-in-out"
                 data-ai-hint="abstract background"
               >
                 <CardContent className="p-4 sm:p-6 md:p-8">
                   <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-200 mb-4 sm:mb-8 break-words">
                     {activeContent.description}
                   </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 sm:gap-x-6 gap-y-2 sm:gap-y-4 mb-4 sm:mb-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-6 gap-y-2 sm:gap-y-4 mb-4 sm:mb-8">
                     {activeContent.features.map((feature, index) => (
                       <div key={index} className="flex items-start">
                         <Check className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 shrink-0 text-lime-400 mt-0.5" />

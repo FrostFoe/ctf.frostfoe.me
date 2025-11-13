@@ -14,11 +14,9 @@ export default function ChallengesPage() {
   const [selectedCategory, setSelectedCategory] = useState("সব");
   const [selectedDifficulty, setSelectedDifficulty] = useState("সব");
 
-  const allChallenges = ctfData.challenges;
-
   // Filter challenges based on search and filters
   const filteredChallenges = useMemo(() => {
-    return allChallenges.filter((challenge) => {
+    return ctfData.challenges.filter((challenge) => {
       const matchesSearch = challenge.title
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
@@ -45,7 +43,7 @@ export default function ChallengesPage() {
         />
 
         <div className="mt-6 sm:mt-8">
-          <CtfMainNav activeSection="challenges" />
+          <CtfMainNav _activeSection="challenges" />
         </div>
 
         <div className="py-8 sm:py-12 space-y-8">

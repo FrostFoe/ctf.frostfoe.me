@@ -134,19 +134,33 @@ export default function Nav() {
         >
           {navItems.map((item) =>
             item.children ? (
-              item.children.map((child) => (
-                <Link
-                  key={child.title}
-                  href={child.href}
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              <div key={item.title}>
+                <button
+                  onClick={() => {
+                    /* Toggle children visibility if needed, or just render them */
+                  }}
+                  className="flex items-center justify-between w-full rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                 >
-                  {child.title}
-                </Link>
-              ))
+                  {item.title} <ChevronDown className="h-4 w-4" />
+                </button>
+                <div className="ml-4 space-y-1">
+                  {item.children.map((child) => (
+                    <Link
+                      key={child.title}
+                      href={child.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                    >
+                      {child.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             ) : (
               <Link
                 key={item.title}
                 href={item.href}
+                onClick={() => setMobileOpen(false)}
                 className="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
               >
                 {item.title}
@@ -156,12 +170,16 @@ export default function Nav() {
           <hr className="my-2 border-gray-700" />
           <Link
             href="/login"
+            onClick={() => setMobileOpen(false)}
             className="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
           >
             লগইন
           </Link>
           <Link href="/signup" className="block">
-            <Button className="w-full rounded-md bg-lime-400 px-5 py-2 text-center text-sm font-bold text-gray-900 transition-colors hover:bg-lime-300">
+            <Button
+              className="w-full rounded-md bg-lime-400 px-5 py-2 text-center text-sm font-bold text-gray-900 transition-colors hover:bg-lime-300"
+              onClick={() => setMobileOpen(false)}
+            >
               শুরু করুন
             </Button>
           </Link>

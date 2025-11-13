@@ -52,7 +52,7 @@ export default function CtfDetailHeader({ event }: CtfDetailHeaderProps) {
           {/* Title and Image Container */}
           <div className="flex items-center justify-between gap-8">
             <div className="flex-1">
-              <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
                 {event.title}
               </h1>
               <div className="w-24 h-0.5 bg-lime-400" />
@@ -73,14 +73,14 @@ export default function CtfDetailHeader({ event }: CtfDetailHeaderProps) {
       </div>
 
       {/* Badge and Tags - Top Right */}
-      <div className="absolute top-6 right-6 flex gap-2 flex-wrap justify-end">
-        <span className="inline-flex items-center gap-1 px-3 py-1 bg-red-600 text-white text-xs font-bold rounded">
+      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex gap-1.5 sm:gap-2 flex-wrap justify-end">
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-bold rounded bg-red-600 text-white">
           {event.badge}
         </span>
         {event.tags.map((tag) => (
           <span
             key={tag}
-            className="inline-flex items-center gap-1 px-3 py-1 bg-slate-900/80 text-slate-200 text-xs font-semibold rounded border border-slate-700"
+            className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded border border-slate-700 bg-slate-900/80 text-slate-200"
           >
             {tag}
           </span>

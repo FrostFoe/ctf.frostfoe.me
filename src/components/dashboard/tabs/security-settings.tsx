@@ -5,7 +5,7 @@ import { Lock, Smartphone } from "lucide-react";
 import { useUser } from "@/lib/context/user-context";
 
 export default function SecuritySettings() {
-  const { user, isGuest } = useUser();
+  const { isGuest } = useUser();
   const [showPasswordForm, setShowPasswordForm] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -24,12 +24,13 @@ export default function SecuritySettings() {
     setLoading(true);
     try {
       // In a real app, you'd call a secure API to change password
+      await new Promise((resolve) => setTimeout(resolve, 500)); // Dummy await
       setMessage("পাসওয়ার্ড সফলভাবে পরিবর্তিত হয়েছে!");
       setShowPasswordForm(false);
       setCurrentPassword("");
       setNewPassword("");
       setConfirmPassword("");
-    } catch (error) {
+    } catch {
       setMessage("ত্রুটি: পাসওয়ার্ড পরিবর্তন করা যায়নি।");
     } finally {
       setLoading(false);
@@ -104,7 +105,7 @@ export default function SecuritySettings() {
                 />
                 <div className="flex gap-2">
                   <button
-                    onClick={handlePasswordChange}
+                    onClick={() => void handlePasswordChange()}
                     disabled={isGuest || loading}
                     className="px-4 py-2 bg-lime-400 hover:bg-lime-500 text-slate-950 font-bold rounded-lg transition-colors text-sm disabled:opacity-50"
                   >

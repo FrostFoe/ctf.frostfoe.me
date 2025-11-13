@@ -1,8 +1,6 @@
-"use client";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { HelpCircle, Grid3x3, User, LogOut } from "lucide-react";
+import { HelpCircle, Grid3x3, LogOut } from "lucide-react";
 import { useUser } from "@/lib/context/user-context";
 
 export default function DashboardHeader() {
@@ -16,7 +14,7 @@ export default function DashboardHeader() {
     router.refresh();
   };
 
-  const userEmail = user?.email || "ব্যবহারকারী";
+  const userEmail = user?.email ?? "ব্যবহারকারী";
   const userInitial = userEmail.charAt(0).toUpperCase();
 
   return (
@@ -71,7 +69,7 @@ export default function DashboardHeader() {
                 </div>
 
                 <button
-                  onClick={handleLogout}
+                  onClick={() => void handleLogout()}
                   className="w-full px-4 py-2 text-left text-sm text-red-400 hover:bg-slate-800 flex items-center gap-2 transition-colors"
                 >
                   <LogOut className="w-4 h-4" />

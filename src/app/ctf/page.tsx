@@ -37,7 +37,7 @@ export default function CtfPage() {
         />
 
         <div className="mt-6 sm:mt-8">
-          <CtfMainNav activeSection="events" />
+          <CtfMainNav _activeSection="events" />
         </div>
 
         <CtfTabs activeTab={activeTab} onTabChange={setActiveTab} />

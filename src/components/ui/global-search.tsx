@@ -5,10 +5,28 @@ import { Search, X } from 'lucide-react';
 import Link from 'next/link';
 import ctfData from '@/data/ctf-data.json';
 
+interface EventResult {
+  type: 'event';
+  id: number;
+  title: string;
+  slug: string;
+  description: string;
+}
+
+interface ChallengeResult {
+  type: 'challenge';
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+}
+
+type SearchResult = EventResult | ChallengeResult;
+
 export function GlobalSearch() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<SearchResult[]>([]);
   const searchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,7 +49,7 @@ export function GlobalSearch() {
     }
 
     const lowercaseQuery = value.toLowerCase();
-    const searchResults = [
+    const searchResults: SearchResult[] = [
       ...ctfData.events
         .filter(
           (event) =>
@@ -39,7 +57,7 @@ export function GlobalSearch() {
             event.description.toLowerCase().includes(lowercaseQuery)
         )
         .map((event) => ({
-          type: 'event',
+          type: 'event' as const,
           id: event.id,
           title: event.title,
           slug: event.slug,
@@ -52,7 +70,7 @@ export function GlobalSearch() {
             challenge.description.toLowerCase().includes(lowercaseQuery)
         )
         .map((challenge) => ({
-          type: 'challenge',
+          type: 'challenge' as const,
           id: challenge.id,
           title: challenge.title,
           description: challenge.description,

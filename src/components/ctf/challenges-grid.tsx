@@ -46,13 +46,7 @@ export default function ChallengesGrid({ challenges }: ChallengesGridProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full">
       {challenges.map((challenge) => (
-        <ChallengeCard
-          key={challenge.id}
-          {...challenge}
-          difficulty_color=""
-          category_color=""
-        />
-      ))}
+                  <ChallengeCard key={challenge.id} {...challenge} />      ))}
     </div>
   );
 }

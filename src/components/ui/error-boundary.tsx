@@ -1,6 +1,4 @@
-'use client';
-
-import React, { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 import { AlertCircle } from 'lucide-react';
 
 interface Props {
@@ -30,7 +28,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        this.props.fallback || (
+        this.props.fallback ?? (
           <div className="flex items-center justify-center p-8 bg-red-950/20 border border-red-800/50 rounded-lg">
             <div className="text-center">
               <div className="flex justify-center mb-4">

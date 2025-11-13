@@ -23,7 +23,7 @@ export default function HeroCarrer() {
     <section className="w-full py-6 sm:py-8 md:py-10 lg:py-12">
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-0">
         <div className="mb-6 sm:mb-8 text-center lg:text-left">
-          <h2 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-extrabold leading-tight mb-6 sm:mb-8">
+          <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight mb-6 sm:mb-8">
             বার্নআউট, ক্লান্তি বা দক্ষতার ব্যবধানের বিরুদ্ধে লড়াই করার জন্য
             স্পষ্ট ক্যারিয়ার পাথ প্রোগ্রাম এবং ধরে রাখার কৌশল।
           </h2>

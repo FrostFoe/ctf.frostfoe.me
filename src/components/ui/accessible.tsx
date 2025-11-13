@@ -1,6 +1,4 @@
-'use client';
-
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 interface AccessibleCardProps {
   title: string;
@@ -63,14 +61,12 @@ export function AccessibleButton({
 
 interface AccessibleBadgeProps {
   children: ReactNode;
-  variant?: 'default' | 'outline-solid' | 'status';
   className?: string;
   ariaLabel?: string;
 }
 
 export function AccessibleBadge({
   children,
-  variant = 'default',
   className = '',
   ariaLabel,
 }: AccessibleBadgeProps) {

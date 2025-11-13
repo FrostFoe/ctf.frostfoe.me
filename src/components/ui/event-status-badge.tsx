@@ -1,7 +1,5 @@
 'use client';
 
-import { Badge } from './badge';
-
 type EventStatus = 'upcoming' | 'ongoing' | 'ended' | 'registration-closed';
 
 interface EventStatusBadgeProps {
