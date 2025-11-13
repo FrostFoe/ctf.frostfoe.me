@@ -99,6 +99,24 @@
       "author": "মোহাম্মদ করিম",
       "tags": ["HTML", "CSS", "JavaScript"],
       "isCompleted": false,
+      "flag": "flag{web_security_rules}",
+      "alternateFlags": ["flag{developer_tools_ftw}", "flag{hidden_input}"],
+      "resources": [
+        {
+          "name": "challenge1.zip",
+          "url": "/resources/challenge1.zip",
+          "type": "zip",
+          "size": 5242880,
+          "description": "চ্যালেঞ্জ স্টার্টার ফাইল"
+        },
+        {
+          "name": "guide.pdf",
+          "url": "/resources/guide.pdf",
+          "type": "pdf",
+          "size": 1048576,
+          "description": "সমাধান গাইড"
+        }
+      ],
       "hints": [
         "ব্রাউজার ডেভেলপার টুলস খোলার চেষ্টা করুন",
         "ফর্মের সাবমিট বাটন ইন্সপেক্ট করুন",
@@ -121,6 +139,17 @@
       "author": "রিনা চৌধুরী",
       "tags": ["Caesar Cipher", "Cryptography", "Encoding"],
       "isCompleted": false,
+      "flag": "flag{crypto_challenge_done}",
+      "alternateFlags": ["flag{caesar_cipher_solved}", "flag{shift_13}"],
+      "resources": [
+        {
+          "name": "encrypted.txt",
+          "url": "/resources/encrypted.txt",
+          "type": "document",
+          "size": 512,
+          "description": "এনক্রিপ্টেড টেক্সট"
+        }
+      ],
       "hints": [
         "সিজার সাইফার একটি পরিচিত এনক্রিপশন পদ্ধতি",
         "২৬টি সম্ভাব্য শিফট চেষ্টা করুন",
@@ -143,6 +172,24 @@
       "author": "আহমেদ হাসান",
       "tags": ["SQL", "Web Security", "Injection"],
       "isCompleted": false,
+      "flag": "flag{sql_injection_pwned}",
+      "alternateFlags": ["flag{database_unlocked}", "flag{admin_bypass}"],
+      "resources": [
+        {
+          "name": "sql_challenge.zip",
+          "url": "/resources/sql_challenge.zip",
+          "type": "zip",
+          "size": 10485760,
+          "description": "SQL চ্যালেঞ্জ পরিবেশ"
+        },
+        {
+          "name": "database.sql",
+          "url": "/resources/database.sql",
+          "type": "document",
+          "size": 2097152,
+          "description": "ডাটাবেস স্কিমা"
+        }
+      ],
       "hints": [
         "লগইন ফর্মে SQL ইনজেকশন চেষ্টা করুন",
         "কমেন্ট ব্যবহার করে WHERE ক্লজ অপশন করুন",
@@ -165,6 +212,17 @@
       "author": "সারা খান",
       "tags": ["XSS", "Web Security", "JavaScript"],
       "isCompleted": false,
+      "flag": "flag{xss_vulnerability_found}",
+      "alternateFlags": ["flag{javascript_executed}", "flag{script_injected}"],
+      "resources": [
+        {
+          "name": "xss_app.zip",
+          "url": "/resources/xss_app.zip",
+          "type": "zip",
+          "size": 8388608,
+          "description": "XSS অ্যাপ্লিকেশন"
+        }
+      ],
       "hints": [
         "কমেন্ট বা ইনপুট ফিল্ডে স্ক্রিপ্ট ট্যাগ ইনজেক্ট করুন",
         "alert() ফাংশন ব্যবহার করে XSS ভেরিফাই করুন",
@@ -187,6 +245,24 @@
       "author": "ডক্টর রহিম",
       "tags": ["Access Control", "Authentication", "Advanced"],
       "isCompleted": false,
+      "flag": "flag{access_control_bypass}",
+      "alternateFlags": ["flag{admin_access_gained}", "flag{privilege_escalation}"],
+      "resources": [
+        {
+          "name": "advanced_challenge.zip",
+          "url": "/resources/advanced_challenge.zip",
+          "type": "zip",
+          "size": 15728640,
+          "description": "উন্নত চ্যালেঞ্জ অ্যাপ্লিকেশন"
+        },
+        {
+          "name": "architecture.pdf",
+          "url": "/resources/architecture.pdf",
+          "type": "pdf",
+          "size": 3145728,
+          "description": "সিস্টেম আর্কিটেকচার"
+        }
+      ],
       "hints": [
         "একাধিক দুর্বলতা একত্রিত করুন",
         "টোকেন বিশ্লেষণ করুন",

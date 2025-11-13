@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -18,113 +18,74 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import CtfHeader from "@/components/ctf/ctf-header";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-
-interface Achievement {
-  id: string;
-  name: string;
-  description: string;
-  icon: string;
-  unlockedAt: string;
-  rarity: "common" | "rare" | "epic" | "legendary";
-}
-
-interface RecentActivity {
-  id: number;
-  type: "challenge_solved" | "event_joined" | "rank_achieved" | "team_created";
-  title: string;
-  description: string;
-  timestamp: string;
-}
+import {
+  getOrInitializeUserProfile,
+  getOrInitializeUserStats,
+  getUnlockedAchievements,
+  getAllAchievements,
+  getRecentActivities,
+  updateUserProfile,
+  checkAndUnlockAchievements,
+} from "@/lib/user-data";
+import type { Achievement, RecentActivity, UserProfile, UserStats } from "@/lib/storage";
 
 export default function ProfilePage() {
   const [activeTab, setActiveTab] = useState("overview");
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [stats, setStats] = useState<UserStats | null>(null);
+  const [achievements, setAchievements] = useState<Achievement[]>([]);
+  const [recentActivities, setRecentActivities] = useState<RecentActivity[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Mock user data
-  const userProfile = {
-    username: "সিকিউরিটি_হ্যাকার",
-    displayName: "মোহাম্মদ আহমেদ",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
-    bio: "Cybersecurity enthusiast এবং CTF প্রতিযোগী। সর্বদা নতুন দক্ষতা শিখছি।",
-    joinDate: "15 Jan 2024",
-    country: "বাংলাদেশ",
-  };
+  // Real-time localStorage listener for stats updates
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (
+        e.key === "ctf_user_stats" ||
+        e.key === "ctf_completed_challenges" ||
+        e.key === "ctf_achievements"
+      ) {
+        // Reload stats on storage change
+        const userStats = getOrInitializeUserStats();
+        const allAchievements = getAllAchievements();
+        const activities = getRecentActivities(10);
 
-  const stats = {
-    totalPoints: 2450,
-    ranking: 42,
-    challengesSolved: 28,
-    eventParticipations: 5,
-    teamsMembership: 3,
-    currentStreak: 12,
-    longestStreak: 28,
-    solveRate: "84%",
-  };
+        setStats(userStats);
+        setAchievements(allAchievements);
+        setRecentActivities(activities);
+        checkAndUnlockAchievements();
+      }
+    };
 
-  const achievements: Achievement[] = [
-    {
-      id: "1",
-      name: "প্রথম রক্ত",
-      description: "একটি চ্যালেঞ্জে সবার আগে সমাধান করুন",
-      icon: "🩸",
-      unlockedAt: "02 Mar 2024",
-      rarity: "rare",
-    },
-    {
-      id: "2",
-      name: "গতিশীল দোড়ানো",
-      description: "1 ঘণ্টার মধ্যে একটি চ্যালেঞ্জ সমাধান করুন",
-      icon: "⚡",
-      unlockedAt: "05 Mar 2024",
-      rarity: "common",
-    },
-    {
-      id: "3",
-      name: "সিরিজ মাস্টার",
-      description: "সম্পূর্ণ সিরিজ সমাধান করুন",
-      icon: "🎯",
-      unlockedAt: "20 Mar 2024",
-      rarity: "epic",
-    },
-    {
-      id: "4",
-      name: "নিখুঁততাবাদী",
-      description: "ইঙ্গিত ছাড়াই 10টি চ্যালেঞ্জ সমাধান করুন",
-      icon: "🏆",
-      unlockedAt: "28 Mar 2024",
-      rarity: "legendary",
-    },
-  ];
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
-  const recentActivities: RecentActivity[] = [
-    {
-      id: 1,
-      type: "challenge_solved",
-      title: "চ্যালেঞ্জ সমাধান করা হয়েছে",
-      description: '"ক্রিপ্টো দ্রুত ভাঙা" সমাধান করেছেন - 150 পয়েন্ট অর্জন',
-      timestamp: "2 ঘণ্টা আগে",
-    },
-    {
-      id: 2,
-      type: "rank_achieved",
-      title: "র‍্যাঙ্কিং আপডেট হয়েছে",
-      description: "আপনার র‍্যাঙ্ক #42 এ উন্নীত হয়েছে",
-      timestamp: "6 ঘণ্টা আগে",
-    },
-    {
-      id: 3,
-      type: "event_joined",
-      title: "ইভেন্টে যোগদান করেছেন",
-      description: '"CTF ট্রাই আউট" ইভেন্টে যোগদান করেছেন',
-      timestamp: "1 দিন আগে",
-    },
-    {
-      id: 4,
-      type: "team_created",
-      title: "টিম তৈরি করা হয়েছে",
-      description: '"সাইবার নাইটস" টিম তৈরি করেছেন',
-      timestamp: "3 দিন আগে",
-    },
-  ];
+  useEffect(() => {
+    // Load data from persistent storage
+    const profile = getOrInitializeUserProfile();
+    const userStats = getOrInitializeUserStats();
+    const unlockedAchievements = getUnlockedAchievements();
+    const allAchievements = getAllAchievements();
+    const activities = getRecentActivities(10);
+
+    setUserProfile(profile);
+    setStats(userStats);
+    // Show all achievements with unlock status
+    setAchievements(allAchievements);
+    setRecentActivities(activities);
+    checkAndUnlockAchievements();
+    setIsLoading(false);
+  }, []);
+
+  if (isLoading || !userProfile || !stats) {
+    return (
+      <div className="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+        <CtfHeader />
+        <div className="text-slate-400">প্রোফাইল লোড হচ্ছে...</div>
+      </div>
+    );
+  }
 
   const getRarityColor = (rarity: string) => {
     switch (rarity) {
@@ -347,25 +308,42 @@ export default function ProfilePage() {
           {activeTab === "achievements" && (
             <div className="space-y-4 sm:space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {achievements.map((achievement) => (
-                  <div
-                    key={achievement.id}
-                    className={`border rounded-lg p-4 sm:p-6 space-y-2 sm:space-y-3 ${getRarityColor(achievement.rarity)}`}
-                  >
-                    <div className="text-4xl sm:text-5xl text-center mb-2 sm:mb-3">
-                      {achievement.icon}
+                {achievements.map((achievement) => {
+                  const isUnlocked = achievement.unlockedAt !== "";
+                  return (
+                    <div
+                      key={achievement.id}
+                      className={`border rounded-lg p-4 sm:p-6 space-y-2 sm:space-y-3 transition-opacity ${
+                        isUnlocked
+                          ? getRarityColor(achievement.rarity)
+                          : "bg-slate-900/50 text-slate-500 border-slate-700 opacity-50"
+                      }`}
+                    >
+                      <div
+                        className={`text-4xl sm:text-5xl text-center mb-2 sm:mb-3 ${
+                          !isUnlocked ? "opacity-50 grayscale" : ""
+                        }`}
+                      >
+                        {achievement.icon}
+                      </div>
+                      <h3 className="font-bold text-center text-sm sm:text-base">
+                        {achievement.name}
+                      </h3>
+                      <p className="text-xs text-center opacity-90">
+                        {achievement.description}
+                      </p>
+                      {isUnlocked ? (
+                        <p className="text-xs text-center opacity-75 pt-2 border-t border-current/20">
+                          {achievement.unlockedAt}
+                        </p>
+                      ) : (
+                        <p className="text-xs text-center opacity-75 pt-2 border-t border-current/20">
+                          আনলক হয়নি
+                        </p>
+                      )}
                     </div>
-                    <h3 className="font-bold text-center text-sm sm:text-base">
-                      {achievement.name}
-                    </h3>
-                    <p className="text-xs text-center opacity-90">
-                      {achievement.description}
-                    </p>
-                    <p className="text-xs text-center opacity-75 pt-2 border-t border-current/20">
-                      {achievement.unlockedAt}
-                    </p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}

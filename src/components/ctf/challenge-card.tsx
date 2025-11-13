@@ -3,8 +3,9 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Users, Trophy, Flag } from "lucide-react";
+import { Users, Trophy, Flag, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
+import { isChallengeCompleted } from "@/lib/storage";
 
 interface ChallengeCardProps {
   id: number;
@@ -25,6 +26,8 @@ export default function ChallengeCard({
   points,
   solves,
 }: ChallengeCardProps) {
+  // Check if challenge is completed
+  const isCompleted = isChallengeCompleted(id);
   const getDifficultyBg = (diff: string) => {
     switch (diff) {
       case "সহজ":
@@ -58,21 +61,46 @@ export default function ChallengeCard({
   };
 
   return (
-    <Card className="group relative overflow-hidden bg-linear-to-br from-slate-800 to-slate-900 border-slate-700 hover:border-lime-400/50 transition-all duration-300 h-full flex flex-col">
+    <Card className={`group relative overflow-hidden ${
+      isCompleted
+        ? "bg-linear-to-br from-green-900/20 to-green-900/10 border-green-600/50"
+        : "bg-linear-to-br from-slate-800 to-slate-900 border-slate-700"
+    } hover:border-lime-400/50 transition-all duration-300 h-full flex flex-col`}>
       {/* Background gradient effect on hover */}
-      <div className="absolute inset-0 bg-linear-to-br from-lime-400/0 to-lime-400/0 group-hover:from-lime-400/5 group-hover:to-lime-400/10 transition-all duration-300" />
+      <div className={`absolute inset-0 ${
+        isCompleted
+          ? "bg-linear-to-br from-green-400/0 to-green-400/0"
+          : "bg-linear-to-br from-lime-400/0 to-lime-400/0"
+      } group-hover:${
+        isCompleted
+          ? "from-green-400/5 group-hover:to-green-400/10"
+          : "from-lime-400/5 group-hover:to-lime-400/10"
+      } transition-all duration-300`} />
 
       <div className="relative p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-3 md:space-y-4 flex-1 flex flex-col">
-        {/* Header */}
+        {/* Header with Completion Badge */}
         <div className="space-y-2 sm:space-y-3">
           <div className="flex items-start justify-between gap-2 sm:gap-3">
-            <Flag className="w-4 h-4 sm:w-5 sm:h-5 text-lime-400 shrink-0 mt-0.5" />
-            <div className="text-right text-sm sm:text-base md:text-lg font-bold text-lime-400 whitespace-nowrap">
+            <div className="flex items-center gap-2">
+              <Flag className={`w-4 h-4 sm:w-5 sm:h-5 shrink-0 mt-0.5 ${
+                isCompleted ? "text-green-400" : "text-lime-400"
+              }`} />
+              {isCompleted && (
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-green-400 shrink-0" />
+              )}
+            </div>
+            <div className={`text-right text-sm sm:text-base md:text-lg font-bold whitespace-nowrap ${
+              isCompleted ? "text-green-400" : "text-lime-400"
+            }`}>
               {points} pts
             </div>
           </div>
 
-          <h3 className="text-sm sm:text-base md:text-lg font-bold text-white group-hover:text-lime-400 transition-colors line-clamp-2 wrap-break-word">
+          <h3 className={`text-sm sm:text-base md:text-lg font-bold line-clamp-2 wrap-break-word transition-colors ${
+            isCompleted
+              ? "text-green-300 group-hover:text-green-200"
+              : "text-white group-hover:text-lime-400"
+          }`}>
             {title}
           </h3>
         </div>
@@ -112,8 +140,12 @@ export default function ChallengeCard({
 
         {/* Action Button */}
         <Link href={`/ctf/challenge/${id}`} className="mt-3 sm:mt-4">
-          <Button className="w-full bg-lime-400 hover:bg-lime-500 text-slate-900 font-bold transition-all group-hover:shadow-lg group-hover:shadow-lime-400/20 text-xs sm:text-sm py-1.5 sm:py-2">
-            সমাধান করুন
+          <Button className={`w-full font-bold transition-all group-hover:shadow-lg text-xs sm:text-sm py-1.5 sm:py-2 ${
+            isCompleted
+              ? "bg-green-600 hover:bg-green-700 text-white group-hover:shadow-green-600/20"
+              : "bg-lime-400 hover:bg-lime-500 text-slate-900 group-hover:shadow-lime-400/20"
+          }`}>
+            {isCompleted ? "✓ সমাধান সম্পন্ন" : "সমাধান করুন"}
           </Button>
         </Link>
       </div>

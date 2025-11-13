@@ -1,7 +1,7 @@
 "use client";
 
 import { notFound } from "next/navigation";
-import { use } from "react";
+import { use, useState, useEffect } from "react";
 import Link from "next/link";
 import {
   ChevronLeft,
@@ -10,9 +10,14 @@ import {
   Share2,
   ArrowRight,
   BookOpen,
+  Clock,
+  Lightbulb,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { FlagSubmissionForm } from "@/components/challenge/flag-submission-form";
+import { ChallengeResources } from "@/components/challenge/challenge-resources";
+import { ChallengeStatusCard } from "@/components/challenge/challenge-status-card";
 import ctfData from "@/data/ctf-data.json";
 
 interface PageProps {
@@ -23,11 +28,75 @@ interface PageProps {
 
 export default function ChallengeDetailPage({ params }: PageProps) {
   const { id } = use(params);
+  const [timeSpent, setTimeSpent] = useState(0);
+  const [isTimerRunning, setIsTimerRunning] = useState(true);
+  const [hintsUsed, setHintsUsed] = useState(0);
+  const [revealedHints, setRevealedHints] = useState<number[]>([]);
+  const [isCompleted, setIsCompleted] = useState(false);
   const challenge = ctfData.challenges.find((c) => c.id === parseInt(id));
 
   if (!challenge) {
     notFound();
   }
+
+  // Real-time localStorage listener
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === "ctf_completed_challenges" && e.newValue) {
+        try {
+          const completedIds = JSON.parse(e.newValue);
+          setIsCompleted(completedIds.includes(parseInt(id)));
+        } catch (err) {
+          console.error("Failed to parse completed challenges:", err);
+        }
+      }
+    };
+
+    // Check initial status
+    const storedCompleted = localStorage.getItem("ctf_completed_challenges");
+    if (storedCompleted) {
+      try {
+        const completedIds = JSON.parse(storedCompleted);
+        setIsCompleted(completedIds.includes(parseInt(id)));
+      } catch (err) {
+        console.error("Failed to parse completed challenges:", err);
+      }
+    }
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, [id]);
+
+  // Timer effect
+  useEffect(() => {
+    if (!isTimerRunning) return;
+
+    const timer = setInterval(() => {
+      setTimeSpent((prev) => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [isTimerRunning]);
+
+  // Format time for display
+  const formatTime = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+
+    if (hours > 0) {
+      return `${hours}h ${minutes}m ${secs}s`;
+    }
+    return `${minutes}m ${secs}s`;
+  };
+
+  // Handle hint reveal
+  const revealHint = (hintIndex: number) => {
+    if (!revealedHints.includes(hintIndex)) {
+      setRevealedHints([...revealedHints, hintIndex]);
+      setHintsUsed(revealedHints.length + 1);
+    }
+  };
 
   // Find parent event/series info
   const parentEvent = ctfData.events.find((e) => {
@@ -125,17 +194,49 @@ export default function ChallengeDetailPage({ params }: PageProps) {
       {isSeries && parentEvent && (
         <div className="border-b border-slate-800 bg-blue-900/20 border-blue-800/50">
           <div className="container-centered py-2 sm:py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
-            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-              <span className="text-xs font-bold px-2 py-1 rounded bg-blue-900/50 text-blue-300">
-                সিরিজের অংশ
-              </span>
-              <span className="text-xs sm:text-sm text-blue-300">
-                {parentEvent.title} - চ্যালেঞ্জ #{challenge.seriesOrder}
-              </span>
+            <div className="flex flex-col gap-2 sm:gap-3">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                <span className="text-xs font-bold px-2 py-1 rounded bg-blue-900/50 text-blue-300">
+                  সিরিজের অংশ
+                </span>
+                <span className="text-xs sm:text-sm text-blue-300">
+                  {parentEvent.title} - চ্যালেঞ্জ #{challenge.seriesOrder}
+                </span>
+              </div>
+              <p className="text-xs text-blue-400/70">
+                অসুবিধা: {parentEvent.difficulty} • দক্ষতা: {parentEvent.skillLevel}
+              </p>
             </div>
             <Link
               href={`/ctf/${parentEvent.slug}`}
               className="text-blue-400 hover:text-blue-300 w-fit"
+            >
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      )}
+
+      {/* Single Event Context Banner */}
+      {!isSeries && parentEvent && (
+        <div className="border-b border-slate-800 bg-purple-900/20 border-purple-800/50">
+          <div className="container-centered py-2 sm:py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
+            <div className="flex flex-col gap-2 sm:gap-3">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                <span className="text-xs font-bold px-2 py-1 rounded bg-purple-900/50 text-purple-300">
+                  {parentEvent.ctfType === "series" ? "সিরিজ ইভেন্ট" : "একক চ্যালেঞ্জ"}
+                </span>
+                <span className="text-xs sm:text-sm text-purple-300">
+                  {parentEvent.title}
+                </span>
+              </div>
+              <p className="text-xs text-purple-400/70">
+                ফর্ম্যাট: {parentEvent.format} • দল সাইজ: {parentEvent.teamSize}
+              </p>
+            </div>
+            <Link
+              href={`/ctf/${parentEvent.slug}`}
+              className="text-purple-400 hover:text-purple-300 w-fit"
             >
               <ArrowRight className="w-4 h-4" />
             </Link>
@@ -200,24 +301,43 @@ export default function ChallengeDetailPage({ params }: PageProps) {
             {challenge.hints && challenge.hints.length > 0 && (
               <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 sm:p-6">
                 <h2 className="text-base sm:text-lg font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
-                  <span className="text-amber-400">💡</span>
-                  ইঙ্গিত
+                  <Lightbulb className="w-5 h-5 text-amber-400" />
+                  ইঙ্গিত ({revealedHints.length}/{challenge.hints.length})
                 </h2>
                 <div className="space-y-2 sm:space-y-3">
                   {challenge.hints.map((hint, index) => (
-                    <div
-                      key={index}
-                      className="flex items-start gap-2 sm:gap-3 p-3 sm:p-4 bg-amber-500/5 border border-amber-500/20 rounded-lg hover:border-amber-500/40 transition-colors"
-                    >
-                      <span className="text-amber-400 font-bold text-xs flex-shrink-0 bg-amber-900/30 px-2 py-1 rounded">
-                        {index + 1}
-                      </span>
-                      <p className="text-amber-100 text-xs sm:text-sm">
-                        {hint}
-                      </p>
+                    <div key={index} className="space-y-2">
+                      {revealedHints.includes(index) ? (
+                        <div className="flex items-start gap-2 sm:gap-3 p-3 sm:p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
+                          <span className="text-green-400 font-bold text-xs flex-shrink-0 bg-green-900/30 px-2 py-1 rounded">
+                            {index + 1} ✓
+                          </span>
+                          <p className="text-green-100 text-xs sm:text-sm">
+                            {hint}
+                          </p>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => revealHint(index)}
+                          className="w-full flex items-center justify-between gap-2 sm:gap-3 p-3 sm:p-4 bg-amber-500/5 border border-amber-500/20 rounded-lg hover:border-amber-500/40 hover:bg-amber-500/10 transition-all text-left group"
+                        >
+                          <div className="flex items-center gap-2">
+                            <span className="text-amber-400 font-bold text-xs flex-shrink-0 bg-amber-900/30 px-2 py-1 rounded group-hover:bg-amber-900/50">
+                              {index + 1}
+                            </span>
+                            <span className="text-amber-300/70 text-xs sm:text-sm">
+                              এই ইঙ্গিত প্রকাশ করুন
+                            </span>
+                          </div>
+                          <span className="text-amber-400 group-hover:translate-x-1 transition-transform">→</span>
+                        </button>
+                      )}
                     </div>
                   ))}
                 </div>
+                <p className="text-xs text-slate-400 mt-3 sm:mt-4">
+                  📝 প্রতিটি ইঙ্গিত ব্যবহার প্রাপ্ত পয়েন্ট কমায়
+                </p>
               </div>
             )}
 
@@ -259,6 +379,57 @@ export default function ChallengeDetailPage({ params }: PageProps) {
                 </p>
               </div>
             </div>
+
+            {/* Event Rules Card */}
+            {parentEvent && (
+              <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 sm:p-6">
+                <h2 className="text-base sm:text-lg font-bold text-white mb-3 sm:mb-4">
+                  ইভেন্ট নিয়ম ও তথ্য
+                </h2>
+                <div className="space-y-4">
+                  <div className="p-3 sm:p-4 bg-slate-700/20 rounded-lg border border-slate-700">
+                    <p className="text-slate-400 text-xs font-semibold uppercase tracking-wide mb-2">
+                      সাধারণ নিয়ম
+                    </p>
+                    <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                      {parentEvent.rules}
+                    </p>
+                  </div>
+                  {parentEvent.prizes && parentEvent.prizes.length > 0 && (
+                    <div className="p-3 sm:p-4 bg-slate-700/20 rounded-lg border border-slate-700">
+                      <p className="text-slate-400 text-xs font-semibold uppercase tracking-wide mb-2">
+                        পুরস্কার
+                      </p>
+                      <ul className="space-y-1">
+                        {parentEvent.prizes.map((prize, idx) => (
+                          <li key={idx} className="text-slate-300 text-xs sm:text-sm flex items-center gap-2">
+                            <span className="text-amber-400">★</span> {prize}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                    <div className="p-3 bg-slate-700/20 rounded-lg border border-slate-700">
+                      <p className="text-slate-400 text-xs font-semibold uppercase mb-1">
+                        ফর্ম্যাট
+                      </p>
+                      <p className="text-white font-semibold text-sm">
+                        {parentEvent.format}
+                      </p>
+                    </div>
+                    <div className="p-3 bg-slate-700/20 rounded-lg border border-slate-700">
+                      <p className="text-slate-400 text-xs font-semibold uppercase mb-1">
+                        টিম সাইজ
+                      </p>
+                      <p className="text-white font-semibold text-sm">
+                        {parentEvent.teamSize}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Resources */}
             <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 sm:p-6">
@@ -321,6 +492,25 @@ export default function ChallengeDetailPage({ params }: PageProps) {
 
           {/* Right Column - Sidebar */}
           <div className="lg:col-span-1 space-y-4 sm:space-y-6">
+            {/* Timer Card */}
+            <div className="bg-blue-900/30 border border-blue-700 rounded-lg p-4 sm:p-6 space-y-3">
+              <div className="flex items-center gap-2">
+                <Clock className="w-5 h-5 text-blue-400" />
+                <p className="text-slate-400 text-xs font-semibold uppercase tracking-wide">
+                  সময় ব্যয়
+                </p>
+              </div>
+              <p className="text-3xl font-bold text-blue-300 font-mono">
+                {formatTime(timeSpent)}
+              </p>
+              <button
+                onClick={() => setIsTimerRunning(!isTimerRunning)}
+                className="w-full px-3 py-2 text-sm font-medium bg-blue-700 hover:bg-blue-600 text-white rounded-lg transition-colors"
+              >
+                {isTimerRunning ? "⏸ পজ করুন" : "▶ চালু করুন"}
+              </button>
+            </div>
+
             {/* Info Card */}
             <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 sm:p-6 space-y-4 sm:space-y-6">
               {/* Points */}
@@ -411,20 +601,27 @@ export default function ChallengeDetailPage({ params }: PageProps) {
               <h3 className="text-base sm:text-lg font-bold text-white">
                 ফ্ল্যাগ সাবমিশন
               </h3>
-              <div className="space-y-2 sm:space-y-3">
-                <input
-                  type="text"
-                  placeholder="flag{your_answer_here}"
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:border-lime-400 focus:outline-none transition-colors text-xs sm:text-sm"
-                />
-                <Button className="w-full bg-lime-400 hover:bg-lime-500 text-slate-900 font-bold text-sm sm:text-base py-2 sm:py-2.5">
-                  সাবমিট করুন
-                </Button>
-              </div>
-              <p className="text-xs text-slate-400 text-center">
-                সঠিক ফ্ল্যাগ জমা দিয়ে পয়েন্ট অর্জন করুন
-              </p>
+              <FlagSubmissionForm
+                challengeId={challenge.id}
+                eventId={parentEvent?.id || 1}
+                timeSpent={Math.floor(timeSpent / 60)}
+                hintsUsed={hintsUsed}
+              />
             </div>
+
+            {/* Challenge Status Card */}
+            <ChallengeStatusCard
+              challengeId={challenge.id}
+              basePoints={challenge.points || 100}
+            />
+
+            {/* Challenge Resources */}
+            {challenge.resources && challenge.resources.length > 0 && (
+              <ChallengeResources
+                challengeId={challenge.id}
+                resources={challenge.resources}
+              />
+            )}
 
             {/* Requirements Card */}
             <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 sm:p-6">
