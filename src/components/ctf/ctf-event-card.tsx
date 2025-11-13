@@ -18,6 +18,8 @@ interface CtfEventCardProps {
   status?: "upcoming" | "ongoing" | "ended" | "registration-closed";
   startDate?: string;
   startTime?: string;
+  type?: "single" | "series";
+  seriesChallenges?: number;
 }
 
 export default function CtfEventCard({
@@ -32,6 +34,8 @@ export default function CtfEventCard({
   status = "ongoing",
   startDate,
   startTime,
+  type = "single",
+  seriesChallenges = 1,
 }: CtfEventCardProps) {
   // Generate avatar colors for players
   const avatarColors = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A"];
@@ -54,6 +58,14 @@ export default function CtfEventCard({
           <div className="absolute top-2 sm:top-3 left-2 sm:left-3 flex gap-1.5 sm:gap-2 flex-wrap">
             <span className="inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 bg-red-600 text-white text-xs font-bold rounded whitespace-nowrap">
               {badge}
+            </span>
+            {/* CTF Type Badge */}
+            <span className={`inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 text-white text-xs font-bold rounded whitespace-nowrap ${
+              type === "series" 
+                ? "bg-blue-600" 
+                : "bg-green-600"
+            }`}>
+              {type === "series" ? "Series" : "Single"}
             </span>
             {tags.slice(0, 1).map((tag) => (
               <span
@@ -95,27 +107,35 @@ export default function CtfEventCard({
           {/* Date and Time */}
           <p className="text-xs sm:text-sm text-slate-400 line-clamp-1">{date}</p>
 
-          {/* Players/Avatars */}
-          <div className="flex items-center gap-2 sm:gap-3 mt-auto">
-            <div className="flex -space-x-2">
-              {Array.from({ length: Math.min(players > 0 ? 4 : 0, 4) }).map(
-                (_, i) => (
-                  <div
-                    key={i}
-                    className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-full border-2 border-slate-800 flex items-center justify-center text-white text-xs font-bold shrink-0"
-                    style={{
-                      backgroundColor: avatarColors[i % avatarColors.length],
-                    }}
-                  >
-                    {String.fromCharCode(65 + i)}
-                  </div>
-                ),
-              )}
+          {/* Players/Avatars or Series Info */}
+          {type === "series" ? (
+            <div className="flex items-center gap-2 mt-auto">
+              <span className="text-xs sm:text-sm text-lime-400 font-semibold">
+                📋 {seriesChallenges} চ্যালেঞ্জ
+              </span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-400 truncate">
-              {players} <span className="text-slate-500 hidden sm:inline">খেলোয়াড়</span>
-            </p>
-          </div>
+          ) : (
+            <div className="flex items-center gap-2 sm:gap-3 mt-auto">
+              <div className="flex -space-x-2">
+                {Array.from({ length: Math.min(players > 0 ? 4 : 0, 4) }).map(
+                  (_, i) => (
+                    <div
+                      key={i}
+                      className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-full border-2 border-slate-800 flex items-center justify-center text-white text-xs font-bold shrink-0"
+                      style={{
+                        backgroundColor: avatarColors[i % avatarColors.length],
+                      }}
+                    >
+                      {String.fromCharCode(65 + i)}
+                    </div>
+                  ),
+                )}
+              </div>
+              <p className="text-xs sm:text-sm text-slate-400 truncate">
+                {players} <span className="text-slate-500 hidden sm:inline">খেলোয়াড়</span>
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </Link>

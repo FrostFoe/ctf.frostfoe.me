@@ -16,7 +16,7 @@ export default function CtfTabs({ activeTab, onTabChange }: CtfTabsProps) {
   ];
 
   return (
-    <div className="mt-6 sm:mt-8 border-b border-slate-700 md:ml-4 md:mr-4">
+    <div className="mt-6 sm:mt-8 border-b border-slate-700 ">
       <div className="flex gap-6 sm:gap-8 overflow-x-auto">
         {tabs.map((tab) => (
           <button

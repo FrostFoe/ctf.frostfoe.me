@@ -6,6 +6,7 @@ import CtfDetailInfo from "@/components/ctf/ctf-detail-info";
 import CtfDetailAbout from "@/components/ctf/ctf-detail-about";
 import CtfDetailSidebar from "@/components/ctf/ctf-detail-sidebar";
 import CtfDetailFooter from "@/components/ctf/ctf-detail-footer";
+import CtfSeriesChallenges from "@/components/ctf/ctf-series-challenges";
 import ctfData from "@/data/ctf-data.json";
 
 interface PageProps {
@@ -22,6 +23,14 @@ export default async function CtfDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  // Get series challenges if this is a series CTF
+  const seriesChallenges =
+    event.ctfType === "series"
+      ? ctfData.challenges.filter(
+          (c) => c.seriesId === `${slug}-series`
+        )
+      : [];
+
   return (
     <div className="min-h-screen bg-linear-to-b from-slate-900 via-slate-800 to-slate-900">
       {/* Header */}
@@ -34,7 +43,7 @@ export default async function CtfDetailPage({ params }: PageProps) {
           href="/ctf"
           className="inline-flex items-center gap-2 text-slate-400 hover:text-white mb-6 transition-colors"
         >
-          <ChevronLeft className="w-4 h-4 md:ml-4 md:mr-4" />
+          <ChevronLeft className="w-4 h-4 " />
           <span className="text-sm">Back to Events</span>
         </Link>
 
@@ -42,6 +51,16 @@ export default async function CtfDetailPage({ params }: PageProps) {
           {/* Left Column - Main Content */}
           <div className="lg:col-span-2 space-y-8">
             <CtfDetailInfo event={event} />
+            
+            {/* Series Challenges Section */}
+            {event.ctfType === "series" && seriesChallenges.length > 0 && (
+              <CtfSeriesChallenges
+                challenges={seriesChallenges}
+                totalChallenges={event.totalChallenges || 0}
+                completedChallenges={event.completedChallenges || 0}
+              />
+            )}
+            
             <CtfDetailAbout event={event} />
           </div>
 

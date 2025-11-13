@@ -12,7 +12,7 @@ export default function CtfSearch({
   onSearchChange,
 }: CtfSearchProps) {
   return (
-    <div className="my-6 sm:my-8 md:ml-4 md:mr-4">
+    <div className="my-6 sm:my-8 ">
       <div className="relative max-w-md">
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
         <input

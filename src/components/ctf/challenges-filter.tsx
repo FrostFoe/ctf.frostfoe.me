@@ -34,7 +34,7 @@ export default function ChallengesFilter({
   const difficulties = ["সব", "সহজ", "মধ্যম", "কঠিন", "অসম্ভব"];
 
   return (
-    <div className="space-y-4 md:ml-4 md:mr-4">
+    <div className="space-y-4 ">
       <div className="relative">
         <Search className="absolute left-3 top-3 w-5 h-5 text-slate-500" />
         <Input

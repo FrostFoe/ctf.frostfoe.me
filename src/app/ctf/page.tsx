@@ -36,7 +36,7 @@ export default function CtfPage() {
           ]}
         />
 
-        <div className="mt-6 sm:mt-8 md:ml-4 md:mr-4">
+        <div className="mt-6 sm:mt-8 ">
           <CtfMainNav _activeSection="events" />
         </div>
 

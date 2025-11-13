@@ -19,7 +19,7 @@ interface ChallengesGridProps {
 export default function ChallengesGrid({ challenges }: ChallengesGridProps) {
   if (challenges.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-8 sm:py-10 md:py-12 text-center px-4 md:ml-4 md:mr-4">
+      <div className="flex flex-col items-center justify-center py-8 sm:py-10 md:py-12 text-center px-4 ">
         <svg
           className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-slate-600 mb-3 sm:mb-4"
           fill="none"
@@ -44,7 +44,7 @@ export default function ChallengesGrid({ challenges }: ChallengesGridProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full md:ml-4 md:mr-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full ">
       {challenges.map((challenge) => (
                   <ChallengeCard key={challenge.id} {...challenge} />      ))}
     </div>
