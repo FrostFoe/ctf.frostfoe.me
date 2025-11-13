@@ -18,7 +18,8 @@ export default function ChallengesTab() {
       const matchesCategory =
         selectedCategory === "সব" || challenge.category === selectedCategory;
       const matchesDifficulty =
-        selectedDifficulty === "সব" || challenge.difficulty === selectedDifficulty;
+        selectedDifficulty === "সব" ||
+        challenge.difficulty === selectedDifficulty;
 
       return matchesSearch && matchesCategory && matchesDifficulty;
     });
@@ -28,7 +29,9 @@ export default function ChallengesTab() {
     <div className="space-y-8">
       <div>
         <h2 className="text-xl font-bold text-white mb-2">চ্যালেঞ্জেস</h2>
-        <p className="text-slate-400">সিকিউরিটি চ্যালেঞ্জ এবং হ্যাকিং প্রতিযোগিতায় অংশগ্রহণ করুন</p>
+        <p className="text-slate-400">
+          সিকিউরিটি চ্যালেঞ্জ এবং হ্যাকিং প্রতিযোগিতায় অংশগ্রহণ করুন
+        </p>
       </div>
 
       <ChallengesFilter

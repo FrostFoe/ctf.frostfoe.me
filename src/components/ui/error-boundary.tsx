@@ -1,5 +1,5 @@
-import React, { type ReactNode } from 'react';
-import { AlertCircle } from 'lucide-react';
+import React, { type ReactNode } from "react";
+import { AlertCircle } from "lucide-react";
 
 interface Props {
   children: ReactNode;
@@ -22,7 +22,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('Error caught by boundary:', error, errorInfo);
+    console.error("Error caught by boundary:", error, errorInfo);
   }
 
   render() {
@@ -34,9 +34,12 @@ export class ErrorBoundary extends React.Component<Props, State> {
               <div className="flex justify-center mb-4">
                 <AlertCircle className="w-12 h-12 text-red-400" />
               </div>
-              <h3 className="text-lg font-semibold text-red-300 mb-2">কিছু ভুল হয়েছে</h3>
+              <h3 className="text-lg font-semibold text-red-300 mb-2">
+                কিছু ভুল হয়েছে
+              </h3>
               <p className="text-sm text-red-200">
-                এই সেকশন লোড করতে সমস্যা হয়েছে। অনুগ্রহ করে পৃষ্ঠা রিফ্রেশ করুন।
+                এই সেকশন লোড করতে সমস্যা হয়েছে। অনুগ্রহ করে পৃষ্ঠা রিফ্রেশ
+                করুন।
               </p>
             </div>
           </div>

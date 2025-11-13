@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 interface AccessibleCardProps {
   title: string;
@@ -12,8 +12,8 @@ export function AccessibleCard({
   title,
   description,
   children,
-  className = '',
-  role = 'region',
+  className = "",
+  role = "region",
 }: AccessibleCardProps) {
   return (
     <div
@@ -22,7 +22,11 @@ export function AccessibleCard({
       aria-describedby={description ? `desc-${title}` : undefined}
       className={className}
     >
-      {description && <p id={`desc-${title}`} className="sr-only">{description}</p>}
+      {description && (
+        <p id={`desc-${title}`} className="sr-only">
+          {description}
+        </p>
+      )}
       {children}
     </div>
   );
@@ -34,7 +38,7 @@ interface AccessibleButtonProps {
   disabled?: boolean;
   ariaLabel?: string;
   className?: string;
-  type?: 'button' | 'submit' | 'reset';
+  type?: "button" | "submit" | "reset";
 }
 
 export function AccessibleButton({
@@ -42,8 +46,8 @@ export function AccessibleButton({
   onClick,
   disabled = false,
   ariaLabel,
-  className = '',
-  type = 'button',
+  className = "",
+  type = "button",
 }: AccessibleButtonProps) {
   return (
     <button
@@ -67,7 +71,7 @@ interface AccessibleBadgeProps {
 
 export function AccessibleBadge({
   children,
-  className = '',
+  className = "",
   ariaLabel,
 }: AccessibleBadgeProps) {
   return (

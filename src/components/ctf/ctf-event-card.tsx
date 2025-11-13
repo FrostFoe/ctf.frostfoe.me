@@ -39,8 +39,9 @@ export default function CtfEventCard({
 }: CtfEventCardProps) {
   // Generate avatar colors for players
   const avatarColors = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A"];
-  
-  const targetDate = startDate && startTime ? `${startDate} ${startTime}` : date;
+
+  const targetDate =
+    startDate && startTime ? `${startDate} ${startTime}` : date;
 
   return (
     <Link href={`/ctf/${slug}`}>
@@ -60,11 +61,11 @@ export default function CtfEventCard({
               {badge}
             </span>
             {/* CTF Type Badge */}
-            <span className={`inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 text-white text-xs font-bold rounded whitespace-nowrap ${
-              type === "series" 
-                ? "bg-blue-600" 
-                : "bg-green-600"
-            }`}>
+            <span
+              className={`inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 text-white text-xs font-bold rounded whitespace-nowrap ${
+                type === "series" ? "bg-blue-600" : "bg-green-600"
+              }`}
+            >
               {type === "series" ? "Series" : "Single"}
             </span>
             {tags.slice(0, 1).map((tag) => (
@@ -105,7 +106,9 @@ export default function CtfEventCard({
           )}
 
           {/* Date and Time */}
-          <p className="text-xs sm:text-sm text-slate-400 line-clamp-1">{date}</p>
+          <p className="text-xs sm:text-sm text-slate-400 line-clamp-1">
+            {date}
+          </p>
 
           {/* Players/Avatars or Series Info */}
           {type === "series" ? (
@@ -132,7 +135,10 @@ export default function CtfEventCard({
                 )}
               </div>
               <p className="text-xs sm:text-sm text-slate-400 truncate">
-                {players} <span className="text-slate-500 hidden sm:inline">খেলোয়াড়</span>
+                {players}{" "}
+                <span className="text-slate-500 hidden sm:inline">
+                  খেলোয়াড়
+                </span>
               </p>
             </div>
           )}

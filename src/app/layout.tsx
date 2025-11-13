@@ -34,9 +34,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased" suppressHydrationWarning={true}>
-        <UserProvider>
-          {children}
-        </UserProvider>
+        <UserProvider>{children}</UserProvider>
         <Toaster />
       </body>
     </html>

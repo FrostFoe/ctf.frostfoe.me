@@ -40,7 +40,9 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
             />
           </div>
           <div>
-            <p className="text-white font-bold text-base sm:text-lg">{event.hostedBy}</p>
+            <p className="text-white font-bold text-base sm:text-lg">
+              {event.hostedBy}
+            </p>
             <p className="text-slate-400 text-xs sm:text-sm">ইভেন্ট আয়োজক</p>
           </div>
         </div>
@@ -143,7 +145,9 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
         {/* Scenarios */}
         <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-slate-700">
           <p className="text-slate-500 text-xs font-semibold mb-2">দৃশ্যপট</p>
-          <p className="text-white font-semibold text-sm sm:text-base">{event.scenarios}</p>
+          <p className="text-white font-semibold text-sm sm:text-base">
+            {event.scenarios}
+          </p>
         </div>
       </div>
     </div>

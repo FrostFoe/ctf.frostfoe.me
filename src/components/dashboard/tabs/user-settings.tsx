@@ -7,10 +7,10 @@ export default function UserSettings() {
   const { user, isGuest } = useUser();
   const [email, setEmail] = useState(user?.email ?? "");
   const [username, setUsername] = useState(
-    (user?.user_metadata as { username?: string })?.username ?? ""
+    (user?.user_metadata as { username?: string })?.username ?? "",
   );
   const [displayName, setDisplayName] = useState(
-    (user?.user_metadata as { display_name?: string })?.display_name ?? ""
+    (user?.user_metadata as { display_name?: string })?.display_name ?? "",
   );
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -60,7 +60,8 @@ export default function UserSettings() {
 
       {isGuest && (
         <div className="bg-blue-500/10 border border-blue-500/50 text-blue-300 px-4 py-2 rounded-lg">
-          অতিথি অ্যাকাউন্ট: সম্পূর্ণ বৈশিষ্ট্যের জন্য একটি নিয়মিত অ্যাকাউন্ট তৈরি করুন।
+          অতিথি অ্যাকাউন্ট: সম্পূর্ণ বৈশিষ্ট্যের জন্য একটি নিয়মিত অ্যাকাউন্ট
+          তৈরি করুন।
         </div>
       )}
 

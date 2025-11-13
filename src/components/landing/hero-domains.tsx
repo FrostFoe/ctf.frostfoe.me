@@ -96,10 +96,13 @@ export default function HeroDomains() {
                 >
                   <CardHeader className="p-0">
                     <CardTitle
-                      className={cn("text-lg sm:text-xl transition-colors break-words", {
-                        "text-gray-500": activeTab !== tab.id,
-                        "text-white": activeTab === tab.id,
-                      })}
+                      className={cn(
+                        "text-lg sm:text-xl transition-colors break-words",
+                        {
+                          "text-gray-500": activeTab !== tab.id,
+                          "text-white": activeTab === tab.id,
+                        },
+                      )}
                     >
                       {tab.title}
                     </CardTitle>
@@ -133,9 +136,7 @@ export default function HeroDomains() {
                     ))}
                   </div>
                   <div className="flex justify-center md:justify-start">
-                    <Button
-                      className="bg-lime-400 text-gray-900 font-bold px-3 sm:px-5 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm hover:bg-lime-300 transition-colors"
-                    >
+                    <Button className="bg-lime-400 text-gray-900 font-bold px-3 sm:px-5 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm hover:bg-lime-300 transition-colors">
                       আরও দেখুন{" "}
                       <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2" />
                     </Button>

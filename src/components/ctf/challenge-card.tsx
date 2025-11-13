@@ -78,7 +78,9 @@ export default function ChallengeCard({
         </div>
 
         {/* Description */}
-        <p className="text-xs sm:text-sm text-slate-400 line-clamp-2 wrap-break-word">{description}</p>
+        <p className="text-xs sm:text-sm text-slate-400 line-clamp-2 wrap-break-word">
+          {description}
+        </p>
 
         {/* Badges */}
         <div className="flex flex-wrap gap-1.5 sm:gap-2">

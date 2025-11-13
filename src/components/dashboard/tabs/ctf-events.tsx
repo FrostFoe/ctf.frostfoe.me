@@ -25,7 +25,9 @@ export default function CtfEvents() {
     <div className="space-y-6">
       <div>
         <h2 className="text-xl font-bold text-white mb-2">সিটিএফ ইভেন্টস</h2>
-        <p className="text-slate-400">সিটিএফ প্রতিযোগিতায় অংশগ্রহণ করুন এবং আপনার দক্ষতা পরীক্ষা করুন</p>
+        <p className="text-slate-400">
+          সিটিএফ প্রতিযোগিতায় অংশগ্রহণ করুন এবং আপনার দক্ষতা পরীক্ষা করুন
+        </p>
       </div>
 
       <CtfTabs activeTab={activeTab} onTabChange={setActiveTab} />

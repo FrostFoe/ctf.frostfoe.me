@@ -64,7 +64,9 @@ export default function DashboardHeader() {
                 <div className="px-4 py-3 border-b border-slate-700">
                   <p className="text-sm font-medium text-white">{userEmail}</p>
                   {isGuest && (
-                    <p className="text-xs text-lime-400 mt-1">অতিথি ব্যবহারকারী</p>
+                    <p className="text-xs text-lime-400 mt-1">
+                      অতিথি ব্যবহারকারী
+                    </p>
                   )}
                 </div>
 

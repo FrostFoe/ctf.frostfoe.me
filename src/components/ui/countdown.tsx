@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useState, useCallback } from 'react';
-import { Clock } from 'lucide-react';
+import { useEffect, useState, useCallback } from "react";
+import { Clock } from "lucide-react";
 
 interface CountdownProps {
   targetDate: string; // Format: "DD Mon YYYY HH:mm GMT"
@@ -19,7 +19,7 @@ export function Countdown({ targetDate, isUpcoming }: CountdownProps) {
     const diff = target.getTime() - now.getTime();
 
     if (diff <= 0) {
-      return 'শুরু হয়েছে';
+      return "শুরু হয়েছে";
     }
 
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));

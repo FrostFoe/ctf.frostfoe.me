@@ -42,9 +42,7 @@ export default function HeroCarrer() {
               variant="outline"
               className="text-gray-300 bg-transparent border border-gray-600 hover:bg-gray-700 font-medium py-2 px-4 sm:px-5 rounded-md transition-colors text-sm sm:text-base w-full sm:w-auto"
             >
-              <Link href="/business/talent-search">
-                ব্যবসার জন্য
-              </Link>
+              <Link href="/business/talent-search">ব্যবসার জন্য</Link>
             </Button>
           </div>
         </div>

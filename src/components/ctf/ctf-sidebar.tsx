@@ -19,8 +19,8 @@ const navItems = [
   { icon: Zap, label: "চ্যালেঞ্জ", href: "/ctf/challenges" },
   { icon: Trophy, label: "লিডারবোর্ড", href: "/ctf/leaderboard" },
   { icon: Users, label: "টিমস", href: "/ctf/teams" },
-  { icon: User, label: "প্রোফাইল", href: "/profile" },
-  { icon: Settings, label: "সেটিংস", href: "/settings" },
+  { icon: User, label: "প্রোফাইল", href: "/ctf/profile" },
+  { icon: Settings, label: "সেটিংস", href: "/ctf/settings" },
 ];
 
 interface CTFSidebarProps {
@@ -52,7 +52,9 @@ export function CTFSidebar({ isOpen, toggleSidebar }: CTFSidebarProps) {
       >
         {/* Header */}
         <div className="p-6 border-b border-slate-800">
-          <h1 className="text-xl font-bold text-lime-400">সিটিএফ প্ল্যাটফর্ম</h1>
+          <h1 className="text-xl font-bold text-lime-400">
+            সিটিএফ প্ল্যাটফর্ম
+          </h1>
           <p className="text-xs text-slate-400 mt-1">নিরাপত্তা চ্যালেঞ্জ</p>
         </div>
 

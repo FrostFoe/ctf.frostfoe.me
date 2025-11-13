@@ -47,7 +47,9 @@ export default function ChallengesFilter({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-5">
         <div className="space-y-2 sm:space-y-2.5">
-          <label className="text-xs sm:text-sm font-medium text-slate-300">ক্যাটাগরি</label>
+          <label className="text-xs sm:text-sm font-medium text-slate-300">
+            ক্যাটাগরি
+          </label>
           <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {categories.map((cat) => (
               <Button
@@ -68,7 +70,9 @@ export default function ChallengesFilter({
         </div>
 
         <div className="space-y-2 sm:space-y-2.5">
-          <label className="text-xs sm:text-sm font-medium text-slate-300">অসুবিধা</label>
+          <label className="text-xs sm:text-sm font-medium text-slate-300">
+            অসুবিধা
+          </label>
           <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {difficulties.map((diff) => (
               <Button

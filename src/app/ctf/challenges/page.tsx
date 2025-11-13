@@ -23,7 +23,8 @@ export default function ChallengesPage() {
       const matchesCategory =
         selectedCategory === "সব" || challenge.category === selectedCategory;
       const matchesDifficulty =
-        selectedDifficulty === "সব" || challenge.difficulty === selectedDifficulty;
+        selectedDifficulty === "সব" ||
+        challenge.difficulty === selectedDifficulty;
 
       return matchesSearch && matchesCategory && matchesDifficulty;
     });

@@ -23,8 +23,8 @@ export default function CtfEventGrid({ events }: CtfEventGridProps) {
     <div className="py-6 sm:py-8 md:py-10 lg:py-12 w-full ">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
         {events.map((event) => (
-          <CtfEventCard 
-            key={event.id} 
+          <CtfEventCard
+            key={event.id}
             {...event}
             type={event.ctfType || "single"}
             seriesChallenges={event.totalChallenges || 1}

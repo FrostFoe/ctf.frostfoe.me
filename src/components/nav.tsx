@@ -86,7 +86,7 @@ export default function Nav() {
                 >
                   {item.title}
                 </Link>
-              )
+              ),
             )}
           </div>
         </div>
@@ -165,7 +165,7 @@ export default function Nav() {
               >
                 {item.title}
               </Link>
-            )
+            ),
           )}
           <hr className="my-2 border-gray-700" />
           <Link

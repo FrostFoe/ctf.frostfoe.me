@@ -32,7 +32,9 @@ export default function CtfDetailInfo({ event, onSignUp }: CtfDetailInfoProps) {
               <p className="text-white text-base sm:text-lg md:text-xl font-semibold">
                 {event.startDate}
               </p>
-              <p className="text-slate-300 text-xs sm:text-sm">{event.startTime}</p>
+              <p className="text-slate-300 text-xs sm:text-sm">
+                {event.startTime}
+              </p>
             </div>
 
             {/* End Date */}
@@ -43,7 +45,9 @@ export default function CtfDetailInfo({ event, onSignUp }: CtfDetailInfoProps) {
               <p className="text-white text-base sm:text-lg md:text-xl font-semibold">
                 {event.endDate}
               </p>
-              <p className="text-slate-300 text-xs sm:text-sm">{event.endTime}</p>
+              <p className="text-slate-300 text-xs sm:text-sm">
+                {event.endTime}
+              </p>
             </div>
           </div>
 

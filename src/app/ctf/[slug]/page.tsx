@@ -26,9 +26,7 @@ export default async function CtfDetailPage({ params }: PageProps) {
   // Get series challenges if this is a series CTF
   const seriesChallenges =
     event.ctfType === "series"
-      ? ctfData.challenges.filter(
-          (c) => c.seriesId === `${slug}-series`
-        )
+      ? ctfData.challenges.filter((c) => c.seriesId === `${slug}-series`)
       : [];
 
   return (
@@ -51,7 +49,7 @@ export default async function CtfDetailPage({ params }: PageProps) {
           {/* Left Column - Main Content */}
           <div className="lg:col-span-2 space-y-6 sm:space-y-8">
             <CtfDetailInfo event={event} />
-            
+
             {/* Series Challenges Section */}
             {event.ctfType === "series" && seriesChallenges.length > 0 && (
               <CtfSeriesChallenges
@@ -60,7 +58,7 @@ export default async function CtfDetailPage({ params }: PageProps) {
                 completedChallenges={event.completedChallenges || 0}
               />
             )}
-            
+
             <CtfDetailAbout event={event} />
           </div>
 

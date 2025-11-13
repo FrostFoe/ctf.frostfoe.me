@@ -14,10 +14,16 @@ export default function CtfPage() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const events = {
-    ongoing: ctfData.events.filter((e) => e.status === "ongoing"),
-    upcoming: ctfData.events.filter((e) => e.status === "upcoming"),
-    joined: [],
-    past: ctfData.events.filter((e) => e.status === "ended"),
+    ongoing: ctfData.events.filter(
+      (e) => e.status === "ongoing"
+    ) as typeof ctfData.events,
+    upcoming: ctfData.events.filter(
+      (e) => e.status === "upcoming"
+    ) as typeof ctfData.events,
+    joined: [] as typeof ctfData.events,
+    past: ctfData.events.filter(
+      (e) => e.status === "ended"
+    ) as typeof ctfData.events,
   };
 
   const filteredEvents = events[activeTab as keyof typeof events].filter(
@@ -30,13 +36,10 @@ export default function CtfPage() {
 
       <div className="container-centered">
         <Breadcrumb
-          items={[
-            { label: "হোম", href: "/" },
-            { label: "সিটিএফ ইভেন্টস" },
-          ]}
+          items={[{ label: "হোম", href: "/" }, { label: "সিটিএফ ইভেন্টস" }]}
         />
 
-        <div className="mt-6 sm:mt-8 ">
+        <div className="mt-6 sm:mt-8">
           <CtfMainNav _activeSection="events" />
         </div>
 

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { ChevronRight } from 'lucide-react';
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 interface BreadcrumbItem {
   label: string;
@@ -17,7 +17,10 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
     <nav aria-label="breadcrumb" className="py-2 sm:py-3 overflow-x-auto ">
       <ol className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-slate-400 whitespace-nowrap">
         {items.map((item, index) => (
-          <li key={index} className="flex items-center gap-1 sm:gap-2 min-w-max">
+          <li
+            key={index}
+            className="flex items-center gap-1 sm:gap-2 min-w-max"
+          >
             {item.href ? (
               <Link
                 href={item.href}
@@ -27,7 +30,10 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
                 {item.label}
               </Link>
             ) : (
-              <span className="text-slate-300 truncate max-w-xs" title={item.label}>
+              <span
+                className="text-slate-300 truncate max-w-xs"
+                title={item.label}
+              >
                 {item.label}
               </span>
             )}

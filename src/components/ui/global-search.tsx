@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import { Search, X } from 'lucide-react';
-import Link from 'next/link';
-import ctfData from '@/data/ctf-data.json';
+import { useState, useEffect, useRef } from "react";
+import { Search, X } from "lucide-react";
+import Link from "next/link";
+import ctfData from "@/data/ctf-data.json";
 
 interface EventResult {
-  type: 'event';
+  type: "event";
   id: number;
   title: string;
   slug: string;
@@ -14,7 +14,7 @@ interface EventResult {
 }
 
 interface ChallengeResult {
-  type: 'challenge';
+  type: "challenge";
   id: number;
   title: string;
   description: string;
@@ -25,7 +25,7 @@ type SearchResult = EventResult | ChallengeResult;
 
 export function GlobalSearch() {
   const [isOpen, setIsOpen] = useState(false);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const searchRef = useRef<HTMLDivElement>(null);
 
@@ -36,8 +36,8 @@ export function GlobalSearch() {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleSearch = (value: string) => {
@@ -54,10 +54,10 @@ export function GlobalSearch() {
         .filter(
           (event) =>
             event.title.toLowerCase().includes(lowercaseQuery) ||
-            event.description.toLowerCase().includes(lowercaseQuery)
+            event.description.toLowerCase().includes(lowercaseQuery),
         )
         .map((event) => ({
-          type: 'event' as const,
+          type: "event" as const,
           id: event.id,
           title: event.title,
           slug: event.slug,
@@ -67,10 +67,10 @@ export function GlobalSearch() {
         .filter(
           (challenge) =>
             challenge.title.toLowerCase().includes(lowercaseQuery) ||
-            challenge.description.toLowerCase().includes(lowercaseQuery)
+            challenge.description.toLowerCase().includes(lowercaseQuery),
         )
         .map((challenge) => ({
-          type: 'challenge' as const,
+          type: "challenge" as const,
           id: challenge.id,
           title: challenge.title,
           description: challenge.description,
@@ -109,7 +109,7 @@ export function GlobalSearch() {
               {query && (
                 <button
                   onClick={() => {
-                    setQuery('');
+                    setQuery("");
                     setResults([]);
                   }}
                   className="text-slate-500 hover:text-slate-400 shrink-0"
@@ -126,11 +126,13 @@ export function GlobalSearch() {
                 <Link
                   key={`${result.type}-${result.id}`}
                   href={
-                    result.type === 'event' ? `/ctf/${result.slug}` : `/ctf/challenge/${result.id}`
+                    result.type === "event"
+                      ? `/ctf/${result.slug}`
+                      : `/ctf/challenge/${result.id}`
                   }
                   onClick={() => {
                     setIsOpen(false);
-                    setQuery('');
+                    setQuery("");
                     setResults([]);
                   }}
                   className="block px-3 sm:px-4 py-2 sm:py-3 hover:bg-slate-800 border-b border-slate-800 last:border-b-0 transition-colors text-xs sm:text-sm"
@@ -138,23 +140,29 @@ export function GlobalSearch() {
                   <div className="flex items-start gap-2 sm:gap-3">
                     <span
                       className={`text-xs font-medium px-1.5 sm:px-2 py-0.5 rounded shrink-0 ${
-                        result.type === 'event'
-                          ? 'bg-blue-900/30 text-blue-300'
-                          : 'bg-lime-900/30 text-lime-300'
+                        result.type === "event"
+                          ? "bg-blue-900/30 text-blue-300"
+                          : "bg-lime-900/30 text-lime-300"
                       }`}
                     >
-                      {result.type === 'event' ? 'ইভেন্ট' : 'চ্যালেঞ্জ'}
+                      {result.type === "event" ? "ইভেন্ট" : "চ্যালেঞ্জ"}
                     </span>
                     <div className="flex-1 min-w-0">
-                      <p className="font-medium text-slate-200 truncate">{result.title}</p>
-                      <p className="text-xs text-slate-400 line-clamp-1">{result.description}</p>
+                      <p className="font-medium text-slate-200 truncate">
+                        {result.title}
+                      </p>
+                      <p className="text-xs text-slate-400 line-clamp-1">
+                        {result.description}
+                      </p>
                     </div>
                   </div>
                 </Link>
               ))}
             </div>
           ) : query.length >= 2 ? (
-            <div className="p-8 text-center text-slate-400 text-sm">কোনো ফলাফল পাওয়া যায়নি</div>
+            <div className="p-8 text-center text-slate-400 text-sm">
+              কোনো ফলাফল পাওয়া যায়নি
+            </div>
           ) : null}
         </div>
       )}

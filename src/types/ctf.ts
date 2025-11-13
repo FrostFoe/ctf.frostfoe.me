@@ -3,9 +3,19 @@
  * Defines the shape of CTF events, challenges, and related data
  */
 
-export type CTFStatus = "ongoing" | "upcoming" | "ended" | "registration-closed";
+export type CTFStatus =
+  | "ongoing"
+  | "upcoming"
+  | "ended"
+  | "registration-closed";
 export type CTFType = "single" | "series";
-export type Difficulty = "সহজ" | "মাঝারি" | "কঠিন" | "অসম্ভব" | "মধ্যম" | "মাঝারি থেকে কঠিন";
+export type Difficulty =
+  | "সহজ"
+  | "মাঝারি"
+  | "কঠিন"
+  | "অসম্ভব"
+  | "মধ্যম"
+  | "মাঝারি থেকে কঠিন";
 
 export interface CTFEvent {
   id: number;
