@@ -32,7 +32,7 @@ export default function CtfMainNav({ _activeSection = "events" }: CtfMainNavProp
   ];
 
   return (
-    <div className="border-b border-slate-700">
+    <div className="border-b border-slate-700 md:ml-4">
       <div className="flex gap-6 sm:gap-8 overflow-x-auto">
         {navItems.map((item) => {
           const isActive = 

@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 
 export default function ChallengesHeader() {
   return (
-    <div className="mb-8 space-y-4">
+    <div className="mb-8 space-y-4 md:ml-4">
       <div className="flex items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold text-white">চ্যালেঞ্জেস</h1>

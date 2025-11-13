@@ -34,7 +34,7 @@ export default async function CtfDetailPage({ params }: PageProps) {
           href="/ctf"
           className="inline-flex items-center gap-2 text-slate-400 hover:text-white mb-6 transition-colors"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="w-4 h-4 md:ml-4" />
           <span className="text-sm">Back to Events</span>
         </Link>
 

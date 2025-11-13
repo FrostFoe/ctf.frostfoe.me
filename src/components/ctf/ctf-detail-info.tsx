@@ -19,7 +19,7 @@ interface CtfDetailInfoProps {
 
 export default function CtfDetailInfo({ event, onSignUp }: CtfDetailInfoProps) {
   return (
-    <div className="w-full bg-slate-800/30 border-t border-b border-slate-700 py-8 px-4 sm:px-6 md:px-8">
+    <div className="w-full bg-slate-800/30 border-t border-b border-slate-700 py-8 px-4 sm:px-6 md:px-8 ">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-8">
           {/* Dates Section */}
