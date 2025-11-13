@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 import {
   Card,
   CardContent,
@@ -8,9 +7,11 @@ import {
 } from "@/components/ui/card";
 
 export default function HeroNotification() {
-  const megaphoneIcon = PlaceHolderImages.find(
-    (img) => img.id === "megaphone-icon",
-  )!;
+  const megaphoneIcon = {
+    imageUrl: "https://www.hackthebox.com/images/landingv3/megaphone.webp",
+    description: "Megaphone icon",
+    imageHint: "megaphone illustration",
+  };
   return (
     <section className="w-full">
       <a

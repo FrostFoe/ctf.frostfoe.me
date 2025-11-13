@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { ArrowRight, Check } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -29,8 +28,7 @@ const domainTabs = [
 const domainContent = {
   red: {
     href: "/red-teams",
-    bgImage: PlaceHolderImages.find((img) => img.id === "red-team-bg")!
-      .imageUrl,
+    bgImage: "https://www.hackthebox.com/images/landingv3/red-bg.png",
     description:
       "তথ্য সংগ্রহ থেকে শুরু করে ডকুমেন্টেশন এবং রিপোর্টিং পর্যন্ত সমস্ত পেনিട്രেশন টেস্টিং এবং অ্যাডভারসারিয়াল ডোমেইনে আপনার দক্ষতা পরীক্ষা করুন এবং বাড়ান।",
     features: [
@@ -42,8 +40,7 @@ const domainContent = {
   },
   blue: {
     href: "/blue-teams",
-    bgImage: PlaceHolderImages.find((img) => img.id === "blue-team-bg")!
-      .imageUrl,
+    bgImage: "https://www.hackthebox.com/images/landingv3/blue-bg.png",
     description:
       "থ্রেট ল্যান্ডস্কেপের সাথে সংযুক্ত থাকুন এবং বাস্তব প্রতিপক্ষের দ্বারা ব্যবহৃত কৌশল, কৌশল এবং পদ্ধতিগুলি কীভাবে সনাক্ত করতে হয় তা শিখুন।",
     features: [
@@ -55,8 +52,7 @@ const domainContent = {
   },
   purple: {
     href: "/purple-teams",
-    bgImage: PlaceHolderImages.find((img) => img.id === "purple-team-bg")!
-      .imageUrl,
+    bgImage: "https://www.hackthebox.com/images/landingv3/purple-bg.png",
     description:
       "কার্যকর প্রতিরক্ষামূলক কার্যক্রম সক্রিয় করতে আক্রমণাত্মক কৌশলগুলিতে দক্ষতা অর্জন করুন। আধুনিক, ৩৬০° সাইবার পেশাদার এবং সংস্থাগুলির জন্য।",
     features: [

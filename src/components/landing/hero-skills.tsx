@@ -9,7 +9,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -19,25 +18,31 @@ export default function HeroSkills() {
       title: "লার্নিং পাথ",
       description:
         "বিভিন্ন দক্ষতার উপর সম্পূর্ণ নির্দেশিত যাত্রা অথবা নির্দিষ্ট নিরাপত্তা চাকরির ভূমিকায় দক্ষতা অর্জন।",
-      image: PlaceHolderImages.find(
-        (img) => img.id === "learning-paths-asset",
-      )!,
+      image: {
+        imageUrl: "https://www.hackthebox.com/images/landingv3/learning-paths-asset.png",
+        description: "Learning Paths",
+        imageHint: "abstract nodes",
+      },
     },
     {
       title: "বাস্তব-বিশ্বের দৃশ্য",
       description:
         "সর্বশেষ প্রযুক্তি এবং আক্রমণের ভেক্টরের উপর কেন্দ্র করে অত্যাধুনিক ল্যাব — প্রতি সপ্তাহে প্রকাশিত হয়!",
-      image: PlaceHolderImages.find(
-        (img) => img.id === "real-world-scenarios-asset",
-      )!,
+      image: {
+        imageUrl: "https://www.hackthebox.com/images/landingv3/real-world-scenarios.png",
+        description: "Real-world Scenarios",
+        imageHint: "data graph",
+      },
     },
     {
       title: "শিল্প সার্টিফিকেশন",
       description:
         "উদ্ভাবনী কোর্স এবং পরীক্ষা যা আপনাকে বাজারের জন্য প্রস্তুত একজন পেশাদার করে তুলবে!",
-      image: PlaceHolderImages.find(
-        (img) => img.id === "industry-certifications-asset",
-      )!,
+      image: {
+        imageUrl: "https://www.hackthebox.com/images/landingv3/industry-certifications.png",
+        description: "Industry Certifications",
+        imageHint: "certificate badge",
+      },
     },
   ];
 
