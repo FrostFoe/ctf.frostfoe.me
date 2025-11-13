@@ -13,26 +13,22 @@ import Link from "next/link";
 export default function HeroCarrer() {
   const logos = [
     {
-      imageUrl:
-        "https://www.hackthebox.com/images/landingv3/security-metrics-logo.svg",
+      imageUrl: "/svgs/security-metrics-logo.svg",
       description: "Security Metrics logo",
       imageHint: "company logo",
     },
     {
-      imageUrl:
-        "https://www.hackthebox.com/images/landingv3/synack-the-white-logo.svg",
+      imageUrl: "/svgs/synack-the-white-logo.svg",
       description: "Synack logo",
       imageHint: "company logo",
     },
     {
-      imageUrl:
-        "https://www.hackthebox.com/images/landingv3/lufthansa-logo.svg",
+      imageUrl: "/svgs/lufthansa-logo.svg",
       description: "Lufthansa logo",
       imageHint: "company logo",
     },
     {
-      imageUrl:
-        "https://www.hackthebox.com/images/landingv3/booking-holdings-logo.svg",
+      imageUrl: "/svgs/booking-holdings-logo.svg",
       description: "Booking Holdings logo",
       imageHint: "company logo",
     },
