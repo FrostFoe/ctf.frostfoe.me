@@ -13,6 +13,7 @@ import {
   Flag,
   Target,
   TrendingUp,
+  User, // Added User icon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -121,13 +122,19 @@ export default function ProfilePage() {
             <div className="flex flex-col sm:flex-row gap-6 sm:gap-8">
               {/* Avatar */}
               <div className="flex-shrink-0">
-                <Image
-                  src={userProfile.avatar}
-                  alt={userProfile.displayName}
-                  width={120}
-                  height={120}
-                  className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-lime-400"
-                />
+                {userProfile.avatar ? (
+                  <Image
+                    src={userProfile.avatar}
+                    alt={userProfile.displayName}
+                    width={120}
+                    height={120}
+                    className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-lime-400"
+                  />
+                ) : (
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-lime-400 bg-slate-700 flex items-center justify-center">
+                    <User className="w-12 h-12 sm:w-16 sm:h-16 text-slate-400" />
+                  </div>
+                )}
               </div>
 
               {/* User Info */}

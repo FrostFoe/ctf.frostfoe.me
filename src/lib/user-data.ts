@@ -23,10 +23,10 @@ import {
   joinEvent as storageJoinEvent,
   isParticipatingInEvent,
   updateEventScore as storageUpdateEventScore,
-  UserProfile,
-  UserStats,
-  Achievement,
-  RecentActivity,
+  type UserProfile,
+  type UserStats,
+  type Achievement,
+  type RecentActivity,
   CompletedChallenge,
   EventParticipation,
 } from "./storage";
@@ -260,7 +260,7 @@ export function checkAndUnlockAchievements(): void {
 /**
  * Get recent activities
  */
-export function getRecentActivities(limit: number = 20): RecentActivity[] {
+export function getRecentActivities(limit = 20): RecentActivity[] {
   const activities = getActivities();
   return activities.slice(0, limit);
 }
@@ -328,8 +328,8 @@ export function completeChallengeFull(
   challengeId: number,
   eventId: number,
   points: number,
-  timeSpent: number = 0,
-  hintsUsed: number = 0,
+  timeSpent = 0,
+  hintsUsed = 0,
 ): boolean {
   // Mark challenge as completed
   const success = storageCompleteChallenge({

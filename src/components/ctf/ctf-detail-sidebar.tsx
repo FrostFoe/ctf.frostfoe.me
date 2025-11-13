@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Users, Zap, Globe, Users2, BookOpen } from "lucide-react";
+import { Users, Zap, Globe, Users2, BookOpen, User } from "lucide-react";
 
 interface CtfEvent {
   hostedBy: string;
@@ -30,14 +30,18 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
           আয়োজন করেছে
         </h3>
         <div className="flex flex-col items-start gap-3 sm:gap-4">
-          <div className="shrink-0 w-14 h-14 sm:w-16 sm:h-16 bg-slate-700 rounded-lg overflow-hidden">
-            <Image
-              src={event.hostedByLogo}
-              alt={event.hostedBy}
-              width={64}
-              height={64}
-              className="w-full h-full object-cover"
-            />
+          <div className="shrink-0 w-14 h-14 sm:w-16 sm:h-16 bg-slate-700 rounded-lg overflow-hidden flex items-center justify-center">
+            {event.hostedByLogo ? (
+              <Image
+                src={event.hostedByLogo}
+                alt={event.hostedBy}
+                width={64}
+                height={64}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <User className="w-8 h-8 sm:w-10 sm:h-10 text-slate-400" />
+            )}
           </div>
           <div>
             <p className="text-white font-bold text-base sm:text-lg">
@@ -58,14 +62,23 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
           <div className="flex items-center gap-2 mb-2 sm:mb-3 overflow-x-auto pb-1">
             <div className="flex -space-x-2">
               {event.playerAvatars.slice(0, 4).map((avatar, idx) => (
-                <Image
-                  key={idx}
-                  src={avatar}
-                  alt={`খেলোয়াড় ${idx + 1}`}
-                  width={36}
-                  height={36}
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-2 border-slate-700 object-cover"
-                />
+                avatar ? (
+                  <Image
+                    key={idx}
+                    src={avatar}
+                    alt={`খেলোয়াড় ${idx + 1}`}
+                    width={36}
+                    height={36}
+                    className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-2 border-slate-700 object-cover"
+                  />
+                ) : (
+                  <div
+                    key={idx}
+                    className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-2 border-slate-700 bg-slate-700 flex items-center justify-center"
+                  >
+                    <User className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400" />
+                  </div>
+                )
               ))}
             </div>
             {event.playerAvatars.length > 4 && (

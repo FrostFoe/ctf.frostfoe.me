@@ -209,7 +209,7 @@ export function initializeDefaultUserProfile(): UserProfile {
     id: "user_" + Date.now(),
     username: "security_hacker",
     displayName: "মোহাম্মদ আহমেদ",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+    avatar: "",
     bio: "Cybersecurity enthusiast এবং CTF প্রতিযোগী। সর্বদা নতুন দক্ষতা শিখছি।",
     email: "user@example.com",
     joinDate: new Date().toISOString().split("T")[0],

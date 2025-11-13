@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
 import Link from "next/link";
-import ctfData from "@/data/ctf-data.json";
+import { ctfData } from "@/lib/ctf-data-loader";
 
 interface EventResult {
   type: "event";

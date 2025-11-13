@@ -9,7 +9,7 @@ import { clearAllStorage } from "@/lib/storage";
 /**
  * Export all user data as JSON file
  */
-export function exportUserDataAsJson(filename: string = "ctf-user-data"): void {
+export function exportUserDataAsJson(filename = "ctf-user-data"): void {
   if (typeof window === "undefined") return;
 
   const data = exportUserData();
@@ -223,7 +223,7 @@ export function isValidUsername(username: string): boolean {
 /**
  * Generate unique ID
  */
-export function generateUniqueId(prefix: string = ""): string {
+export function generateUniqueId(prefix = ""): string {
   return `${prefix}${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 }
 
@@ -259,7 +259,7 @@ export function groupBy<T>(array: T[], key: keyof T): Record<string, T[]> {
 /**
  * Sort array by multiple criteria
  */
-export function sortBy<T>(array: T[], ...criteria: Array<{ key: keyof T; ascending?: boolean }>): T[] {
+export function sortBy<T>(array: T[], ...criteria: { key: keyof T; ascending?: boolean }[]): T[] {
   return [...array].sort((a, b) => {
     for (const criterion of criteria) {
       const aVal = a[criterion.key];

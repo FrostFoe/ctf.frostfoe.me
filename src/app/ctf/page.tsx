@@ -7,7 +7,7 @@ import CtfSearch from "@/components/ctf/ctf-search";
 import CtfEventGrid from "@/components/ctf/ctf-event-grid";
 import CtfMainNav from "@/components/ctf/ctf-main-nav";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import ctfData from "@/data/ctf-data.json";
+import { ctfData } from "@/lib/ctf-data-loader";
 
 export default function CtfPage() {
   const [activeTab, setActiveTab] = useState("ongoing");
@@ -16,14 +16,14 @@ export default function CtfPage() {
   const events = {
     ongoing: ctfData.events.filter(
       (e) => e.status === "ongoing"
-    ) as typeof ctfData.events,
+    ),
     upcoming: ctfData.events.filter(
       (e) => e.status === "upcoming"
-    ) as typeof ctfData.events,
+    ),
     joined: [] as typeof ctfData.events,
     past: ctfData.events.filter(
       (e) => e.status === "ended"
-    ) as typeof ctfData.events,
+    ),
   };
 
   const filteredEvents = events[activeTab as keyof typeof events].filter(

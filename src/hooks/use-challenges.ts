@@ -43,8 +43,8 @@ export function useChallenges() {
       challengeId: number,
       eventId: number,
       points: number,
-      timeSpent: number = 0,
-      hintsUsed: number = 0,
+      timeSpent = 0,
+      hintsUsed = 0,
     ): boolean => {
       const success = completeChallengeFull(
         challengeId,

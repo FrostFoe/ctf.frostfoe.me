@@ -11,8 +11,8 @@ import {
   getAllTeams,
   saveUserTeams,
   saveUserTeamsMemberOf,
-  Team,
-  TeamMember,
+  type Team,
+  type TeamMember,
 } from "./storage";
 import { logActivity } from "./user-data";
 
@@ -27,7 +27,7 @@ export function createNewTeam(
   currentUserId: string,
   currentUsername: string,
   currentAvatar: string,
-  isPublic: boolean = true,
+  isPublic = true,
 ): Team | null {
   const team: Team = {
     id: `team_${Date.now()}`,
@@ -127,7 +127,7 @@ export function joinTeamDirectly(
   const allTeams = getAllTeams();
   const team = allTeams.find((t) => t.id === teamId);
 
-  if (!team || !team.isPublic) {
+  if (!team?.isPublic) {
     return null;
   }
 
@@ -166,7 +166,7 @@ export function removeTeamMember(teamId: string, memberId: string, currentUserId
   const userTeams = getUserTeams();
   const team = userTeams.find((t) => t.id === teamId);
 
-  if (!team || team.createdBy !== currentUserId) {
+  if (team?.createdBy !== currentUserId) {
     return false;
   }
 
@@ -188,7 +188,7 @@ export function updateMemberRole(
   const userTeams = getUserTeams();
   const team = userTeams.find((t) => t.id === teamId);
 
-  if (!team || team.createdBy !== currentUserId) {
+  if (team?.createdBy !== currentUserId) {
     return false;
   }
 
@@ -339,7 +339,7 @@ export function getPublicTeams(): Team[] {
 /**
  * Search teams
  */
-export function searchTeams(query: string, onlyPublic: boolean = true): Team[] {
+export function searchTeams(query: string, onlyPublic = true): Team[] {
   const teams = onlyPublic ? getPublicTeams() : getAllTeams();
   const lowerQuery = query.toLowerCase();
 
@@ -358,7 +358,7 @@ export function getTeamsBySize(minSize: number, maxSize: number): Team[] {
 /**
  * Get trending teams (most recent)
  */
-export function getTrendingTeams(limit: number = 5): Team[] {
+export function getTrendingTeams(limit = 5): Team[] {
   return getAllTeams()
     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
     .slice(0, limit);
@@ -367,6 +367,6 @@ export function getTrendingTeams(limit: number = 5): Team[] {
 /**
  * Get top teams by points
  */
-export function getTopTeams(limit: number = 5): Team[] {
+export function getTopTeams(limit = 5): Team[] {
   return getAllTeams().sort((a, b) => b.totalPoints - a.totalPoints).slice(0, limit);
 }

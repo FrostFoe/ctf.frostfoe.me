@@ -45,7 +45,7 @@ export function useTeams() {
       currentUserId: string,
       currentUsername: string,
       currentAvatar: string,
-      isPublic: boolean = true,
+      isPublic = true,
     ): Team | null => {
       const team = createNewTeam(
         teamName,
@@ -236,7 +236,7 @@ export function useTeams() {
    * Search teams
    */
   const searchTeamsFunc = useCallback(
-    (query: string, onlyPublic: boolean = true): Team[] => {
+    (query: string, onlyPublic = true): Team[] => {
       return searchTeams(query, onlyPublic);
     },
     [],

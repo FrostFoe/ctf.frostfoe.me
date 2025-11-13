@@ -14,7 +14,7 @@ import {
   getCompletedChallenges,
   isChallengeCompleted,
 } from "@/lib/storage";
-import ctfData from "@/data/ctf-data.json";
+import { ctfData } from "@/lib/ctf-data-loader";
 import type { CompletedChallenge } from "@/lib/storage";
 
 /**
@@ -30,12 +30,12 @@ function getChallengeFlagsFromJSON(challengeId: number): string[] {
   
   // Add main flag
   if ("flag" in challenge && challenge.flag) {
-    flags.push(challenge.flag as string);
+    flags.push(challenge.flag);
   }
 
   // Add alternate flags
   if ("alternateFlags" in challenge && Array.isArray(challenge.alternateFlags)) {
-    flags.push(...(challenge.alternateFlags as string[]));
+    flags.push(...(challenge.alternateFlags));
   }
 
   return flags;
@@ -82,8 +82,8 @@ export function submitFlagAndUpdate(
   challengeId: number,
   eventId: number,
   submittedFlag: string,
-  timeSpent: number = 0,
-  hintsUsed: number = 0,
+  timeSpent = 0,
+  hintsUsed = 0,
 ): { success: boolean; message: string; points?: number } {
   // Verify flag
   if (!verifyFlag(challengeId, submittedFlag)) {
@@ -152,7 +152,7 @@ export function trackResourceDownload(
 
   // Log download in localStorage
   const downloads = localStorage.getItem("ctf_resource_downloads");
-  const downloadList: Array<{ challengeId: number; resource: string; timestamp: string; size: number }> =
+  const downloadList: { challengeId: number; resource: string; timestamp: string; size: number }[] =
     downloads ? JSON.parse(downloads) : [];
 
   downloadList.push({
@@ -174,12 +174,12 @@ export function trackResourceDownload(
 /**
  * Get resource download history
  */
-export function getDownloadHistory(): Array<{
+export function getDownloadHistory(): {
   challengeId: number;
   resource: string;
   timestamp: string;
   size: number;
-}> {
+}[] {
   const downloads = localStorage.getItem("ctf_resource_downloads");
   return downloads ? JSON.parse(downloads) : [];
 }
@@ -354,12 +354,12 @@ export function getSubmissionHistory(challengeId: number): {
   status: "completed" | "incomplete" | "not_started";
 } {
   const submissions = localStorage.getItem("ctf_challenge_submissions");
-  const submissionList: Array<{
+  const submissionList: {
     challengeId: number;
     flag: string;
     isCorrect: boolean;
     timestamp: string;
-  }> = submissions ? JSON.parse(submissions) : [];
+  }[] = submissions ? JSON.parse(submissions) : [];
 
   const challengeSubmissions = submissionList.filter((s) => s.challengeId === challengeId);
   const completedSubmission = challengeSubmissions.find((s) => s.isCorrect);
@@ -382,12 +382,12 @@ export function logSubmissionAttempt(
   isCorrect: boolean,
 ): void {
   const submissions = localStorage.getItem("ctf_challenge_submissions");
-  const submissionList: Array<{
+  const submissionList: {
     challengeId: number;
     flag: string;
     isCorrect: boolean;
     timestamp: string;
-  }> = submissions ? JSON.parse(submissions) : [];
+  }[] = submissions ? JSON.parse(submissions) : [];
 
   submissionList.push({
     challengeId,
@@ -432,11 +432,11 @@ export function loadAllChallengeFlagsFromJSON(): Record<number, string[]> {
     const flags: string[] = [];
 
     if ("flag" in challenge && challenge.flag) {
-      flags.push(challenge.flag as string);
+      flags.push(challenge.flag);
     }
 
     if ("alternateFlags" in challenge && Array.isArray(challenge.alternateFlags)) {
-      flags.push(...(challenge.alternateFlags as string[]));
+      flags.push(...(challenge.alternateFlags));
     }
 
     if (flags.length > 0) {

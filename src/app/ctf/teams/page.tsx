@@ -66,7 +66,7 @@ export default function TeamsPage() {
       id: 2,
       name: "ডিজিটাল শার্কস",
       description: "নিরাপত্তা গবেষণা এবং নৈতিক হ্যাকিং এ বিশেষজ্ঞ দল।",
-      avatar: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=100&h=100&fit=crop",
+      avatar: "", // Empty avatar for testing fallback
       members: 8,
       maxMembers: 15,
       ranking: 12,
@@ -74,7 +74,7 @@ export default function TeamsPage() {
       createdDate: "20 Feb 2024",
       owner: "রহিম আলী",
       ownerAvatar:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop",
+        "", // Empty owner avatar for testing fallback
       status: "active",
       eventParticipations: 5,
       challenges: 32,
@@ -102,7 +102,7 @@ export default function TeamsPage() {
       id: 4,
       name: "ফোরেনসিক্স ফিউরিস",
       description: "ডিজিটাল ফোরেনসিক্স এবং মেলওয়্যার বিশ্লেষণে বিশেষজ্ঞ।",
-      avatar: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=100&h=100&fit=crop",
+      avatar: "", // Empty avatar for testing fallback
       members: 6,
       maxMembers: 12,
       ranking: 18,
@@ -200,37 +200,55 @@ export default function TeamsPage() {
             >
               {/* Team Header */}
               <div className="relative h-24 sm:h-32 bg-gradient-to-r from-slate-700 to-slate-800 overflow-hidden">
-                <Image
-                  src={team.avatar}
-                  alt={team.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform"
-                />
+                {team.avatar ? (
+                  <Image
+                    src={team.avatar}
+                    alt={team.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-slate-600 flex items-center justify-center text-white text-2xl font-bold">
+                    {team.name.charAt(0)}
+                  </div>
+                )}
               </div>
 
               {/* Team Content */}
               <div className="p-4 sm:p-6">
                 {/* Team Info */}
                 <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6 -mt-6 sm:-mt-10 relative z-10">
-                  <Image
-                    src={team.avatar}
-                    alt={team.name}
-                    width={60}
-                    height={60}
-                    className="w-14 h-14 sm:w-16 sm:h-16 rounded-lg border-4 border-slate-800"
-                  />
+                  {team.avatar ? (
+                    <Image
+                      src={team.avatar}
+                      alt={team.name}
+                      width={60}
+                      height={60}
+                      className="w-14 h-14 sm:w-16 sm:h-16 rounded-lg border-4 border-slate-800"
+                    />
+                  ) : (
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-lg border-4 border-slate-800 bg-slate-700 flex items-center justify-center">
+                      <User className="w-8 h-8 sm:w-10 sm:h-10 text-slate-400" />
+                    </div>
+                  )}
                   <div className="flex-1 min-w-0">
                     <h3 className="text-base sm:text-lg font-bold text-white truncate">
                       {team.name}
                     </h3>
                     <div className="flex items-center gap-2 mt-1">
-                      <Image
-                        src={team.ownerAvatar}
-                        alt={team.owner}
-                        width={20}
-                        height={20}
-                        className="w-5 h-5 rounded-full"
-                      />
+                      {team.ownerAvatar ? (
+                        <Image
+                          src={team.ownerAvatar}
+                          alt={team.owner}
+                          width={20}
+                          height={20}
+                          className="w-5 h-5 rounded-full"
+                        />
+                      ) : (
+                        <div className="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center">
+                          <User className="w-3 h-3 text-slate-400" />
+                        </div>
+                      )}
                       <span className="text-xs sm:text-sm text-slate-400">
                         {team.owner}
                       </span>
@@ -278,9 +296,9 @@ export default function TeamsPage() {
                       (_, i) => (
                         <div
                           key={i}
-                          className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-slate-800 bg-gradient-to-br from-lime-400 to-cyan-400 flex items-center justify-center text-white text-xs font-bold"
+                          className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-slate-800 bg-slate-700 flex items-center justify-center"
                         >
-                          {String.fromCharCode(65 + i)}
+                          <User className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400" />
                         </div>
                       )
                     )}

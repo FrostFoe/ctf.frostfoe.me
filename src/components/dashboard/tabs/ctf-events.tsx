@@ -4,7 +4,7 @@ import { useState } from "react";
 import CtfEventGrid from "@/components/ctf/ctf-event-grid";
 import CtfTabs from "@/components/ctf/ctf-tabs";
 import CtfSearch from "@/components/ctf/ctf-search";
-import ctfData from "@/data/ctf-data.json";
+import { ctfData } from "@/lib/ctf-data-loader";
 
 export default function CtfEvents() {
   const [activeTab, setActiveTab] = useState("ongoing");

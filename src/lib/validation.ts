@@ -272,7 +272,7 @@ export function checkRateLimit(key: string, maxAttempts: number, timeWindowMs: n
   const storageKey = `ratelimit_${key}`;
   const dataStr = localStorage.getItem(storageKey);
 
-  let data = dataStr
+  const data = dataStr
     ? JSON.parse(dataStr)
     : { attempts: [], firstAttemptTime: now };
 

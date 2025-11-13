@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Trophy, TrendingUp, Medal, Star } from "lucide-react";
+import { Trophy, TrendingUp, Medal, Star, User } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import CtfHeader from "@/components/ctf/ctf-header";
 import CtfMainNav from "@/components/ctf/ctf-main-nav";
-import ctfData from "@/data/ctf-data.json";
+import { ctfData } from "@/lib/ctf-data-loader";
 
 interface LeaderboardEntry {
   rank: number;
@@ -86,6 +86,7 @@ export default function LeaderboardPage() {
             solved: 45,
             country: "বাংলাদেশ",
             badge: "🏆",
+            avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
           },
           {
             rank: 2,
@@ -94,6 +95,7 @@ export default function LeaderboardPage() {
             solved: 42,
             country: "বাংলাদেশ",
             badge: "🥈",
+            avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop",
           },
           {
             rank: 3,
@@ -102,6 +104,7 @@ export default function LeaderboardPage() {
             solved: 39,
             country: "ভারত",
             badge: "🥉",
+            avatar: "",
           },
           {
             rank: 4,
@@ -109,6 +112,7 @@ export default function LeaderboardPage() {
             points: 4120,
             solved: 36,
             country: "বাংলাদেশ",
+            avatar: "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=100&h=100&fit=crop",
           },
           {
             rank: 5,
@@ -116,6 +120,7 @@ export default function LeaderboardPage() {
             points: 3890,
             solved: 33,
             country: "বাংলাদেশ",
+            avatar: "",
           },
           {
             rank: 6,
@@ -123,6 +128,7 @@ export default function LeaderboardPage() {
             points: 3650,
             solved: 30,
             country: "বাংলাদেশ",
+            avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop",
           },
           {
             rank: 7,
@@ -130,6 +136,7 @@ export default function LeaderboardPage() {
             points: 3420,
             solved: 27,
             country: "ভারত",
+            avatar: "",
           },
           {
             rank: 8,
@@ -137,6 +144,7 @@ export default function LeaderboardPage() {
             points: 3180,
             solved: 24,
             country: "ভারত",
+            avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
           },
         ];
         setLeaderboardData(sampleData);
@@ -328,9 +336,17 @@ export default function LeaderboardPage() {
                         </td>
                         <td className="px-4 sm:px-6 py-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-linear-to-br from-lime-400 to-lime-600 flex items-center justify-center text-slate-900 font-bold text-xs">
-                              {entry.name.charAt(0)}
-                            </div>
+                            {entry.avatar ? (
+                              <img
+                                src={entry.avatar}
+                                alt={entry.name}
+                                className="w-8 h-8 rounded-full"
+                              />
+                            ) : (
+                              <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center">
+                                <User className="w-5 h-5 text-slate-400" />
+                              </div>
+                            )}
                             <div>
                               <p className="font-semibold text-white">
                                 {entry.name}

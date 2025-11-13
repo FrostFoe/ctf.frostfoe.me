@@ -7,7 +7,7 @@ import ChallengesGrid from "@/components/ctf/challenges-grid";
 import CtfHeader from "@/components/ctf/ctf-header";
 import CtfMainNav from "@/components/ctf/ctf-main-nav";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import ctfData from "@/data/ctf-data.json";
+import { ctfData } from "@/lib/ctf-data-loader";
 
 export default function ChallengesPage() {
   const [searchQuery, setSearchQuery] = useState("");

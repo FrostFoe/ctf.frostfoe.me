@@ -39,7 +39,7 @@ export function useChallengeSubmission(challengeId: number, eventId: number) {
    * Submit flag for verification
    */
   const submitFlag = useCallback(
-    async (flag: string, timeSpent: number = 0, hintsUsed: number = 0) => {
+    async (flag: string, timeSpent = 0, hintsUsed = 0) => {
       if (!flag.trim()) {
         setSubmissionResult({
           success: false,
@@ -89,7 +89,7 @@ export function useChallengeSubmission(challengeId: number, eventId: number) {
    * Download resource
    */
   const downloadResource = useCallback(
-    (resourceName: string, sizeBytes: number = 0) => {
+    (resourceName: string, sizeBytes = 0) => {
       const result = trackResourceDownload(challengeId, resourceName, sizeBytes);
       return result.downloadUrl;
     },

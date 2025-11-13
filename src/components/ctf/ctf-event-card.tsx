@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { EventStatusBadge } from "@/components/ui/event-status-badge";
 import { Countdown } from "@/components/ui/countdown";
+import { User } from "lucide-react";
 
 interface CtfEventCardProps {
   id: number;
@@ -129,7 +130,7 @@ export default function CtfEventCard({
                         backgroundColor: avatarColors[i % avatarColors.length],
                       }}
                     >
-                      {String.fromCharCode(65 + i)}
+                      <User className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                     </div>
                   ),
                 )}

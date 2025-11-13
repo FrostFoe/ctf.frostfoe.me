@@ -18,7 +18,7 @@ import { Badge } from "@/components/ui/badge";
 import { FlagSubmissionForm } from "@/components/challenge/flag-submission-form";
 import { ChallengeResources } from "@/components/challenge/challenge-resources";
 import { ChallengeStatusCard } from "@/components/challenge/challenge-status-card";
-import ctfData from "@/data/ctf-data.json";
+import { ctfData } from "@/lib/ctf-data-loader";
 
 interface PageProps {
   params: Promise<{

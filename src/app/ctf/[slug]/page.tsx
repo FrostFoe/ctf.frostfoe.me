@@ -7,7 +7,7 @@ import CtfDetailAbout from "@/components/ctf/ctf-detail-about";
 import CtfDetailSidebar from "@/components/ctf/ctf-detail-sidebar";
 import CtfDetailFooter from "@/components/ctf/ctf-detail-footer";
 import CtfSeriesChallenges from "@/components/ctf/ctf-series-challenges";
-import ctfData from "@/data/ctf-data.json";
+import { ctfData } from "@/lib/ctf-data-loader";
 
 interface PageProps {
   params: Promise<{

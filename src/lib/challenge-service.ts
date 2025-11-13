@@ -188,7 +188,7 @@ export function getDifficultyProgress(eventId: number, difficulties: string[]) {
 /**
  * Get most difficult challenges (least solved)
  */
-export function getMostDifficultChallenges(challenges: any[], limit: number = 5) {
+export function getMostDifficultChallenges(challenges: any[], limit = 5) {
   return challenges.sort((a, b) => (a.solves || 0) - (b.solves || 0)).slice(0, limit);
 }
 
