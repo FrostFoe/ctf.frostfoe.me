@@ -52,7 +52,11 @@ export function createNewTeam(
   const success = storageCreateTeam(team);
 
   if (success) {
-    logActivity("team_created", "টিম তৈরি করা হয়েছে", `"${teamName}" টিম তৈরি করেছেন`);
+    logActivity(
+      "team_created",
+      "টিম তৈরি করা হয়েছে",
+      `"${teamName}" টিম তৈরি করেছেন`,
+    );
     return team;
   }
 
@@ -110,7 +114,11 @@ export function joinTeamWithCode(
   memberTeams.push(team);
   saveUserTeamsMemberOf(memberTeams);
 
-  logActivity("team_joined", "টিমে যোগদান করেছেন", `"${team.name}" টিমে যোগদান করেছেন`);
+  logActivity(
+    "team_joined",
+    "টিমে যোগদান করেছেন",
+    `"${team.name}" টিমে যোগদান করেছেন`,
+  );
 
   return team;
 }
@@ -152,7 +160,11 @@ export function joinTeamDirectly(
   memberTeams.push(team);
   saveUserTeamsMemberOf(memberTeams);
 
-  logActivity("team_joined", "টিমে যোগদান করেছেন", `"${team.name}" টিমে যোগদান করেছেন`);
+  logActivity(
+    "team_joined",
+    "টিমে যোগদান করেছেন",
+    `"${team.name}" টিমে যোগদান করেছেন`,
+  );
 
   return team;
 }
@@ -162,7 +174,11 @@ export function joinTeamDirectly(
 /**
  * Remove member from team
  */
-export function removeTeamMember(teamId: string, memberId: string, currentUserId: string): boolean {
+export function removeTeamMember(
+  teamId: string,
+  memberId: string,
+  currentUserId: string,
+): boolean {
   const userTeams = getUserTeams();
   const team = userTeams.find((t) => t.id === teamId);
 
@@ -256,7 +272,9 @@ export function isTeamMember(teamId: string, userId: string): boolean {
  */
 export function isTeamLeader(teamId: string, userId: string): boolean {
   const team = getTeamById(teamId);
-  return team ? team.members.some((m) => m.userId === userId && m.role === "leader") : false;
+  return team
+    ? team.members.some((m) => m.userId === userId && m.role === "leader")
+    : false;
 }
 
 /**
@@ -296,10 +314,12 @@ export function getTeamStatistics(teamId: string) {
  * Get team ranking
  */
 export function getTeamRanking(teams: Team[]): (Team & { rank: number })[] {
-  return teams.sort((a, b) => b.totalPoints - a.totalPoints).map((team, index) => ({
-    ...team,
-    rank: index + 1,
-  }));
+  return teams
+    .sort((a, b) => b.totalPoints - a.totalPoints)
+    .map((team, index) => ({
+      ...team,
+      rank: index + 1,
+    }));
 }
 
 /**
@@ -344,7 +364,9 @@ export function searchTeams(query: string, onlyPublic = true): Team[] {
   const lowerQuery = query.toLowerCase();
 
   return teams.filter(
-    (t) => t.name.toLowerCase().includes(lowerQuery) || t.description.toLowerCase().includes(lowerQuery),
+    (t) =>
+      t.name.toLowerCase().includes(lowerQuery) ||
+      t.description.toLowerCase().includes(lowerQuery),
   );
 }
 
@@ -352,7 +374,9 @@ export function searchTeams(query: string, onlyPublic = true): Team[] {
  * Get teams by member count
  */
 export function getTeamsBySize(minSize: number, maxSize: number): Team[] {
-  return getAllTeams().filter((t) => t.members.length >= minSize && t.members.length <= maxSize);
+  return getAllTeams().filter(
+    (t) => t.members.length >= minSize && t.members.length <= maxSize,
+  );
 }
 
 /**
@@ -360,7 +384,10 @@ export function getTeamsBySize(minSize: number, maxSize: number): Team[] {
  */
 export function getTrendingTeams(limit = 5): Team[] {
   return getAllTeams()
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    )
     .slice(0, limit);
 }
 
@@ -368,5 +395,7 @@ export function getTrendingTeams(limit = 5): Team[] {
  * Get top teams by points
  */
 export function getTopTeams(limit = 5): Team[] {
-  return getAllTeams().sort((a, b) => b.totalPoints - a.totalPoints).slice(0, limit);
+  return getAllTeams()
+    .sort((a, b) => b.totalPoints - a.totalPoints)
+    .slice(0, limit);
 }

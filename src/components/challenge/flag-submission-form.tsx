@@ -7,7 +7,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Check, X, Loader2, Copy, Eye, EyeOff, AlertCircle } from "lucide-react";
+import {
+  Check,
+  X,
+  Loader2,
+  Copy,
+  Eye,
+  EyeOff,
+  AlertCircle,
+} from "lucide-react";
 import { useChallengeSubmission } from "@/hooks/use-challenge-submission";
 import { sanitizeFlag, checkRateLimit } from "@/lib/validation";
 
@@ -58,7 +66,7 @@ export function FlagSubmissionForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Clear previous messages
     setValidationError("");
     setRateLimitMessage("");
@@ -72,7 +80,7 @@ export function FlagSubmissionForm({
     if (!rateLimit.allowed) {
       const secondsRemaining = Math.ceil(rateLimit.resetIn / 1000);
       setRateLimitMessage(
-        `অনেক চেষ্টা করেছেন। ${secondsRemaining} সেকেন্ড পরে আবার চেষ্টা করুন।`
+        `অনেক চেষ্টা করেছেন। ${secondsRemaining} সেকেন্ড পরে আবার চেষ্টা করুন।`,
       );
       return;
     }
@@ -165,7 +173,13 @@ export function FlagSubmissionForm({
         {/* Submit Button */}
         <button
           type="submit"
-          disabled={isSubmitting || isCompleted || !flagInput.trim() || !!validationError || !!rateLimitMessage}
+          disabled={
+            isSubmitting ||
+            isCompleted ||
+            !flagInput.trim() ||
+            !!validationError ||
+            !!rateLimitMessage
+          }
           className="w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-all flex items-center justify-center gap-2"
         >
           {isSubmitting ? (
@@ -203,11 +217,12 @@ export function FlagSubmissionForm({
             )}
             <div className="flex-1">
               <p className="font-medium">{submissionResult.message}</p>
-              {submissionResult.points !== undefined && submissionResult.success && (
-                <p className="text-sm mt-1 opacity-90">
-                  🎉 {submissionResult.points} পয়েন্ট অর্জন করেছেন!
-                </p>
-              )}
+              {submissionResult.points !== undefined &&
+                submissionResult.success && (
+                  <p className="text-sm mt-1 opacity-90">
+                    🎉 {submissionResult.points} পয়েন্ট অর্জন করেছেন!
+                  </p>
+                )}
             </div>
           </div>
         </div>

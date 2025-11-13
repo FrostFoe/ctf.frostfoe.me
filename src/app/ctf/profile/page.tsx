@@ -28,14 +28,21 @@ import {
   updateUserProfile,
   checkAndUnlockAchievements,
 } from "@/lib/user-data";
-import type { Achievement, RecentActivity, UserProfile, UserStats } from "@/lib/storage";
+import type {
+  Achievement,
+  RecentActivity,
+  UserProfile,
+  UserStats,
+} from "@/lib/storage";
 
 export default function ProfilePage() {
   const [activeTab, setActiveTab] = useState("overview");
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [stats, setStats] = useState<UserStats | null>(null);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
-  const [recentActivities, setRecentActivities] = useState<RecentActivity[]>([]);
+  const [recentActivities, setRecentActivities] = useState<RecentActivity[]>(
+    [],
+  );
   const [isLoading, setIsLoading] = useState(true);
 
   // Real-time localStorage listener for stats updates

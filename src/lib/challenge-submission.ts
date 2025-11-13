@@ -27,15 +27,18 @@ function getChallengeFlagsFromJSON(challengeId: number): string[] {
   }
 
   const flags: string[] = [];
-  
+
   // Add main flag
   if ("flag" in challenge && challenge.flag) {
     flags.push(challenge.flag);
   }
 
   // Add alternate flags
-  if ("alternateFlags" in challenge && Array.isArray(challenge.alternateFlags)) {
-    flags.push(...(challenge.alternateFlags));
+  if (
+    "alternateFlags" in challenge &&
+    Array.isArray(challenge.alternateFlags)
+  ) {
+    flags.push(...challenge.alternateFlags);
   }
 
   return flags;
@@ -43,22 +46,45 @@ function getChallengeFlagsFromJSON(challengeId: number): string[] {
 
 // Fallback mock solutions (if not in JSON)
 const CHALLENGE_SOLUTIONS: Record<number, string[]> = {
-  1: ["flag{web_security_rules}", "flag{developer_tools_ftw}", "flag{hidden_input}"],
-  2: ["flag{crypto_challenge_done}", "flag{caesar_cipher_solved}", "flag{shift_13}"],
-  3: ["flag{sql_injection_pwned}", "flag{database_unlocked}", "flag{admin_bypass}"],
-  4: ["flag{xss_vulnerability_found}", "flag{javascript_executed}", "flag{script_injected}"],
-  5: ["flag{access_control_bypass}", "flag{admin_access_gained}", "flag{privilege_escalation}"],
+  1: [
+    "flag{web_security_rules}",
+    "flag{developer_tools_ftw}",
+    "flag{hidden_input}",
+  ],
+  2: [
+    "flag{crypto_challenge_done}",
+    "flag{caesar_cipher_solved}",
+    "flag{shift_13}",
+  ],
+  3: [
+    "flag{sql_injection_pwned}",
+    "flag{database_unlocked}",
+    "flag{admin_bypass}",
+  ],
+  4: [
+    "flag{xss_vulnerability_found}",
+    "flag{javascript_executed}",
+    "flag{script_injected}",
+  ],
+  5: [
+    "flag{access_control_bypass}",
+    "flag{admin_access_gained}",
+    "flag{privilege_escalation}",
+  ],
 };
 
 /**
  * Verify submitted flag against JSON and fallback solutions
  */
-export function verifyFlag(challengeId: number, submittedFlag: string): boolean {
+export function verifyFlag(
+  challengeId: number,
+  submittedFlag: string,
+): boolean {
   // Try JSON first
   const jsonFlags = getChallengeFlagsFromJSON(challengeId);
   if (jsonFlags.length > 0) {
     return jsonFlags.some(
-      (flag) => flag.toLowerCase() === submittedFlag.toLowerCase().trim()
+      (flag) => flag.toLowerCase() === submittedFlag.toLowerCase().trim(),
     );
   }
 
@@ -71,7 +97,7 @@ export function verifyFlag(challengeId: number, submittedFlag: string): boolean 
 
   // Case-insensitive comparison
   return solutions.some(
-    (solution) => solution.toLowerCase() === submittedFlag.toLowerCase().trim()
+    (solution) => solution.toLowerCase() === submittedFlag.toLowerCase().trim(),
   );
 }
 
@@ -109,7 +135,13 @@ export function submitFlagAndUpdate(
   }
 
   // Mark as completed
-  const success = completeChallengeFull(challengeId, eventId, points, timeSpent, hintsUsed);
+  const success = completeChallengeFull(
+    challengeId,
+    eventId,
+    points,
+    timeSpent,
+    hintsUsed,
+  );
 
   if (success) {
     return {
@@ -152,8 +184,12 @@ export function trackResourceDownload(
 
   // Log download in localStorage
   const downloads = localStorage.getItem("ctf_resource_downloads");
-  const downloadList: { challengeId: number; resource: string; timestamp: string; size: number }[] =
-    downloads ? JSON.parse(downloads) : [];
+  const downloadList: {
+    challengeId: number;
+    resource: string;
+    timestamp: string;
+    size: number;
+  }[] = downloads ? JSON.parse(downloads) : [];
 
   downloadList.push({
     challengeId,
@@ -232,7 +268,10 @@ export function calculateChallengeScore(
   // Hint penalty (5-10 points per hint depending on difficulty)
   if (hintsUsed > 0) {
     const hintCost = difficultyMultiplier > 1.2 ? 15 : 10; // Higher cost for harder challenges
-    const hintPenalty = Math.min(hintsUsed * hintCost, Math.floor(points * 0.4)); // Max 40% penalty
+    const hintPenalty = Math.min(
+      hintsUsed * hintCost,
+      Math.floor(points * 0.4),
+    ); // Max 40% penalty
     points -= hintPenalty;
     breakdown.hintPenalty = -hintPenalty;
   }
@@ -250,7 +289,9 @@ export function calculateChallengeScore(
       breakdown.speedBonus = speedBonus;
     } else if (timeSpentMinutes <= speedTimeLimit) {
       // Solved within time limit
-      const speedBonus = Math.round(points * 0.1 * (1 - timeSpentMinutes / speedTimeLimit));
+      const speedBonus = Math.round(
+        points * 0.1 * (1 - timeSpentMinutes / speedTimeLimit),
+      );
       points += speedBonus;
       breakdown.speedBonus = speedBonus;
     }
@@ -267,11 +308,12 @@ export function calculateChallengeScore(
   // Solve count reduction (first solvers get more points)
   if (solveCount && solveCount > 10) {
     // After 10 solves, points decrease
-    const reduction = Math.round(
-      points * Math.log(solveCount) * 0.02
-    );
+    const reduction = Math.round(points * Math.log(solveCount) * 0.02);
     points -= Math.min(reduction, Math.floor(points * 0.3)); // Max 30% reduction
-    breakdown.solveCountReduction = -Math.min(reduction, Math.floor(points * 0.3));
+    breakdown.solveCountReduction = -Math.min(
+      reduction,
+      Math.floor(points * 0.3),
+    );
   }
 
   // Ensure minimum 50 points, maximum reasonable value
@@ -361,7 +403,9 @@ export function getSubmissionHistory(challengeId: number): {
     timestamp: string;
   }[] = submissions ? JSON.parse(submissions) : [];
 
-  const challengeSubmissions = submissionList.filter((s) => s.challengeId === challengeId);
+  const challengeSubmissions = submissionList.filter(
+    (s) => s.challengeId === challengeId,
+  );
   const completedSubmission = challengeSubmissions.find((s) => s.isCorrect);
 
   return {
@@ -369,7 +413,11 @@ export function getSubmissionHistory(challengeId: number): {
     completionAttempt: completedSubmission
       ? challengeSubmissions.indexOf(completedSubmission) + 1
       : null,
-    status: completedSubmission ? "completed" : challengeSubmissions.length > 0 ? "incomplete" : "not_started",
+    status: completedSubmission
+      ? "completed"
+      : challengeSubmissions.length > 0
+        ? "incomplete"
+        : "not_started",
   };
 }
 
@@ -401,18 +449,28 @@ export function logSubmissionAttempt(
     submissionList.splice(0, submissionList.length - 500);
   }
 
-  localStorage.setItem("ctf_challenge_submissions", JSON.stringify(submissionList));
+  localStorage.setItem(
+    "ctf_challenge_submissions",
+    JSON.stringify(submissionList),
+  );
 }
 
 /**
  * Get challenge leaderboard for event
  */
-export function getEventChallengeLeaderboard(eventId: number, challengeId: number) {
+export function getEventChallengeLeaderboard(
+  eventId: number,
+  challengeId: number,
+) {
   const completed = getCompletedChallenges();
-  const eventChallenges = completed.filter((c) => c.eventId === eventId && c.challengeId === challengeId);
+  const eventChallenges = completed.filter(
+    (c) => c.eventId === eventId && c.challengeId === challengeId,
+  );
 
   return eventChallenges
-    .sort((a, b) => new Date(a.solvedAt).getTime() - new Date(b.solvedAt).getTime())
+    .sort(
+      (a, b) => new Date(a.solvedAt).getTime() - new Date(b.solvedAt).getTime(),
+    )
     .slice(0, 10) // Top 10
     .map((c, index) => ({
       rank: index + 1,
@@ -435,8 +493,11 @@ export function loadAllChallengeFlagsFromJSON(): Record<number, string[]> {
       flags.push(challenge.flag);
     }
 
-    if ("alternateFlags" in challenge && Array.isArray(challenge.alternateFlags)) {
-      flags.push(...(challenge.alternateFlags));
+    if (
+      "alternateFlags" in challenge &&
+      Array.isArray(challenge.alternateFlags)
+    ) {
+      flags.push(...challenge.alternateFlags);
     }
 
     if (flags.length > 0) {
@@ -458,10 +519,22 @@ export function exportChallengeStats() {
     totalChallengesCompleted: completed.length,
     totalPointsEarned: getTotalPointsEarned(),
     averageTimePerChallenge:
-      completed.length > 0 ? Math.round(completed.reduce((sum, c) => sum + c.timeSpent, 0) / completed.length) : 0,
-    averageHintsUsed: completed.length > 0 ? Math.round(completed.reduce((sum, c) => sum + c.hintsUsed, 0) / completed.length) : 0,
+      completed.length > 0
+        ? Math.round(
+            completed.reduce((sum, c) => sum + c.timeSpent, 0) /
+              completed.length,
+          )
+        : 0,
+    averageHintsUsed:
+      completed.length > 0
+        ? Math.round(
+            completed.reduce((sum, c) => sum + c.hintsUsed, 0) /
+              completed.length,
+          )
+        : 0,
     mostUsedHints: Math.max(...completed.map((c) => c.hintsUsed), 0),
-    fastestSolve: completed.length > 0 ? Math.min(...completed.map((c) => c.timeSpent)) : 0,
+    fastestSolve:
+      completed.length > 0 ? Math.min(...completed.map((c) => c.timeSpent)) : 0,
     exportedAt: new Date().toISOString(),
   };
 }

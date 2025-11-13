@@ -30,28 +30,38 @@ interface CompletedChallenge {
 export default function LeaderboardPage() {
   const [sortBy, setSortBy] = useState<"points" | "solved">("points");
   const [selectedEvent, setSelectedEvent] = useState<number>(1);
-  const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>([]);
+  const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>(
+    [],
+  );
 
   // Load and compute leaderboard data
   useEffect(() => {
     try {
-      const completedStr = localStorage.getItem("ctf_completed_challenges_details");
-      const completedChallenges: CompletedChallenge[] = completedStr ? JSON.parse(completedStr) : [];
-      
+      const completedStr = localStorage.getItem(
+        "ctf_completed_challenges_details",
+      );
+      const completedChallenges: CompletedChallenge[] = completedStr
+        ? JSON.parse(completedStr)
+        : [];
+
       // Group by user (using a user ID from localStorage or generate one)
-      const userIdStr = localStorage.getItem("ctf_user_id") || "user_" + Math.random().toString(36).substr(2, 9);
+      const userIdStr =
+        localStorage.getItem("ctf_user_id") ||
+        "user_" + Math.random().toString(36).substr(2, 9);
       localStorage.setItem("ctf_user_id", userIdStr);
 
       // Filter challenges for selected event
-      const eventChallenges = completedChallenges.filter(c => c.eventId === selectedEvent);
+      const eventChallenges = completedChallenges.filter(
+        (c) => c.eventId === selectedEvent,
+      );
 
       // Create leaderboard entries
       const leaderboard: LeaderboardEntry[] = [];
-      
+
       // Get unique users from completed challenges
       const userChallenges = new Map<string, CompletedChallenge[]>();
-      
-      eventChallenges.forEach(challenge => {
+
+      eventChallenges.forEach((challenge) => {
         const key = userIdStr; // In a real app, we'd have actual user IDs
         if (!userChallenges.has(key)) {
           userChallenges.set(key, []);
@@ -62,9 +72,12 @@ export default function LeaderboardPage() {
       // Calculate statistics for each user
       let rank = 1;
       userChallenges.forEach((challenges, userId) => {
-        const totalPoints = challenges.reduce((sum, c) => sum + c.pointsEarned, 0);
+        const totalPoints = challenges.reduce(
+          (sum, c) => sum + c.pointsEarned,
+          0,
+        );
         const totalTime = challenges.reduce((sum, c) => sum + c.timeSpent, 0);
-        
+
         leaderboard.push({
           rank: rank++,
           name: "আপনি", // Replace with actual user name from localStorage
@@ -72,7 +85,14 @@ export default function LeaderboardPage() {
           solved: challenges.length,
           country: "বাংলাদেশ",
           timeSpent: totalTime,
-          badge: rank <= 4 ? (rank === 1 ? "🏆" : rank === 2 ? "🥈" : "🥉") : undefined,
+          badge:
+            rank <= 4
+              ? rank === 1
+                ? "🏆"
+                : rank === 2
+                  ? "🥈"
+                  : "🥉"
+              : undefined,
         });
       });
 
@@ -86,7 +106,7 @@ export default function LeaderboardPage() {
             solved: 45,
             country: "বাংলাদেশ",
             badge: "🏆",
-            avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+            avatar: "/images/learning-paths-asset.webp",
           },
           {
             rank: 2,
@@ -95,7 +115,7 @@ export default function LeaderboardPage() {
             solved: 42,
             country: "বাংলাদেশ",
             badge: "🥈",
-            avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop",
+            avatar: "/images/real-world-scenarios.webp",
           },
           {
             rank: 3,
@@ -112,7 +132,7 @@ export default function LeaderboardPage() {
             points: 4120,
             solved: 36,
             country: "বাংলাদেশ",
-            avatar: "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=100&h=100&fit=crop",
+            avatar: "/images/industry-certifications.webp",
           },
           {
             rank: 5,
@@ -128,7 +148,7 @@ export default function LeaderboardPage() {
             points: 3650,
             solved: 30,
             country: "বাংলাদেশ",
-            avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop",
+            avatar: "/images/learning-paths-asset.webp",
           },
           {
             rank: 7,
@@ -144,7 +164,7 @@ export default function LeaderboardPage() {
             points: 3180,
             solved: 24,
             country: "ভারত",
-            avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+            avatar: "/images/real-world-scenarios.webp",
           },
         ];
         setLeaderboardData(sampleData);

@@ -103,7 +103,10 @@ export function validateUsername(username: string): {
   }
 
   if (username.length > 50) {
-    return { valid: false, error: "ব্যবহারকারীর নাম 50 অক্ষরের বেশি হতে পারে না" };
+    return {
+      valid: false,
+      error: "ব্যবহারকারীর নাম 50 অক্ষরের বেশি হতে পারে না",
+    };
   }
 
   // Allow only alphanumeric, underscore, and hyphen
@@ -111,7 +114,8 @@ export function validateUsername(username: string): {
   if (!validPattern.test(username)) {
     return {
       valid: false,
-      error: "ব্যবহারকারীর নাম শুধুমাত্র অক্ষর, সংখ্যা, _, এবং - ধারণ করতে পারে",
+      error:
+        "ব্যবহারকারীর নাম শুধুমাত্র অক্ষর, সংখ্যা, _, এবং - ধারণ করতে পারে",
     };
   }
 
@@ -263,7 +267,11 @@ export function escapeHtml(text: string): string {
 /**
  * Rate limit check helper
  */
-export function checkRateLimit(key: string, maxAttempts: number, timeWindowMs: number): {
+export function checkRateLimit(
+  key: string,
+  maxAttempts: number,
+  timeWindowMs: number,
+): {
   allowed: boolean;
   remaining: number;
   resetIn: number;
@@ -278,7 +286,7 @@ export function checkRateLimit(key: string, maxAttempts: number, timeWindowMs: n
 
   // Remove attempts outside time window
   data.attempts = data.attempts.filter(
-    (timestamp: number) => now - timestamp < timeWindowMs
+    (timestamp: number) => now - timestamp < timeWindowMs,
   );
 
   if (data.attempts.length < maxAttempts) {
@@ -304,18 +312,13 @@ export function checkRateLimit(key: string, maxAttempts: number, timeWindowMs: n
 /**
  * Validate submission object structure
  */
-export function validateSubmission(
-  submission: unknown
-): submission is {
+export function validateSubmission(submission: unknown): submission is {
   challengeId: number;
   flag: string;
   timeSpent: number;
   hintsUsed: number;
 } {
-  if (
-    typeof submission !== "object" ||
-    submission === null
-  ) {
+  if (typeof submission !== "object" || submission === null) {
     return false;
   }
 

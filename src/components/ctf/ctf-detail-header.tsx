@@ -61,7 +61,7 @@ export default function CtfDetailHeader({ event }: CtfDetailHeaderProps) {
             {/* Illustration/Icon Area */}
             <div className="hidden md:flex shrink-0">
               <Image
-                src="https://images.unsplash.com/photo-1550439062-609e7e7dfa6a?w=200&h=200&fit=crop"
+                src="/images/learning-paths-asset.webp"
                 alt="সিটিএফ আইকন"
                 width={150}
                 height={150}

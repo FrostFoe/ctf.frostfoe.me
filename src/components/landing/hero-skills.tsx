@@ -19,7 +19,7 @@ export default function HeroSkills() {
       description:
         "বিভিন্ন দক্ষতার উপর সম্পূর্ণ নির্দেশিত যাত্রা অথবা নির্দিষ্ট নিরাপত্তা চাকরির ভূমিকায় দক্ষতা অর্জন।",
       image: {
-        imageUrl: "https://www.hackthebox.com/images/landingv3/learning-paths-asset.png",
+        imageUrl: "/images/learning-paths-asset.webp",
         description: "Learning Paths",
         imageHint: "abstract nodes",
       },
@@ -29,7 +29,7 @@ export default function HeroSkills() {
       description:
         "সর্বশেষ প্রযুক্তি এবং আক্রমণের ভেক্টরের উপর কেন্দ্র করে অত্যাধুনিক ল্যাব — প্রতি সপ্তাহে প্রকাশিত হয়!",
       image: {
-        imageUrl: "https://www.hackthebox.com/images/landingv3/real-world-scenarios.png",
+        imageUrl: "/images/real-world-scenarios.webp",
         description: "Real-world Scenarios",
         imageHint: "data graph",
       },
@@ -39,7 +39,7 @@ export default function HeroSkills() {
       description:
         "উদ্ভাবনী কোর্স এবং পরীক্ষা যা আপনাকে বাজারের জন্য প্রস্তুত একজন পেশাদার করে তুলবে!",
       image: {
-        imageUrl: "https://www.hackthebox.com/images/landingv3/industry-certifications.png",
+        imageUrl: "/images/industry-certifications.webp",
         description: "Industry Certifications",
         imageHint: "certificate badge",
       },

@@ -70,14 +70,17 @@ export function useCtfData() {
   /**
    * Get event progress
    */
-  const loadEventProgress = useCallback((eventId: number, totalChallenges: number) => {
-    const progress = getEventProgress(eventId, totalChallenges);
-    setEventProgress((prev) => ({
-      ...prev,
-      [eventId]: progress,
-    }));
-    return progress;
-  }, []);
+  const loadEventProgress = useCallback(
+    (eventId: number, totalChallenges: number) => {
+      const progress = getEventProgress(eventId, totalChallenges);
+      setEventProgress((prev) => ({
+        ...prev,
+        [eventId]: progress,
+      }));
+      return progress;
+    },
+    [],
+  );
 
   /**
    * Get event participation details
@@ -89,22 +92,25 @@ export function useCtfData() {
   /**
    * Update event score
    */
-  const updateScore = useCallback((eventId: number, points: number): boolean => {
-    const success = updateEventScore(eventId, points);
-    if (success) {
-      const details = getEventParticipation(eventId);
-      if (details) {
-        setEventProgress((prev) => ({
-          ...prev,
-          [eventId]: {
-            ...prev[eventId],
-            totalPoints: details.score,
-          },
-        }));
+  const updateScore = useCallback(
+    (eventId: number, points: number): boolean => {
+      const success = updateEventScore(eventId, points);
+      if (success) {
+        const details = getEventParticipation(eventId);
+        if (details) {
+          setEventProgress((prev) => ({
+            ...prev,
+            [eventId]: {
+              ...prev[eventId],
+              totalPoints: details.score,
+            },
+          }));
+        }
       }
-    }
-    return success;
-  }, []);
+      return success;
+    },
+    [],
+  );
 
   return {
     isLoading,

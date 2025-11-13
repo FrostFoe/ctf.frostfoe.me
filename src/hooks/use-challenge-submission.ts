@@ -24,7 +24,8 @@ export interface SubmissionResult {
 
 export function useChallengeSubmission(challengeId: number, eventId: number) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submissionResult, setSubmissionResult] = useState<SubmissionResult | null>(null);
+  const [submissionResult, setSubmissionResult] =
+    useState<SubmissionResult | null>(null);
   const [flagInput, setFlagInput] = useState("");
   const [showResult, setShowResult] = useState(false);
   const [submissionHistory, setSubmissionHistory] = useState<any>(null);
@@ -61,7 +62,13 @@ export function useChallengeSubmission(challengeId: number, eventId: number) {
         logSubmissionAttempt(challengeId, flag, isCorrect);
 
         // Submit and update
-        const result = submitFlagAndUpdate(challengeId, eventId, flag, timeSpent, hintsUsed);
+        const result = submitFlagAndUpdate(
+          challengeId,
+          eventId,
+          flag,
+          timeSpent,
+          hintsUsed,
+        );
 
         setSubmissionResult(result);
         setShowResult(true);
@@ -90,7 +97,11 @@ export function useChallengeSubmission(challengeId: number, eventId: number) {
    */
   const downloadResource = useCallback(
     (resourceName: string, sizeBytes = 0) => {
-      const result = trackResourceDownload(challengeId, resourceName, sizeBytes);
+      const result = trackResourceDownload(
+        challengeId,
+        resourceName,
+        sizeBytes,
+      );
       return result.downloadUrl;
     },
     [challengeId],
@@ -121,8 +132,19 @@ export function useChallengeSubmission(challengeId: number, eventId: number) {
     downloadResource,
     loadHistory,
     verifyFlag: (flag: string) => verifyFlag(challengeId, flag),
-    calculateScore: (timeSpent: number, hintsUsed: number, difficulty?: string, solveCount?: number) =>
-      calculateChallengeScore(100, timeSpent, hintsUsed, difficulty, solveCount),
+    calculateScore: (
+      timeSpent: number,
+      hintsUsed: number,
+      difficulty?: string,
+      solveCount?: number,
+    ) =>
+      calculateChallengeScore(
+        100,
+        timeSpent,
+        hintsUsed,
+        difficulty,
+        solveCount,
+      ),
 
     // Status
     isCompleted,

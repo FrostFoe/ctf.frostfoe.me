@@ -194,7 +194,10 @@ export function isAchievementUnlocked(achievementId: string): boolean {
 /**
  * Unlock achievement with validation
  */
-export function unlockAchievementWithCheck(achievementId: string, context: any = {}): boolean {
+export function unlockAchievementWithCheck(
+  achievementId: string,
+  context: any = {},
+): boolean {
   const achievements = getAllAchievements();
   const achievement = achievements.find((a) => a.id === achievementId);
 
@@ -238,8 +241,13 @@ export function checkAndUnlockAchievements(): void {
   }
 
   // Check perfectionist (10+ challenges without hints)
-  const noHintsChallenges = completedChallenges.filter((c) => c.hintsUsed === 0);
-  if (noHintsChallenges.length >= 10 && !isAchievementUnlocked("perfectionist")) {
+  const noHintsChallenges = completedChallenges.filter(
+    (c) => c.hintsUsed === 0,
+  );
+  if (
+    noHintsChallenges.length >= 10 &&
+    !isAchievementUnlocked("perfectionist")
+  ) {
     unlockAchievementWithCheck("perfectionist");
   }
 
@@ -311,7 +319,9 @@ export function getActivitySummary(): Record<string, number> {
  */
 export function getEventProgress(eventId: number) {
   const completed = getCompletedChallengesByEvent(eventId);
-  const participation = getEventParticipations().find((p) => p.eventId === eventId);
+  const participation = getEventParticipations().find(
+    (p) => p.eventId === eventId,
+  );
 
   return {
     completed: completed.length,
@@ -350,13 +360,19 @@ export function completeChallengeFull(
     saveUserStats(stats);
 
     // Update event score
-    const participation = getEventParticipations().find((p) => p.eventId === eventId);
+    const participation = getEventParticipations().find(
+      (p) => p.eventId === eventId,
+    );
     if (participation) {
       storageUpdateEventScore(eventId, participation.score + points);
     }
 
     // Log activity
-    logActivity("challenge_solved", "চ্যালেঞ্জ সমাধান করা হয়েছে", `চ্যালেঞ্জ #${challengeId} সমাধান করেছেন - ${points} পয়েন্ট অর্জন`);
+    logActivity(
+      "challenge_solved",
+      "চ্যালেঞ্জ সমাধান করা হয়েছে",
+      `চ্যালেঞ্জ #${challengeId} সমাধান করেছেন - ${points} পয়েন্ট অর্জন`,
+    );
 
     // Check achievements
     checkAndUnlockAchievements();
@@ -384,7 +400,10 @@ export function getUserStatisticsSummary() {
     achievements,
     activities,
     completedCount: completedChallenges.length,
-    totalTimeSpent: completedChallenges.reduce((sum, c) => sum + c.timeSpent, 0),
+    totalTimeSpent: completedChallenges.reduce(
+      (sum, c) => sum + c.timeSpent,
+      0,
+    ),
   };
 }
 

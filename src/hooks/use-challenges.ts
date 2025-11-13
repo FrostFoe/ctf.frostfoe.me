@@ -19,7 +19,9 @@ export function useChallenges() {
   const [completedChallenges, setCompletedChallenges] = useState<Set<number>>(
     new Set(),
   );
-  const [revealedHints, setRevealedHints] = useState<Record<number, string[]>>({});
+  const [revealedHints, setRevealedHints] = useState<Record<number, string[]>>(
+    {},
+  );
 
   /**
    * Check if challenge is solved

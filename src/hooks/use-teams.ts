@@ -127,9 +127,7 @@ export function useTeams() {
       if (success) {
         const team = getTeamById(teamId);
         if (team) {
-          setUserTeams((prev) =>
-            prev.map((t) => (t.id === teamId ? team : t)),
-          );
+          setUserTeams((prev) => prev.map((t) => (t.id === teamId ? team : t)));
         }
       }
 
@@ -148,14 +146,17 @@ export function useTeams() {
       newRole: "leader" | "moderator" | "member",
       currentUserId: string,
     ): boolean => {
-      const success = updateMemberRole(teamId, memberId, newRole, currentUserId);
+      const success = updateMemberRole(
+        teamId,
+        memberId,
+        newRole,
+        currentUserId,
+      );
 
       if (success) {
         const team = getTeamById(teamId);
         if (team) {
-          setUserTeams((prev) =>
-            prev.map((t) => (t.id === teamId ? team : t)),
-          );
+          setUserTeams((prev) => prev.map((t) => (t.id === teamId ? team : t)));
         }
       }
 
@@ -251,9 +252,7 @@ export function useTeams() {
     if (success) {
       const team = getTeamById(teamId);
       if (team) {
-        setUserTeams((prev) =>
-          prev.map((t) => (t.id === teamId ? team : t)),
-        );
+        setUserTeams((prev) => prev.map((t) => (t.id === teamId ? team : t)));
       }
     }
 

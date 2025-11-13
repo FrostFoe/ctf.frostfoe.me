@@ -204,7 +204,8 @@ export default function ChallengeDetailPage({ params }: PageProps) {
                 </span>
               </div>
               <p className="text-xs text-blue-400/70">
-                অসুবিধা: {parentEvent.difficulty} • দক্ষতা: {parentEvent.skillLevel}
+                অসুবিধা: {parentEvent.difficulty} • দক্ষতা:{" "}
+                {parentEvent.skillLevel}
               </p>
             </div>
             <Link
@@ -224,7 +225,9 @@ export default function ChallengeDetailPage({ params }: PageProps) {
             <div className="flex flex-col gap-2 sm:gap-3">
               <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                 <span className="text-xs font-bold px-2 py-1 rounded bg-purple-900/50 text-purple-300">
-                  {parentEvent.ctfType === "series" ? "সিরিজ ইভেন্ট" : "একক চ্যালেঞ্জ"}
+                  {parentEvent.ctfType === "series"
+                    ? "সিরিজ ইভেন্ট"
+                    : "একক চ্যালেঞ্জ"}
                 </span>
                 <span className="text-xs sm:text-sm text-purple-300">
                   {parentEvent.title}
@@ -329,7 +332,9 @@ export default function ChallengeDetailPage({ params }: PageProps) {
                               এই ইঙ্গিত প্রকাশ করুন
                             </span>
                           </div>
-                          <span className="text-amber-400 group-hover:translate-x-1 transition-transform">→</span>
+                          <span className="text-amber-400 group-hover:translate-x-1 transition-transform">
+                            →
+                          </span>
                         </button>
                       )}
                     </div>
@@ -402,7 +407,10 @@ export default function ChallengeDetailPage({ params }: PageProps) {
                       </p>
                       <ul className="space-y-1">
                         {parentEvent.prizes.map((prize, idx) => (
-                          <li key={idx} className="text-slate-300 text-xs sm:text-sm flex items-center gap-2">
+                          <li
+                            key={idx}
+                            className="text-slate-300 text-xs sm:text-sm flex items-center gap-2"
+                          >
                             <span className="text-amber-400">★</span> {prize}
                           </li>
                         ))}

@@ -47,16 +47,16 @@ export default function TeamsPage() {
     {
       id: 1,
       name: "সাইবার নাইটস",
-      description: "আমরা অভিজ্ঞ হ্যাকাররা যারা চ্যালেঞ্জিং CTF ইভেন্টে অংশগ্রহণ করি।",
-      avatar: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=100&h=100&fit=crop",
+      description:
+        "আমরা অভিজ্ঞ হ্যাকাররা যারা চ্যালেঞ্জিং CTF ইভেন্টে অংশগ্রহণ করি।",
+      avatar: "/images/learning-paths-asset.webp",
       members: 12,
       maxMembers: 20,
       ranking: 5,
       totalPoints: 8500,
       createdDate: "15 Jan 2024",
       owner: "আহমেদ করিম",
-      ownerAvatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop",
+      ownerAvatar: "/images/real-world-scenarios.webp",
       status: "active",
       eventParticipations: 8,
       challenges: 45,
@@ -73,8 +73,7 @@ export default function TeamsPage() {
       totalPoints: 6200,
       createdDate: "20 Feb 2024",
       owner: "রহিম আলী",
-      ownerAvatar:
-        "", // Empty owner avatar for testing fallback
+      ownerAvatar: "", // Empty owner avatar for testing fallback
       status: "active",
       eventParticipations: 5,
       challenges: 32,
@@ -84,15 +83,14 @@ export default function TeamsPage() {
       id: 3,
       name: "কোড ব্রেকার্স",
       description: "ওয়েব সিকিউরিটি এবং রিভার্স ইঞ্জিনিয়ারিং এর উপর দক্ষ।",
-      avatar: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=100&h=100&fit=crop",
+      avatar: "/images/industry-certifications.webp",
       members: 15,
       maxMembers: 25,
       ranking: 8,
       totalPoints: 7300,
       createdDate: "10 Mar 2024",
       owner: "ফাতিমা নাজমা",
-      ownerAvatar:
-        "https://images.unsplash.com/photo-1535713047d9628aa75d72e9611f7d5b5bb12e6f7?w=50&h=50&fit=crop",
+      ownerAvatar: "/images/learning-paths-asset.webp",
       status: "active",
       eventParticipations: 6,
       challenges: 38,
@@ -109,8 +107,7 @@ export default function TeamsPage() {
       totalPoints: 4100,
       createdDate: "25 Mar 2024",
       owner: "করিম হোসেন",
-      ownerAvatar:
-        "https://images.unsplash.com/photo-1506157786151-b8491531f063?w=50&h=50&fit=crop",
+      ownerAvatar: "/images/real-world-scenarios.webp",
       status: "active",
       eventParticipations: 3,
       challenges: 18,
@@ -280,7 +277,9 @@ export default function TeamsPage() {
                   </div>
                   <div className="bg-slate-900/50 rounded-lg p-2 sm:p-3">
                     <p className="text-slate-400 mb-1">পয়েন্ট</p>
-                    <p className="font-bold text-lime-400">{team.totalPoints}</p>
+                    <p className="font-bold text-lime-400">
+                      {team.totalPoints}
+                    </p>
                   </div>
                   <div className="bg-slate-900/50 rounded-lg p-2 sm:p-3">
                     <p className="text-slate-400 mb-1">চ্যালেঞ্জ</p>
@@ -300,7 +299,7 @@ export default function TeamsPage() {
                         >
                           <User className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400" />
                         </div>
-                      )
+                      ),
                     )}
                     {team.members > 5 && (
                       <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-slate-800 bg-slate-700 flex items-center justify-center text-white text-xs font-bold">

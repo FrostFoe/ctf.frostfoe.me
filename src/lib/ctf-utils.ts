@@ -14,7 +14,8 @@ export function exportUserDataAsJson(filename = "ctf-user-data"): void {
 
   const data = exportUserData();
   const jsonString = JSON.stringify(data, null, 2);
-  const dataUri = "data:application/json;charset=utf-8," + encodeURIComponent(jsonString);
+  const dataUri =
+    "data:application/json;charset=utf-8," + encodeURIComponent(jsonString);
 
   const exportFileDefaultName = `${filename}-${new Date().toISOString().split("T")[0]}.json`;
 
@@ -110,7 +111,11 @@ export function calculateLevel(points: number): number {
 /**
  * Calculate progress to next level
  */
-export function getProgressToNextLevel(points: number): { current: number; next: number; percentage: number } {
+export function getProgressToNextLevel(points: number): {
+  current: number;
+  next: number;
+  percentage: number;
+} {
   const currentLevel = calculateLevel(points);
   const currentLevelPoints = (currentLevel - 1) * 500;
   const nextLevelPoints = currentLevel * 500;
@@ -200,7 +205,10 @@ export function createAchievementNotification(
 /**
  * Calculate team average points per member
  */
-export function calculateTeamAveragePoints(totalPoints: number, memberCount: number): number {
+export function calculateTeamAveragePoints(
+  totalPoints: number,
+  memberCount: number,
+): number {
   return memberCount > 0 ? Math.round(totalPoints / memberCount) : 0;
 }
 
@@ -230,7 +238,10 @@ export function generateUniqueId(prefix = ""): string {
 /**
  * Debounce function
  */
-export function debounce<T extends (...args: any[]) => any>(func: T, delay: number): T {
+export function debounce<T extends (...args: any[]) => any>(
+  func: T,
+  delay: number,
+): T {
   let timeoutId: NodeJS.Timeout;
 
   return ((...args: any[]) => {
@@ -259,7 +270,10 @@ export function groupBy<T>(array: T[], key: keyof T): Record<string, T[]> {
 /**
  * Sort array by multiple criteria
  */
-export function sortBy<T>(array: T[], ...criteria: { key: keyof T; ascending?: boolean }[]): T[] {
+export function sortBy<T>(
+  array: T[],
+  ...criteria: { key: keyof T; ascending?: boolean }[]
+): T[] {
   return [...array].sort((a, b) => {
     for (const criterion of criteria) {
       const aVal = a[criterion.key];

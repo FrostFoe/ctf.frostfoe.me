@@ -61,7 +61,7 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
           {/* Player Avatars */}
           <div className="flex items-center gap-2 mb-2 sm:mb-3 overflow-x-auto pb-1">
             <div className="flex -space-x-2">
-              {event.playerAvatars.slice(0, 4).map((avatar, idx) => (
+              {event.playerAvatars.slice(0, 4).map((avatar, idx) =>
                 avatar ? (
                   <Image
                     key={idx}
@@ -78,8 +78,8 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
                   >
                     <User className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400" />
                   </div>
-                )
-              ))}
+                ),
+              )}
             </div>
             {event.playerAvatars.length > 4 && (
               <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-700 border-2 border-slate-600 flex items-center justify-center">

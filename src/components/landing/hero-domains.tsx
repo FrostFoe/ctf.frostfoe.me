@@ -28,7 +28,7 @@ const domainTabs = [
 const domainContent = {
   red: {
     href: "/red-teams",
-    bgImage: "https://www.hackthebox.com/images/landingv3/red-bg.png",
+    bgImage: "/images/red-bg.webp",
     description:
       "তথ্য সংগ্রহ থেকে শুরু করে ডকুমেন্টেশন এবং রিপোর্টিং পর্যন্ত সমস্ত পেনিട്രেশন টেস্টিং এবং অ্যাডভারসারিয়াল ডোমেইনে আপনার দক্ষতা পরীক্ষা করুন এবং বাড়ান।",
     features: [
@@ -40,7 +40,7 @@ const domainContent = {
   },
   blue: {
     href: "/blue-teams",
-    bgImage: "https://www.hackthebox.com/images/landingv3/blue-bg.png",
+    bgImage: "/images/blue-bg.webp",
     description:
       "থ্রেট ল্যান্ডস্কেপের সাথে সংযুক্ত থাকুন এবং বাস্তব প্রতিপক্ষের দ্বারা ব্যবহৃত কৌশল, কৌশল এবং পদ্ধতিগুলি কীভাবে সনাক্ত করতে হয় তা শিখুন।",
     features: [
@@ -52,7 +52,7 @@ const domainContent = {
   },
   purple: {
     href: "/purple-teams",
-    bgImage: "https://www.hackthebox.com/images/landingv3/purple-bg.png",
+    bgImage: "/images/purple-bg.webp",
     description:
       "কার্যকর প্রতিরক্ষামূলক কার্যক্রম সক্রিয় করতে আক্রমণাত্মক কৌশলগুলিতে দক্ষতা অর্জন করুন। আধুনিক, ৩৬০° সাইবার পেশাদার এবং সংস্থাগুলির জন্য।",
     features: [

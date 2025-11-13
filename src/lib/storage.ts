@@ -43,7 +43,12 @@ export interface Achievement {
 // Recent Activity Interface
 export interface RecentActivity {
   id: number;
-  type: "challenge_solved" | "event_joined" | "rank_achieved" | "team_created" | "team_joined";
+  type:
+    | "challenge_solved"
+    | "event_joined"
+    | "rank_achieved"
+    | "team_created"
+    | "team_joined";
   title: string;
   description: string;
   timestamp: string;
@@ -295,7 +300,8 @@ export function unlockAchievement(achievement: Achievement): boolean {
  * Get all recent activities from storage
  */
 export function getActivities(): RecentActivity[] {
-  const activities = getFromStorage<RecentActivity[]>(STORAGE_KEYS.USER_ACTIVITIES) || [];
+  const activities =
+    getFromStorage<RecentActivity[]>(STORAGE_KEYS.USER_ACTIVITIES) || [];
   return activities.map((a) => ({
     ...a,
     date: new Date(a.timestamp),
@@ -313,7 +319,8 @@ export function saveActivities(activities: RecentActivity[]): boolean {
  * Add new activity
  */
 export function addActivity(activity: Omit<RecentActivity, "date">): boolean {
-  const activities = getFromStorage<RecentActivity[]>(STORAGE_KEYS.USER_ACTIVITIES) || [];
+  const activities =
+    getFromStorage<RecentActivity[]>(STORAGE_KEYS.USER_ACTIVITIES) || [];
   activities.unshift({
     ...activity,
     date: new Date(activity.timestamp),
@@ -333,13 +340,18 @@ export function addActivity(activity: Omit<RecentActivity, "date">): boolean {
  * Get all completed challenges
  */
 export function getCompletedChallenges(): CompletedChallenge[] {
-  return getFromStorage<CompletedChallenge[]>(STORAGE_KEYS.COMPLETED_CHALLENGES) || [];
+  return (
+    getFromStorage<CompletedChallenge[]>(STORAGE_KEYS.COMPLETED_CHALLENGES) ||
+    []
+  );
 }
 
 /**
  * Save completed challenges to storage
  */
-export function saveCompletedChallenges(challenges: CompletedChallenge[]): boolean {
+export function saveCompletedChallenges(
+  challenges: CompletedChallenge[],
+): boolean {
   return saveToStorage(STORAGE_KEYS.COMPLETED_CHALLENGES, challenges);
 }
 
@@ -373,7 +385,9 @@ export function isChallengeCompleted(challengeId: number): boolean {
 /**
  * Get completed challenges for an event
  */
-export function getCompletedChallengesByEvent(eventId: number): CompletedChallenge[] {
+export function getCompletedChallengesByEvent(
+  eventId: number,
+): CompletedChallenge[] {
   const completed = getCompletedChallenges();
   return completed.filter((c) => c.eventId === eventId);
 }
@@ -384,13 +398,18 @@ export function getCompletedChallengesByEvent(eventId: number): CompletedChallen
  * Get all event participations
  */
 export function getEventParticipations(): EventParticipation[] {
-  return getFromStorage<EventParticipation[]>(STORAGE_KEYS.EVENT_PARTICIPATIONS) || [];
+  return (
+    getFromStorage<EventParticipation[]>(STORAGE_KEYS.EVENT_PARTICIPATIONS) ||
+    []
+  );
 }
 
 /**
  * Save event participations to storage
  */
-export function saveEventParticipations(participations: EventParticipation[]): boolean {
+export function saveEventParticipations(
+  participations: EventParticipation[],
+): boolean {
   return saveToStorage(STORAGE_KEYS.EVENT_PARTICIPATIONS, participations);
 }
 
@@ -427,7 +446,9 @@ export function isParticipatingInEvent(eventId: number): boolean {
 /**
  * Get event participation details
  */
-export function getEventParticipation(eventId: number): EventParticipation | null {
+export function getEventParticipation(
+  eventId: number,
+): EventParticipation | null {
   const participations = getEventParticipations();
   return participations.find((p) => p.eventId === eventId) || null;
 }
@@ -543,7 +564,10 @@ export function initializeDefaultUserSettings(): UserSettings {
 /**
  * Update specific setting
  */
-export function updateSetting<K extends keyof UserSettings>(key: K, value: UserSettings[K]): boolean {
+export function updateSetting<K extends keyof UserSettings>(
+  key: K,
+  value: UserSettings[K],
+): boolean {
   const settings = getUserSettings() || initializeDefaultUserSettings();
   settings[key] = value;
   return saveUserSettings(settings);

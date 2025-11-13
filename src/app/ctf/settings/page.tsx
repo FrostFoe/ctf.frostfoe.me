@@ -89,7 +89,9 @@ export default function SettingsPage() {
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">
             সেটিংস
           </h1>
-          <p className="text-slate-400">আপনার অ্যাকাউন্ট এবং পছন্দ পরিচালনা করুন</p>
+          <p className="text-slate-400">
+            আপনার অ্যাকাউন্ট এবং পছন্দ পরিচালনা করুন
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8">
@@ -184,7 +186,9 @@ export default function SettingsPage() {
                           variant="outline"
                           className="border-slate-600 text-slate-300 hover:text-white"
                         >
-                          {settings.twoFactorEnabled ? "অক্ষম করুন" : "সক্ষম করুন"}
+                          {settings.twoFactorEnabled
+                            ? "অক্ষম করুন"
+                            : "সক্ষম করুন"}
                         </Button>
                       </div>
                     </div>
@@ -197,7 +201,8 @@ export default function SettingsPage() {
                             অ্যাকাউন্ট মুছে ফেলুন
                           </h3>
                           <p className="text-sm text-slate-400">
-                            স্থায়ীভাবে আপনার অ্যাকাউন্ট এবং সমস্ত ডেটা মুছে ফেলুন
+                            স্থায়ীভাবে আপনার অ্যাকাউন্ট এবং সমস্ত ডেটা মুছে
+                            ফেলুন
                           </p>
                         </div>
                         <Button
@@ -314,9 +319,21 @@ export default function SettingsPage() {
                       </h3>
                       <div className="space-y-3">
                         {[
-                          { value: "public", label: "সর্বজনীন", desc: "সবাই আপনার প্রোফাইল দেখতে পারে" },
-                          { value: "friends", label: "বন্ধুদের কাছে", desc: "শুধুমাত্র বন্ধুরা আপনার প্রোফাইল দেখতে পারে" },
-                          { value: "private", label: "ব্যক্তিগত", desc: "কেউ আপনার প্রোফাইল দেখতে পারে না" },
+                          {
+                            value: "public",
+                            label: "সর্বজনীন",
+                            desc: "সবাই আপনার প্রোফাইল দেখতে পারে",
+                          },
+                          {
+                            value: "friends",
+                            label: "বন্ধুদের কাছে",
+                            desc: "শুধুমাত্র বন্ধুরা আপনার প্রোফাইল দেখতে পারে",
+                          },
+                          {
+                            value: "private",
+                            label: "ব্যক্তিগত",
+                            desc: "কেউ আপনার প্রোফাইল দেখতে পারে না",
+                          },
                         ].map((option) => (
                           <label
                             key={option.value}
@@ -327,12 +344,18 @@ export default function SettingsPage() {
                               name="privacy"
                               value={option.value}
                               checked={settings.privacy === option.value}
-                              onChange={() => handleSelectChange("privacy", option.value)}
+                              onChange={() =>
+                                handleSelectChange("privacy", option.value)
+                              }
                               className="w-4 h-4"
                             />
                             <div>
-                              <p className="font-medium text-white">{option.label}</p>
-                              <p className="text-xs text-slate-400">{option.desc}</p>
+                              <p className="font-medium text-white">
+                                {option.label}
+                              </p>
+                              <p className="text-xs text-slate-400">
+                                {option.desc}
+                              </p>
                             </div>
                           </label>
                         ))}

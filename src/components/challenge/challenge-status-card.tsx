@@ -32,7 +32,9 @@ export function ChallengeStatusCard({
           <div className="flex-shrink-0">
             <Check className="w-6 h-6 text-green-400" />
           </div>
-          <h3 className="text-lg font-semibold text-green-200">সফলভাবে সমাধান</h3>
+          <h3 className="text-lg font-semibold text-green-200">
+            সফলভাবে সমাধান
+          </h3>
         </div>
 
         <div className="grid grid-cols-2 gap-4 text-sm">
@@ -41,7 +43,9 @@ export function ChallengeStatusCard({
             <Trophy className="w-4 h-4 text-yellow-400" />
             <div>
               <p className="text-gray-400 text-xs">পয়েন্ট</p>
-              <p className="font-bold text-white">{stats.pointsEarned || basePoints}</p>
+              <p className="font-bold text-white">
+                {stats.pointsEarned || basePoints}
+              </p>
             </div>
           </div>
 
@@ -82,7 +86,9 @@ export function ChallengeStatusCard({
       {/* Points Breakdown */}
       {stats.hintsUsed !== undefined && (
         <div className="p-3 rounded-lg bg-gray-900/50 border border-gray-800">
-          <p className="text-xs font-medium text-gray-400 mb-2">পয়েন্ট বিশ্লেষণ</p>
+          <p className="text-xs font-medium text-gray-400 mb-2">
+            পয়েন্ট বিশ্লেষণ
+          </p>
           <div className="space-y-1 text-sm">
             <div className="flex justify-between text-gray-300">
               <span>ভিত্তি পয়েন্ট:</span>
@@ -102,7 +108,9 @@ export function ChallengeStatusCard({
             )}
             <div className="border-t border-gray-700 pt-1 mt-1 flex justify-between font-semibold text-gray-100">
               <span>মোট:</span>
-              <span className="text-yellow-300">{stats.pointsEarned || basePoints}</span>
+              <span className="text-yellow-300">
+                {stats.pointsEarned || basePoints}
+              </span>
             </div>
           </div>
         </div>

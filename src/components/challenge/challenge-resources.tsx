@@ -6,7 +6,14 @@
 "use client";
 
 import { useState } from "react";
-import { Download, FileText, FileArchive, Image, File, CheckCircle } from "lucide-react";
+import {
+  Download,
+  FileText,
+  FileArchive,
+  Image,
+  File,
+  CheckCircle,
+} from "lucide-react";
 import { useChallengeSubmission } from "@/hooks/use-challenge-submission";
 
 interface ChallengeResource {
@@ -105,9 +112,7 @@ export function ChallengeResources({
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <p className="font-medium text-gray-200">
-                      {resource.name}
-                    </p>
+                    <p className="font-medium text-gray-200">{resource.name}</p>
                     {isDownloaded && (
                       <CheckCircle className="w-4 h-4 text-green-500" />
                     )}

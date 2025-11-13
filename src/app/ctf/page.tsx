@@ -14,16 +14,10 @@ export default function CtfPage() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const events = {
-    ongoing: ctfData.events.filter(
-      (e) => e.status === "ongoing"
-    ),
-    upcoming: ctfData.events.filter(
-      (e) => e.status === "upcoming"
-    ),
+    ongoing: ctfData.events.filter((e) => e.status === "ongoing"),
+    upcoming: ctfData.events.filter((e) => e.status === "upcoming"),
     joined: [] as typeof ctfData.events,
-    past: ctfData.events.filter(
-      (e) => e.status === "ended"
-    ),
+    past: ctfData.events.filter((e) => e.status === "ended"),
   };
 
   const filteredEvents = events[activeTab as keyof typeof events].filter(

@@ -8,7 +8,7 @@ import {
 
 export default function HeroNotification() {
   const megaphoneIcon = {
-    imageUrl: "https://www.hackthebox.com/images/landingv3/megaphone.webp",
+    imageUrl: "/images/megaphone.webp",
     description: "Megaphone icon",
     imageHint: "megaphone illustration",
   };

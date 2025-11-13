@@ -38,7 +38,11 @@ export function getChallengeHints(challengeId: number): ChallengeHint | null {
 /**
  * Reveal a hint for a challenge
  */
-export function revealHint(challengeId: number, hintIndex: number, availableHints: string[]): string | null {
+export function revealHint(
+  challengeId: number,
+  hintIndex: number,
+  availableHints: string[],
+): string | null {
   if (typeof window === "undefined") return null;
 
   try {
@@ -115,7 +119,9 @@ export function isChallengeSolvedByUser(challengeId: number): boolean {
  * Get challenge completion time
  */
 export function getChallengeCompletionTime(challengeId: number): number | null {
-  const completed = getCompletedChallenges().find((c) => c.challengeId === challengeId);
+  const completed = getCompletedChallenges().find(
+    (c) => c.challengeId === challengeId,
+  );
   return completed ? completed.timeSpent : null;
 }
 
@@ -123,7 +129,9 @@ export function getChallengeCompletionTime(challengeId: number): number | null {
  * Get challenge points earned
  */
 export function getChallengePointsEarned(challengeId: number): number | null {
-  const completed = getCompletedChallenges().find((c) => c.challengeId === challengeId);
+  const completed = getCompletedChallenges().find(
+    (c) => c.challengeId === challengeId,
+  );
   return completed ? completed.pointsEarned : null;
 }
 
@@ -131,7 +139,9 @@ export function getChallengePointsEarned(challengeId: number): number | null {
  * Get challenge completion details
  */
 export function getChallengeDetails(challengeId: number) {
-  const completed = getCompletedChallenges().find((c) => c.challengeId === challengeId);
+  const completed = getCompletedChallenges().find(
+    (c) => c.challengeId === challengeId,
+  );
   const hints = getChallengeHints(challengeId);
 
   return {
@@ -149,7 +159,10 @@ export function getChallengeDetails(challengeId: number) {
 /**
  * Get event challenges completion summary
  */
-export function getEventChallengeSummary(eventId: number, totalChallenges: number) {
+export function getEventChallengeSummary(
+  eventId: number,
+  totalChallenges: number,
+) {
   const completed = getCompletedChallengesByEvent(eventId);
   const completionRate = Math.round((completed.length / totalChallenges) * 100);
 
@@ -159,7 +172,13 @@ export function getEventChallengeSummary(eventId: number, totalChallenges: numbe
     rate: completionRate,
     totalPoints: completed.reduce((sum, c) => sum + c.pointsEarned, 0),
     totalTimeSpent: completed.reduce((sum, c) => sum + c.timeSpent, 0),
-    averageTimePerChallenge: completed.length > 0 ? Math.round(completed.reduce((sum, c) => sum + c.timeSpent, 0) / completed.length) : 0,
+    averageTimePerChallenge:
+      completed.length > 0
+        ? Math.round(
+            completed.reduce((sum, c) => sum + c.timeSpent, 0) /
+              completed.length,
+          )
+        : 0,
   };
 }
 
@@ -169,7 +188,10 @@ export function getEventChallengeSummary(eventId: number, totalChallenges: numbe
 export function getDifficultyProgress(eventId: number, difficulties: string[]) {
   const completed = getCompletedChallengesByEvent(eventId);
 
-  const progressByDifficulty: Record<string, { completed: number; total: number; rate: number }> = {};
+  const progressByDifficulty: Record<
+    string,
+    { completed: number; total: number; rate: number }
+  > = {};
 
   difficulties.forEach((diff) => {
     // This would need challenge data to implement fully
@@ -189,7 +211,9 @@ export function getDifficultyProgress(eventId: number, difficulties: string[]) {
  * Get most difficult challenges (least solved)
  */
 export function getMostDifficultChallenges(challenges: any[], limit = 5) {
-  return challenges.sort((a, b) => (a.solves || 0) - (b.solves || 0)).slice(0, limit);
+  return challenges
+    .sort((a, b) => (a.solves || 0) - (b.solves || 0))
+    .slice(0, limit);
 }
 
 /**
@@ -205,7 +229,13 @@ export function getSolveStatistics(challenges: any[]) {
     solvePercentage: Math.round((completed.length / challenges.length) * 100),
     totalPointsEarned: completed.reduce((sum, c) => sum + c.pointsEarned, 0),
     totalTimeSpent: completed.reduce((sum, c) => sum + c.timeSpent, 0),
-    averagePointsPerChallenge: completed.length > 0 ? Math.round(completed.reduce((sum, c) => sum + c.pointsEarned, 0) / completed.length) : 0,
+    averagePointsPerChallenge:
+      completed.length > 0
+        ? Math.round(
+            completed.reduce((sum, c) => sum + c.pointsEarned, 0) /
+              completed.length,
+          )
+        : 0,
   };
 }
 
@@ -216,7 +246,10 @@ export function getCategoryProgress(challenges: any[]) {
   const completed = getCompletedChallenges();
   const completedIds = new Set(completed.map((c) => c.challengeId));
 
-  const categoryStats: Record<string, { total: number; solved: number; rate: number }> = {};
+  const categoryStats: Record<
+    string,
+    { total: number; solved: number; rate: number }
+  > = {};
 
   challenges.forEach((challenge) => {
     const category = challenge.category || "Unknown";
@@ -254,7 +287,13 @@ export function calculateUserLeaderboardScore() {
     totalPoints: completed.reduce((sum, c) => sum + c.pointsEarned, 0),
     challengesSolved: completed.length,
     achievements,
-    averageTime: completed.length > 0 ? Math.round(completed.reduce((sum, c) => sum + c.timeSpent, 0) / completed.length) : 0,
+    averageTime:
+      completed.length > 0
+        ? Math.round(
+            completed.reduce((sum, c) => sum + c.timeSpent, 0) /
+              completed.length,
+          )
+        : 0,
   };
 }
 
