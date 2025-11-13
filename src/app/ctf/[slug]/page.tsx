@@ -37,19 +37,19 @@ export default async function CtfDetailPage({ params }: PageProps) {
       <CtfDetailHeader event={event} />
 
       {/* Main Content */}
-      <div className="container-centered py-8 sm:py-12">
+      <div className="container-centered py-6 sm:py-8 md:py-10 lg:py-12">
         {/* Back Button */}
         <Link
           href="/ctf"
-          className="inline-flex items-center gap-2 text-slate-400 hover:text-white mb-6 transition-colors"
+          className="inline-flex items-center gap-2 text-slate-400 hover:text-white mb-6 sm:mb-8 transition-colors text-sm sm:text-base"
         >
-          <ChevronLeft className="w-4 h-4 " />
-          <span className="text-sm">Back to Events</span>
+          <ChevronLeft className="w-4 h-4" />
+          <span>Back to Events</span>
         </Link>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-8">
           {/* Left Column - Main Content */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-6 sm:space-y-8">
             <CtfDetailInfo event={event} />
             
             {/* Series Challenges Section */}

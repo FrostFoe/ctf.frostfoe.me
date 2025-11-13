@@ -1,27 +1,10 @@
 "use client";
 
 import CtfEventCard from "./ctf-event-card";
-
-interface Event {
-  id: number;
-  slug: string;
-  title: string;
-  subtitle: string;
-  date: string;
-  image: string;
-  badge: string;
-  tags: string[];
-  players: number;
-  status?: "upcoming" | "ongoing" | "ended" | "registration-closed";
-  type?: "single" | "series";
-  ctfType?: "single" | "series";
-  totalChallenges?: number;
-  startDate?: string;
-  startTime?: string;
-}
+import type { CTFEvent } from "@/types/ctf";
 
 interface CtfEventGridProps {
-  events: Event[];
+  events: CTFEvent[];
 }
 
 export default function CtfEventGrid({ events }: CtfEventGridProps) {

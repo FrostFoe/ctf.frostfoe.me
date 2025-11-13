@@ -16,13 +16,13 @@ export default function CtfTabs({ activeTab, onTabChange }: CtfTabsProps) {
   ];
 
   return (
-    <div className="mt-6 sm:mt-8 border-b border-slate-700 ">
-      <div className="flex gap-6 sm:gap-8 overflow-x-auto">
+    <div className="mt-6 sm:mt-8 md:mt-10 border-b border-slate-700">
+      <div className="flex gap-2 sm:gap-4 md:gap-6 lg:gap-8 overflow-x-auto">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => onTabChange(tab.id)}
-            className={`pb-3 sm:pb-4 px-1 font-medium text-sm sm:text-base whitespace-nowrap transition-colors relative ${
+            className={`pb-3 sm:pb-4 px-1 sm:px-2 font-medium text-xs sm:text-sm md:text-base whitespace-nowrap transition-colors relative ${
               activeTab === tab.id
                 ? "text-white"
                 : "text-slate-400 hover:text-slate-300"

@@ -19,40 +19,40 @@ interface CtfDetailInfoProps {
 
 export default function CtfDetailInfo({ event, onSignUp }: CtfDetailInfoProps) {
   return (
-    <div className="w-full bg-slate-800/30 border-t border-b border-slate-700 py-8 px-4 sm:px-6 md:px-8 ">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-8">
+    <div className="w-full bg-slate-800/30 border-t border-b border-slate-700 py-6 sm:py-8 md:py-10 px-3 sm:px-4 md:px-6">
+      <div className="space-y-6 sm:space-y-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 items-start">
           {/* Dates Section */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {/* Start Date */}
             <div>
-              <p className="text-slate-400 text-sm font-semibold uppercase tracking-wide mb-2">
+              <p className="text-slate-400 text-xs sm:text-sm font-semibold uppercase tracking-wide mb-1 sm:mb-2">
                 শুরুর তারিখ
               </p>
-              <p className="text-white text-lg md:text-xl font-semibold">
+              <p className="text-white text-base sm:text-lg md:text-xl font-semibold">
                 {event.startDate}
               </p>
-              <p className="text-slate-300 text-sm">{event.startTime}</p>
+              <p className="text-slate-300 text-xs sm:text-sm">{event.startTime}</p>
             </div>
 
             {/* End Date */}
             <div>
-              <p className="text-slate-400 text-sm font-semibold uppercase tracking-wide mb-2">
+              <p className="text-slate-400 text-xs sm:text-sm font-semibold uppercase tracking-wide mb-1 sm:mb-2">
                 শেষ তারিখ
               </p>
-              <p className="text-white text-lg md:text-xl font-semibold">
+              <p className="text-white text-base sm:text-lg md:text-xl font-semibold">
                 {event.endDate}
               </p>
-              <p className="text-slate-300 text-sm">{event.endTime}</p>
+              <p className="text-slate-300 text-xs sm:text-sm">{event.endTime}</p>
             </div>
           </div>
 
           {/* Buttons Section */}
-          <div className="flex flex-col sm:flex-row gap-3 h-full justify-center md:justify-end md:items-start pt-0 md:pt-1">
+          <div className="flex flex-col gap-2 sm:gap-3">
             {/* Sign Up Button */}
             <Button
               onClick={onSignUp}
-              className="flex-1 sm:flex-none px-8 py-3 bg-lime-400 hover:bg-lime-500 text-slate-900 font-bold rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group"
+              className="w-full sm:w-auto px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-lime-400 hover:bg-lime-500 text-slate-900 font-bold text-sm sm:text-base rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group"
             >
               <LogIn className="w-4 h-4 group-hover:scale-110 transition-transform" />
               নিবন্ধন করুন
@@ -61,7 +61,7 @@ export default function CtfDetailInfo({ event, onSignUp }: CtfDetailInfoProps) {
             {/* Share Button */}
             <Button
               variant="outline"
-              className="flex-1 sm:flex-none px-8 py-3 bg-slate-700/50 hover:bg-slate-600 text-white border border-slate-600 font-semibold rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-slate-700/50 hover:bg-slate-600 text-white border border-slate-600 font-semibold text-sm sm:text-base rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
             >
               <Share2 className="w-4 h-4" />
               শেয়ার করুন

@@ -95,13 +95,13 @@ export default function ChallengeDetailPage({ params }: PageProps) {
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* Header */}
       <header className="border-b border-slate-800 bg-slate-900/50 backdrop-blur">
-        <div className="container-centered py-4">
+        <div className="container-centered py-3 sm:py-4">
           <Link
             href={isSeries && parentEvent ? `/ctf/${parentEvent.slug}` : "/ctf/challenges"}
-            className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-xs sm:text-sm"
           >
             <ChevronLeft className="w-4 h-4" />
-            <span className="text-sm">
+            <span>
               {isSeries && parentEvent ? `${parentEvent.title} এ ফিরুন` : "চ্যালেঞ্জে ফিরুন"}
             </span>
           </Link>
@@ -111,16 +111,16 @@ export default function ChallengeDetailPage({ params }: PageProps) {
       {/* Series Context Banner */}
       {isSeries && parentEvent && (
         <div className="border-b border-slate-800 bg-blue-900/20 border-blue-800/50">
-          <div className="container-centered py-3 flex items-center justify-between">
-            <div className="flex items-center gap-2">
+          <div className="container-centered py-2 sm:py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <span className="text-xs font-bold px-2 py-1 rounded bg-blue-900/50 text-blue-300">
                 সিরিজের অংশ
               </span>
-              <span className="text-sm text-blue-300">
+              <span className="text-xs sm:text-sm text-blue-300">
                 {parentEvent.title} - চ্যালেঞ্জ #{challenge.seriesOrder}
               </span>
             </div>
-            <Link href={`/ctf/${parentEvent.slug}`} className="text-blue-400 hover:text-blue-300">
+            <Link href={`/ctf/${parentEvent.slug}`} className="text-blue-400 hover:text-blue-300 w-fit">
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -128,38 +128,38 @@ export default function ChallengeDetailPage({ params }: PageProps) {
       )}
 
       {/* Main Content */}
-      <div className="container-centered py-8 sm:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="container-centered py-6 sm:py-8 md:py-10 lg:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-8">
           {/* Left Column - Main Content */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-6 sm:space-y-8">
             {/* Title Section */}
-            <div className="space-y-4">
-              <div className="flex items-start justify-between gap-4">
+            <div className="space-y-3 sm:space-y-4">
+              <div className="flex flex-col gap-3 sm:gap-4">
                 <div className="flex-1">
-                  <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
                     {challenge.title}
                   </h1>
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
                     <Badge
                       variant="outline"
-                      className={`border ${getCategoryColor(challenge.category)}`}
+                      className={`border text-xs sm:text-sm ${getCategoryColor(challenge.category)}`}
                     >
                       {challenge.category}
                     </Badge>
                     <Badge
                       variant="outline"
-                      className={`border ${getDifficultyColor(challenge.difficulty)}`}
+                      className={`border text-xs sm:text-sm ${getDifficultyColor(challenge.difficulty)}`}
                     >
                       {challenge.difficulty}
                     </Badge>
                     {isSeries && (
-                      <Badge className="bg-blue-900/40 text-blue-300 border border-blue-800">
+                      <Badge className="bg-blue-900/40 text-blue-300 border border-blue-800 text-xs sm:text-sm">
                         সিরিজ চ্যালেঞ্জ
                       </Badge>
                     )}
                   </div>
                   {challenge.author && (
-                    <p className="text-sm text-slate-400">
+                    <p className="text-xs sm:text-sm text-slate-400">
                       লেখক: <span className="text-slate-300 font-medium">{challenge.author}</span>
                     </p>
                   )}
@@ -167,29 +167,29 @@ export default function ChallengeDetailPage({ params }: PageProps) {
               </div>
 
               {/* Description */}
-              <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-6">
-                <h2 className="text-lg font-bold text-white mb-3">চ্যালেঞ্জ বর্ণনা</h2>
-                <p className="text-slate-300 leading-relaxed">{challenge.description}</p>
+              <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 sm:p-6">
+                <h2 className="text-base sm:text-lg font-bold text-white mb-2 sm:mb-3">চ্যালেঞ্জ বর্ণনা</h2>
+                <p className="text-slate-300 text-sm sm:text-base leading-relaxed">{challenge.description}</p>
               </div>
             </div>
 
             {/* Hints Section */}
             {challenge.hints && challenge.hints.length > 0 && (
-              <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-6">
-                <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 sm:p-6">
+                <h2 className="text-base sm:text-lg font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
                   <span className="text-amber-400">💡</span>
                   ইঙ্গিত
                 </h2>
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3">
                   {challenge.hints.map((hint, index) => (
                     <div
                       key={index}
-                      className="flex items-start gap-3 p-4 bg-amber-500/5 border border-amber-500/20 rounded-lg hover:border-amber-500/40 transition-colors"
+                      className="flex items-start gap-2 sm:gap-3 p-3 sm:p-4 bg-amber-500/5 border border-amber-500/20 rounded-lg hover:border-amber-500/40 transition-colors"
                     >
-                      <span className="text-amber-400 font-bold text-sm flex-shrink-0 bg-amber-900/30 px-2 py-1 rounded">
+                      <span className="text-amber-400 font-bold text-xs flex-shrink-0 bg-amber-900/30 px-2 py-1 rounded">
                         {index + 1}
                       </span>
-                      <p className="text-amber-100 text-sm">{hint}</p>
+                      <p className="text-amber-100 text-xs sm:text-sm">{hint}</p>
                     </div>
                   ))}
                 </div>
@@ -198,16 +198,16 @@ export default function ChallengeDetailPage({ params }: PageProps) {
 
             {/* Tags Section */}
             {challenge.tags && challenge.tags.length > 0 && (
-              <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-6">
-                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                  <BookOpen className="w-5 h-5" />
+              <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 sm:p-6">
+                <h3 className="text-base sm:text-lg font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
+                  <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" />
                   দক্ষতা ট্যাগ
                 </h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {challenge.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1.5 text-xs rounded-full bg-slate-700/50 text-slate-300 border border-slate-600 hover:border-slate-500 hover:bg-slate-700 transition-all"
+                      className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs rounded-full bg-slate-700/50 text-slate-300 border border-slate-600 hover:border-slate-500 hover:bg-slate-700 transition-all"
                     >
                       {tag}
                     </span>
@@ -217,37 +217,37 @@ export default function ChallengeDetailPage({ params }: PageProps) {
             )}
 
             {/* Challenge Scenario */}
-            <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-6">
-              <h2 className="text-lg font-bold text-white mb-4">চ্যালেঞ্জ পরিস্থিতি</h2>
-              <div className="space-y-4 text-slate-300">
+            <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 sm:p-6">
+              <h2 className="text-base sm:text-lg font-bold text-white mb-3 sm:mb-4">চ্যালেঞ্জ পরিস্থিতি</h2>
+              <div className="space-y-3 sm:space-y-4 text-slate-300 text-sm sm:text-base">
                 <p>এই চ্যালেঞ্জে আপনাকে নিম্নোক্ত কাজগুলি সম্পূর্ণ করতে হবে:</p>
                 <ul className="list-disc list-inside space-y-2">
                   <li>প্রথম ফ্ল্যাগ খুঁজে বের করুন</li>
                   <li>সিস্টেমের দুর্বলতা চিহ্নিত করুন</li>
                   <li>শেষ পর্যায়ের ফ্ল্যাগ অর্জন করুন</li>
                 </ul>
-                <p className="pt-4">
+                <p className="pt-2 sm:pt-4">
                   সতর্কতা: এই চ্যালেঞ্জটি আপনার সমস্ত প্রযুক্তিগত দক্ষতা পরীক্ষা করবে।
                 </p>
               </div>
             </div>
 
             {/* Resources */}
-            <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-6">
-              <h2 className="text-lg font-bold text-white mb-4">সম্পদ</h2>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between p-4 bg-slate-700/20 rounded-lg border border-slate-700 hover:border-slate-600 transition-colors">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-lime-400/20 rounded flex items-center justify-center">
-                      <span className="text-lime-400 text-sm font-bold">📁</span>
+            <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 sm:p-6">
+              <h2 className="text-base sm:text-lg font-bold text-white mb-3 sm:mb-4">সম্পদ</h2>
+              <div className="space-y-2 sm:space-y-3">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 p-3 sm:p-4 bg-slate-700/20 rounded-lg border border-slate-700 hover:border-slate-600 transition-colors">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-lime-400/20 rounded flex items-center justify-center shrink-0">
+                      <span className="text-lime-400 text-xs sm:text-sm font-bold">📁</span>
                     </div>
                     <div>
-                      <p className="text-white font-semibold">{challenge.title}.zip</p>
-                      <p className="text-slate-400 text-sm">কিছু MB</p>
+                      <p className="text-white font-semibold text-xs sm:text-sm">{challenge.title}.zip</p>
+                      <p className="text-slate-400 text-xs">কিছু MB</p>
                     </div>
                   </div>
-                  <Button className="bg-lime-400 hover:bg-lime-500 text-slate-900 font-bold">
-                    <Download className="w-4 h-4 mr-2" />
+                  <Button className="bg-lime-400 hover:bg-lime-500 text-slate-900 font-bold text-xs sm:text-sm px-2 sm:px-3 py-1.5 sm:py-2 whitespace-nowrap">
+                    <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                     ডাউনলোড
                   </Button>
                 </div>
@@ -255,20 +255,20 @@ export default function ChallengeDetailPage({ params }: PageProps) {
             </div>
 
             {/* Tasks */}
-            <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-6">
-              <h2 className="text-lg font-bold text-white mb-4">কাজ</h2>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4 p-4 bg-slate-700/20 rounded-lg border border-slate-700 hover:border-slate-600 transition-colors">
-                  <div className="w-6 h-6 rounded-full bg-lime-400/20 border border-lime-400/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 sm:p-6">
+              <h2 className="text-base sm:text-lg font-bold text-white mb-3 sm:mb-4">কাজ</h2>
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex items-start gap-2 sm:gap-4 p-3 sm:p-4 bg-slate-700/20 rounded-lg border border-slate-700 hover:border-slate-600 transition-colors">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-lime-400/20 border border-lime-400/50 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <span className="text-lime-400 text-xs font-bold">1</span>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-white font-semibold mb-2">প্রথম ফ্ল্যাগ খুঁজে বের করুন</h3>
-                    <p className="text-slate-400 text-sm">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-white font-semibold text-sm sm:text-base mb-1 sm:mb-2">প্রথম ফ্ল্যাগ খুঁজে বের করুন</h3>
+                    <p className="text-slate-400 text-xs sm:text-sm">
                       সিস্টেমের মধ্যে প্রথম পর্যায়ের ফ্ল্যাগটি অন্বেষণ করুন এবং খুঁজে বের করুন।
                     </p>
                   </div>
-                  <Button variant="outline" size="sm" className="border-slate-700">
+                  <Button variant="outline" size="sm" className="border-slate-700 text-xs whitespace-nowrap">
                     ইঙ্গিত
                   </Button>
                 </div>
@@ -277,37 +277,37 @@ export default function ChallengeDetailPage({ params }: PageProps) {
           </div>
 
           {/* Right Column - Sidebar */}
-          <div className="lg:col-span-1 space-y-6">
+          <div className="lg:col-span-1 space-y-4 sm:space-y-6">
             {/* Info Card */}
-            <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-6 space-y-6">
+            <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 sm:p-6 space-y-4 sm:space-y-6">
               {/* Points */}
               <div>
-                <p className="text-slate-400 text-xs font-semibold uppercase tracking-wide mb-2">
+                <p className="text-slate-400 text-xs font-semibold uppercase tracking-wide mb-1 sm:mb-2">
                   পয়েন্ট
                 </p>
-                <p className="text-4xl font-bold text-lime-400">{challenge.points}</p>
+                <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-lime-400">{challenge.points}</p>
               </div>
 
               {/* Solves */}
-              <div className="border-t border-slate-700 pt-4">
-                <p className="text-slate-400 text-xs font-semibold uppercase tracking-wide mb-2">
+              <div className="border-t border-slate-700 pt-3 sm:pt-4">
+                <p className="text-slate-400 text-xs font-semibold uppercase tracking-wide mb-1 sm:mb-2">
                   সমাধান সংখ্যা
                 </p>
-                <p className="text-2xl font-bold text-white">{challenge.solves}</p>
-                <p className="text-slate-400 text-sm mt-1">খেলোয়াড় এটি সমাধান করেছেন</p>
+                <p className="text-lg sm:text-xl md:text-2xl font-bold text-white">{challenge.solves}</p>
+                <p className="text-slate-400 text-xs sm:text-sm mt-1">খেলোয়াড় এটি সমাধান করেছেন</p>
               </div>
 
               {/* Success Rate */}
-              <div className="border-t border-slate-700 pt-4">
-                <p className="text-slate-400 text-xs font-semibold uppercase tracking-wide mb-2">
+              <div className="border-t border-slate-700 pt-3 sm:pt-4">
+                <p className="text-slate-400 text-xs font-semibold uppercase tracking-wide mb-1 sm:mb-2">
                   সাফল্যের হার
                 </p>
-                <p className="text-xl font-bold text-white">{challenge.successRate}</p>
+                <p className="text-xl sm:text-2xl font-bold text-white">{challenge.successRate}</p>
               </div>
 
               {/* Difficulty Stats */}
-              <div className="border-t border-slate-700 pt-4">
-                <p className="text-slate-400 text-xs font-semibold uppercase tracking-wide mb-3">
+              <div className="border-t border-slate-700 pt-3 sm:pt-4">
+                <p className="text-slate-400 text-xs font-semibold uppercase tracking-wide mb-2 sm:mb-3">
                   অসুবিধা
                 </p>
                 <div className="w-full bg-slate-700 rounded-full h-2">
@@ -316,34 +316,34 @@ export default function ChallengeDetailPage({ params }: PageProps) {
                     style={{ width: getDifficultyWidth(challenge.difficulty) }}
                   />
                 </div>
-                <p className="text-slate-300 text-sm mt-2">{challenge.difficulty}</p>
+                <p className="text-slate-300 text-xs sm:text-sm mt-2">{challenge.difficulty}</p>
               </div>
 
               {/* Category */}
-              <div className="border-t border-slate-700 pt-4">
-                <p className="text-slate-400 text-xs font-semibold uppercase tracking-wide mb-2">
+              <div className="border-t border-slate-700 pt-3 sm:pt-4">
+                <p className="text-slate-400 text-xs font-semibold uppercase tracking-wide mb-1 sm:mb-2">
                   ক্যাটাগরি
                 </p>
-                <p className="text-white font-semibold">{challenge.category}</p>
+                <p className="text-white font-semibold text-sm sm:text-base">{challenge.category}</p>
               </div>
 
               {/* Actions */}
-              <div className="border-t border-slate-700 pt-4 space-y-3">
-                <Button className="w-full bg-lime-400 hover:bg-lime-500 text-slate-900 font-bold">
+              <div className="border-t border-slate-700 pt-3 sm:pt-4 space-y-2 sm:space-y-3">
+                <Button className="w-full bg-lime-400 hover:bg-lime-500 text-slate-900 font-bold text-sm sm:text-base py-2 sm:py-2.5">
                   চ্যালেঞ্জ শুরু করুন
                 </Button>
-                <div className="flex gap-2">
+                <div className="flex gap-1.5 sm:gap-2">
                   <Button
                     variant="outline"
                     size="icon"
-                    className="flex-1 border-slate-700 text-slate-400 hover:text-white hover:border-slate-600"
+                    className="flex-1 border-slate-700 text-slate-400 hover:text-white hover:border-slate-600 h-9 sm:h-10"
                   >
                     <Heart className="w-4 h-4" />
                   </Button>
                   <Button
                     variant="outline"
                     size="icon"
-                    className="flex-1 border-slate-700 text-slate-400 hover:text-white hover:border-slate-600"
+                    className="flex-1 border-slate-700 text-slate-400 hover:text-white hover:border-slate-600 h-9 sm:h-10"
                   >
                     <Share2 className="w-4 h-4" />
                   </Button>
@@ -352,15 +352,15 @@ export default function ChallengeDetailPage({ params }: PageProps) {
             </div>
 
             {/* Flag Submission Card */}
-            <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-6 space-y-4">
-              <h3 className="text-lg font-bold text-white">ফ্ল্যাগ সাবমিশন</h3>
-              <div className="space-y-3">
+            <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 sm:p-6 space-y-3 sm:space-y-4">
+              <h3 className="text-base sm:text-lg font-bold text-white">ফ্ল্যাগ সাবমিশন</h3>
+              <div className="space-y-2 sm:space-y-3">
                 <input
                   type="text"
                   placeholder="flag{your_answer_here}"
-                  className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:border-lime-400 focus:outline-none transition-colors text-sm"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:border-lime-400 focus:outline-none transition-colors text-xs sm:text-sm"
                 />
-                <Button className="w-full bg-lime-400 hover:bg-lime-500 text-slate-900 font-bold">
+                <Button className="w-full bg-lime-400 hover:bg-lime-500 text-slate-900 font-bold text-sm sm:text-base py-2 sm:py-2.5">
                   সাবমিট করুন
                 </Button>
               </div>
@@ -368,19 +368,19 @@ export default function ChallengeDetailPage({ params }: PageProps) {
             </div>
 
             {/* Requirements Card */}
-            <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-6">
-              <h3 className="text-white font-bold mb-4">প্রয়োজনীয়তা</h3>
-              <ul className="space-y-2 text-sm text-slate-400">
+            <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 sm:p-6">
+              <h3 className="text-white font-bold text-base sm:text-lg mb-3 sm:mb-4">প্রয়োজনীয়তা</h3>
+              <ul className="space-y-2 text-xs sm:text-sm text-slate-400">
                 <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-lime-400 rounded-full"></span>
+                  <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-lime-400 rounded-full flex-shrink-0"></span>
                   {challenge.category} পরিচিতি
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-lime-400 rounded-full"></span>
+                  <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-lime-400 rounded-full flex-shrink-0"></span>
                   বিশ্লেষণমূলক চিন্তাভাবনা
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-lime-400 rounded-full"></span>
+                  <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-lime-400 rounded-full flex-shrink-0"></span>
                   সমস্যা সমাধানের দক্ষতা
                 </li>
               </ul>
