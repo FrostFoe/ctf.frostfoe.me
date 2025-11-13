@@ -28,7 +28,7 @@ export default function CtfPage() {
     <div className="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900">
       <CtfHeader />
 
-      <div className="container-centered">
+      <div className="container-centered md:ml-4">
         <Breadcrumb
           items={[
             { label: "হোম", href: "/" },

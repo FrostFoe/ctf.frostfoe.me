@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 export default function CtfHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-700/50 bg-slate-900/95 backdrop-blur-xs w-full">
-      <div className="container-centered">
+      <div className="container-centered md:ml-4">
         <div className="flex h-14 sm:h-16 items-center justify-between py-2 sm:py-4 gap-2 sm:gap-4">
           {/* Left side - Logo */}
           <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 shrink-0">

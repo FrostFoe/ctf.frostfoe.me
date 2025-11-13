@@ -16,7 +16,7 @@ export default function CTFLayout({ children }: { children: ReactNode }) {
       <CTFSidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <main
         className={`flex-1 transition-all duration-300 ${
-          isSidebarOpen ? "md:ml-64" : "md:ml-0"
+          isSidebarOpen ? "md:ml-64" : "md:ml-64"
         }`}
       >
         {children}
