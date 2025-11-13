@@ -16,7 +16,7 @@ export default function CtfHeader() {
               alt="এইচটিবি সিটিএফ"
               width={32}
               height={32}
-              className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 md:ml-4"
+              className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 md:ml-4 md:mr-4"
             />
             <span className="text-xs sm:text-sm md:text-base font-bold text-white truncate">
               এইচটিবি <span className="text-slate-400 hidden sm:inline">সিটিএফ</span>

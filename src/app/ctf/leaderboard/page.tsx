@@ -108,7 +108,7 @@ export default function LeaderboardPage() {
         </div>
 
         {/* Header Section */}
-        <div className="py-8 sm:py-12 md:ml-4">
+        <div className="py-8 sm:py-12 md:ml-4 md:mr-4">
           <div className="flex items-center gap-4 mb-8">
             <div className="p-4 bg-lime-400/20 border border-lime-400/30 rounded-lg">
               <Trophy className="w-8 h-8 text-lime-400" />
@@ -124,7 +124,7 @@ export default function LeaderboardPage() {
           </div>
 
           {/* Sort Options */}
-          <div className="flex gap-2 mb-8 md:ml-4">
+          <div className="flex gap-2 mb-8 md:ml-4 md:mr-4">
             <button
               onClick={() => setSortBy("points")}
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
