@@ -61,7 +61,7 @@ export default function SettingsPage() {
   const toggleSetting = (key: string) => {
     setSettings((prev) => ({
       ...prev,
-      [key]: !prev[key],
+      [key as keyof typeof prev]: !prev[key as keyof typeof prev],
     }));
   };
 

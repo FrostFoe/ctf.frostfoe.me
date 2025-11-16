@@ -63,7 +63,7 @@ export function ChallengeResources({
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Track the download
-      downloadResource(resource.name, resource.size);
+      downloadResource(resource.name, resource.size?.toString() || "");
 
       // Mark as downloaded
       setDownloadedItems((prev) => new Set([...prev, resource.name]));

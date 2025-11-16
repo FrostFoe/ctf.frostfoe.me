@@ -7,16 +7,24 @@ import ChallengesGrid from "@/components/ctf/challenges-grid";
 import CtfHeader from "@/components/ctf/ctf-header";
 import CtfMainNav from "@/components/ctf/ctf-main-nav";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { ctfData } from "@/lib/ctf-data-loader";
+import { useCtfData } from "@/hooks/use-ctf-data";
 
 export default function ChallengesPage() {
+  const { events } = useCtfData();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("সব");
   const [selectedDifficulty, setSelectedDifficulty] = useState("সব");
 
+  // Get all challenges from all events
+  const allChallenges = useMemo(() => {
+    return events.flatMap(event => 
+      event.challenges || []
+    );
+  }, [events]);
+
   // Filter challenges based on search and filters
   const filteredChallenges = useMemo(() => {
-    return ctfData.challenges.filter((challenge) => {
+    return allChallenges.filter((challenge) => {
       const matchesSearch = challenge.title
         .toLowerCase()
         .includes(searchQuery.toLowerCase());

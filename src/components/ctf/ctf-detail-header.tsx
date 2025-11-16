@@ -8,7 +8,7 @@ interface CtfEvent {
   title: string;
   image: string;
   badge: string;
-  tags: string[];
+  tags?: string[];
   [key: string]: unknown;
 }
 
@@ -17,6 +17,9 @@ interface CtfDetailHeaderProps {
 }
 
 export default function CtfDetailHeader({ event }: CtfDetailHeaderProps) {
+  // Ensure tags is always an array
+  const safeTags = Array.isArray(event.tags) ? event.tags : [];
+
   return (
     <div className="relative w-full h-80 sm:h-96 md:h-[500px] overflow-hidden">
       {/* Background Image */}
@@ -77,7 +80,7 @@ export default function CtfDetailHeader({ event }: CtfDetailHeaderProps) {
         <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-bold rounded bg-red-600 text-white">
           {event.badge}
         </span>
-        {event.tags.map((tag) => (
+        {safeTags.map((tag) => (
           <span
             key={tag}
             className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded border border-slate-700 bg-slate-900/80 text-slate-200"

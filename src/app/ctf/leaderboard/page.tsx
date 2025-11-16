@@ -5,7 +5,6 @@ import { Trophy, TrendingUp, Medal, Star, User } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import CtfHeader from "@/components/ctf/ctf-header";
 import CtfMainNav from "@/components/ctf/ctf-main-nav";
-import { ctfData } from "@/lib/ctf-data-loader";
 
 interface LeaderboardEntry {
   rank: number;
@@ -228,11 +227,7 @@ export default function LeaderboardPage() {
                 onChange={(e) => setSelectedEvent(parseInt(e.target.value))}
                 className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white hover:border-slate-600 focus:outline-none focus:border-lime-400"
               >
-                {ctfData.events.map((event) => (
-                  <option key={event.id} value={event.id}>
-                    {event.title} ({event.totalChallenges} চ্যালেঞ্জ)
-                  </option>
-                ))}
+                {/* Events will be loaded from Supabase via useEffect */}
               </select>
             </div>
           </div>

@@ -3,15 +3,23 @@
 import { useState, useMemo } from "react";
 import ChallengesFilter from "@/components/ctf/challenges-filter";
 import ChallengesGrid from "@/components/ctf/challenges-grid";
-import { ctfData } from "@/lib/ctf-data-loader";
+import { useCtfData } from "@/hooks/use-ctf-data";
 
 export default function ChallengesTab() {
+  const { events } = useCtfData();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("সব");
   const [selectedDifficulty, setSelectedDifficulty] = useState("সব");
 
+  // Get all challenges from all events
+  const allChallenges = useMemo(() => {
+    return events.flatMap(event => 
+      event.challenges || []
+    );
+  }, [events]);
+
   const filteredChallenges = useMemo(() => {
-    return ctfData.challenges.filter((challenge) => {
+    return allChallenges.filter((challenge) => {
       const matchesSearch = challenge.title
         .toLowerCase()
         .includes(searchQuery.toLowerCase());

@@ -14,7 +14,7 @@ interface CtfEventCardProps {
   date: string;
   image: string;
   badge: string;
-  tags: string[];
+  tags?: string[];
   players: number;
   status?: "upcoming" | "ongoing" | "ended" | "registration-closed";
   startDate?: string;
@@ -30,7 +30,7 @@ export default function CtfEventCard({
   date,
   image,
   badge,
-  tags,
+  tags = [],
   players,
   status = "ongoing",
   startDate,
@@ -43,6 +43,9 @@ export default function CtfEventCard({
 
   const targetDate =
     startDate && startTime ? `${startDate} ${startTime}` : date;
+  
+  // Ensure tags is always an array
+  const safeTags = Array.isArray(tags) ? tags : [];
 
   return (
     <Link href={`/ctf/${slug}`}>
@@ -69,7 +72,7 @@ export default function CtfEventCard({
             >
               {type === "series" ? "Series" : "Single"}
             </span>
-            {tags.slice(0, 1).map((tag) => (
+            {safeTags.slice(0, 1).map((tag) => (
               <span
                 key={tag}
                 className="inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 bg-slate-900/80 text-slate-200 text-xs font-semibold rounded border border-slate-700 whitespace-nowrap"

@@ -4,17 +4,18 @@ import { useState } from "react";
 import CtfEventGrid from "@/components/ctf/ctf-event-grid";
 import CtfTabs from "@/components/ctf/ctf-tabs";
 import CtfSearch from "@/components/ctf/ctf-search";
-import { ctfData } from "@/lib/ctf-data-loader";
+import { useCtfData } from "@/hooks/use-ctf-data";
 
 export default function CtfEvents() {
+  const { events: allEvents } = useCtfData();
   const [activeTab, setActiveTab] = useState("ongoing");
   const [searchQuery, setSearchQuery] = useState("");
 
   const events = {
-    ongoing: ctfData.events,
-    upcoming: [],
+    ongoing: allEvents.filter((e) => e.status === "ongoing"),
+    upcoming: allEvents.filter((e) => e.status === "upcoming"),
     joined: [],
-    past: [],
+    past: allEvents.filter((e) => e.status === "ended"),
   };
 
   const filteredEvents = events[activeTab as keyof typeof events].filter(
@@ -34,7 +35,7 @@ export default function CtfEvents() {
 
       <CtfSearch searchQuery={searchQuery} onSearchChange={setSearchQuery} />
 
-      <CtfEventGrid events={filteredEvents} />
+      <CtfEventGrid events={filteredEvents as any} />
     </div>
   );
 }

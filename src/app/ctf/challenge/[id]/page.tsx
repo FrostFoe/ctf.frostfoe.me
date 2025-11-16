@@ -18,7 +18,7 @@ import { Badge } from "@/components/ui/badge";
 import { FlagSubmissionForm } from "@/components/challenge/flag-submission-form";
 import { ChallengeResources } from "@/components/challenge/challenge-resources";
 import { ChallengeStatusCard } from "@/components/challenge/challenge-status-card";
-import { ctfData } from "@/lib/ctf-data-loader";
+import { getEvents, getChallengesByEvent } from "@/lib/supabase/ctf-service";
 
 interface PageProps {
   params: Promise<{
@@ -28,15 +28,48 @@ interface PageProps {
 
 export default function ChallengeDetailPage({ params }: PageProps) {
   const { id } = use(params);
+  const [challenge, setChallenge] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [timeSpent, setTimeSpent] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(true);
   const [hintsUsed, setHintsUsed] = useState(0);
   const [revealedHints, setRevealedHints] = useState<number[]>([]);
   const [isCompleted, setIsCompleted] = useState(false);
-  const challenge = ctfData.challenges.find((c) => c.id === parseInt(id));
 
-  if (!challenge) {
+  // Load challenge from Supabase
+  useEffect(() => {
+    const loadChallenge = async () => {
+      try {
+        setIsLoading(true);
+        const events = await getEvents();
+        // Find challenge across all events
+        for (const event of events) {
+          const challenges = await getChallengesByEvent(event.id);
+          const found = challenges.find((c) => c.id === parseInt(id));
+          if (found) {
+            setChallenge(found);
+            break;
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load challenge:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadChallenge();
+  }, [id]);
+
+  if (!isLoading && !challenge) {
     notFound();
+  }
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
+        <p className="text-white">চ্যালেঞ্জ লোড হচ্ছে...</p>
+      </div>
+    );
   }
 
   // Real-time localStorage listener
@@ -98,13 +131,8 @@ export default function ChallengeDetailPage({ params }: PageProps) {
     }
   };
 
-  // Find parent event/series info
-  const parentEvent = ctfData.events.find((e) => {
-    if (challenge.seriesId) {
-      return e.slug === challenge.seriesId.replace("-series", "");
-    }
-    return e.id === challenge.eventId;
-  });
+  // Find parent event/series info (will be loaded separately)
+  const parentEvent: any = null; // TODO: Load from Supabase
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -308,7 +336,7 @@ export default function ChallengeDetailPage({ params }: PageProps) {
                   ইঙ্গিত ({revealedHints.length}/{challenge.hints.length})
                 </h2>
                 <div className="space-y-2 sm:space-y-3">
-                  {challenge.hints.map((hint, index) => (
+                  {challenge.hints?.map((hint: string, index: number) => (
                     <div key={index} className="space-y-2">
                       {revealedHints.includes(index) ? (
                         <div className="flex items-start gap-2 sm:gap-3 p-3 sm:p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
@@ -354,7 +382,7 @@ export default function ChallengeDetailPage({ params }: PageProps) {
                   দক্ষতা ট্যাগ
                 </h3>
                 <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {challenge.tags.map((tag) => (
+                  {challenge.tags?.map((tag: string) => (
                     <span
                       key={tag}
                       className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs rounded-full bg-slate-700/50 text-slate-300 border border-slate-600 hover:border-slate-500 hover:bg-slate-700 transition-all"
@@ -406,7 +434,7 @@ export default function ChallengeDetailPage({ params }: PageProps) {
                         পুরস্কার
                       </p>
                       <ul className="space-y-1">
-                        {parentEvent.prizes.map((prize, idx) => (
+                        {parentEvent?.prizes?.map((prize: string, idx: number) => (
                           <li
                             key={idx}
                             className="text-slate-300 text-xs sm:text-sm flex items-center gap-2"

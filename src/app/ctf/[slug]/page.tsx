@@ -7,7 +7,7 @@ import CtfDetailAbout from "@/components/ctf/ctf-detail-about";
 import CtfDetailSidebar from "@/components/ctf/ctf-detail-sidebar";
 import CtfDetailFooter from "@/components/ctf/ctf-detail-footer";
 import CtfSeriesChallenges from "@/components/ctf/ctf-series-challenges";
-import { ctfData } from "@/lib/ctf-data-loader";
+import { getEvents, getChallengesByEvent } from "@/lib/supabase/ctf-service";
 
 interface PageProps {
   params: Promise<{
@@ -17,16 +17,18 @@ interface PageProps {
 
 export default async function CtfDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const event = ctfData.events.find((e) => e.slug === slug);
+  const events = await getEvents();
+  const event = events.find((e) => e.slug === slug);
 
   if (!event) {
     notFound();
   }
 
-  // Get series challenges if this is a series CTF
+  // Get challenges for this event
+  const challenges = await getChallengesByEvent(event.id);
   const seriesChallenges =
-    event.ctfType === "series"
-      ? ctfData.challenges.filter((c) => c.seriesId === `${slug}-series`)
+    event.ctf_type === "series"
+      ? challenges
       : [];
 
   return (
@@ -51,11 +53,11 @@ export default async function CtfDetailPage({ params }: PageProps) {
             <CtfDetailInfo event={event} />
 
             {/* Series Challenges Section */}
-            {event.ctfType === "series" && seriesChallenges.length > 0 && (
+            {event.ctf_type === "series" && seriesChallenges.length > 0 && (
               <CtfSeriesChallenges
                 challenges={seriesChallenges}
-                totalChallenges={event.totalChallenges || 0}
-                completedChallenges={event.completedChallenges || 0}
+                totalChallenges={event.total_challenges || 0}
+                completedChallenges={0}
               />
             )}
 

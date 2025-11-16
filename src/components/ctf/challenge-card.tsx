@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Users, Trophy, Flag, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
-import { isChallengeCompleted } from "@/lib/storage";
 
 interface ChallengeCardProps {
   id: number;
@@ -26,8 +25,8 @@ export default function ChallengeCard({
   points,
   solves,
 }: ChallengeCardProps) {
-  // Check if challenge is completed
-  const isCompleted = isChallengeCompleted(id);
+  // Check if challenge is completed - TODO: Load from Supabase
+  const isCompleted = false;
   const getDifficultyBg = (diff: string) => {
     switch (diff) {
       case "সহজ":

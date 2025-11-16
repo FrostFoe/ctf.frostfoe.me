@@ -19,23 +19,50 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import CtfHeader from "@/components/ctf/ctf-header";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import {
-  getOrInitializeUserProfile,
-  getOrInitializeUserStats,
-  getUnlockedAchievements,
-  getAllAchievements,
-  getRecentActivities,
-  updateUserProfile,
-  checkAndUnlockAchievements,
-} from "@/lib/user-data";
-import type {
-  Achievement,
-  RecentActivity,
-  UserProfile,
-  UserStats,
-} from "@/lib/storage";
+import { useUser } from "@/lib/context/user-context";
+
+// Type definitions for profile data
+interface UserProfile {
+  id: string;
+  displayName: string;
+  bio: string;
+  avatar: string;
+  joinDate: string;
+  username?: string;
+  country?: string;
+}
+
+interface UserStats {
+  totalPoints: number;
+  ranking: number;
+  challengesSolved: number;
+  eventParticipations: number;
+  teamsMembership: number;
+  currentStreak: number;
+  longestStreak: number;
+  solveRate: string;
+}
+
+interface Achievement {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  rarity: string;
+  unlocked: boolean;
+  unlockedAt?: string;
+}
+
+interface RecentActivity {
+  id: string;
+  type: string;
+  title: string;
+  description: string;
+  timestamp: string;
+}
 
 export default function ProfilePage() {
+  const { user } = useUser();
   const [activeTab, setActiveTab] = useState("overview");
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [stats, setStats] = useState<UserStats | null>(null);
@@ -45,46 +72,50 @@ export default function ProfilePage() {
   );
   const [isLoading, setIsLoading] = useState(true);
 
-  // Real-time localStorage listener for stats updates
+  // Load user profile and stats from Supabase
   useEffect(() => {
-    const handleStorageChange = (e: StorageEvent) => {
-      if (
-        e.key === "ctf_user_stats" ||
-        e.key === "ctf_completed_challenges" ||
-        e.key === "ctf_achievements"
-      ) {
-        // Reload stats on storage change
-        const userStats = getOrInitializeUserStats();
-        const allAchievements = getAllAchievements();
-        const activities = getRecentActivities(10);
+    const loadUserData = async () => {
+      try {
+        if (!user?.id) {
+          setIsLoading(false);
+          return;
+        }
 
-        setStats(userStats);
-        setAchievements(allAchievements);
-        setRecentActivities(activities);
-        checkAndUnlockAchievements();
+        // TODO: Load from Supabase
+        const profile: UserProfile = {
+          id: user.id,
+          displayName: (user as any).display_name || user.username || "ব্যবহারকারী",
+          bio: "আপনার জীবনী এখানে যোগ করুন",
+          avatar: (user as any).avatar || "/images/default-avatar.png",
+          joinDate: new Date().toISOString(),
+          username: user.username,
+          country: "বাংলাদেশ",
+        };
+
+        const defaultStats: UserStats = {
+          totalPoints: 0,
+          ranking: 0,
+          challengesSolved: 0,
+          eventParticipations: 0,
+          teamsMembership: 0,
+          currentStreak: 0,
+          longestStreak: 0,
+          solveRate: "0%",
+        };
+
+        setUserProfile(profile);
+        setStats(defaultStats);
+        setAchievements([]);
+        setRecentActivities([]);
+      } catch (err) {
+        console.error("Failed to load profile:", err);
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, []);
-
-  useEffect(() => {
-    // Load data from persistent storage
-    const profile = getOrInitializeUserProfile();
-    const userStats = getOrInitializeUserStats();
-    const unlockedAchievements = getUnlockedAchievements();
-    const allAchievements = getAllAchievements();
-    const activities = getRecentActivities(10);
-
-    setUserProfile(profile);
-    setStats(userStats);
-    // Show all achievements with unlock status
-    setAchievements(allAchievements);
-    setRecentActivities(activities);
-    checkAndUnlockAchievements();
-    setIsLoading(false);
-  }, []);
+    loadUserData();
+  }, [user?.id]);
 
   if (isLoading || !userProfile || !stats) {
     return (
@@ -323,7 +354,7 @@ export default function ProfilePage() {
             <div className="space-y-4 sm:space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {achievements.map((achievement) => {
-                  const isUnlocked = achievement.unlockedAt !== "";
+                  const isUnlocked = achievement.unlocked;
                   return (
                     <div
                       key={achievement.id}

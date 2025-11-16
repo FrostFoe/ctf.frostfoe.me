@@ -4,13 +4,14 @@ import { useState } from "react";
 import { useUser } from "@/lib/context/user-context";
 
 export default function UserSettings() {
-  const { user, isGuest } = useUser();
-  const [email, setEmail] = useState(user?.email ?? "");
+  const { user } = useUser();
+  const isGuest = user?.role === 'guest';
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState(
-    (user?.user_metadata as { username?: string })?.username ?? "",
+    user?.username ?? "",
   );
   const [displayName, setDisplayName] = useState(
-    (user?.user_metadata as { display_name?: string })?.display_name ?? "",
+    (user as any)?.display_name ?? user?.username ?? "",
   );
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);

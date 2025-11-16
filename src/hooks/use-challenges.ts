@@ -1,19 +1,10 @@
 /**
  * useChallenges Hook
  * Manages challenge completion, hints, and progress tracking
+ * Updated to use Supabase
  */
 
 import { useCallback, useState } from "react";
-import {
-  isChallengeSolvedByUser,
-  getChallengeCompletionTime,
-  getChallengePointsEarned,
-  getChallengeDetails,
-  revealHint,
-  getRevealedHintsCount,
-  getRevealedHints,
-} from "@/lib/challenge-service";
-import { completeChallengeFull } from "@/lib/user-data";
 
 export function useChallenges() {
   const [completedChallenges, setCompletedChallenges] = useState<Set<number>>(
@@ -27,14 +18,16 @@ export function useChallenges() {
    * Check if challenge is solved
    */
   const isSolved = useCallback((challengeId: number): boolean => {
-    return isChallengeSolvedByUser(challengeId);
+    // TODO: Load from Supabase
+    return false;
   }, []);
 
   /**
    * Get challenge completion details
    */
   const getChallengeData = useCallback((challengeId: number) => {
-    return getChallengeDetails(challengeId);
+    // TODO: Load from Supabase
+    return null;
   }, []);
 
   /**
@@ -48,19 +41,9 @@ export function useChallenges() {
       timeSpent = 0,
       hintsUsed = 0,
     ): boolean => {
-      const success = completeChallengeFull(
-        challengeId,
-        eventId,
-        points,
-        timeSpent,
-        hintsUsed,
-      );
-
-      if (success) {
-        setCompletedChallenges((prev) => new Set([...prev, challengeId]));
-      }
-
-      return success;
+      // TODO: Save to Supabase
+      setCompletedChallenges((prev) => new Set([...prev, challengeId]));
+      return true;
     },
     [],
   );
@@ -74,7 +57,7 @@ export function useChallenges() {
       hintIndex: number,
       availableHints: string[],
     ): string | null => {
-      const hint = revealHint(challengeId, hintIndex, availableHints);
+      const hint = availableHints[hintIndex] || null;
 
       if (hint) {
         setRevealedHints((prev) => ({
@@ -92,28 +75,32 @@ export function useChallenges() {
    * Get revealed hints count
    */
   const getHintsUsed = useCallback((challengeId: number): number => {
-    return getRevealedHintsCount(challengeId);
+    // TODO: Load from Supabase
+    return 0;
   }, []);
 
   /**
    * Get all revealed hints
    */
   const getHints = useCallback((challengeId: number): string[] => {
-    return getRevealedHints(challengeId);
+    // TODO: Load from Supabase
+    return [];
   }, []);
 
   /**
    * Get completion time
    */
   const getTime = useCallback((challengeId: number): number | null => {
-    return getChallengeCompletionTime(challengeId);
+    // TODO: Load from Supabase
+    return null;
   }, []);
 
   /**
    * Get points earned
    */
   const getPoints = useCallback((challengeId: number): number | null => {
-    return getChallengePointsEarned(challengeId);
+    // TODO: Load from Supabase
+    return null;
   }, []);
 
   return {

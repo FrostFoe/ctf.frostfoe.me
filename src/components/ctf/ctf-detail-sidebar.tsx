@@ -4,16 +4,16 @@ import Image from "next/image";
 import { Users, Zap, Globe, Users2, BookOpen, User } from "lucide-react";
 
 interface CtfEvent {
-  hostedBy: string;
-  hostedByLogo: string;
-  going: number;
-  teams: number;
-  playerAvatars: string[];
-  format: string;
-  type: string;
-  location: string;
-  teamSize: string;
-  scenarios: string;
+  hostedBy?: string;
+  hostedByLogo?: string;
+  going?: number;
+  teams?: number;
+  playerAvatars?: string[];
+  format?: string;
+  type?: string;
+  location?: string;
+  teamSize?: string;
+  scenarios?: string;
   [key: string]: unknown;
 }
 
@@ -22,6 +22,7 @@ interface CtfDetailSidebarProps {
 }
 
 export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
+  const safePlayerAvatars = Array.isArray(event.playerAvatars) ? event.playerAvatars : [];
   return (
     <div className="w-full space-y-4 sm:space-y-5 md:space-y-6">
       {/* Hosted By Section */}
@@ -61,7 +62,7 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
           {/* Player Avatars */}
           <div className="flex items-center gap-2 mb-2 sm:mb-3 overflow-x-auto pb-1">
             <div className="flex -space-x-2">
-              {event.playerAvatars.slice(0, 4).map((avatar, idx) =>
+              {safePlayerAvatars.slice(0, 4).map((avatar, idx) =>
                 avatar ? (
                   <Image
                     key={idx}
@@ -81,10 +82,10 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
                 ),
               )}
             </div>
-            {event.playerAvatars.length > 4 && (
+            {safePlayerAvatars.length > 4 && (
               <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-700 border-2 border-slate-600 flex items-center justify-center">
                 <span className="text-xs font-bold text-slate-200">
-                  +{event.playerAvatars.length - 4}
+                  +{safePlayerAvatars.length - 4}
                 </span>
               </div>
             )}
@@ -94,7 +95,7 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
           <div className="flex items-center gap-2 text-slate-300 text-sm sm:text-base">
             <Users className="w-4 h-4 text-lime-400 shrink-0" />
             <span>
-              <strong className="text-white">{event.going}</strong> জন খেলোয়াড়
+              <strong className="text-white">{event.going || 0}</strong> জন খেলোয়াড়
               যোগ দিয়েছেন
             </span>
           </div>
@@ -103,7 +104,7 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
           <div className="flex items-center gap-2 text-slate-300 text-sm sm:text-base">
             <Users2 className="w-4 h-4 text-lime-400 shrink-0" />
             <span>
-              <strong className="text-white">{event.teams}</strong> টি দল যোগ
+              <strong className="text-white">{event.teams || 0}</strong> টি দল যোগ
               দিয়েছে
             </span>
           </div>
@@ -121,7 +122,7 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
             <p className="text-slate-500 text-xs font-semibold mb-2">ফরম্যাট</p>
             <p className="text-white font-semibold text-sm sm:text-base flex items-center gap-2">
               <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-lime-400 shrink-0" />
-              <span className="truncate">{event.format}</span>
+              <span className="truncate">{event.format || "N/A"}</span>
             </p>
           </div>
 
@@ -130,7 +131,7 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
             <p className="text-slate-500 text-xs font-semibold mb-2">ধরন</p>
             <p className="text-white font-semibold text-sm sm:text-base flex items-center gap-2">
               <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-lime-400 shrink-0" />
-              <span className="truncate">{event.type}</span>
+              <span className="truncate">{event.type || "N/A"}</span>
             </p>
           </div>
 
@@ -139,7 +140,7 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
             <p className="text-slate-500 text-xs font-semibold mb-2">অবস্থান</p>
             <p className="text-white font-semibold text-sm sm:text-base flex items-center gap-2">
               <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-lime-400 shrink-0" />
-              <span className="truncate">{event.location}</span>
+              <span className="truncate">{event.location || "N/A"}</span>
             </p>
           </div>
 
@@ -150,7 +151,7 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
             </p>
             <p className="text-white font-semibold text-sm sm:text-base flex items-center gap-2">
               <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-lime-400 shrink-0" />
-              <span className="truncate">{event.teamSize}</span>
+              <span className="truncate">{event.teamSize || "N/A"}</span>
             </p>
           </div>
         </div>
@@ -159,7 +160,7 @@ export default function CtfDetailSidebar({ event }: CtfDetailSidebarProps) {
         <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-slate-700">
           <p className="text-slate-500 text-xs font-semibold mb-2">দৃশ্যপট</p>
           <p className="text-white font-semibold text-sm sm:text-base">
-            {event.scenarios}
+            {event.scenarios || "N/A"}
           </p>
         </div>
       </div>

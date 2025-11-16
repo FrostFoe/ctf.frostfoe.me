@@ -3,16 +3,14 @@
  * Handles exporting user data to JSON and importing from JSON
  */
 
-import { exportUserData } from "@/lib/user-data";
-import { clearAllStorage } from "@/lib/storage";
-
 /**
  * Export all user data as JSON file
  */
 export function exportUserDataAsJson(filename = "ctf-user-data"): void {
   if (typeof window === "undefined") return;
 
-  const data = exportUserData();
+  // TODO: Export user data from Supabase
+  const data = {};
   const jsonString = JSON.stringify(data, null, 2);
   const dataUri =
     "data:application/json;charset=utf-8," + encodeURIComponent(jsonString);
@@ -43,11 +41,8 @@ export function importUserDataFromJson(file: File): Promise<boolean> {
           return;
         }
 
-        // Clear existing data
-        clearAllStorage();
-
-        // Import data (this would need to be extended based on actual storage structure)
-        console.log("Data imported successfully:", data);
+        // TODO: Import data to Supabase
+        console.log("Data import not yet implemented for Supabase:", data);
         resolve(true);
       } catch (error) {
         console.error("Error importing data:", error);

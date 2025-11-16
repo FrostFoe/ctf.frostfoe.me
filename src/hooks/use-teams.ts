@@ -1,281 +1,297 @@
 /**
- * useTeams Hook
+ * useTeams Hook - Supabase Version
  * Manages team creation, joining, and member operations
+ * Now uses Supabase database instead of localStorage
  */
 
 import { useCallback, useState, useEffect } from "react";
 import {
-  createNewTeam,
-  joinTeamWithCode,
-  joinTeamDirectly,
-  removeTeamMember,
-  updateMemberRole,
-  leaveTeam,
+  createTeam,
   getTeamById,
-  getTeamMembers,
-  isTeamMember,
-  isTeamLeader,
-  getUserTeamRole,
-  getTeamStatistics,
-  getAllTeams,
-  getPublicTeams,
-  searchTeams,
-  updateTeamPoints,
-} from "@/lib/team-service";
-import type { Team, TeamMember } from "@/lib/storage";
+  getTeams,
+  getUserTeams,
+  addTeamMember,
+  removeTeamMember,
+} from "@/lib/supabase/ctf-service";
+import { useUser } from "@/lib/context/user-context";
+
+export interface Team {
+  id: string;
+  name: string;
+  description?: string;
+  logo?: string;
+  is_public: boolean;
+  join_code?: string;
+  created_by: string;
+  total_points: number;
+  created_at: string;
+  team_members?: Array<{
+    id: number;
+    user_id: string;
+    role: "leader" | "moderator" | "member";
+    joined_at: string;
+  }>;
+}
+
+export interface TeamMember {
+  id: number;
+  user_id: string;
+  role: "leader" | "moderator" | "member";
+  joined_at: string;
+}
 
 export function useTeams() {
+  const { user } = useUser();
   const [userTeams, setUserTeams] = useState<Team[]>([]);
+  const [allTeams, setAllTeams] = useState<Team[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   // Load teams on mount
   useEffect(() => {
-    const teams = getAllTeams();
-    setUserTeams(teams);
-    setIsLoading(false);
-  }, []);
+    const loadTeams = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+
+        // Load public teams
+        const publicTeams = await getTeams();
+        setAllTeams(publicTeams || []);
+
+        // Load user's teams if authenticated
+        if (user?.id) {
+          const userTeamsData = await getUserTeams(user.id);
+          setUserTeams(userTeamsData || []);
+        } else {
+          setUserTeams([]);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to load teams");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadTeams();
+  }, [user?.id]);
 
   /**
    * Create a new team
    */
-  const createTeam = useCallback(
-    (
+  const createNewTeam = useCallback(
+    async (
       teamName: string,
-      description: string,
-      currentUserId: string,
-      currentUsername: string,
-      currentAvatar: string,
-      isPublic = true,
-    ): Team | null => {
-      const team = createNewTeam(
-        teamName,
-        description,
-        currentUserId,
-        currentUsername,
-        currentAvatar,
-        isPublic,
-      );
-
-      if (team) {
-        setUserTeams((prev) => [...prev, team]);
+      description?: string,
+      isPublic = true
+    ): Promise<Team | null> => {
+      if (!user?.id) {
+        setError("User not authenticated");
+        return null;
       }
 
-      return team;
+      try {
+        const team = await createTeam(user.id, teamName, description, isPublic);
+        setUserTeams((prev) => [...prev, team]);
+        return team;
+      } catch (err) {
+        const message =
+          err instanceof Error ? err.message : "Failed to create team";
+        setError(message);
+        return null;
+      }
     },
-    [],
+    [user?.id]
   );
 
   /**
    * Join team with code
    */
   const joinWithCode = useCallback(
-    (
-      joinCode: string,
-      currentUserId: string,
-      currentUsername: string,
-      currentAvatar: string,
-    ): Team | null => {
-      const team = joinTeamWithCode(
-        joinCode,
-        currentUserId,
-        currentUsername,
-        currentAvatar,
-      );
-
-      if (team) {
-        setUserTeams((prev) => [...prev, team]);
+    async (joinCode: string): Promise<Team | null> => {
+      if (!user?.id) {
+        setError("User not authenticated");
+        return null;
       }
 
-      return team;
+      try {
+        // Find team by join code
+        const teams = await getTeams();
+        const targetTeam = teams.find((t) => t.join_code === joinCode);
+
+        if (!targetTeam) {
+          setError("Invalid join code");
+          return null;
+        }
+
+        await addTeamMember(targetTeam.id, user.id, "member");
+        setUserTeams((prev) => [...prev, targetTeam]);
+        return targetTeam;
+      } catch (err) {
+        const message =
+          err instanceof Error ? err.message : "Failed to join team";
+        setError(message);
+        return null;
+      }
     },
-    [],
+    [user?.id]
   );
 
   /**
    * Join team directly
    */
   const joinDirect = useCallback(
-    (
-      teamId: string,
-      currentUserId: string,
-      currentUsername: string,
-      currentAvatar: string,
-    ): Team | null => {
-      const team = joinTeamDirectly(
-        teamId,
-        currentUserId,
-        currentUsername,
-        currentAvatar,
-      );
-
-      if (team) {
-        setUserTeams((prev) => [...prev, team]);
+    async (teamId: string): Promise<Team | null> => {
+      if (!user?.id) {
+        setError("User not authenticated");
+        return null;
       }
 
-      return team;
+      try {
+        const team = await getTeamById(teamId);
+        if (!team) {
+          setError("Team not found");
+          return null;
+        }
+
+        if (!team.is_public) {
+          setError("This team is not public");
+          return null;
+        }
+
+        await addTeamMember(teamId, user.id, "member");
+        setUserTeams((prev) => [...prev, team]);
+        return team;
+      } catch (err) {
+        const message =
+          err instanceof Error ? err.message : "Failed to join team";
+        setError(message);
+        return null;
+      }
     },
-    [],
+    [user?.id]
   );
 
   /**
    * Remove team member
    */
   const removeMember = useCallback(
-    (teamId: string, memberId: string, currentUserId: string): boolean => {
-      const success = removeTeamMember(teamId, memberId, currentUserId);
-
-      if (success) {
-        const team = getTeamById(teamId);
-        if (team) {
-          setUserTeams((prev) => prev.map((t) => (t.id === teamId ? team : t)));
-        }
+    async (teamId: string, memberId: string): Promise<boolean> => {
+      if (!user?.id) {
+        setError("User not authenticated");
+        return false;
       }
 
-      return success;
-    },
-    [],
-  );
-
-  /**
-   * Update member role
-   */
-  const changeMemberRole = useCallback(
-    (
-      teamId: string,
-      memberId: string,
-      newRole: "leader" | "moderator" | "member",
-      currentUserId: string,
-    ): boolean => {
-      const success = updateMemberRole(
-        teamId,
-        memberId,
-        newRole,
-        currentUserId,
-      );
-
-      if (success) {
-        const team = getTeamById(teamId);
-        if (team) {
-          setUserTeams((prev) => prev.map((t) => (t.id === teamId ? team : t)));
+      try {
+        const team = await getTeamById(teamId);
+        if (team?.created_by !== user.id) {
+          setError("Only team leader can remove members");
+          return false;
         }
-      }
 
-      return success;
+        await removeTeamMember(teamId, memberId);
+        return true;
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to remove member");
+        return false;
+      }
     },
-    [],
+    [user?.id]
   );
 
   /**
    * Leave team
    */
-  const leaveCurrentTeam = useCallback(
-    (teamId: string, currentUserId: string): boolean => {
-      const success = leaveTeam(teamId, currentUserId);
-
-      if (success) {
-        setUserTeams((prev) => prev.filter((t) => t.id !== teamId));
+  const leaveTeam = useCallback(
+    async (teamId: string): Promise<boolean> => {
+      if (!user?.id) {
+        setError("User not authenticated");
+        return false;
       }
 
-      return success;
+      try {
+        await removeTeamMember(teamId, user.id);
+        setUserTeams((prev) => prev.filter((t) => t.id !== teamId));
+        return true;
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to leave team");
+        return false;
+      }
     },
-    [],
+    [user?.id]
   );
 
   /**
    * Get team by ID
    */
-  const getTeam = useCallback((teamId: string): Team | null => {
-    return getTeamById(teamId);
-  }, []);
-
-  /**
-   * Get team members
-   */
-  const getMembers = useCallback((teamId: string): TeamMember[] => {
-    return getTeamMembers(teamId);
-  }, []);
+  const getTeam = useCallback(
+    async (teamId: string): Promise<Team | null> => {
+      try {
+        return await getTeamById(teamId);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to get team");
+        return null;
+      }
+    },
+    []
+  );
 
   /**
    * Check if user is team member
    */
-  const isMember = useCallback((teamId: string, userId: string): boolean => {
-    return isTeamMember(teamId, userId);
-  }, []);
+  const isMember = useCallback(
+    (teamId: string): boolean => {
+      return userTeams.some((t) => t.id === teamId);
+    },
+    [userTeams]
+  );
 
   /**
    * Check if user is team leader
    */
-  const isLeader = useCallback((teamId: string, userId: string): boolean => {
-    return isTeamLeader(teamId, userId);
-  }, []);
+  const isLeader = useCallback(
+    async (teamId: string): Promise<boolean> => {
+      if (!user?.id) return false;
 
-  /**
-   * Get user role in team
-   */
-  const getUserRole = useCallback(
-    (teamId: string, userId: string): string | null => {
-      return getUserTeamRole(teamId, userId);
-    },
-    [],
-  );
-
-  /**
-   * Get team statistics
-   */
-  const getStats = useCallback((teamId: string) => {
-    return getTeamStatistics(teamId);
-  }, []);
-
-  /**
-   * Get public teams
-   */
-  const getPublic = useCallback((): Team[] => {
-    return getPublicTeams();
-  }, []);
-
-  /**
-   * Search teams
-   */
-  const searchTeamsFunc = useCallback(
-    (query: string, onlyPublic = true): Team[] => {
-      return searchTeams(query, onlyPublic);
-    },
-    [],
-  );
-
-  /**
-   * Update team points
-   */
-  const addPoints = useCallback((teamId: string, points: number): boolean => {
-    const success = updateTeamPoints(teamId, points);
-
-    if (success) {
-      const team = getTeamById(teamId);
-      if (team) {
-        setUserTeams((prev) => prev.map((t) => (t.id === teamId ? team : t)));
+      try {
+        const team = await getTeamById(teamId);
+        return team?.created_by === user.id;
+      } catch {
+        return false;
       }
-    }
+    },
+    [user?.id]
+  );
 
-    return success;
-  }, []);
+  /**
+   * Get public teams (searchable)
+   */
+  const getPublicTeams = useCallback(
+    (query?: string): Team[] => {
+      return allTeams.filter((t) => {
+        if (!t.is_public) return false;
+        if (query) {
+          return t.name.toLowerCase().includes(query.toLowerCase()) ||
+            t.description?.toLowerCase().includes(query.toLowerCase());
+        }
+        return true;
+      });
+    },
+    [allTeams]
+  );
 
   return {
     isLoading,
+    error,
     userTeams,
-    createTeam,
+    allTeams,
+    createNewTeam,
     joinWithCode,
     joinDirect,
     removeMember,
-    changeMemberRole,
-    leaveCurrentTeam,
+    leaveTeam,
     getTeam,
-    getMembers,
     isMember,
     isLeader,
-    getUserRole,
-    getStats,
-    getPublic,
-    searchTeamsFunc,
-    addPoints,
+    getPublicTeams,
   };
 }

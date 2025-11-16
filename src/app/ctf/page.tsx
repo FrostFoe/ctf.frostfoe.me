@@ -7,17 +7,18 @@ import CtfSearch from "@/components/ctf/ctf-search";
 import CtfEventGrid from "@/components/ctf/ctf-event-grid";
 import CtfMainNav from "@/components/ctf/ctf-main-nav";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { ctfData } from "@/lib/ctf-data-loader";
+import { useCtfData } from "@/hooks/use-ctf-data";
 
 export default function CtfPage() {
+  const { events: allEvents } = useCtfData();
   const [activeTab, setActiveTab] = useState("ongoing");
   const [searchQuery, setSearchQuery] = useState("");
 
   const events = {
-    ongoing: ctfData.events.filter((e) => e.status === "ongoing"),
-    upcoming: ctfData.events.filter((e) => e.status === "upcoming"),
-    joined: [] as typeof ctfData.events,
-    past: ctfData.events.filter((e) => e.status === "ended"),
+    ongoing: allEvents.filter((e) => e.status === "ongoing"),
+    upcoming: allEvents.filter((e) => e.status === "upcoming"),
+    joined: [] as typeof allEvents,
+    past: allEvents.filter((e) => e.status === "ended"),
   };
 
   const filteredEvents = events[activeTab as keyof typeof events].filter(
@@ -41,7 +42,7 @@ export default function CtfPage() {
 
         <CtfSearch searchQuery={searchQuery} onSearchChange={setSearchQuery} />
 
-        <CtfEventGrid events={filteredEvents} />
+        <CtfEventGrid events={filteredEvents as any} />
       </div>
     </div>
   );

@@ -93,7 +93,7 @@ export function FlagSubmissionForm({
     }
 
     // Submit with sanitized flag
-    await submitFlag(validation.sanitized, timeSpent, hintsUsed);
+    await submitFlag(validation.sanitized, timeSpent.toString(), hintsUsed);
     if (submissionResult?.success) {
       onSuccess?.(submissionResult.points || 0);
     }

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
 import Link from "next/link";
-import { ctfData } from "@/lib/ctf-data-loader";
+import { useCtfData } from "@/hooks/use-ctf-data";
 
 interface EventResult {
   type: "event";
@@ -24,6 +24,7 @@ interface ChallengeResult {
 type SearchResult = EventResult | ChallengeResult;
 
 export function GlobalSearch() {
+  const { events } = useCtfData();
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -49,32 +50,34 @@ export function GlobalSearch() {
     }
 
     const lowercaseQuery = value.toLowerCase();
+    const allChallenges = events.flatMap(e => e.challenges || []);
+    
     const searchResults: SearchResult[] = [
-      ...ctfData.events
+      ...events
         .filter(
           (event) =>
-            event.title.toLowerCase().includes(lowercaseQuery) ||
-            event.description.toLowerCase().includes(lowercaseQuery),
+            event.title?.toLowerCase().includes(lowercaseQuery) ||
+            event.description?.toLowerCase().includes(lowercaseQuery),
         )
         .map((event) => ({
           type: "event" as const,
           id: event.id,
           title: event.title,
           slug: event.slug,
-          description: event.description,
+          description: event.description || "",
         })),
-      ...ctfData.challenges
+      ...allChallenges
         .filter(
           (challenge) =>
-            challenge.title.toLowerCase().includes(lowercaseQuery) ||
-            challenge.description.toLowerCase().includes(lowercaseQuery),
+            challenge.title?.toLowerCase().includes(lowercaseQuery) ||
+            challenge.description?.toLowerCase().includes(lowercaseQuery),
         )
         .map((challenge) => ({
           type: "challenge" as const,
           id: challenge.id,
           title: challenge.title,
-          description: challenge.description,
-          category: challenge.category,
+          description: challenge.description || "",
+          category: challenge.category || "",
         })),
     ];
 
