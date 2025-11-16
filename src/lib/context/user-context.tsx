@@ -1,86 +1,56 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  useCallback,
-} from "react";
-import type { User } from "@supabase/supabase-js";
-import { createClient } from "@/lib/supabase/client";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import type { Database } from "@/types/database";
+
+type User = Database["public"]["Tables"]["users"]["Row"];
 
 interface UserContextType {
   user: User | null;
-  loading: boolean;
+  isLoading: boolean;
   isAuthenticated: boolean;
-  isGuest: boolean;
-  logout: () => Promise<void>;
-  refreshUser: () => Promise<void>;
+  refetch: () => Promise<void>;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [isGuest, setIsGuest] = useState(false);
-  const supabase = createClient();
+  const [isLoading, setIsLoading] = useState(true);
 
-  const fetchUser = useCallback(async () => {
+  const fetchUser = async () => {
+    setIsLoading(true);
     try {
-      // Simulate an async operation
-      await new Promise((resolve) => setTimeout(resolve, 100));
-      const { data } = await supabase.auth.getUser();
-      if (data.user) {
-        setUser(data.user);
-        setIsGuest(data.user.is_anonymous ?? false);
+      const response = await fetch("/api/auth/me", {
+        method: "GET",
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data.user || null);
+      } else {
+        setUser(null);
       }
     } catch (error) {
       console.error("Failed to fetch user:", error);
+      setUser(null);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
-  }, [supabase]);
+  };
 
   useEffect(() => {
-    void fetchUser();
-
-    // Subscribe to auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_event, session) => {
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        setIsGuest(session.user.is_anonymous ?? false);
-      }
-    });
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, [supabase, fetchUser]);
-
-  const logout = async () => {
-    await supabase.auth.signOut();
-    setUser(null);
-    setIsGuest(false);
-  };
-
-  const refreshUser = async () => {
-    await Promise.resolve(); // Dummy await to satisfy linter
-    await fetchUser();
-  };
+    fetchUser();
+  }, []);
 
   return (
     <UserContext.Provider
       value={{
         user,
-        loading,
+        isLoading,
         isAuthenticated: !!user,
-        isGuest,
-        logout,
-        refreshUser,
+        refetch: fetchUser,
       }}
     >
       {children}
@@ -88,10 +58,36 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
+/**
+ * Hook to access user context
+ */
 export function useUser() {
   const context = useContext(UserContext);
   if (context === undefined) {
-    throw new Error("useUser must be used within a UserProvider");
+    throw new Error("useUser must be used within UserProvider");
   }
   return context;
+}
+
+/**
+ * Hook to check if user is authenticated
+ */
+export function useIsAuthenticated() {
+  const { isAuthenticated } = useUser();
+  return isAuthenticated;
+}
+
+/**
+ * Hook to check if user has a specific role
+ */
+export function useRole(role: "player" | "admin" | "guest") {
+  const { user } = useUser();
+  return user?.role === role;
+}
+
+/**
+ * Hook to check if user is admin
+ */
+export function useIsAdmin() {
+  return useRole("admin");
 }

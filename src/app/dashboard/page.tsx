@@ -3,39 +3,31 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/client";
+import { useUser } from "@/lib/context/user-context";
 import DashboardHeader from "@/components/dashboard/dashboard-header";
 import DashboardNav from "@/components/dashboard/dashboard-nav";
 import DashboardContent from "@/components/dashboard/dashboard-content";
 
 export default function DashboardPage() {
   const router = useRouter();
-  const supabase = createClient();
+  const { user, isLoading } = useUser();
   const [activeTab, setActiveTab] = useState("product");
-  const [loading, setLoading] = useState(true);
-  const [isGuest, setIsGuest] = useState(false);
 
   useEffect(() => {
-    const getUser = async () => {
-      const { data } = await supabase.auth.getUser();
-      if (!data.user) {
-        router.push("/login");
-      } else if (data.user.is_anonymous) {
-        setIsGuest(true);
-      }
-      setLoading(false);
-    };
+    if (!isLoading && !user) {
+      router.push("/login");
+    }
+  }, [user, isLoading, router]);
 
-    void getUser();
-  }, [supabase, router]);
-
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-linear-to-b from-slate-900 via-slate-800 to-slate-900">
         <p className="text-white">লোড হচ্ছে...</p>
       </div>
     );
   }
+
+  const isGuest = user?.role === "guest";
 
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950">

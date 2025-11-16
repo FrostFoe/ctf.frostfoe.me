@@ -3,27 +3,32 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/client";
 
 export default function GuestLoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-  const supabase = createClient();
 
   const handleGuestLogin = async () => {
     setError(null);
     setLoading(true);
 
     try {
-      const { error } = await supabase.auth.signInAnonymously();
+      const response = await fetch("/api/auth/guest", {
+        method: "POST",
+        credentials: "include",
+      });
 
-      if (error) {
-        setError(error.message);
-      } else {
-        router.push("/dashboard");
-        router.refresh();
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || "Guest login failed");
+        return;
       }
+
+      await new Promise(resolve => setTimeout(resolve, 100));
+      router.push("/dashboard");
+      router.refresh();
     } catch {
       setError("অতিথি লগইনে ত্রুটি হয়েছে");
     } finally {

@@ -4,18 +4,33 @@ import { HelpCircle, Grid3x3, LogOut } from "lucide-react";
 import { useUser } from "@/lib/context/user-context";
 
 export default function DashboardHeader() {
-  const { user, logout, isGuest } = useUser();
+  const { user } = useUser();
   const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const handleLogout = async () => {
-    await logout();
-    router.push("/login");
-    router.refresh();
+    setIsLoggingOut(true);
+    try {
+      const response = await fetch("/api/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        router.push("/");
+        router.refresh();
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+      setIsLoggingOut(false);
+    }
   };
 
-  const userEmail = user?.email ?? "ব্যবহারকারী";
-  const userInitial = userEmail.charAt(0).toUpperCase();
+  const userDisplay = user?.username ?? "ব্যবহারকারী";
+  const userInitial = userDisplay.charAt(0).toUpperCase();
+  const isGuest = user?.role === "guest";
 
   return (
     <header className="w-full border-b border-slate-800 bg-slate-950/50 backdrop-blur-xs sticky top-0 z-50">
@@ -62,7 +77,7 @@ export default function DashboardHeader() {
             {showMenu && (
               <div className="absolute right-0 mt-2 w-48 bg-slate-900 border border-slate-700 rounded-lg shadow-lg overflow-hidden z-50">
                 <div className="px-4 py-3 border-b border-slate-700">
-                  <p className="text-sm font-medium text-white">{userEmail}</p>
+                  <p className="text-sm font-medium text-white">{userDisplay}</p>
                   {isGuest && (
                     <p className="text-xs text-lime-400 mt-1">
                       অতিথি ব্যবহারকারী
@@ -72,10 +87,11 @@ export default function DashboardHeader() {
 
                 <button
                   onClick={() => void handleLogout()}
-                  className="w-full px-4 py-2 text-left text-sm text-red-400 hover:bg-slate-800 flex items-center gap-2 transition-colors"
+                  disabled={isLoggingOut}
+                  className="w-full px-4 py-2 text-left text-sm text-red-400 hover:bg-slate-800 flex items-center gap-2 transition-colors disabled:opacity-50"
                 >
                   <LogOut className="w-4 h-4" />
-                  লগআউট করুন
+                  {isLoggingOut ? "লগআউট হচ্ছে..." : "লগআউট করুন"}
                 </button>
               </div>
             )}
