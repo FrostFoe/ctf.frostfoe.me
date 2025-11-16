@@ -5,88 +5,250 @@
 
 "use client";
 
+import { useEffect, useState } from "react";
+import { useUser } from "@/lib/context/user-context";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { useUser, useIsAdmin } from "@/lib/context/user-context";
-import { logoutAction } from "@/lib/actions/auth";
+import Link from "next/link";
+import {
+  Plus,
+  Edit2,
+  Trash2,
+  Eye,
+  Calendar,
+  Users,
+  BookOpen,
+  Zap,
+} from "lucide-react";
+import {
+  getEvents,
+  getTotalEventCount,
+} from "@/lib/services/events.service";
+import {
+  getTotalChallengeCount,
+} from "@/lib/services/challenges.service";
+import { getUserStats } from "@/lib/services/users.service";
 
-export default function AdminPage() {
+interface CTFEvent {
+  id: number;
+  title: string;
+  slug: string;
+  status: string;
+  ctf_type: string;
+  total_challenges?: number;
+  players_count?: number;
+  start_date?: string;
+  [key: string]: any;
+}
+
+export default function AdminDashboard() {
   const router = useRouter();
-  const { user, isLoading } = useUser();
-  const isAdmin = useIsAdmin();
+  const { user } = useUser();
+  const [events, setEvents] = useState<CTFEvent[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [stats, setStats] = useState({
+    totalEvents: 0,
+    activeEvents: 0,
+    totalChallenges: 0,
+    totalUsers: 0,
+  });
 
   useEffect(() => {
-    if (!isLoading && (!user || !isAdmin)) {
-      router.push("/");
+    if (user && user.role !== "admin") {
+      router.push("/dashboard");
+      return;
     }
-  }, [user, isAdmin, isLoading, router]);
+    loadDashboardData();
+  }, [user, router]);
+
+  const loadDashboardData = async () => {
+    try {
+      setIsLoading(true);
+
+      // Load events
+      const eventsData = await getEvents();
+      setEvents(eventsData.slice(0, 5) || []);
+
+      // Load actual stats
+      const totalEvents = await getTotalEventCount();
+      const activeEvents = eventsData.filter(
+        (e: any) => e.status === "ongoing"
+      ).length;
+      const totalChallenges = await getTotalChallengeCount();
+      const userStats = await getUserStats();
+
+      setStats({
+        totalEvents,
+        activeEvents,
+        totalChallenges,
+        totalUsers: userStats.total,
+      });
+    } catch (err) {
+      console.error("Failed to load dashboard data:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <p className="text-white">লোড হচ্ছে...</p>
+      <div className="flex items-center justify-center h-96">
+        <div className="w-12 h-12 border-4 border-slate-700 border-t-lime-400 rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">অ্যাডমিন ড্যাশবোর্ড</h1>
-          <p className="text-slate-400">সিস্টেম ব্যবস্থাপনা এবং নিয়ন্ত্রণ</p>
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-white">অ্যাডমিন ড্যাশবোর্ড</h1>
+          <p className="text-slate-400 mt-1">সিস্টেম পরিচালনা এবং মনিটরিং</p>
         </div>
+      </div>
 
-        <div className="bg-slate-800 rounded-lg border border-slate-700 p-6 mb-6">
-          <h2 className="text-xl font-bold text-white mb-4">ব্যবহারকারী তথ্য</h2>
-          <div className="space-y-2 text-slate-300">
-            <p>
-              <span className="font-semibold">ইউজারনেম:</span> {user?.username}
-            </p>
-            <p>
-              <span className="font-semibold">আইডি:</span> {user?.id}
-            </p>
-            <p>
-              <span className="font-semibold">ভূমিকা:</span>{" "}
-              <span className="text-lime-400 font-bold">{user?.role}</span>
-            </p>
-            <p>
-              <span className="font-semibold">তৈরির সময়:</span>{" "}
-              {user?.created_at
-                ? new Date(user.created_at).toLocaleDateString("bn-BD")
-                : "N/A"}
-            </p>
-          </div>
-        </div>
+      {/* Stats Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {[
+          {
+            label: "মোট ইভেন্ট",
+            value: stats.totalEvents,
+            icon: Calendar,
+            color: "bg-blue-900/20 text-blue-400",
+          },
+          {
+            label: "সক্রিয় ইভেন্ট",
+            value: stats.activeEvents,
+            icon: Zap,
+            color: "bg-green-900/20 text-green-400",
+          },
+          {
+            label: "মোট চ্যালেঞ্জ",
+            value: stats.totalChallenges,
+            icon: BookOpen,
+            color: "bg-purple-900/20 text-purple-400",
+          },
+          {
+            label: "মোট ইউজার",
+            value: stats.totalUsers,
+            icon: Users,
+            color: "bg-amber-900/20 text-amber-400",
+          },
+        ].map((stat) => {
+          const Icon = stat.icon;
+          return (
+            <div
+              key={stat.label}
+              className="bg-slate-800/50 border border-slate-700 rounded-lg p-6"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-slate-400 text-sm mb-1">{stat.label}</p>
+                  <p className="text-3xl font-bold text-white">
+                    {stat.value}
+                  </p>
+                </div>
+                <div className={`p-3 rounded-lg ${stat.color}`}>
+                  <Icon size={24} />
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
 
-        <div className="bg-slate-800 rounded-lg border border-slate-700 p-6 mb-6">
-          <h2 className="text-xl font-bold text-white mb-4">সিস্টেম তথ্য</h2>
-          <div className="space-y-2 text-slate-300">
-            <p>
-              <span className="font-semibold">প্ল্যাটফর্ম:</span> Next.js 16 +
-              Supabase
-            </p>
-            <p>
-              <span className="font-semibold">প্রমাণীকরণ:</span> কাস্টম (প্লেইনটেক্সট
-              পাসওয়ার্ড)
-            </p>
-            <p>
-              <span className="font-semibold">ডাটাবেস:</span> Supabase PostgreSQL
-            </p>
-            <p>
-              <span className="font-semibold">সেশন:</span> HTTP-only কুকি
-            </p>
-          </div>
-        </div>
-
-        <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
-          <h2 className="text-xl font-bold text-white mb-4">দ্রুত ক্রিয়া</h2>
-          <button
-            onClick={() => logoutAction()}
-            className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+      {/* Recent Events */}
+      <div className="bg-slate-800/50 border border-slate-700 rounded-lg overflow-hidden">
+        <div className="border-b border-slate-700 px-6 py-4 flex items-center justify-between">
+          <h2 className="text-lg font-bold text-white">সম্প্রতি যুক্ত ইভেন্ট</h2>
+          <Link
+            href="/admin/events/new"
+            className="flex items-center gap-2 px-4 py-2 bg-lime-400 text-slate-900 rounded-lg font-bold hover:bg-lime-500 transition-colors"
           >
-            লগআউট করুন
-          </button>
+            <Plus size={18} />
+            নতুন ইভেন্ট
+          </Link>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-slate-700 bg-slate-900/50">
+                <th className="px-6 py-3 text-left text-sm font-semibold text-slate-400">
+                  নাম
+                </th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-slate-400">
+                  স্ট্যাটাস
+                </th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-slate-400">
+                  টাইপ
+                </th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-slate-400">
+                  চ্যালেঞ্জ
+                </th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-slate-400">
+                  অ্যাকশন
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {events.map((event) => (
+                <tr
+                  key={event.id}
+                  className="border-b border-slate-700 hover:bg-slate-900/30 transition-colors"
+                >
+                  <td className="px-6 py-4 text-white font-medium">
+                    {event.title}
+                  </td>
+                  <td className="px-6 py-4">
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-bold ${
+                        event.status === "ongoing"
+                          ? "bg-green-900/30 text-green-400"
+                          : event.status === "upcoming"
+                            ? "bg-blue-900/30 text-blue-400"
+                            : "bg-red-900/30 text-red-400"
+                      }`}
+                    >
+                      {event.status}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-slate-300">
+                    {event.ctf_type || "jeopardy"}
+                  </td>
+                  <td className="px-6 py-4 text-slate-300">
+                    {event.total_challenges || 0}
+                  </td>
+                  <td className="px-6 py-4 flex items-center gap-2">
+                    <Link
+                      href={`/admin/events/${event.id}`}
+                      className="p-2 hover:bg-slate-700 rounded-lg text-slate-400 hover:text-white transition-colors"
+                      title="এডিট"
+                    >
+                      <Edit2 size={18} />
+                    </Link>
+                    <button
+                      onClick={() => {
+                        // TODO: Implement delete with confirmation
+                        console.log("Delete event:", event.id);
+                      }}
+                      className="p-2 hover:bg-red-900/20 rounded-lg text-slate-400 hover:text-red-400 transition-colors"
+                      title="ডিলিট"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                    <Link
+                      href={`/ctf/${event.slug}`}
+                      className="p-2 hover:bg-slate-700 rounded-lg text-slate-400 hover:text-white transition-colors"
+                      title="ভিউ"
+                    >
+                      <Eye size={18} />
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

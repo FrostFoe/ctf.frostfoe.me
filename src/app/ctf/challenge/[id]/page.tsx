@@ -29,6 +29,7 @@ interface PageProps {
 export default function ChallengeDetailPage({ params }: PageProps) {
   const { id } = use(params);
   const [challenge, setChallenge] = useState<any>(null);
+  const [parentEvent, setParentEvent] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [timeSpent, setTimeSpent] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(true);
@@ -48,6 +49,7 @@ export default function ChallengeDetailPage({ params }: PageProps) {
           const found = challenges.find((c) => c.id === parseInt(id));
           if (found) {
             setChallenge(found);
+            setParentEvent(event); // Set the parent event
             break;
           }
         }
@@ -131,8 +133,14 @@ export default function ChallengeDetailPage({ params }: PageProps) {
     }
   };
 
-  // Find parent event/series info (will be loaded separately)
-  const parentEvent: any = null; // TODO: Load from Supabase
+  const isSeries = challenge && !!challenge.seriesId && challenge.seriesId !== null;
+  
+  // Support both camelCase and snake_case properties from Supabase
+  const eventDifficulty = parentEvent?.difficulty || parentEvent?.skill_level || "N/A";
+  const eventSkillLevel = parentEvent?.skillLevel || parentEvent?.skill_level || "N/A";
+  const eventCtfType = parentEvent?.ctfType || parentEvent?.ctf_type || "jeopardy";
+  const eventFormat = parentEvent?.format || "N/A";
+  const eventTeamSize = parentEvent?.teamSize || parentEvent?.team_size || "N/A";
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -187,13 +195,11 @@ export default function ChallengeDetailPage({ params }: PageProps) {
       case "মাঝারি থেকে কঠিন":
         return "75%";
       case "অসম্ভব":
-        return "100%";
+        return "50%";
       default:
         return "50%";
     }
   };
-
-  const isSeries = !!challenge.seriesId && challenge.seriesId !== null;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
@@ -228,12 +234,14 @@ export default function ChallengeDetailPage({ params }: PageProps) {
                   সিরিজের অংশ
                 </span>
                 <span className="text-xs sm:text-sm text-blue-300">
-                  {parentEvent.title} - চ্যালেঞ্জ #{challenge.seriesOrder}
+                  {parentEvent
+                    ? `${parentEvent.title} - চ্যালেঞ্জ #{challenge.seriesOrder || challenge.series_order}`
+                    : "সিরিজ চ্যালেঞ্জ"}
                 </span>
               </div>
               <p className="text-xs text-blue-400/70">
-                অসুবিধা: {parentEvent.difficulty} • দক্ষতা:{" "}
-                {parentEvent.skillLevel}
+                অসুবিধা: {eventDifficulty} • দক্ষতা:{" "}
+                {eventSkillLevel}
               </p>
             </div>
             <Link
@@ -253,16 +261,16 @@ export default function ChallengeDetailPage({ params }: PageProps) {
             <div className="flex flex-col gap-2 sm:gap-3">
               <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                 <span className="text-xs font-bold px-2 py-1 rounded bg-purple-900/50 text-purple-300">
-                  {parentEvent.ctfType === "series"
+                  {eventCtfType === "series"
                     ? "সিরিজ ইভেন্ট"
                     : "একক চ্যালেঞ্জ"}
                 </span>
                 <span className="text-xs sm:text-sm text-purple-300">
-                  {parentEvent.title}
+                  {parentEvent?.title}
                 </span>
               </div>
               <p className="text-xs text-purple-400/70">
-                ফর্ম্যাট: {parentEvent.format} • দল সাইজ: {parentEvent.teamSize}
+                ফর্ম্যাট: {eventFormat} • দল সাইজ: {eventTeamSize}
               </p>
             </div>
             <Link

@@ -27,7 +27,7 @@ export default async function CtfDetailPage({ params }: PageProps) {
   // Get challenges for this event
   const challenges = await getChallengesByEvent(event.id);
   const seriesChallenges =
-    event.ctf_type === "series"
+    (event.ctfType === "series" || event.ctf_type === "series")
       ? challenges
       : [];
 
@@ -53,10 +53,10 @@ export default async function CtfDetailPage({ params }: PageProps) {
             <CtfDetailInfo event={event} />
 
             {/* Series Challenges Section */}
-            {event.ctf_type === "series" && seriesChallenges.length > 0 && (
+            {(event.ctfType === "series" || event.ctf_type === "series") && seriesChallenges.length > 0 && (
               <CtfSeriesChallenges
                 challenges={seriesChallenges}
-                totalChallenges={event.total_challenges || 0}
+                totalChallenges={event.totalChallenges || event.total_challenges || 0}
                 completedChallenges={0}
               />
             )}

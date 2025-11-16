@@ -6,6 +6,45 @@ const supabase = createClient(
 );
 
 // ============================================
+// DATA TRANSFORMATION - Snake Case to Camel Case
+// ============================================
+
+function transformEvent(event: any) {
+  return {
+    ...event,
+    // Add camelCase aliases for snake_case fields
+    ctfType: event.ctf_type || "single",
+    startDate: event.start_date,
+    startTime: event.start_time,
+    endDate: event.end_date,
+    endTime: event.end_time,
+    totalChallenges: event.total_challenges || 0,
+    playersCount: event.players_count || 0,
+    teamsCount: event.teams_count || 0,
+    teamSizeMin: event.team_size_min,
+    teamSizeMax: event.team_size_max,
+    skillLevel: event.skill_level,
+    hostedBy: event.hosted_by,
+    hostedByLogo: event.hosted_by_logo,
+    playerAvatars: event.player_avatars || [],
+    tags: event.tags || [],
+  };
+}
+
+function transformChallenge(challenge: any) {
+  return {
+    ...challenge,
+    seriesId: challenge.series_id,
+    seriesOrder: challenge.series_order,
+    solvesCount: challenge.solves_count || 0,
+    successRate: challenge.success_rate,
+    alternateFlags: challenge.alternate_flags || [],
+    createdAt: challenge.created_at,
+    updatedAt: challenge.updated_at,
+  };
+}
+
+// ============================================
 // EVENT OPERATIONS
 // ============================================
 
@@ -16,7 +55,7 @@ export async function getEvents() {
     .order("created_at", { ascending: false });
 
   if (error) throw error;
-  return data;
+  return (data || []).map(transformEvent);
 }
 
 export async function getEventById(eventId: number) {
@@ -27,7 +66,7 @@ export async function getEventById(eventId: number) {
     .single();
 
   if (error) throw error;
-  return data;
+  return data ? transformEvent(data) : null;
 }
 
 export async function getEventBySlug(slug: string) {
@@ -38,7 +77,7 @@ export async function getEventBySlug(slug: string) {
     .single();
 
   if (error && error.code !== "PGRST116") throw error;
-  return data || null;
+  return data ? transformEvent(data) : null;
 }
 
 // ============================================
@@ -57,7 +96,7 @@ export async function getChallenges(eventId?: number) {
   });
 
   if (error) throw error;
-  return data;
+  return (data || []).map(transformChallenge);
 }
 
 export async function getChallengeById(challengeId: number) {
@@ -73,7 +112,7 @@ export async function getChallengeById(challengeId: number) {
     .single();
 
   if (error) throw error;
-  return data;
+  return data ? transformChallenge(data) : null;
 }
 
 export async function getChallengesByEvent(eventId: number) {
@@ -89,7 +128,7 @@ export async function getChallengesByEvent(eventId: number) {
     .order("series_order", { ascending: true });
 
   if (error) throw error;
-  return data;
+  return (data || []).map(transformChallenge);
 }
 
 // ============================================

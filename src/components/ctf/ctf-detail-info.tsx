@@ -5,10 +5,14 @@ import { Share2, LogIn } from "lucide-react";
 
 interface CtfEvent {
   title: string;
-  startDate: string;
-  startTime: string;
-  endDate: string;
-  endTime: string;
+  startDate?: string;
+  startTime?: string;
+  endDate?: string;
+  endTime?: string;
+  start_date?: string;
+  start_time?: string;
+  end_date?: string;
+  end_time?: string;
   [key: string]: unknown;
 }
 
@@ -18,6 +22,11 @@ interface CtfDetailInfoProps {
 }
 
 export default function CtfDetailInfo({ event, onSignUp }: CtfDetailInfoProps) {
+  // Support both camelCase (from transformed data) and snake_case (fallback)
+  const startDate = event.startDate || event.start_date || "N/A";
+  const startTime = event.startTime || event.start_time || "N/A";
+  const endDate = event.endDate || event.end_date || "N/A";
+  const endTime = event.endTime || event.end_time || "N/A";
   return (
     <div className="w-full bg-slate-800/30 border-t border-b border-slate-700 py-6 sm:py-8 md:py-10 px-3 sm:px-4 md:px-6">
       <div className="space-y-6 sm:space-y-8">
@@ -30,10 +39,10 @@ export default function CtfDetailInfo({ event, onSignUp }: CtfDetailInfoProps) {
                 শুরুর তারিখ
               </p>
               <p className="text-white text-base sm:text-lg md:text-xl font-semibold">
-                {event.startDate}
+                {startDate}
               </p>
               <p className="text-slate-300 text-xs sm:text-sm">
-                {event.startTime}
+                {startTime}
               </p>
             </div>
 
@@ -43,10 +52,10 @@ export default function CtfDetailInfo({ event, onSignUp }: CtfDetailInfoProps) {
                 শেষ তারিখ
               </p>
               <p className="text-white text-base sm:text-lg md:text-xl font-semibold">
-                {event.endDate}
+                {endDate}
               </p>
               <p className="text-slate-300 text-xs sm:text-sm">
-                {event.endTime}
+                {endTime}
               </p>
             </div>
           </div>
