@@ -13,23 +13,13 @@ import Link from "next/link";
 export default function HeroCarrer() {
   const logos = [
     {
-      imageUrl: "/svgs/security-metrics-logo.svg",
-      description: "Security Metrics logo",
+      imageUrl: "/images/thn.png",
+      description: "The Hacker News",
       imageHint: "company logo",
     },
     {
-      imageUrl: "/svgs/synack-the-white-logo.svg",
-      description: "Synack logo",
-      imageHint: "company logo",
-    },
-    {
-      imageUrl: "/svgs/lufthansa-logo.svg",
-      description: "Lufthansa logo",
-      imageHint: "company logo",
-    },
-    {
-      imageUrl: "/svgs/booking-holdings-logo.svg",
-      description: "Booking Holdings logo",
+      imageUrl: "/images/mnr.png",
+      description: "Maniruzzaman",
       imageHint: "company logo",
     },
   ];
@@ -104,7 +94,7 @@ export default function HeroCarrer() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 md:gap-8 items-center">
               {logos.map((logo) => (
                 <Image
-                  key={logo.id}
+                  key={logo.imageUrl}
                   className="w-full h-auto mx-auto"
                   src={logo.imageUrl}
                   alt={logo.description}
