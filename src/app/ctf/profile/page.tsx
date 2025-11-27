@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
   ChevronRight,
   Trophy,
@@ -12,14 +11,12 @@ import {
   Calendar,
   Flag,
   Target,
-  TrendingUp,
   User, // Added User icon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import CtfHeader from "@/components/ctf/ctf-header";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { useUser } from "@/lib/context/user-context";
+import { useUser } from "@/hooks/user-context";
 
 // Type definitions for profile data
 interface UserProfile {
@@ -81,12 +78,11 @@ export default function ProfilePage() {
           return;
         }
 
-        // TODO: Load from Supabase
         const profile: UserProfile = {
           id: user.id,
-          displayName: (user as any).display_name || user.username || "ব্যবহারকারী",
+          displayName: user.username || "ব্যবহারকারী",
           bio: "আপনার জীবনী এখানে যোগ করুন",
-          avatar: (user as any).avatar || "/images/default-avatar.png",
+          avatar: "/images/default-avatar.png",
           joinDate: new Date().toISOString(),
           username: user.username,
           country: "বাংলাদেশ",
@@ -115,7 +111,7 @@ export default function ProfilePage() {
     };
 
     loadUserData();
-  }, [user?.id]);
+  }, [user?.id, user?.username]);
 
   if (isLoading || !userProfile || !stats) {
     return (

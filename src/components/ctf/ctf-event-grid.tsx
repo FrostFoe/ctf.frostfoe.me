@@ -1,7 +1,7 @@
 "use client";
 
 import CtfEventCard from "./ctf-event-card";
-import type { CTFEvent } from "@/types/ctf";
+import type { CTFEvent } from "@/lib/types";
 
 interface CtfEventGridProps {
   events: CTFEvent[];
@@ -26,6 +26,11 @@ export default function CtfEventGrid({ events }: CtfEventGridProps) {
           <CtfEventCard
             key={event.id}
             {...event}
+            subtitle={event.subtitle || ""}
+            date={event.date || event.startDate || ""}
+            image={event.image || ""}
+            badge={event.badge || ""}
+            players={event.players || 0}
             type={event.ctfType || "single"}
             seriesChallenges={event.totalChallenges || 1}
           />

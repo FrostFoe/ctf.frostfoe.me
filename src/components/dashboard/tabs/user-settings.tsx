@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useUser } from "@/lib/context/user-context";
+import { useUser } from "@/hooks/user-context";
 
 export default function UserSettings() {
   const { user } = useUser();
@@ -10,7 +10,7 @@ export default function UserSettings() {
     user?.username ?? "",
   );
   const [displayName, setDisplayName] = useState(
-    (user as any)?.display_name ?? user?.username ?? "",
+    user?.username ?? "",
   );
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);

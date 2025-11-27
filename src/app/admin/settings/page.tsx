@@ -39,7 +39,7 @@ export default function AdminSettingsPage() {
 
       setSaveMessage("সেটিংস সফলভাবে সংরক্ষণ হয়েছে");
       setTimeout(() => setSaveMessage(""), 3000);
-    } catch (err) {
+    } catch {
       setSaveMessage("সেটিংস সংরক্ষণ করতে ব্যর্থ");
     } finally {
       setIsSaving(false);

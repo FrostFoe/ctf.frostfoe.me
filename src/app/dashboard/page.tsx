@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useUser } from "@/lib/context/user-context";
+import { useUser } from "@/hooks/user-context";
 import DashboardHeader from "@/components/dashboard/dashboard-header";
 import DashboardNav from "@/components/dashboard/dashboard-nav";
 import DashboardContent from "@/components/dashboard/dashboard-content";

@@ -2,10 +2,8 @@
 
 import { useState } from "react";
 import { Lock, Smartphone } from "lucide-react";
-import { useUser } from "@/lib/context/user-context";
 
 export default function SecuritySettings() {
-  const { user } = useUser();
   const [showPasswordForm, setShowPasswordForm] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");

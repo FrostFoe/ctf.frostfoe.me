@@ -46,7 +46,7 @@ export default function NewEventPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState("");
 
-  const handleChange = (field: string, value: any) => {
+  const handleChange = (field: string, value: string | number | string[]) => {
     setFormData({
       ...formData,
       [field]: value,
@@ -75,9 +75,10 @@ export default function NewEventPage() {
       setTimeout(() => {
         router.push("/admin/events");
       }, 1500);
-    } catch (err: any) {
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "ইভেন্ট তৈরি করতে ব্যর্থ";
       console.error("Failed to create event:", err);
-      setMessage(`❌ ${err.message || "ইভেন্ট তৈরি করতে ব্যর্থ"}`);
+      setMessage(`❌ ${errorMessage}`);
     } finally {
       setIsSaving(false);
     }

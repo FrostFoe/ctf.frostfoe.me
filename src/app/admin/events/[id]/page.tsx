@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRouter, useParams } from "next/navigation";
 import data from "@/lib/data.json";
 import { ArrowLeft, Save, AlertCircle } from "lucide-react";
@@ -23,7 +23,6 @@ interface EventData {
   tags?: string[];
   imageUrl?: string;
   registrationUrl?: string;
-  [key: string]: any;
 }
 
 export default function EditEventPage() {
@@ -31,22 +30,16 @@ export default function EditEventPage() {
   const params = useParams();
   const eventId = params.id as string;
 
-  const [event, setEvent] = useState<EventData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState<EventData | null>(null);
 
-  useEffect(() => {
-    loadEvent();
-  }, [eventId]);
-
-  const loadEvent = () => {
+  const loadEvent = useCallback(() => {
     try {
       setIsLoading(true);
       const eventData = data.events.find(e => e.id === Number(eventId));
       if (eventData) {
-        setEvent(eventData);
         setFormData(eventData);
       } else {
         setMessage("ইভেন্ট পাওয়া যায়নি");
@@ -57,9 +50,13 @@ export default function EditEventPage() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [eventId]);
 
-  const handleChange = (field: string, value: any) => {
+  useEffect(() => {
+    loadEvent();
+  }, [loadEvent]);
+
+  const handleChange = (field: string, value: string | number | string[]) => {
     if (formData) {
       setFormData({
         ...formData,
@@ -82,14 +79,15 @@ export default function EditEventPage() {
 
       // Since this is static data, we just update the local state
       setMessage("✅ ইভেন্ট স্থানীয়ভাবে আপডেট হয়েছে (স্ট্যাটিক ডেটা - পরিবর্তন সংরক্ষিত হয়নি)");
-      setEvent(formData);
+      setFormData(formData);
 
       setTimeout(() => {
         router.push("/admin/events");
       }, 1500);
-    } catch (err: any) {
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "ইভেন্ট সংরক্ষণ করতে ব্যর্থ";
       console.error("Failed to save event:", err);
-      setMessage(`❌ ${err.message || "ইভেন্ট সংরক্ষণ করতে ব্যর্থ"}`);
+      setMessage(`❌ ${errorMessage}`);
     } finally {
       setIsSaving(false);
     }

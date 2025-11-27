@@ -324,7 +324,22 @@
       "createdAt": "2024-01-01T00:00:00.000Z"
     }
   ],
-  "users": [],
+  "users": [
+    {
+      "id": "1",
+      "username": "demo",
+      "password": "demo",
+      "name": "koren",
+      "role": "player"
+    },
+    {
+      "id": "2",
+      "username": "admin",
+      "password": "admin",
+      "name": "koren",
+      "role": "admin"
+    }
+  ],
   "user_profiles": [],
   "user_stats": [],
   "user_achievements": [],

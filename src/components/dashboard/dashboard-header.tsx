@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { HelpCircle, Grid3x3, LogOut } from "lucide-react";
-import { useUser } from "@/lib/context/user-context";
+import { useUser } from "@/hooks/user-context";
 
 export default function DashboardHeader() {
   const { user } = useUser();

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Trophy, TrendingUp, Medal, Star, User } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import CtfHeader from "@/components/ctf/ctf-header";
@@ -70,7 +71,7 @@ export default function LeaderboardPage() {
 
       // Calculate statistics for each user
       let rank = 1;
-      userChallenges.forEach((challenges, userId) => {
+      userChallenges.forEach((challenges) => {
         const totalPoints = challenges.reduce(
           (sum, c) => sum + c.pointsEarned,
           0,
@@ -197,7 +198,7 @@ export default function LeaderboardPage() {
         />
 
         <div className="mt-6 sm:mt-8">
-          <CtfMainNav _activeSection="leaderboard" />
+          <CtfMainNav />
         </div>
 
         {/* Header Section */}
@@ -352,9 +353,11 @@ export default function LeaderboardPage() {
                         <td className="px-4 sm:px-6 py-4">
                           <div className="flex items-center gap-3">
                             {entry.avatar ? (
-                              <img
+                              <Image
                                 src={entry.avatar}
                                 alt={entry.name}
+                                width={32}
+                                height={32}
                                 className="w-8 h-8 rounded-full"
                               />
                             ) : (

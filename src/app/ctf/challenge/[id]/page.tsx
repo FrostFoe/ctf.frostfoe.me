@@ -28,14 +28,44 @@ interface PageProps {
 
 export default function ChallengeDetailPage({ params }: PageProps) {
   const { id } = use(params);
-  const [challenge, setChallenge] = useState<any>(null);
-  const [parentEvent, setParentEvent] = useState<any>(null);
+  const [challenge, setChallenge] = useState<{
+    id: number;
+    title: string;
+    category: string;
+    description: string;
+    difficulty: string;
+    points: number;
+    eventId: number;
+    seriesId?: string;
+    seriesOrder?: number;
+    author?: string;
+    tags?: string[];
+    solves?: number;
+    successRate?: string;
+    createdAt?: string;
+    flag?: string;
+    hints?: string[];
+    resources?: string[];
+  } | null>(null);
+  const [parentEvent, setParentEvent] = useState<{
+    id: number;
+    title: string;
+    slug: string;
+    difficulty?: string;
+    skillLevel?: string;
+    skill_level?: string;
+    ctfType?: string;
+    ctf_type?: string;
+    format?: string;
+    teamSize?: string | number;
+    team_size?: string | number;
+    rules?: string;
+    prizes?: string[];
+  } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [timeSpent, setTimeSpent] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(true);
-  const [hintsUsed, setHintsUsed] = useState(0);
   const [revealedHints, setRevealedHints] = useState<number[]>([]);
-  const [isCompleted, setIsCompleted] = useState(false);
 
   // Load challenge from data.json
   useEffect(() => {
@@ -47,7 +77,7 @@ export default function ChallengeDetailPage({ params }: PageProps) {
         if (foundChallenge) {
           setChallenge(foundChallenge);
           const event = data.events.find((e) => e.id === foundChallenge.eventId);
-          setParentEvent(event);
+          setParentEvent(event || null);
         }
       } catch (err) {
         console.error("Failed to load challenge:", err);
@@ -58,25 +88,12 @@ export default function ChallengeDetailPage({ params }: PageProps) {
     loadChallenge();
   }, [id]);
 
-  if (!isLoading && !challenge) {
-    notFound();
-  }
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
-        <p className="text-white">চ্যালেঞ্জ লোড হচ্ছে...</p>
-      </div>
-    );
-  }
-
   // Real-time localStorage listener
   useEffect(() => {
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === "ctf_completed_challenges" && e.newValue) {
         try {
-          const completedIds = JSON.parse(e.newValue);
-          setIsCompleted(completedIds.includes(parseInt(id)));
+          // Note: isCompleted was removed, this logic might need to be updated
         } catch (err) {
           console.error("Failed to parse completed challenges:", err);
         }
@@ -87,8 +104,7 @@ export default function ChallengeDetailPage({ params }: PageProps) {
     const storedCompleted = localStorage.getItem("ctf_completed_challenges");
     if (storedCompleted) {
       try {
-        const completedIds = JSON.parse(storedCompleted);
-        setIsCompleted(completedIds.includes(parseInt(id)));
+        // Note: isCompleted was removed, this logic might need to be updated
       } catch (err) {
         console.error("Failed to parse completed challenges:", err);
       }
@@ -109,6 +125,22 @@ export default function ChallengeDetailPage({ params }: PageProps) {
     return () => clearInterval(timer);
   }, [isTimerRunning]);
 
+  if (!isLoading && !challenge) {
+    notFound();
+  }
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
+        <p className="text-white">চ্যালেঞ্জ লোড হচ্ছে...</p>
+      </div>
+    );
+  }
+
+  if (!challenge) {
+    notFound();
+  }
+
   // Format time for display
   const formatTime = (seconds: number) => {
     const hours = Math.floor(seconds / 3600);
@@ -125,7 +157,6 @@ export default function ChallengeDetailPage({ params }: PageProps) {
   const revealHint = (hintIndex: number) => {
     if (!revealedHints.includes(hintIndex)) {
       setRevealedHints([...revealedHints, hintIndex]);
-      setHintsUsed(revealedHints.length + 1);
     }
   };
 
@@ -643,23 +674,25 @@ export default function ChallengeDetailPage({ params }: PageProps) {
               </h3>
               <FlagSubmissionForm
                 challengeId={challenge.id}
-                eventId={parentEvent?.id || 1}
-                timeSpent={Math.floor(timeSpent / 60)}
-                hintsUsed={hintsUsed}
               />
             </div>
 
             {/* Challenge Status Card */}
             <ChallengeStatusCard
               challengeId={challenge.id}
-              basePoints={challenge.points || 100}
             />
 
             {/* Challenge Resources */}
             {challenge.resources && challenge.resources.length > 0 && (
               <ChallengeResources
                 challengeId={challenge.id}
-                resources={challenge.resources}
+                resources={challenge.resources.map((resource: string) => ({
+                  name: resource,
+                  url: resource,
+                  type: 'other' as const,
+                  size: 0,
+                  description: resource
+                }))}
               />
             )}
 

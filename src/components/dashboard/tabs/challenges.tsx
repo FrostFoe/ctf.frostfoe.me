@@ -3,20 +3,17 @@
 import { useState, useMemo } from "react";
 import ChallengesFilter from "@/components/ctf/challenges-filter";
 import ChallengesGrid from "@/components/ctf/challenges-grid";
-import { useCtfData } from "@/hooks/use-data";
+import data from "@/lib/data.json";
 
 export default function ChallengesTab() {
-  const { events } = useCtfData();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("সব");
   const [selectedDifficulty, setSelectedDifficulty] = useState("সব");
 
-  // Get all challenges from all events
+  // Get all challenges from data
   const allChallenges = useMemo(() => {
-    return events.flatMap(event => 
-      event.challenges || []
-    );
-  }, [events]);
+    return data.challenges || [];
+  }, []);
 
   const filteredChallenges = useMemo(() => {
     return allChallenges.filter((challenge) => {
@@ -31,7 +28,7 @@ export default function ChallengesTab() {
 
       return matchesSearch && matchesCategory && matchesDifficulty;
     });
-  }, [searchQuery, selectedCategory, selectedDifficulty]);
+  }, [allChallenges, searchQuery, selectedCategory, selectedDifficulty]);
 
   return (
     <div className="space-y-8">

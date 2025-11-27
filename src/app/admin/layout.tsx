@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useUser } from "@/lib/context/user-context";
+import { useUser } from "@/hooks/user-context";
 import {
   BarChart3,
   Users,

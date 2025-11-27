@@ -41,7 +41,7 @@ export function ChallengeResources({
   challengeId,
   resources,
 }: ChallengeResourcesProps) {
-  const { downloadResource } = useChallengeSubmission(challengeId, 1);
+  const { downloadResource } = useChallengeSubmission(challengeId);
   const [downloadedItems, setDownloadedItems] = useState<Set<string>>(
     new Set(),
   );

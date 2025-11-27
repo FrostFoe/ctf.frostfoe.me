@@ -7,20 +7,17 @@ import ChallengesGrid from "@/components/ctf/challenges-grid";
 import CtfHeader from "@/components/ctf/ctf-header";
 import CtfMainNav from "@/components/ctf/ctf-main-nav";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { useCtfData } from "@/hooks/use-data";
+import data from "@/lib/data.json";
 
 export default function ChallengesPage() {
-  const { events } = useCtfData();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("সব");
   const [selectedDifficulty, setSelectedDifficulty] = useState("সব");
 
-  // Get all challenges from all events
+  // Get all challenges from data
   const allChallenges = useMemo(() => {
-    return events.flatMap(event => 
-      event.challenges || []
-    );
-  }, [events]);
+    return data.challenges || [];
+  }, []);
 
   // Filter challenges based on search and filters
   const filteredChallenges = useMemo(() => {
@@ -36,7 +33,7 @@ export default function ChallengesPage() {
 
       return matchesSearch && matchesCategory && matchesDifficulty;
     });
-  }, [searchQuery, selectedCategory, selectedDifficulty]);
+  }, [allChallenges, searchQuery, selectedCategory, selectedDifficulty]);
 
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900">
@@ -52,7 +49,7 @@ export default function ChallengesPage() {
         />
 
         <div className="mt-6 sm:mt-8">
-          <CtfMainNav _activeSection="challenges" />
+          <CtfMainNav />
         </div>
 
         <div className="py-8 sm:py-12 space-y-8">

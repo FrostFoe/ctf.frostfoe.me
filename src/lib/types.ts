@@ -1,4 +1,42 @@
 /**
+ * All TypeScript type definitions for the CTF platform
+ */
+
+/**
+ * Database type definitions for Supabase
+ * Generated from schema introspection
+ */
+export type Database = {
+  public: {
+    Tables: {
+      users: {
+        Row: {
+          id: string;
+          username: string;
+          password: string;
+          role: "player" | "admin";
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          username: string;
+          password: string;
+          role?: "player" | "admin";
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          username?: string;
+          password?: string;
+          role?: "player" | "admin";
+          created_at?: string;
+        };
+      };
+    };
+  };
+};
+
+/**
  * CTF Data Types
  * Defines the shape of CTF events, challenges, and related data
  */
@@ -21,12 +59,12 @@ export interface CTFEvent {
   id: number;
   slug: string;
   title: string;
-  subtitle: string;
-  date: string;
-  image: string;
-  badge: string;
-  tags: string[];
-  players: number;
+  subtitle?: string;
+  date?: string;
+  image?: string;
+  badge?: string;
+  tags?: string[];
+  players?: number;
   status: CTFStatus;
   ctfType?: CTFType;
   totalChallenges?: number;
@@ -36,7 +74,7 @@ export interface CTFEvent {
   skillLevel?: string;
   description?: string;
   format?: string;
-  teamSize?: string;
+  teamSize?: number;
   difficulty?: string;
   startDate?: string;
   startTime?: string;

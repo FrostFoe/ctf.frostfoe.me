@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Edit2, Trash2, Shield, User } from "lucide-react";
+import { Trash2, Shield, User } from "lucide-react";
 
 interface UserProfile {
   id: number;
@@ -10,7 +10,6 @@ interface UserProfile {
   bio?: string;
   role: string;
   created_at: string;
-  [key: string]: any;
 }
 
 export default function AdminUsersPage() {
@@ -110,18 +109,6 @@ export default function AdminUsersPage() {
       case "user":
       default:
         return "bg-slate-700/30 text-slate-300";
-    }
-  };
-
-  const getRoleBangla = (role: string) => {
-    switch (role) {
-      case "admin":
-        return "প্রশাসক";
-      case "organizer":
-        return "আয়োজক";
-      case "user":
-      default:
-        return "সাধারণ ব্যবহারকারী";
     }
   };
 

@@ -6,7 +6,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useUser } from "@/lib/context/user-context";
+import { useUser } from "@/hooks/user-context";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -30,7 +30,6 @@ interface CTFEvent {
   totalChallenges?: number;
   playersCount?: number;
   startDate?: string;
-  [key: string]: any;
 }
 
 export default function AdminDashboard() {
@@ -63,7 +62,7 @@ export default function AdminDashboard() {
       // Load actual stats
       const totalEvents = data.events.length;
       const activeEvents = data.events.filter(
-        (e: any) => e.status === "ongoing"
+        (e) => e.status === "ongoing"
       ).length;
       const totalChallenges = data.challenges.length;
       const totalUsers = data.users.length;

@@ -35,14 +35,14 @@ export default function CtfPage() {
         />
 
         <div className="mt-6 sm:mt-8">
-          <CtfMainNav _activeSection="events" />
+          <CtfMainNav />
         </div>
 
         <CtfTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
         <CtfSearch searchQuery={searchQuery} onSearchChange={setSearchQuery} />
 
-        <CtfEventGrid events={filteredEvents as any} />
+        <CtfEventGrid events={filteredEvents} />
       </div>
     </div>
   );

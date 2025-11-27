@@ -2,19 +2,14 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
   Users,
   Plus,
-  Trophy,
-  Calendar,
   User,
-  Settings,
   MessageSquare,
   Heart,
   Share2,
   ChevronRight,
-  Flag,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";

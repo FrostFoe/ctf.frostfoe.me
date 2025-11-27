@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import type { Database } from "@/types/database";
+import type { Database } from "@/lib/types";
 
 type User = Database["public"]["Tables"]["users"]["Row"];
 
@@ -86,8 +86,19 @@ export function useRole(role: "player" | "admin") {
 }
 
 /**
- * Hook to check if user is admin
+ * Hook to logout user
  */
-export function useIsAdmin() {
-  return useRole("admin");
+export async function useLogout() {
+  const logout = async () => {
+    const response = await fetch("/api/auth/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+
+    if (response.ok) {
+      window.location.href = "/";
+    }
+  };
+
+  return logout;
 }

@@ -20,17 +20,11 @@ import { useChallengeSubmission } from "@/hooks/use-data";
 
 interface FlagSubmissionFormProps {
   challengeId: number;
-  eventId: number;
-  timeSpent?: number;
-  hintsUsed?: number;
   onSuccess?: (points: number) => void;
 }
 
 export function FlagSubmissionForm({
   challengeId,
-  eventId,
-  timeSpent = 0,
-  hintsUsed = 0,
   onSuccess,
 }: FlagSubmissionFormProps) {
   const {
@@ -42,7 +36,7 @@ export function FlagSubmissionForm({
     setShowResult,
     isCompleted,
     submitFlag,
-  } = useChallengeSubmission(challengeId, eventId);
+  } = useChallengeSubmission(challengeId);
 
   const [showFlag, setShowFlag] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
@@ -75,7 +69,7 @@ export function FlagSubmissionForm({
     }
 
     // Submit flag directly
-    await submitFlag(flagInput, timeSpent.toString(), hintsUsed);
+    await submitFlag(flagInput);
     if (submissionResult?.success) {
       onSuccess?.(submissionResult.points || 0);
     }

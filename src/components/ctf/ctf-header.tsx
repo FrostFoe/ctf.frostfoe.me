@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, Grid3x3 } from "lucide-react";
+import { Bell } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 

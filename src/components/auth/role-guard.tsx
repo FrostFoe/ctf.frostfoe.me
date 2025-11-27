@@ -6,7 +6,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useUser } from "@/lib/context/user-context";
+import { useUser } from "@/hooks/user-context";
 
 interface RoleGuardProps {
   requiredRole: "player" | "admin";

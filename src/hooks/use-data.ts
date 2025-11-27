@@ -5,6 +5,7 @@
 
 import { useCallback, useState, useEffect } from "react";
 import data from "@/lib/data.json";
+import type { CTFStatus, CTFType } from "@/lib/types";
 
 // ===== TYPES AND INTERFACES =====
 
@@ -28,9 +29,26 @@ export interface CtfEvent {
   id: number;
   slug: string;
   title: string;
-  status: string;
+  subtitle?: string;
+  description?: string;
+  image?: string;
+  badge?: string;
+  status: CTFStatus;
+  ctfType?: CTFType;
   totalChallenges: number;
-  [key: string]: any;
+  startDate?: string;
+  endDate?: string;
+  difficulty?: string;
+  skillLevel?: string;
+  location?: string;
+  format?: string;
+  hostedBy?: string;
+  teamSize?: number;
+  tags?: string[];
+  imageUrl?: string;
+  registrationUrl?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface Challenge {
@@ -40,6 +58,7 @@ export interface Challenge {
   category: string;
   difficulty: string;
   points: number;
+  flag?: string;
   challengeResources?: Array<{
     id: number;
     name: string;
@@ -65,10 +84,9 @@ export interface SubmissionResult {
   error?: string;
 }
 
-export interface Submission {
-  flag: string;
-  is_correct: boolean;
-  submitted_at: string;
+export interface EventProgress {
+  totalPoints: number;
+  completedCount: number;
 }
 
 // ===== PAGINATION HOOK =====
@@ -151,7 +169,7 @@ export function usePagination(initialPageSize: number = 10) {
 export function useEvents(options: UseEventsOptions = {}) {
   const { autoLoad = true, filters } = options;
 
-  const [events, setEvents] = useState<any[]>([]);
+  const [events, setEvents] = useState<CtfEvent[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -159,7 +177,11 @@ export function useEvents(options: UseEventsOptions = {}) {
     try {
       setLoading(true);
       setError(null);
-      let filteredEvents = data.events;
+      let filteredEvents = data.events.map(event => ({
+        ...event,
+        status: event.status as CTFStatus,
+        ctfType: event.ctfType as CTFType,
+      }));
 
       if (filters?.status) {
         filteredEvents = filteredEvents.filter(e => e.status === filters.status);
@@ -230,7 +252,6 @@ export function useEvents(options: UseEventsOptions = {}) {
 export function useCtfData() {
   const [events, setEvents] = useState<CtfEvent[]>([]);
   const [participatingEvents, setParticipatingEvents] = useState<number[]>([]);
-  const [eventProgress, setEventProgress] = useState<Record<number, any>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -241,7 +262,11 @@ export function useCtfData() {
         setIsLoading(true);
         setError(null);
         // Load all events
-        setEvents(data.events || []);
+        setEvents((data.events || []).map(event => ({
+          ...event,
+          status: event.status as CTFStatus,
+          ctfType: event.ctfType as CTFType,
+        })));
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load CTF data");
       } finally {
@@ -256,7 +281,7 @@ export function useCtfData() {
    * Join an event
    */
   const joinCtfEvent = useCallback(
-    async (eventId: number, eventTitle: string): Promise<boolean> => {
+    async (eventId: number): Promise<boolean> => {
       // Static, always return true
       setParticipatingEvents((prev) => [...prev, eventId]);
       return true;
@@ -278,7 +303,7 @@ export function useCtfData() {
    * Get event progress
    */
   const loadEventProgress = useCallback(
-    async (eventId: number) => {
+    async () => {
       // Static progress
       return {
         totalPoints: 0,
@@ -292,7 +317,7 @@ export function useCtfData() {
    * Get event participation details
    */
   const getEventDetails = useCallback(
-    async (eventId: number) => {
+    async () => {
       // Static
       return null;
     },
@@ -303,7 +328,7 @@ export function useCtfData() {
    * Update event score
    */
   const updateScore = useCallback(
-    async (eventId: number, points: number): Promise<boolean> => {
+    async (): Promise<boolean> => {
       // Static
       return true;
     },
@@ -315,7 +340,6 @@ export function useCtfData() {
     error,
     events,
     participatingEvents,
-    eventProgress,
     joinCtfEvent,
     isParticipating,
     loadEventProgress,
@@ -331,51 +355,47 @@ export function useCtfData() {
  * Uses localStorage for data persistence
  */
 export function useChallenges() {
-  const [completedChallenges, setCompletedChallenges] = useState<Set<number>>(
-    new Set()
-  );
-  const [revealedHints, setRevealedHints] = useState<Record<number, string[]>>(
-    {}
-  );
-  const [challengeData, setChallengeData] = useState<
-    Record<number, ChallengeCompletion>
-  >({});
-
-  /**
-   * Load user's completed challenges on mount
-   */
-  useEffect(() => {
-    loadCompletedChallenges();
-  }, []);
-
-  /**
-   * Load completed challenges from localStorage
-   */
-  const loadCompletedChallenges = useCallback(() => {
+  const [completedChallenges, setCompletedChallenges] = useState<Set<number>>(() => {
     try {
       const stored = localStorage.getItem("completed_challenges");
       if (stored) {
         const data: ChallengeCompletion[] = JSON.parse(stored);
-        const completed = new Set(
-          data.map((item: ChallengeCompletion) => item.challenge_id)
-        );
-        setCompletedChallenges(completed);
-
-        const dataMap: Record<number, ChallengeCompletion> = {};
-        data.forEach((item: ChallengeCompletion) => {
-          dataMap[item.challenge_id] = item;
-        });
-        setChallengeData(dataMap);
-      }
-
-      const storedHints = localStorage.getItem("revealed_hints");
-      if (storedHints) {
-        setRevealedHints(JSON.parse(storedHints));
+        return new Set(data.map((item: ChallengeCompletion) => item.challenge_id));
       }
     } catch (error) {
       console.error("Error loading completed challenges:", error);
     }
-  }, []);
+    return new Set();
+  });
+
+  const [revealedHints, setRevealedHints] = useState<Record<number, string[]>>(() => {
+    try {
+      const storedHints = localStorage.getItem("revealed_hints");
+      if (storedHints) {
+        return JSON.parse(storedHints);
+      }
+    } catch (error) {
+      console.error("Error loading revealed hints:", error);
+    }
+    return {};
+  });
+
+  const [challengeData, setChallengeData] = useState<Record<number, ChallengeCompletion>>(() => {
+    try {
+      const stored = localStorage.getItem("completed_challenges");
+      if (stored) {
+        const data: ChallengeCompletion[] = JSON.parse(stored);
+        const dataMap: Record<number, ChallengeCompletion> = {};
+        data.forEach((item: ChallengeCompletion) => {
+          dataMap[item.challenge_id] = item;
+        });
+        return dataMap;
+      }
+    } catch (error) {
+      console.error("Error loading challenge data:", error);
+    }
+    return {};
+  });
 
   /**
    * Save completed challenges to localStorage
@@ -542,13 +562,12 @@ export function useChallenges() {
 /**
  * Hook for managing flag submission for individual challenges
  */
-export function useChallengeSubmission(challengeId: number, eventId: number) {
+export function useChallengeSubmission(challengeId: number) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionResult, setSubmissionResult] =
     useState<SubmissionResult | null>(null);
   const [flagInput, setFlagInput] = useState("");
   const [showResult, setShowResult] = useState(false);
-  const [submissionHistory, setSubmissionHistory] = useState<Submission[]>([]);
   const [isCompleted, setIsCompleted] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -564,7 +583,7 @@ export function useChallengeSubmission(challengeId: number, eventId: number) {
    * Submit flag for verification
    */
   const submitFlag = useCallback(
-    async (flag: string, timeSpent = "0", hintsUsed = 0) => {
+    async (flag: string) => {
       if (!flag.trim()) {
         setSubmissionResult({
           success: false,
@@ -652,7 +671,7 @@ export function useChallengeSubmission(challengeId: number, eventId: number) {
    * Calculate score based on difficulty and submission count
    */
   const calculateScore = useCallback(
-    (basePoints: number, timeSpent = 0, hintsUsed = 0, difficulty = "মধ্যম") => {
+    (basePoints: number, hintsUsed = 0, difficulty = "মধ্যম") => {
       let score = basePoints;
 
       // Reduce points for hints used
@@ -667,13 +686,9 @@ export function useChallengeSubmission(challengeId: number, eventId: number) {
 
       score *= multipliers[difficulty] || 1;
 
-      // Reduce for attempts (based on submission history)
-      const attemptPenalty = Math.min(submissionHistory.length * 5, 50);
-      score -= attemptPenalty;
-
       return Math.max(Math.round(score), 10); // Minimum 10 points
     },
-    [submissionHistory.length]
+    []
   );
 
   return {
@@ -684,7 +699,6 @@ export function useChallengeSubmission(challengeId: number, eventId: number) {
     submissionResult,
     showResult,
     setShowResult,
-    submissionHistory,
     loading,
 
     // Methods

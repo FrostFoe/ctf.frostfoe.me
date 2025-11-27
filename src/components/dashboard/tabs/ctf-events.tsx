@@ -35,7 +35,7 @@ export default function CtfEvents() {
 
       <CtfSearch searchQuery={searchQuery} onSearchChange={setSearchQuery} />
 
-      <CtfEventGrid events={filteredEvents as any} />
+      <CtfEventGrid events={filteredEvents} />
     </div>
   );
 }

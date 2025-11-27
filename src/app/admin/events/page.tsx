@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import data from "@/lib/data.json";
-import { Plus, Edit2, Trash2, Eye, ChevronDown } from "lucide-react";
+import { Plus, Edit2, Trash2, Eye } from "lucide-react";
 
 interface Event {
   id: number;
@@ -13,7 +13,6 @@ interface Event {
   ctfType: string;
   totalChallenges?: number;
   startDate?: string;
-  [key: string]: any;
 }
 
 export default function AdminEventsPage() {
@@ -36,7 +35,7 @@ export default function AdminEventsPage() {
     }
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async () => {
     alert("Delete functionality removed as backend is static.");
   };
 
@@ -155,7 +154,7 @@ export default function AdminEventsPage() {
                         <Edit2 size={18} />
                       </Link>
                       <button
-                        onClick={() => handleDelete(event.id)}
+                        onClick={() => handleDelete()}
                         className="p-2 hover:bg-red-900/20 rounded-lg text-slate-400 hover:text-red-400 transition-colors"
                         title="ডিলিট"
                       >

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
 import Link from "next/link";
 import { useCtfData } from "@/hooks/use-data";
+import data from "@/lib/data.json";
 
 interface EventResult {
   type: "event";
@@ -50,7 +51,7 @@ export function GlobalSearch() {
     }
 
     const lowercaseQuery = value.toLowerCase();
-    const allChallenges = events.flatMap(e => e.challenges || []);
+    const allChallenges = data.challenges || [];
     
     const searchResults: SearchResult[] = [
       ...events

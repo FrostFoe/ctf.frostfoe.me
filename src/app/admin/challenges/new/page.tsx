@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import data from "@/lib/data.json";
 import { ArrowLeft, Save, AlertCircle, Plus, Trash2 } from "lucide-react";
@@ -47,26 +47,26 @@ export default function NewChallengePage() {
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    loadEvents();
-  }, []);
-
-  const loadEvents = () => {
+  const loadEvents = useCallback(() => {
     try {
       const eventsData = data.events;
       setEvents(eventsData || []);
       if (eventsData && eventsData.length > 0) {
-        setFormData({
-          ...formData,
+        setFormData((prev) => ({
+          ...prev,
           eventId: eventsData[0].id,
-        });
+        }));
       }
     } catch (err) {
       console.error("Failed to load events:", err);
     }
-  };
+  }, []);
 
-  const handleChange = (field: string, value: any) => {
+  useEffect(() => {
+    loadEvents();
+  }, [loadEvents]);
+
+  const handleChange = (field: string, value: string | number) => {
     setFormData({
       ...formData,
       [field]: value,
@@ -144,9 +144,10 @@ export default function NewChallengePage() {
       setTimeout(() => {
         router.push("/admin/challenges");
       }, 1500);
-    } catch (err: any) {
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "চ্যালেঞ্জ তৈরি করতে ব্যর্থ";
       console.error("Failed to create challenge:", err);
-      setMessage(`❌ ${err.message || "চ্যালেঞ্জ তৈরি করতে ব্যর্থ"}`);
+      setMessage(`❌ ${errorMessage}`);
     } finally {
       setIsSaving(false);
     }

@@ -2,13 +2,7 @@
 
 import { usePathname } from "next/navigation";
 
-interface CtfMainNavProps {
-  _activeSection?: string;
-}
-
-export default function CtfMainNav({
-  _activeSection = "events",
-}: CtfMainNavProps) {
+export default function CtfMainNav() {
   const pathname = usePathname();
 
   const isEvents = pathname === "/ctf" || pathname.startsWith("/ctf/[");

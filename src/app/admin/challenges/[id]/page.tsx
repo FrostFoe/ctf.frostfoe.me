@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRouter, useParams } from "next/navigation";
 import data from "@/lib/data.json";
 import { ArrowLeft, Save, AlertCircle, Plus, Trash2 } from "lucide-react";
@@ -19,7 +19,6 @@ interface ChallengeData {
   flag?: string;
   dockerImage?: string;
   maxAttempts?: number;
-  [key: string]: any;
 }
 
 interface Event {
@@ -32,25 +31,19 @@ export default function EditChallengePage() {
   const params = useParams();
   const challengeId = params.id as string;
 
-  const [challenge, setChallenge] = useState<ChallengeData | null>(null);
   const [events, setEvents] = useState<Event[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState<ChallengeData | null>(null);
 
-  useEffect(() => {
-    loadData();
-  }, [challengeId]);
-
-  const loadData = () => {
+  const loadData = useCallback(() => {
     try {
       setIsLoading(true);
       const challengeData = data.challenges.find(c => c.id === Number(challengeId));
       const eventsData = data.events;
 
       if (challengeData) {
-        setChallenge(challengeData);
         setFormData(challengeData);
       }
       setEvents(eventsData || []);
@@ -60,9 +53,13 @@ export default function EditChallengePage() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [challengeId]);
 
-  const handleChange = (field: string, value: any) => {
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
+
+  const handleChange = (field: string, value: string | number | string[]) => {
     if (formData) {
       setFormData({
         ...formData,
@@ -141,15 +138,16 @@ export default function EditChallengePage() {
       setMessage("");
 
       // Since this is static data, we just update the local state
-      setMessage("✅ চ্যালেঞ্জ স্থানীয়ভাবে আপডেট হয়েছে (স্ট্যাটিক ডেটা - পরিবর্তন সংরক্ষিত হয়নি)");
-      setChallenge(formData);
+      setMessage("✅ চ্যালেঞ্জ স্থানীয়ভাবে আপডেট হয়েছে (স্ট্যাটিক ডেটা - পরিবর্তন সংরকক্ষিত হয়নি)");
+      setFormData(formData);
 
       setTimeout(() => {
         router.push("/admin/challenges");
       }, 1500);
-    } catch (err: any) {
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "চ্যালেঞ্জ সংরক্ষণ করতে ব্যর্থ";
       console.error("Failed to save challenge:", err);
-      setMessage(`❌ ${err.message || "চ্যালেঞ্জ সংরক্ষণ করতে ব্যর্থ"}`);
+      setMessage(`❌ ${errorMessage}`);
     } finally {
       setIsSaving(false);
     }
