@@ -19,7 +19,10 @@
       "format": "অনলাইন",
       "hostedBy": "CTF Platform",
       "teamSize": 1,
-      "tags": ["beginner", "tutorial"],
+      "tags": [
+        "beginner",
+        "tutorial"
+      ],
       "imageUrl": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=800",
       "registrationUrl": "https://example.com/register",
       "createdAt": "2024-01-01T00:00:00.000Z",
@@ -44,7 +47,10 @@
       "format": "অনলাইন",
       "hostedBy": "CTF Platform",
       "teamSize": 3,
-      "tags": ["intermediate", "challenging"],
+      "tags": [
+        "intermediate",
+        "challenging"
+      ],
       "imageUrl": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=800",
       "registrationUrl": "https://example.com/register",
       "createdAt": "2024-01-01T00:00:00.000Z",
@@ -69,7 +75,10 @@
       "format": "অনলাইন",
       "hostedBy": "CTF Platform",
       "teamSize": 5,
-      "tags": ["advanced", "expert"],
+      "tags": [
+        "advanced",
+        "expert"
+      ],
       "imageUrl": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=800",
       "registrationUrl": "https://example.com/register",
       "createdAt": "2024-01-01T00:00:00.000Z",
@@ -88,7 +97,10 @@
       "difficulty": "সহজ",
       "points": 50,
       "flag": "flag{hello_ctf}",
-      "tags": ["beginner", "introduction"],
+      "tags": [
+        "beginner",
+        "introduction"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
     },
@@ -103,7 +115,10 @@
       "difficulty": "সহজ",
       "points": 100,
       "flag": "flag{base64_is_easy}",
-      "tags": ["encoding", "decryption"],
+      "tags": [
+        "encoding",
+        "decryption"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
     },
@@ -118,7 +133,10 @@
       "difficulty": "সহজ",
       "points": 75,
       "flag": "flag{view_source_code}",
-      "tags": ["web", "html"],
+      "tags": [
+        "web",
+        "html"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
     },
@@ -133,7 +151,10 @@
       "difficulty": "মধ্যম",
       "points": 150,
       "flag": "flag{rot13_is_fun}",
-      "tags": ["cipher", "cryptography"],
+      "tags": [
+        "cipher",
+        "cryptography"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
     },
@@ -148,7 +169,11 @@
       "difficulty": "মধ্যম",
       "points": 200,
       "flag": "flag{sql_injection_works}",
-      "tags": ["sql", "injection", "database"],
+      "tags": [
+        "sql",
+        "injection",
+        "database"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
     },
@@ -163,7 +188,10 @@
       "difficulty": "সহজ",
       "points": 120,
       "flag": "flag{hex2_ascii}",
-      "tags": ["encoding", "hex"],
+      "tags": [
+        "encoding",
+        "hex"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
     },
@@ -178,7 +206,10 @@
       "difficulty": "মধ্যম",
       "points": 175,
       "flag": "flag{password123}",
-      "tags": ["hash", "cracking"],
+      "tags": [
+        "hash",
+        "cracking"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
     },
@@ -193,7 +224,10 @@
       "difficulty": "সহজ",
       "points": 100,
       "flag": "flag{12}",
-      "tags": ["math", "programming"],
+      "tags": [
+        "math",
+        "programming"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
     },
@@ -208,7 +242,10 @@
       "difficulty": "কঠিন",
       "points": 300,
       "flag": "flag{reversed_code}",
-      "tags": ["reversing", "assembly"],
+      "tags": [
+        "reversing",
+        "assembly"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
     },
@@ -218,12 +255,15 @@
       "seriesId": "ctf-try-out-series",
       "seriesOrder": 10,
       "title": "XOR Cipher",
-      "description": "এই XOR এনক্রিপ্ট করা বার্তা ডিকোড করুন কী দিয়ে: key=\"secret\"। সাইফারটেক্সট: 08140c150e00",
+      "description": "এই XOR এনক্রিপ্ট করা বার্তা ডিকোড করুন কী দিয়ে: key=\"secret\". সাইফারটেক্সট: 08140c150e00",
       "category": "Cryptography",
       "difficulty": "মধ্যম",
       "points": 160,
       "flag": "flag{xor_cipher}",
-      "tags": ["xor", "encryption"],
+      "tags": [
+        "xor",
+        "encryption"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
     },
@@ -238,7 +278,10 @@
       "difficulty": "মধ্যম",
       "points": 180,
       "flag": "flag{exif_data_found}",
-      "tags": ["osint", "metadata"],
+      "tags": [
+        "osint",
+        "metadata"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
     },
@@ -253,7 +296,10 @@
       "difficulty": "কঠিন",
       "points": 500,
       "flag": "flag{ctf_master}",
-      "tags": ["final", "general"],
+      "tags": [
+        "final",
+        "general"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
     }
@@ -329,14 +375,12 @@
       "id": "1",
       "username": "demo",
       "password": "demo",
-      "name": "koren",
       "role": "player"
     },
     {
       "id": "2",
       "username": "admin",
       "password": "admin",
-      "name": "koren",
       "role": "admin"
     }
   ],

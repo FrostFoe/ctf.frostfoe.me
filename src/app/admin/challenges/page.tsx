@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import data from "@/lib/data.json";
 import { Plus, Edit2, Trash2, ChevronDown } from "lucide-react";
 
 interface Challenge {
@@ -27,38 +26,64 @@ export default function AdminChallengesPage() {
   const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = async () => {
-    try {
-      setIsLoading(true);
-      setEvents(data.events || []);
-      setChallenges(data.challenges || []);
-      if (data.events && data.events.length > 0) {
-        setSelectedEventId(data.events[0].id);
+    useEffect(() => {
+      loadData();
+    }, []);
+  
+    const loadData = async () => {
+      try {
+        setIsLoading(true);
+        const [eventsRes, challengesRes] = await Promise.all([
+          fetch("/api/admin/events"),
+          fetch("/api/admin/challenges"),
+        ]);
+        const [eventsData, challengesData] = await Promise.all([
+          eventsRes.json(),
+          challengesRes.json(),
+        ]);
+  
+        setEvents(eventsData || []);
+        setChallenges(challengesData || []);
+        if (eventsData && eventsData.length > 0) {
+          setSelectedEventId(eventsData[0].id);
+        }
+      } catch (err) {
+        console.error("Failed to load data:", err);
+      } finally {
+        setIsLoading(false);
       }
-    } catch (err) {
-      console.error("Failed to load data:", err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleDelete = async () => {
-    alert("Delete functionality removed as backend is static.");
-  };
-
-  const filteredChallenges = challenges.filter((challenge) => {
-    const matchesSearch = challenge.title
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    const matchesEvent =
-      selectedEventId === null || challenge.eventId === selectedEventId;
-    return matchesSearch && matchesEvent;
-  });
-
+    };
+  
+    const handleDelete = async (id: number) => {
+      if (!confirm("আপনি কি এই চ্যালেঞ্জটি ডিলিট করতে চান?")) {
+        return;
+      }
+  
+      try {
+        const response = await fetch(`/api/admin/challenges/${id}`, {
+          method: "DELETE",
+        });
+  
+        if (!response.ok) {
+          throw new Error("Failed to delete challenge");
+        }
+  
+        setChallenges(challenges.filter((c) => c.id !== id));
+        alert("Challenge deleted successfully");
+      } catch (err) {
+        console.error("Failed to delete challenge:", err);
+        alert("Failed to delete challenge");
+      }
+    };
+  
+    const filteredChallenges = challenges.filter((challenge) => {
+      const matchesSearch = challenge.title
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+      const matchesEvent =
+        selectedEventId === null || challenge.eventId === selectedEventId;
+      return matchesSearch && matchesEvent;
+    });
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case "সহজ":
@@ -203,7 +228,7 @@ export default function AdminChallengesPage() {
                           <Edit2 size={18} />
                         </Link>
                         <button
-                          onClick={() => handleDelete()}
+                          onClick={() => handleDelete(challenge.id)}
                           className="p-2 hover:bg-red-900/20 rounded-lg text-slate-400 hover:text-red-400 transition-colors"
                           title="ডিলিট"
                         >

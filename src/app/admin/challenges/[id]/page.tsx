@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { useRouter, useParams } from "next/navigation";
-import data from "@/lib/data.json";
 import { ArrowLeft, Save, AlertCircle, Plus, Trash2 } from "lucide-react";
 
 interface ChallengeData {
@@ -37,13 +36,19 @@ export default function EditChallengePage() {
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState<ChallengeData | null>(null);
 
-  const loadData = useCallback(() => {
+  const loadData = useCallback(async () => {
     try {
       setIsLoading(true);
-      const challengeData = data.challenges.find(c => c.id === Number(challengeId));
-      const eventsData = data.events;
+      const [challengeRes, eventsRes] = await Promise.all([
+        fetch(`/api/admin/challenges/${challengeId}`),
+        fetch("/api/admin/events"),
+      ]);
+      const [challengeData, eventsData] = await Promise.all([
+        challengeRes.json(),
+        eventsRes.json(),
+      ]);
 
-      if (challengeData) {
+      if (challengeRes.ok) {
         setFormData(challengeData);
       }
       setEvents(eventsData || []);
@@ -137,10 +142,19 @@ export default function EditChallengePage() {
       setIsSaving(true);
       setMessage("");
 
-      // Since this is static data, we just update the local state
-      setMessage("✅ চ্যালেঞ্জ স্থানীয়ভাবে আপডেট হয়েছে (স্ট্যাটিক ডেটা - পরিবর্তন সংরকক্ষিত হয়নি)");
-      setFormData(formData);
+      const response = await fetch(`/api/admin/challenges/${challengeId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
+      if (!response.ok) {
+        throw new Error("Failed to save challenge");
+      }
+
+      setMessage("✅ চ্যালেঞ্জ সফলভাবে আপডেট হয়েছে");
       setTimeout(() => {
         router.push("/admin/challenges");
       }, 1500);

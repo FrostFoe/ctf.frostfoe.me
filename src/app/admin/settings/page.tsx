@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Settings, Save, AlertCircle } from "lucide-react";
 
 export default function AdminSettingsPage() {
@@ -16,8 +16,26 @@ export default function AdminSettingsPage() {
     pointsDecayRate: 0.1,
   });
 
+  const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState("");
+
+  useEffect(() => {
+    loadSettings();
+  }, []);
+
+  const loadSettings = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch("/api/admin/settings");
+      const data = await response.json();
+      setSettings(data);
+    } catch (err) {
+      console.error("Failed to load settings:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleChange = (
     field: string,
@@ -34,8 +52,15 @@ export default function AdminSettingsPage() {
     setSaveMessage("");
 
     try {
-      // Simulate saving to database
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch("/api/admin/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(settings),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save settings");
+      }
 
       setSaveMessage("সেটিংস সফলভাবে সংরক্ষণ হয়েছে");
       setTimeout(() => setSaveMessage(""), 3000);
@@ -45,6 +70,14 @@ export default function AdminSettingsPage() {
       setIsSaving(false);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-96">
+        <div className="w-12 h-12 border-4 border-slate-700 border-t-lime-400 rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6 max-w-4xl">

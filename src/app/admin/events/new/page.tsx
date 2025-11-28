@@ -69,8 +69,19 @@ export default function NewEventPage() {
         return;
       }
 
-      // Since this is static data, we just show a message
-      setMessage("✅ ইভেন্ট স্থানীয়ভাবে তৈরি হয়েছে (স্ট্যাটিক ডেটা - পরিবর্তন সংরক্ষিত হয়নি)");
+      const response = await fetch("/api/admin/events", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create event");
+      }
+
+      setMessage("✅ ইভেন্ট সফলভাবে তৈরি হয়েছে");
 
       setTimeout(() => {
         router.push("/admin/events");

@@ -1,0 +1,21 @@
+{
+  "c6276222-b9aa-494a-ae39-8d732ab2b552": {
+    "id": "1",
+    "username": "demo",
+    "password": "demo",
+    "name": "koren",
+    "role": "player"
+  },
+  "2e1abc17-c22d-4f20-903a-48ccb07ad1f9": {
+    "id": "1",
+    "username": "demo",
+    "password": "demo",
+    "role": "player"
+  },
+  "69f3a4af-25bd-4eea-afba-42c28f125bbf": {
+    "id": "2",
+    "username": "admin",
+    "password": "admin",
+    "role": "admin"
+  }
+}

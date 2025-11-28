@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import data from "@/lib/data.json";
 import { ArrowLeft, Save, AlertCircle, Plus, Trash2 } from "lucide-react";
 
 interface Event {
@@ -47,9 +46,10 @@ export default function NewChallengePage() {
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState("");
 
-  const loadEvents = useCallback(() => {
+  const loadEvents = useCallback(async () => {
     try {
-      const eventsData = data.events;
+      const response = await fetch("/api/admin/events");
+      const eventsData = await response.json();
       setEvents(eventsData || []);
       if (eventsData && eventsData.length > 0) {
         setFormData((prev) => ({
@@ -138,8 +138,19 @@ export default function NewChallengePage() {
         return;
       }
 
-      // Since this is static data, we just show a message
-      setMessage("✅ চ্যালেঞ্জ স্থানীয়ভাবে তৈরি হয়েছে (স্ট্যাটিক ডেটা - পরিবর্তন সংরক্ষিত হয়নি)");
+      const response = await fetch("/api/admin/challenges", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create challenge");
+      }
+
+      setMessage("✅ চ্যালেঞ্জ সফলভাবে তৈরি হয়েছে");
 
       setTimeout(() => {
         router.push("/admin/challenges");

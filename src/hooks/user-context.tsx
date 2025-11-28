@@ -1,9 +1,8 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import type { Database } from "@/lib/types";
-
-type User = Database["public"]["Tables"]["users"]["Row"];
+import { useRouter } from "next/navigation";
+import type { User } from "@/lib/auth";
 
 interface UserContextType {
   user: User | null;
@@ -88,7 +87,10 @@ export function useRole(role: "player" | "admin") {
 /**
  * Hook to logout user
  */
-export async function useLogout() {
+export function useLogout() {
+  const router = useRouter();
+  const { refetch } = useUser();
+
   const logout = async () => {
     const response = await fetch("/api/auth/logout", {
       method: "POST",
@@ -96,7 +98,8 @@ export async function useLogout() {
     });
 
     if (response.ok) {
-      window.location.href = "/";
+      await refetch();
+      router.push("/");
     }
   };
 

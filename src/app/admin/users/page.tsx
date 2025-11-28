@@ -2,15 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Trash2, Shield, User } from "lucide-react";
-
-interface UserProfile {
-  id: number;
-  username: string;
-  email?: string;
-  bio?: string;
-  role: string;
-  created_at: string;
-}
+import type { User as UserProfile } from "@/lib/auth";
 
 export default function AdminUsersPage() {
   const [users, setUsers] = useState<UserProfile[]>([]);
@@ -40,7 +32,7 @@ export default function AdminUsersPage() {
     }
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: string) => {
     if (!confirm("আপনি কি এই ব্যবহারকারী ডিলিট করতে চান?")) {
       return;
     }
@@ -66,7 +58,7 @@ export default function AdminUsersPage() {
     }
   };
 
-  const handleRoleChange = async (id: number, newRole: string) => {
+  const handleRoleChange = async (id: string, newRole: string) => {
     try {
       const response = await fetch(`/api/admin/users/${id}`, {
         method: "PUT",
@@ -81,7 +73,7 @@ export default function AdminUsersPage() {
       }
 
       setUsers(
-        users.map((u) => (u.id === id ? { ...u, role: newRole } : u))
+        users.map((u) => (u.id === id ? { ...u, role: newRole as "player" | "admin" } : u))
       );
       alert("ভূমিকা আপডেট হয়েছে");
     } catch (err) {
@@ -104,9 +96,7 @@ export default function AdminUsersPage() {
     switch (role) {
       case "admin":
         return "bg-red-900/30 text-red-400";
-      case "organizer":
-        return "bg-blue-900/30 text-blue-400";
-      case "user":
+      case "player":
       default:
         return "bg-slate-700/30 text-slate-300";
     }
@@ -115,8 +105,7 @@ export default function AdminUsersPage() {
   const stats = {
     total: users.length,
     admins: users.filter((u) => u.role === "admin").length,
-    organizers: users.filter((u) => u.role === "organizer").length,
-    regular: users.filter((u) => u.role === "user").length,
+    players: users.filter((u) => u.role === "player").length,
   };
 
   return (
@@ -128,7 +117,7 @@ export default function AdminUsersPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
           <div className="flex items-center justify-between">
             <div>
@@ -152,18 +141,8 @@ export default function AdminUsersPage() {
         <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-slate-400 text-sm">আয়োজক</p>
-              <p className="text-3xl font-bold text-white mt-1">{stats.organizers}</p>
-            </div>
-            <Shield size={32} className="text-blue-400" />
-          </div>
-        </div>
-
-        <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-slate-400 text-sm">সাধারণ ব্যবহারকারী</p>
-              <p className="text-3xl font-bold text-white mt-1">{stats.regular}</p>
+              <p className="text-slate-400 text-sm">খেলোয়াড়</p>
+              <p className="text-3xl font-bold text-white mt-1">{stats.players}</p>
             </div>
             <User size={32} className="text-slate-400" />
           </div>
@@ -188,8 +167,7 @@ export default function AdminUsersPage() {
         >
           <option value="">সকল ভূমিকা</option>
           <option value="admin">প্রশাসক</option>
-          <option value="organizer">আয়োজক</option>
-          <option value="user">সাধারণ ব্যবহারকারী</option>
+          <option value="player">খেলোয়াড়</option>
         </select>
       </div>
 
@@ -212,13 +190,7 @@ export default function AdminUsersPage() {
                     ব্যবহারকারীনাম
                   </th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-slate-400">
-                    ইমেইল
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-slate-400">
                     ভূমিকা
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-slate-400">
-                    যোগদান তারিখ
                   </th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-slate-400">
                     অ্যাকশন
@@ -234,9 +206,6 @@ export default function AdminUsersPage() {
                     <td className="px-6 py-4 text-white font-medium">
                       {user.username}
                     </td>
-                    <td className="px-6 py-4 text-slate-300">
-                      {user.email || "N/A"}
-                    </td>
                     <td className="px-6 py-4">
                       <select
                         value={user.role}
@@ -245,13 +214,9 @@ export default function AdminUsersPage() {
                         }
                         className={`px-3 py-1 rounded text-xs font-bold border-0 focus:outline-none cursor-pointer ${getRoleBadgeColor(user.role)}`}
                       >
-                        <option value="user">সাধারণ ব্যবহারকারী</option>
-                        <option value="organizer">আয়োজক</option>
+                        <option value="player">খেলোয়াড়</option>
                         <option value="admin">প্রশাসক</option>
                       </select>
-                    </td>
-                    <td className="px-6 py-4 text-slate-300 text-sm">
-                      {new Date(user.created_at).toLocaleDateString("bn-BD")}
                     </td>
                     <td className="px-6 py-4 flex items-center gap-2">
                       <button

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import data from "@/lib/data.json";
 import { Plus, Edit2, Trash2, Eye } from "lucide-react";
 
 interface Event {
@@ -27,7 +26,9 @@ export default function AdminEventsPage() {
   const loadEvents = async () => {
     try {
       setIsLoading(true);
-      setEvents(data.events || []);
+      const response = await fetch("/api/admin/events");
+      const data = await response.json();
+      setEvents(data);
     } catch (err) {
       console.error("Failed to load events:", err);
     } finally {
@@ -35,8 +36,26 @@ export default function AdminEventsPage() {
     }
   };
 
-  const handleDelete = async () => {
-    alert("Delete functionality removed as backend is static.");
+  const handleDelete = async (id: number) => {
+    if (!confirm("আপনি কি এই ইভেন্টটি ডিলিট করতে চান?")) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/admin/events/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete event");
+      }
+
+      setEvents(events.filter((e) => e.id !== id));
+      alert("Event deleted successfully");
+    } catch (err) {
+      console.error("Failed to delete event:", err);
+      alert("Failed to delete event");
+    }
   };
 
   const filteredEvents = events.filter(
@@ -154,7 +173,7 @@ export default function AdminEventsPage() {
                         <Edit2 size={18} />
                       </Link>
                       <button
-                        onClick={() => handleDelete()}
+                        onClick={() => handleDelete(event.id)}
                         className="p-2 hover:bg-red-900/20 rounded-lg text-slate-400 hover:text-red-400 transition-colors"
                         title="ডিলিট"
                       >

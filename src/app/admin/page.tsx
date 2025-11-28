@@ -19,7 +19,6 @@ import {
   BookOpen,
   Zap,
 } from "lucide-react";
-import data from "@/lib/data.json";
 
 interface CTFEvent {
   id: number;
@@ -56,16 +55,28 @@ export default function AdminDashboard() {
     try {
       setIsLoading(true);
 
+      const [eventsRes, challengesRes, usersRes] = await Promise.all([
+        fetch("/api/admin/events"),
+        fetch("/api/admin/challenges"),
+        fetch("/api/admin/users"),
+      ]);
+
+      const [eventsData, challengesData, usersData] = await Promise.all([
+        eventsRes.json(),
+        challengesRes.json(),
+        usersRes.json(),
+      ]);
+
       // Load events
-      setEvents(data.events.slice(0, 5) || []);
+      setEvents(eventsData.slice(0, 5) || []);
 
       // Load actual stats
-      const totalEvents = data.events.length;
-      const activeEvents = data.events.filter(
-        (e) => e.status === "ongoing"
+      const totalEvents = eventsData.length;
+      const activeEvents = eventsData.filter(
+        (e: CTFEvent) => e.status === "ongoing"
       ).length;
-      const totalChallenges = data.challenges.length;
-      const totalUsers = data.users.length;
+      const totalChallenges = challengesData.length;
+      const totalUsers = usersData.length;
 
       setStats({
         totalEvents,

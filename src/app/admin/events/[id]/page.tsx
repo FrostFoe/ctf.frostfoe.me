@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { useRouter, useParams } from "next/navigation";
-import data from "@/lib/data.json";
 import { ArrowLeft, Save, AlertCircle } from "lucide-react";
 
 interface EventData {
@@ -35,11 +34,12 @@ export default function EditEventPage() {
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState<EventData | null>(null);
 
-  const loadEvent = useCallback(() => {
+  const loadEvent = useCallback(async () => {
     try {
       setIsLoading(true);
-      const eventData = data.events.find(e => e.id === Number(eventId));
-      if (eventData) {
+      const response = await fetch(`/api/admin/events/${eventId}`);
+      const eventData = await response.json();
+      if (response.ok) {
         setFormData(eventData);
       } else {
         setMessage("ইভেন্ট পাওয়া যায়নি");
@@ -77,10 +77,19 @@ export default function EditEventPage() {
       setIsSaving(true);
       setMessage("");
 
-      // Since this is static data, we just update the local state
-      setMessage("✅ ইভেন্ট স্থানীয়ভাবে আপডেট হয়েছে (স্ট্যাটিক ডেটা - পরিবর্তন সংরক্ষিত হয়নি)");
-      setFormData(formData);
+      const response = await fetch(`/api/admin/events/${eventId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
+      if (!response.ok) {
+        throw new Error("Failed to save event");
+      }
+
+      setMessage("✅ ইভেন্ট সফলভাবে আপডেট হয়েছে");
       setTimeout(() => {
         router.push("/admin/events");
       }, 1500);
