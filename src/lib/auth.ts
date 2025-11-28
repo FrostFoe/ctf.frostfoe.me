@@ -4,7 +4,26 @@ import crypto from "crypto";
 import { sanitize } from "./utils";
 
 const dataPath = path.join(process.cwd(), "src", "lib", "data.json");
-const sessionsPath = path.join(process.cwd(), "src", "lib", "sessions.json");
+
+interface DataStore {
+  events: any[];
+  challenges: any[];
+  achievements: any[];
+  users: User[];
+  user_profiles: any[];
+  user_stats: any[];
+  user_achievements: any[];
+  activities: any[];
+  challenge_submissions: any[];
+  completed_challenges: any[];
+  event_participations: any[];
+  teams: any[];
+  team_members: any[];
+  user_settings: any[];
+  user_challenge_hints: any[];
+  sessions: Session;
+  settings: any;
+}
 
 interface Session {
   [key: string]: User;
@@ -12,19 +31,18 @@ interface Session {
 
 // For a production application, you should use a more robust session store like Redis or a database.
 // This file-based session store is for demonstration purposes only.
-async function readSessions(): Promise<Session> {
+async function readData(): Promise<DataStore> {
   try {
-    const data = await fs.readFile(sessionsPath, "utf-8");
+    const data = await fs.readFile(dataPath, "utf-8");
     return JSON.parse(data);
   } catch (error) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const _error = error;
-    return {};
+    console.error("Error reading data.json:", error);
+    throw new Error("Failed to read data.json");
   }
 }
 
-async function writeSessions(sessions: Session) {
-  await fs.writeFile(sessionsPath, JSON.stringify(sessions, null, 2));
+async function writeData(data: DataStore) {
+  await fs.writeFile(dataPath, JSON.stringify(data, null, 2));
 }
 
 export interface User {
@@ -35,7 +53,7 @@ export interface User {
 }
 
 
-export async function login(credentials: { username:string; password: string }) {
+export async function login(credentials: { username: string; password: string }) {
   const { username, password } = credentials;
 
   if (!username || !password) {
@@ -46,7 +64,7 @@ export async function login(credentials: { username:string; password: string }) 
   const sanitizedPassword = sanitize(password);
 
   // Read data.json
-  const data = JSON.parse(await fs.readFile(dataPath, "utf-8"));
+  const data = await readData();
 
   // Find user
   const user = data.users.find((u: User) => u.username === sanitizedUsername);
@@ -64,14 +82,12 @@ export async function login(credentials: { username:string; password: string }) 
 
   // Create session
   const sessionId = crypto.randomUUID();
-  const sessions = await readSessions();
-  sessions[sessionId] = user;
-  await writeSessions(sessions);
+  data.sessions[sessionId] = user;
+  await writeData(data);
 
   // Remove password from user object before returning
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { password: _, ...userWithoutPassword } = user;
-
 
   return {
     user: userWithoutPassword,
@@ -94,7 +110,7 @@ export async function signup(credentials: { username: string; password: string }
   }
 
   // Read data.json
-  const data = JSON.parse(await fs.readFile(dataPath, "utf-8"));
+  const data = await readData();
 
   // Check if user already exists
   const existingUser = data.users.find((u: User) => u.username === sanitizedUsername);
@@ -112,14 +128,10 @@ export async function signup(credentials: { username: string; password: string }
 
   data.users.push(newUser);
 
-  // Write back to file
-  await fs.writeFile(dataPath, JSON.stringify(data, null, 2));
-
   // Create session
   const sessionId = crypto.randomUUID();
-  const sessions = await readSessions();
-  sessions[sessionId] = newUser;
-  await writeSessions(sessions);
+  data.sessions[sessionId] = newUser;
+  await writeData(data);
 
   // Remove password from user object before returning
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -132,10 +144,10 @@ export async function signup(credentials: { username: string; password: string }
 }
 
 export async function logout(sessionId: string) {
-  const sessions = await readSessions();
-  if (sessionId && sessions[sessionId]) {
-    delete sessions[sessionId];
-    await writeSessions(sessions);
+  const data = await readData();
+  if (sessionId && data.sessions[sessionId]) {
+    delete data.sessions[sessionId];
+    await writeData(data);
   }
   return { success: true };
 }
@@ -145,8 +157,8 @@ export async function getMe(sessionId: string) {
     return { user: null };
   }
 
-  const sessions = await readSessions();
-  const user = sessions[sessionId];
+  const data = await readData();
+  const user = data.sessions[sessionId];
 
   if (!user) {
     return { user: null };

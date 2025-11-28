@@ -83,6 +83,24 @@
       "registrationUrl": "https://example.com/register",
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "title": "ss",
+      "slug": "ss",
+      "description": "",
+      "startDate": "2025-11-07T22:26",
+      "endDate": "2025-12-04T22:26",
+      "ctfType": "jeopardy",
+      "difficulty": "মধ্যম",
+      "skillLevel": "মধ্যম",
+      "location": "",
+      "format": "অনলাইন",
+      "hostedBy": "",
+      "teamSize": 5,
+      "tags": [],
+      "imageUrl": "",
+      "registrationUrl": "",
+      "id": 4
     }
   ],
   "challenges": [
@@ -394,5 +412,30 @@
   "teams": [],
   "team_members": [],
   "user_settings": [],
-  "user_challenge_hints": []
+  "user_challenge_hints": [],
+  "sessions": {
+    "9c8160d9-de04-4c07-aa5d-10e544d20d03": {
+      "id": "2",
+      "username": "admin",
+      "password": "admin",
+      "role": "admin"
+    },
+    "60757f3d-4761-4bcd-83e6-25740c2861b2": {
+      "id": "2",
+      "username": "admin",
+      "password": "admin",
+      "role": "admin"
+    }
+  },
+  "settings": {
+    "siteName": "FrostFoe CTF",
+    "siteDescription": "Capture The Flag Platform",
+    "maintenanceMode": false,
+    "enableRegistration": true,
+    "enablePublicLeaderboard": true,
+    "maxTeamSize": 5,
+    "defaultPointsPerChallenge": 100,
+    "pointsDecayEnabled": true,
+    "pointsDecayRate": 0.1
+  }
 }

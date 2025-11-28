@@ -177,10 +177,30 @@ export function useEvents(options: UseEventsOptions = {}) {
     try {
       setLoading(true);
       setError(null);
-      let filteredEvents = data.events.map(event => ({
-        ...event,
+      let filteredEvents = data.events.map((event): CtfEvent => ({
+        id: event.id,
+        slug: event.slug,
+        title: event.title || "",
+        subtitle: event.subtitle || undefined,
+        description: event.description || undefined,
+        image: event.image || event.imageUrl || undefined,
+        badge: event.badge || undefined,
         status: event.status as CTFStatus,
         ctfType: event.ctfType as CTFType,
+        totalChallenges: event.totalChallenges ?? 0,
+        startDate: event.startDate || undefined,
+        endDate: event.endDate || undefined,
+        difficulty: event.difficulty || undefined,
+        skillLevel: event.skillLevel || undefined,
+        location: event.location || undefined,
+        format: event.format || undefined,
+        hostedBy: event.hostedBy || (event as any).hosted_by || undefined,
+        teamSize: event.teamSize || (event as any).team_size || undefined,
+        tags: Array.isArray(event.tags) ? event.tags : [],
+        imageUrl: event.imageUrl || undefined,
+        registrationUrl: event.registrationUrl || undefined,
+        createdAt: event.createdAt || undefined,
+        updatedAt: event.updatedAt || undefined,
       }));
 
       if (filters?.status) {
@@ -262,10 +282,30 @@ export function useCtfData() {
         setIsLoading(true);
         setError(null);
         // Load all events
-        setEvents((data.events || []).map(event => ({
-          ...event,
+        setEvents((data.events || []).map((event): CtfEvent => ({
+          id: event.id,
+          slug: event.slug,
+          title: event.title || "",
+          subtitle: event.subtitle || undefined,
+          description: event.description || undefined,
+          image: event.image || event.imageUrl || undefined,
+          badge: event.badge || undefined,
           status: event.status as CTFStatus,
           ctfType: event.ctfType as CTFType,
+          totalChallenges: event.totalChallenges ?? 0,
+          startDate: event.startDate || undefined,
+          endDate: event.endDate || undefined,
+          difficulty: event.difficulty || undefined,
+          skillLevel: event.skillLevel || undefined,
+          location: event.location || undefined,
+          format: event.format || undefined,
+          hostedBy: event.hostedBy || (event as any).hosted_by || undefined,
+          teamSize: event.teamSize || (event as any).team_size || undefined,
+          tags: Array.isArray(event.tags) ? event.tags : [],
+          imageUrl: event.imageUrl || undefined,
+          registrationUrl: event.registrationUrl || undefined,
+          createdAt: event.createdAt || undefined,
+          updatedAt: event.updatedAt || undefined,
         })));
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load CTF data");

@@ -6,8 +6,8 @@ interface CtfEvent {
   id: number;
   slug: string;
   title: string;
-  image: string;
-  badge: string;
+  image?: string;
+  badge?: string;
   tags?: string[];
   [key: string]: unknown;
 }
@@ -22,9 +22,9 @@ export default function CtfDetailHeader({ event }: CtfDetailHeaderProps) {
 
   return (
     <div className="relative w-full h-80 sm:h-96 md:h-[500px] overflow-hidden">
-      {/* Background Image */}
+      {/* Background Image (use fallback when missing) */}
       <Image
-        src={event.image}
+        src={event.image || "/images/default-event.jpg"}
         alt={event.title}
         fill
         className="object-cover"
@@ -78,7 +78,7 @@ export default function CtfDetailHeader({ event }: CtfDetailHeaderProps) {
       {/* Badge and Tags - Top Right */}
       <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex gap-1.5 sm:gap-2 flex-wrap justify-end">
         <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-bold rounded bg-red-600 text-white">
-          {event.badge}
+          {event.badge || "ইভেন্ট"}
         </span>
         {safeTags.map((tag) => (
           <span
