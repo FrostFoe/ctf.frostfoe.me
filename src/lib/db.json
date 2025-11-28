@@ -425,6 +425,18 @@
       "username": "admin",
       "password": "admin",
       "role": "admin"
+    },
+    "020fa290-7885-445e-8c5e-94becd89d759": {
+      "id": "1",
+      "username": "demo",
+      "password": "demo",
+      "role": "player"
+    },
+    "a599deb3-ca94-4a1a-be1e-8a02bbc6f0b6": {
+      "id": "2",
+      "username": "admin",
+      "password": "admin",
+      "role": "admin"
     }
   },
   "settings": {

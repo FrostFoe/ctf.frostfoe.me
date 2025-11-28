@@ -4,7 +4,7 @@
  */
 
 import { useCallback, useState, useEffect } from "react";
-import data from "@/lib/data.json";
+import data from "@/lib/db.json";
 import type { CTFStatus, CTFType } from "@/lib/types";
 
 // ===== TYPES AND INTERFACES =====

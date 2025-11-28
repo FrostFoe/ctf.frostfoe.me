@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
 import Link from "next/link";
 import { useCtfData } from "@/hooks/use-data";
-import data from "@/lib/data.json";
+import data from "@/lib/db.json";
 
 interface EventResult {
   type: "event";

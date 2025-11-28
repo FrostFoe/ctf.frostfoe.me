@@ -7,7 +7,7 @@ import CtfDetailAbout from "@/components/ctf/ctf-detail-about";
 import CtfDetailSidebar from "@/components/ctf/ctf-detail-sidebar";
 import CtfDetailFooter from "@/components/ctf/ctf-detail-footer";
 import CtfSeriesChallenges from "@/components/ctf/ctf-series-challenges";
-import data from "@/lib/data.json";
+import data from "@/lib/db.json";
 
 interface PageProps {
   params: Promise<{

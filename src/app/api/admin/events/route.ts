@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
 
-const dataPath = path.join(process.cwd(), "src", "lib", "data.json");
+const dataPath = path.join(process.cwd(), "src", "lib", "db.json");
 
 export async function POST(request: NextRequest) {
   try {
@@ -31,7 +31,7 @@ export async function GET() {
     const jsonData = JSON.parse(data);
     return NextResponse.json(jsonData.events);
   } catch (error) {
-    console.error("Error reading data.json:", error);
+    console.error("Error reading db.json:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

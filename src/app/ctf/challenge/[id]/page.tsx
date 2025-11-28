@@ -18,7 +18,7 @@ import { Badge } from "@/components/ui/badge";
 import { FlagSubmissionForm } from "@/components/challenge/flag-submission-form";
 import { ChallengeResources } from "@/components/challenge/challenge-resources";
 import { ChallengeStatusCard } from "@/components/challenge/challenge-status-card";
-import data from "@/lib/data.json";
+import data from "@/lib/db.json";
 
 interface PageProps {
   params: Promise<{
@@ -67,7 +67,7 @@ export default function ChallengeDetailPage({ params }: PageProps) {
   const [isTimerRunning, setIsTimerRunning] = useState(true);
   const [revealedHints, setRevealedHints] = useState<number[]>([]);
 
-  // Load challenge from data.json
+  // Load challenge from db.json
   useEffect(() => {
     const loadChallenge = async () => {
       try {

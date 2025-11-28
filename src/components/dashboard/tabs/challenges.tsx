@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import ChallengesFilter from "@/components/ctf/challenges-filter";
 import ChallengesGrid from "@/components/ctf/challenges-grid";
-import data from "@/lib/data.json";
+import data from "@/lib/db.json";
 
 export default function ChallengesTab() {
   const [searchQuery, setSearchQuery] = useState("");

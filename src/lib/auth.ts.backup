@@ -1,0 +1,174 @@
+import fs from "fs/promises";
+import path from "path";
+import crypto from "crypto";
+import { sanitize } from "./utils";
+
+const dataPath = path.join(process.cwd(), "src", "lib", "db.json");
+
+interface DataStore {
+  events: any[];
+  challenges: any[];
+  achievements: any[];
+  users: User[];
+  user_profiles: any[];
+  user_stats: any[];
+  user_achievements: any[];
+  activities: any[];
+  challenge_submissions: any[];
+  completed_challenges: any[];
+  event_participations: any[];
+  teams: any[];
+  team_members: any[];
+  user_settings: any[];
+  user_challenge_hints: any[];
+  sessions: Session;
+  settings: any;
+}
+
+interface Session {
+  [key: string]: User;
+}
+
+// For a production application, you should use a more robust session store like Redis or a database.
+// This file-based session store is for demonstration purposes only.
+async function readData(): Promise<DataStore> {
+  try {
+    const data = await fs.readFile(dataPath, "utf-8");
+    return JSON.parse(data);
+  } catch (error) {
+    console.error("Error reading db.json:", error);
+    throw new Error("Failed to read db.json");
+  }
+}
+
+async function writeData(data: DataStore) {
+  await fs.writeFile(dataPath, JSON.stringify(data, null, 2));
+}
+
+export interface User {
+  id: string;
+  username: string;
+  password?: string; // Make password optional as it will be removed from the user object sent to the client
+  role: "player" | "admin";
+}
+
+
+export async function login(credentials: { username: string; password: string }) {
+  const { username, password } = credentials;
+
+  if (!username || !password) {
+    return { error: "Username and password are required", status: 400 };
+  }
+
+  const sanitizedUsername = sanitize(username);
+  const sanitizedPassword = sanitize(password);
+
+  // Read db.json
+  const data = await readData();
+
+  // Find user
+  const user = data.users.find((u: User) => u.username === sanitizedUsername);
+
+  if (!user) {
+    return { error: "Invalid credentials", status: 401 };
+  }
+
+  // Compare passwords
+  const isValid = sanitizedPassword === user.password;
+
+  if (!isValid) {
+    return { error: "Invalid credentials", status: 401 };
+  }
+
+  // Create session
+  const sessionId = crypto.randomUUID();
+  data.sessions[sessionId] = user;
+  await writeData(data);
+
+  // Remove password from user object before returning
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { password: _, ...userWithoutPassword } = user;
+
+  return {
+    user: userWithoutPassword,
+    sessionId,
+  };
+}
+
+export async function signup(credentials: { username: string; password: string }) {
+  const { username, password } = credentials;
+
+  if (!username || !password) {
+    return { error: "Username and password are required", status: 400 };
+  }
+
+  const sanitizedUsername = sanitize(username);
+  const sanitizedPassword = sanitize(password);
+
+  if (sanitizedPassword.length < 6) {
+    return { error: "Password must be at least 6 characters", status: 400 };
+  }
+
+  // Read db.json
+  const data = await readData();
+
+  // Check if user already exists
+  const existingUser = data.users.find((u: User) => u.username === sanitizedUsername);
+  if (existingUser) {
+    return { error: "Username already exists", status: 409 };
+  }
+
+  // Create new user
+  const newUser: User = {
+    id: (data.users.length + 1).toString(),
+    username: sanitizedUsername,
+    password: sanitizedPassword,
+    role: "player",
+  };
+
+  data.users.push(newUser);
+
+  // Create session
+  const sessionId = crypto.randomUUID();
+  data.sessions[sessionId] = newUser;
+  await writeData(data);
+
+  // Remove password from user object before returning
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { password: _, ...userWithoutPassword } = newUser;
+
+  return {
+    user: userWithoutPassword,
+    sessionId,
+  };
+}
+
+export async function logout(sessionId: string) {
+  const data = await readData();
+  if (sessionId && data.sessions[sessionId]) {
+    delete data.sessions[sessionId];
+    await writeData(data);
+  }
+  return { success: true };
+}
+
+export async function getMe(sessionId: string) {
+  if (!sessionId) {
+    return { user: null };
+  }
+
+  const data = await readData();
+  const user = data.sessions[sessionId];
+
+  if (!user) {
+    return { user: null };
+  }
+
+  // Remove password from user object before returning
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { password: _, ...userWithoutPassword } = user;
+
+  return {
+    user: userWithoutPassword,
+  };
+}

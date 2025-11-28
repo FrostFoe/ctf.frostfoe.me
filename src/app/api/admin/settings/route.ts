@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
 
-const dataPath = path.join(process.cwd(), "src", "lib", "data.json");
+const dataPath = path.join(process.cwd(), "src", "lib", "db.json");
 
 interface DataStore {
   events: any[];
@@ -29,7 +29,7 @@ export async function GET() {
     const data: DataStore = JSON.parse(await fs.readFile(dataPath, "utf-8"));
     return NextResponse.json(data.settings);
   } catch (error) {
-    console.error("Error reading data.json:", error);
+    console.error("Error reading db.json:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
     await fs.writeFile(dataPath, JSON.stringify(data, null, 2));
     return NextResponse.json(newSettings, { status: 200 });
   } catch (error) {
-    console.error("Error writing data.json:", error);
+    console.error("Error writing db.json:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

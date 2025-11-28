@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import { User } from "@/lib/auth";
 
-const dataPath = path.join(process.cwd(), "src", "lib", "data.json");
+const dataPath = path.join(process.cwd(), "src", "lib", "db.json");
 
 export async function DELETE(
   _request: Request,
