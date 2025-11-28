@@ -22,6 +22,9 @@ export function middleware(request: NextRequest) {
       loginUrl.searchParams.set('returnUrl', pathname);
       return NextResponse.redirect(loginUrl);
     }
+
+    // For admin routes, we'll verify on the server-side
+    // The basic check here is just that a session exists
   }
 
   // Public routes that authenticated users shouldn't access
@@ -34,7 +37,8 @@ export function middleware(request: NextRequest) {
     const sessionCookie = request.cookies.get('session');
 
     if (sessionCookie) {
-      // Redirect authenticated users to dashboard
+      // Redirect authenticated users to dashboard by default
+      // The actual role-based redirect happens in the login page
       return NextResponse.redirect(new URL('/dashboard', request.url));
     }
   }

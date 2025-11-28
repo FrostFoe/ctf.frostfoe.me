@@ -17,5 +17,17 @@
     "username": "admin",
     "password": "admin",
     "role": "admin"
+  },
+  "099be490-2861-4691-9871-402ed241d83e": {
+    "id": "2",
+    "username": "admin",
+    "password": "admin",
+    "role": "admin"
+  },
+  "e2b74179-27b2-4fe7-aa6b-d28724031940": {
+    "id": "2",
+    "username": "admin",
+    "password": "admin",
+    "role": "admin"
   }
 }

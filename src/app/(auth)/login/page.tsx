@@ -34,7 +34,10 @@ function LoginForm() {
       }
 
       await new Promise(resolve => setTimeout(resolve, 100));
-      router.push(returnUrl);
+      
+      // Redirect based on user role
+      const redirectUrl = data.user.role === "admin" ? "/admin" : "/dashboard";
+      router.push(redirectUrl);
       router.refresh();
     } catch {
       setError("An unexpected error occurred");
