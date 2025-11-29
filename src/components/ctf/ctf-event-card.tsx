@@ -13,7 +13,7 @@ interface CtfEventCardProps {
   subtitle: string;
   date: string;
   image: string;
-  badge: string;
+  badge?: string;
   tags?: string[];
   players: number;
   status?: "upcoming" | "ongoing" | "ended" | "registration-closed";
@@ -61,9 +61,11 @@ export default function CtfEventCard({
 
           {/* Badge */}
           <div className="absolute top-2 sm:top-3 left-2 sm:left-3 flex gap-1.5 sm:gap-2 flex-wrap">
-            <span className="inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 bg-red-600 text-white text-xs font-bold rounded whitespace-nowrap">
-              {badge}
-            </span>
+            {badge && (
+              <span className="inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 bg-red-600 text-white text-xs font-bold rounded whitespace-nowrap">
+                {badge}
+              </span>
+            )}
             {/* CTF Type Badge */}
             <span
               className={`inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 text-white text-xs font-bold rounded whitespace-nowrap ${

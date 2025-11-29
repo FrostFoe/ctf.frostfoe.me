@@ -6,8 +6,7 @@
       "title": "CTF ট্রাই আউট",
       "subtitle": "প্রথম অভিজ্ঞতার জন্য দুর্দান্ত",
       "description": "নতুনদের জন্য একটি সাধারণ CTF ইভেন্ট",
-      "image": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=800",
-      "badge": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=100",
+      "image": "https://placehold.co/800x400/2563eb/ffffff.png?text=CTF+Try+Out",
       "status": "ongoing",
       "ctfType": "series",
       "totalChallenges": 12,
@@ -23,7 +22,7 @@
         "beginner",
         "tutorial"
       ],
-      "imageUrl": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=800",
+      "imageUrl": "https://placehold.co/800x400/2563eb/ffffff.png?text=CTF+Try+Out",
       "registrationUrl": "https://example.com/register",
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
@@ -34,8 +33,7 @@
       "title": "মধ্যম স্তরের CTF",
       "subtitle": "মধ্যবর্তী চ্যালেঞ্জ",
       "description": "অভিজ্ঞ খেলোয়াড়দের জন্য",
-      "image": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=800",
-      "badge": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=100",
+      "image": "https://placehold.co/800x400/059669/ffffff.png?text=Intermediate+CTF",
       "status": "upcoming",
       "ctfType": "series",
       "totalChallenges": 15,
@@ -51,7 +49,7 @@
         "intermediate",
         "challenging"
       ],
-      "imageUrl": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=800",
+      "imageUrl": "https://placehold.co/800x400/059669/ffffff.png?text=Intermediate+CTF",
       "registrationUrl": "https://example.com/",
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
@@ -62,8 +60,7 @@
       "title": "উন্নত CTF",
       "subtitle": "চ্যালেঞ্জিং সমস্যা",
       "description": "বিশেষজ্ঞদের জন্য",
-      "image": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=800",
-      "badge": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=100",
+      "image": "https://placehold.co/800x400/dc2626/ffffff.png?text=Advanced+CTF",
       "status": "ended",
       "ctfType": "jeopardy",
       "totalChallenges": 20,
@@ -79,7 +76,7 @@
         "advanced",
         "expert"
       ],
-      "imageUrl": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=800",
+      "imageUrl": "https://placehold.co/800x400/dc2626/ffffff.png?text=Advanced+CTF",
       "registrationUrl": "https://example.com/register",
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"

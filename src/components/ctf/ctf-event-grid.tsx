@@ -29,7 +29,6 @@ export default function CtfEventGrid({ events }: CtfEventGridProps) {
             subtitle={event.subtitle || ""}
             date={event.date || event.startDate || ""}
             image={event.image || ""}
-            badge={event.badge || ""}
             players={event.players || 0}
             type={event.ctfType || "single"}
             seriesChallenges={event.totalChallenges || 1}
