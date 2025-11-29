@@ -25,7 +25,13 @@
       "imageUrl": "https://placehold.co/800x400/2563eb/ffffff.png?text=CTF+Try+Out",
       "registrationUrl": "https://example.com/register",
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "rules": "সব অংশগ্রহণকারীদের নৈতিক হ্যাকিং অনুশীলন করতে হবে। যেকোনো অননুমোদিত অ্যাক্সেসের চেষ্টা নিষিদ্ধ।",
+      "prizes": [
+        "প্রথম স্থান: ৫০০০ টাকা",
+        "দ্বিতীয় স্থান: ৩০০০ টাকা",
+        "তৃতীয় স্থান: ১০০০ টাকা"
+      ]
     },
     {
       "id": 2,
@@ -52,7 +58,13 @@
       "imageUrl": "https://placehold.co/800x400/059669/ffffff.png?text=Intermediate+CTF",
       "registrationUrl": "https://example.com/",
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "rules": "টিম সর্বোচ্চ ৩ সদস্যের হতে পারে। প্রতিটি সদস্যের নিজস্ব অ্যাকাউন্ট থাকতে হবে।",
+      "prizes": [
+        "প্রথম স্থান: ১০০০০ টাকা",
+        "দ্বিতীয় স্থান: ৬০০০ টাকা",
+        "তৃতীয় স্থান: ৩০০০ টাকা"
+      ]
     },
     {
       "id": 3,
@@ -79,7 +91,13 @@
       "imageUrl": "https://placehold.co/800x400/dc2626/ffffff.png?text=Advanced+CTF",
       "registrationUrl": "https://example.com/register",
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "rules": "সর্বোচ্চ ৫ সদস্যের টিম। প্রতিটি চ্যালেঞ্জের জন্য আলাদা পয়েন্ট সিস্টেম প্রয়োগ করা হয়।",
+      "prizes": [
+        "প্রথম স্থান: ৫০০০০ টাকা + ট্রফি",
+        "দ্বিতীয় স্থান: ৩০০০০ টাকা + মেডেল",
+        "তৃতীয় স্থান: ১৫০০০ টাকা"
+      ]
     },
     {
       "title": "ss",
@@ -97,7 +115,9 @@
       "tags": [],
       "imageUrl": "",
       "registrationUrl": "",
-      "id": 4
+      "id": 4,
+      "rules": "চলমান ইভেন্ট নিয়ম অপেক্ষমাণ।",
+      "prizes": []
     }
   ],
   "challenges": [
@@ -117,7 +137,18 @@
         "introduction"
       ],
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "author": "CTF Team",
+      "hints": [
+        "ফ্ল্যাগ সবসময় 'flag{' দিয়ে শুরু হয়",
+        "এটি একটি খুবই সহজ চ্যালেঞ্জ",
+        "শুধুমাত্র প্রশ্নে উল্লেখ করা শব্দটি ব্যবহার করুন"
+      ],
+      "resources": [
+        "https://example.com/ctf-basics.pdf"
+      ],
+      "solves": 487,
+      "successRate": "92.5%"
     },
     {
       "id": 2,
@@ -135,7 +166,16 @@
         "decryption"
       ],
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "author": "Security Expert",
+      "hints": [
+        "Base64 একটি এনকোডিং স্কিম, এনক্রিপশন নয়",
+        "অনলাইন base64 ডিকোডার ব্যবহার করে দেখুন",
+        "ফলাফল হবে flag{...} ফরম্যাটে"
+      ],
+      "resources": [],
+      "solves": 412,
+      "successRate": "84.3%"
     },
     {
       "id": 3,
@@ -153,7 +193,18 @@
         "html"
       ],
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "author": "Web Developer",
+      "hints": [
+        "ব্রাউজারে ডান ক্লিক করুন এবং 'View Page Source' নির্বাচন করুন",
+        "শিরোনামে কোনো মন্তব্য থাকতে পারে",
+        "HTML মেটা ট্যাগ পরীক্ষা করুন"
+      ],
+      "resources": [
+        "https://developer.mozilla.org/en-US/docs/Tools/Inspector"
+      ],
+      "solves": 356,
+      "successRate": "78.9%"
     },
     {
       "id": 4,
@@ -171,7 +222,18 @@
         "cryptography"
       ],
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "author": "Crypto Specialist",
+      "hints": [
+        "ROT13 একটি সিজার সাইফার যেখানে পরিবর্তন ১৩",
+        "প্রতিটি অক্ষর ১৩ ধাপ এগিয়ে নেওয়া হয়",
+        "অনলাইন ROT13 ডিকোডার ব্যবহার করুন"
+      ],
+      "resources": [
+        "https://rot13.com"
+      ],
+      "solves": 289,
+      "successRate": "71.2%"
     },
     {
       "id": 5,
@@ -190,7 +252,18 @@
         "database"
       ],
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "author": "Security Researcher",
+      "hints": [
+        "পাসওয়ার্ড ফিল্ডে: \" or \"1\"=\"1 ব্যবহার করুন",
+        "SQL লজিক: এই শর্তটি সর্বদা সত্য",
+        "নিরাপত্তা সতর্কতা: এটি শুধুমাত্র শিক্ষার জন্য"
+      ],
+      "resources": [
+        "https://owasp.org/www-community/attacks/SQL_Injection"
+      ],
+      "solves": 198,
+      "successRate": "65.4%"
     },
     {
       "id": 6,
@@ -208,7 +281,16 @@
         "hex"
       ],
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "author": "Encoding Master",
+      "hints": [
+        "প্রতিটি ২ চরিত্রের হেক্স কোড একটি ASCII অক্ষর প্রতিনিধিত্ব করে",
+        "0x66 = 'f', 0x6c = 'l' ইত্যাদি",
+        "অনলাইন হেক্স টু ASCII কনভার্টার ব্যবহার করুন"
+      ],
+      "resources": [],
+      "solves": 334,
+      "successRate": "88.1%"
     },
     {
       "id": 7,
@@ -226,7 +308,18 @@
         "cracking"
       ],
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "author": "Hash Specialist",
+      "hints": [
+        "এটি 'password123' এর SHA256 হ্যাশ",
+        "অনলাইন রিভার্স হ্যাশ লুকআপ ব্যবহার করুন",
+        "সাধারণ পাসওয়ার্ড রংধনু টেবিলে থাকতে পারে"
+      ],
+      "resources": [
+        "https://crackstation.net"
+      ],
+      "solves": 267,
+      "successRate": "73.5%"
     },
     {
       "id": 8,
@@ -244,7 +337,16 @@
         "programming"
       ],
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "author": "Math Teacher",
+      "hints": [
+        "সমীকরণ: 2x + 3 = 27",
+        "প্রথমে ৩ বিয়োগ করুন: 2x = 24",
+        "তারপর ২ দ্বারা ভাগ করুন: x = 12"
+      ],
+      "resources": [],
+      "solves": 523,
+      "successRate": "95.2%"
     },
     {
       "id": 9,
@@ -262,7 +364,18 @@
         "assembly"
       ],
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "author": "Reverse Engineer",
+      "hints": [
+        "IDA Pro বা Ghidra ব্যবহার করে বাইনারি বিশ্লেষণ করুন",
+        "প্রধান ফাংশন খুঁজুন",
+        "স্ট্রিং বিভাগে লুকানো বার্তা থাকতে পারে"
+      ],
+      "resources": [
+        "https://www.ghidra-sre.org/"
+      ],
+      "solves": 67,
+      "successRate": "34.7%"
     },
     {
       "id": 10,
@@ -280,7 +393,16 @@
         "encryption"
       ],
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "author": "Crypto Developer",
+      "hints": [
+        "XOR অপারেশন প্রতিসম",
+        "কী এবং সাইফারটেক্সটে XOR করুন",
+        "পাইথন: bytes.fromhex('08140c150e00')"
+      ],
+      "resources": [],
+      "solves": 198,
+      "successRate": "68.9%"
     },
     {
       "id": 11,
@@ -298,7 +420,18 @@
         "metadata"
       ],
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "author": "OSINT Expert",
+      "hints": [
+        "ExifTool ব্যবহার করে ছবির EXIF ডেটা দেখুন",
+        "GPS লোকেশন ডেটা থাকতে পারে",
+        "ক্যামেরার মডেল এবং শুটিংয়ের সময় চেক করুন"
+      ],
+      "resources": [
+        "https://exiftool.org/"
+      ],
+      "solves": 145,
+      "successRate": "61.3%"
     },
     {
       "id": 12,
@@ -316,7 +449,16 @@
         "general"
       ],
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "author": "CTF Team",
+      "hints": [
+        "এটি একটি মিডি-লেভেল চ্যালেঞ্জ",
+        "সব পূর্ববর্তী চ্যালেঞ্জের দক্ষতা প্রয়োজন",
+        "ধৈর্য এবং অধ্যবসায় সাফল্যের চাবিকাঠি"
+      ],
+      "resources": [],
+      "solves": 45,
+      "successRate": "12.5%"
     }
   ],
   "achievements": [
@@ -399,12 +541,243 @@
       "role": "admin"
     }
   ],
-  "user_profiles": [],
+  "user_profiles": [
+    {
+      "id": 1,
+      "userId": "1",
+      "displayName": "ডেমো ব্যবহারকারী",
+      "bio": "CTF প্ল্যাটফর্মে আমাকে স্বাগতম! আমি সাইবার সিকিউরিটি শিখতে আগ্রহী।",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=demo",
+      "joinDate": "2024-01-15T08:00:00Z",
+      "country": "বাংলাদেশ",
+      "totalSolves": 45,
+      "totalPoints": 2350
+    },
+    {
+      "id": 2,
+      "userId": "2",
+      "displayName": "প্রশাসক",
+      "bio": "CTF প্ল্যাটফর্মের প্রশাসক। চ্যালেঞ্জ ডিজাইনার এবং সিকিউরিটি বিশেষজ্ঞ।",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=admin",
+      "joinDate": "2023-12-01T08:00:00Z",
+      "country": "বাংলাদেশ",
+      "totalSolves": 120,
+      "totalPoints": 8750
+    }
+  ],
   "user_stats": [],
-  "user_achievements": [],
+  "user_achievements": [
+    {
+      "id": 1,
+      "userId": "1",
+      "achievementId": "first_challenge",
+      "unlocked": true,
+      "unlockedAt": "2024-01-20T10:30:00Z"
+    },
+    {
+      "id": 2,
+      "userId": "1",
+      "achievementId": "perfect_event",
+      "unlocked": true,
+      "unlockedAt": "2024-02-10T14:22:00Z"
+    },
+    {
+      "id": 3,
+      "userId": "1",
+      "achievementId": "speedrunner",
+      "unlocked": true,
+      "unlockedAt": "2024-02-15T09:15:00Z"
+    },
+    {
+      "id": 4,
+      "userId": "1",
+      "achievementId": "crypto_master",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": 5,
+      "userId": "2",
+      "achievementId": "first_challenge",
+      "unlocked": true,
+      "unlockedAt": "2024-01-05T08:45:00Z"
+    },
+    {
+      "id": 6,
+      "userId": "2",
+      "achievementId": "perfect_event",
+      "unlocked": true,
+      "unlockedAt": "2024-01-25T16:30:00Z"
+    },
+    {
+      "id": 7,
+      "userId": "2",
+      "achievementId": "speedrunner",
+      "unlocked": true,
+      "unlockedAt": "2024-02-03T11:45:00Z"
+    },
+    {
+      "id": 8,
+      "userId": "2",
+      "achievementId": "crypto_master",
+      "unlocked": true,
+      "unlockedAt": "2024-02-20T13:20:00Z"
+    }
+  ],
   "activities": [],
   "challenge_submissions": [],
-  "completed_challenges": [],
+  "completed_challenges": [
+    {
+      "id": 1,
+      "challenge_id": 1,
+      "user_id": 1,
+      "event_id": 1,
+      "completed_at": "2024-01-20T10:15:00Z",
+      "time_spent": 180,
+      "hints_used": 0,
+      "points_earned": 50
+    },
+    {
+      "id": 2,
+      "challenge_id": 2,
+      "user_id": 1,
+      "event_id": 1,
+      "completed_at": "2024-01-21T14:30:00Z",
+      "time_spent": 450,
+      "hints_used": 1,
+      "points_earned": 90
+    },
+    {
+      "id": 3,
+      "challenge_id": 3,
+      "user_id": 1,
+      "event_id": 1,
+      "completed_at": "2024-01-22T08:45:00Z",
+      "time_spent": 300,
+      "hints_used": 1,
+      "points_earned": 70
+    },
+    {
+      "id": 4,
+      "challenge_id": 4,
+      "user_id": 1,
+      "event_id": 1,
+      "completed_at": "2024-01-23T16:20:00Z",
+      "time_spent": 600,
+      "hints_used": 2,
+      "points_earned": 130
+    },
+    {
+      "id": 5,
+      "challenge_id": 5,
+      "user_id": 1,
+      "event_id": 1,
+      "completed_at": "2024-01-24T11:00:00Z",
+      "time_spent": 900,
+      "hints_used": 3,
+      "points_earned": 170
+    },
+    {
+      "id": 6,
+      "challenge_id": 6,
+      "user_id": 1,
+      "event_id": 1,
+      "completed_at": "2024-01-25T13:15:00Z",
+      "time_spent": 240,
+      "hints_used": 0,
+      "points_earned": 120
+    },
+    {
+      "id": 7,
+      "challenge_id": 1,
+      "user_id": 2,
+      "event_id": 1,
+      "completed_at": "2024-01-18T09:30:00Z",
+      "time_spent": 120,
+      "hints_used": 0,
+      "points_earned": 50
+    },
+    {
+      "id": 8,
+      "challenge_id": 2,
+      "user_id": 2,
+      "event_id": 1,
+      "completed_at": "2024-01-19T10:45:00Z",
+      "time_spent": 300,
+      "hints_used": 0,
+      "points_earned": 100
+    },
+    {
+      "id": 9,
+      "challenge_id": 3,
+      "user_id": 2,
+      "event_id": 1,
+      "completed_at": "2024-01-20T12:30:00Z",
+      "time_spent": 150,
+      "hints_used": 0,
+      "points_earned": 75
+    },
+    {
+      "id": 10,
+      "challenge_id": 4,
+      "user_id": 2,
+      "event_id": 1,
+      "completed_at": "2024-01-21T14:00:00Z",
+      "time_spent": 420,
+      "hints_used": 1,
+      "points_earned": 145
+    },
+    {
+      "id": 11,
+      "challenge_id": 5,
+      "user_id": 2,
+      "event_id": 1,
+      "completed_at": "2024-01-22T15:45:00Z",
+      "time_spent": 750,
+      "hints_used": 2,
+      "points_earned": 185
+    },
+    {
+      "id": 12,
+      "challenge_id": 6,
+      "user_id": 2,
+      "event_id": 1,
+      "completed_at": "2024-01-23T09:20:00Z",
+      "time_spent": 210,
+      "hints_used": 0,
+      "points_earned": 120
+    },
+    {
+      "id": 13,
+      "challenge_id": 7,
+      "user_id": 2,
+      "event_id": 1,
+      "completed_at": "2024-01-24T11:30:00Z",
+      "time_spent": 1200,
+      "hints_used": 1,
+      "points_earned": 160
+    },
+    {
+      "id": 14,
+      "challenge_id": 8,
+      "user_id": 1,
+      "event_id": 1,
+      "completed_at": "2024-01-26T10:00:00Z",
+      "time_spent": 120,
+      "hints_used": 0,
+      "points_earned": 100
+    },
+    {
+      "id": 15,
+      "challenge_id": 8,
+      "user_id": 2,
+      "event_id": 1,
+      "completed_at": "2024-01-25T13:50:00Z",
+      "time_spent": 90,
+      "hints_used": 0,
+      "points_earned": 100
+    }
+  ],
   "event_participations": [],
   "teams": [
     {
