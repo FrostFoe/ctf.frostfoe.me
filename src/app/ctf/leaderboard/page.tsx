@@ -6,6 +6,7 @@ import { Trophy, TrendingUp, Medal, Star, User } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import CtfHeader from "@/components/ctf/ctf-header";
 import CtfMainNav from "@/components/ctf/ctf-main-nav";
+import data from "@/lib/db.json";
 
 interface LeaderboardEntry {
   rank: number;
@@ -34,145 +35,69 @@ export default function LeaderboardPage() {
     [],
   );
 
-  // Load and compute leaderboard data
+  // Load leaderboard strictly from `db.json`.
+  // Preference order:
+  // 1. `data.leaderboard` (explicit leaderboard entries)
+  // 2. compute from `data.completed_challenges` grouped by user fields
+  // 3. otherwise set an empty leaderboard
   useEffect(() => {
     try {
-      const completedStr = localStorage.getItem(
-        "ctf_completed_challenges_details",
-      );
-      const completedChallenges: CompletedChallenge[] = completedStr
-        ? JSON.parse(completedStr)
+      // 1) Use explicit leaderboard if provided
+      if (Array.isArray((data as any).leaderboard) && (data as any).leaderboard.length > 0) {
+        const fromDb: LeaderboardEntry[] = (data as any).leaderboard.map((e: any, idx: number) => ({
+          rank: e.rank ?? idx + 1,
+          name: e.name ?? e.username ?? `Player ${idx + 1}`,
+          points: e.points ?? e.totalPoints ?? 0,
+          solved: e.solved ?? e.challenges ?? 0,
+          country: e.country ?? "—",
+          badge: e.badge,
+          avatar: e.avatar ?? e.imageUrl ?? "",
+        }));
+        setLeaderboardData(fromDb);
+        return;
+      }
+
+      // 2) Compute from completed_challenges in db.json
+      const completed: any[] = Array.isArray((data as any).completed_challenges)
+        ? (data as any).completed_challenges
         : [];
 
-      // Group by user (using a user ID from localStorage or generate one)
-      const userIdStr =
-        localStorage.getItem("ctf_user_id") ||
-        "user_" + Math.random().toString(36).substr(2, 9);
-      localStorage.setItem("ctf_user_id", userIdStr);
+      const eventCompleted = completed.filter((c: any) => (c.eventId ?? c.event_id) === selectedEvent);
 
-      // Filter challenges for selected event
-      const eventChallenges = completedChallenges.filter(
-        (c) => c.eventId === selectedEvent,
-      );
+      if (eventCompleted.length === 0) {
+        setLeaderboardData([]);
+        return;
+      }
 
-      // Create leaderboard entries
-      const leaderboard: LeaderboardEntry[] = [];
-
-      // Get unique users from completed challenges
-      const userChallenges = new Map<string, CompletedChallenge[]>();
-
-      eventChallenges.forEach((challenge) => {
-        const key = userIdStr; // In a real app, we'd have actual user IDs
-        if (!userChallenges.has(key)) {
-          userChallenges.set(key, []);
-        }
-        userChallenges.get(key)!.push(challenge);
+      // Group by user identifier if present (userId / username), otherwise by a generated key
+      const groups = new Map<string, any[]>();
+      eventCompleted.forEach((c: any, idx: number) => {
+        const userKey = c.userId ?? c.user_id ?? c.username ?? (`user_${idx}`);
+        if (!groups.has(userKey)) groups.set(userKey, []);
+        groups.get(userKey)!.push(c);
       });
 
-      // Calculate statistics for each user
-      let rank = 1;
-      userChallenges.forEach((challenges) => {
-        const totalPoints = challenges.reduce(
-          (sum, c) => sum + c.pointsEarned,
-          0,
-        );
-        const totalTime = challenges.reduce((sum, c) => sum + c.timeSpent, 0);
-
-        leaderboard.push({
-          rank: rank++,
-          name: "আপনি", // Replace with actual user name from localStorage
+      const computed: LeaderboardEntry[] = [];
+      groups.forEach((arr, key) => {
+        const totalPoints = arr.reduce((s: number, x: any) => s + (x.pointsEarned ?? x.points ?? 0), 0);
+        const totalSolved = arr.length;
+        const avatar = arr[0]?.avatar ?? arr[0]?.avatarUrl ?? arr[0]?.imageUrl ?? "";
+        computed.push({
+          rank: 0,
+          name: key,
           points: totalPoints,
-          solved: challenges.length,
-          country: "বাংলাদেশ",
-          timeSpent: totalTime,
-          badge:
-            rank <= 4
-              ? rank === 1
-                ? "🏆"
-                : rank === 2
-                  ? "🥈"
-                  : "🥉"
-              : undefined,
+          solved: totalSolved,
+          country: arr[0]?.country ?? "—",
+          avatar,
         });
       });
 
-      // If no completed challenges, show sample data
-      if (leaderboard.length === 0) {
-        const sampleData: LeaderboardEntry[] = [
-          {
-            rank: 1,
-            name: "আহমেদ ইকবাল",
-            points: 4850,
-            solved: 45,
-            country: "বাংলাদেশ",
-            badge: "🏆",
-            avatar: "/images/learning-paths-asset.webp",
-          },
-          {
-            rank: 2,
-            name: "সারা খান",
-            points: 4620,
-            solved: 42,
-            country: "বাংলাদেশ",
-            badge: "🥈",
-            avatar: "/images/real-world-scenarios.webp",
-          },
-          {
-            rank: 3,
-            name: "রাহুল সিংহ",
-            points: 4380,
-            solved: 39,
-            country: "ভারত",
-            badge: "🥉",
-            avatar: "",
-          },
-          {
-            rank: 4,
-            name: "ফাতিমা আক্তার",
-            points: 4120,
-            solved: 36,
-            country: "বাংলাদেশ",
-            avatar: "/images/industry-certifications.webp",
-          },
-          {
-            rank: 5,
-            name: "মোহাম্মদ করিম",
-            points: 3890,
-            solved: 33,
-            country: "বাংলাদেশ",
-            avatar: "",
-          },
-          {
-            rank: 6,
-            name: "জাহিদ হাসান",
-            points: 3650,
-            solved: 30,
-            country: "বাংলাদেশ",
-            avatar: "/images/learning-paths-asset.webp",
-          },
-          {
-            rank: 7,
-            name: "রিনা চৌধুরী",
-            points: 3420,
-            solved: 27,
-            country: "ভারত",
-            avatar: "",
-          },
-          {
-            rank: 8,
-            name: "প্রিয়া দাস",
-            points: 3180,
-            solved: 24,
-            country: "ভারত",
-            avatar: "/images/real-world-scenarios.webp",
-          },
-        ];
-        setLeaderboardData(sampleData);
-      } else {
-        setLeaderboardData(leaderboard);
-      }
+      // Sort by points desc and assign ranks
+      const sorted = computed.sort((a, b) => b.points - a.points).map((e, i) => ({ ...e, rank: i + 1 }));
+      setLeaderboardData(sorted);
     } catch (error) {
-      console.error("Error loading leaderboard data:", error);
+      console.error("Error loading leaderboard data from db.json:", error);
+      setLeaderboardData([]);
     }
   }, [selectedEvent]);
 

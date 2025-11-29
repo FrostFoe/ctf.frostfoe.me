@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import CtfHeader from "@/components/ctf/ctf-header";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import data from "@/lib/db.json";
 
 interface Team {
   id: number;
@@ -38,77 +39,23 @@ export default function TeamsPage() {
   const [activeTab, setActiveTab] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const teams: Team[] = [
-    {
-      id: 1,
-      name: "সাইবার নাইটস",
-      description:
-        "আমরা অভিজ্ঞ হ্যাকাররা যারা চ্যালেঞ্জিং CTF ইভেন্টে অংশগ্রহণ করি।",
-      avatar: "/images/learning-paths-asset.webp",
-      members: 12,
-      maxMembers: 20,
-      ranking: 5,
-      totalPoints: 8500,
-      createdDate: "15 Jan 2024",
-      owner: "আহমেদ করিম",
-      ownerAvatar: "/images/real-world-scenarios.webp",
-      status: "active",
-      eventParticipations: 8,
-      challenges: 45,
-      isJoined: true,
-    },
-    {
-      id: 2,
-      name: "ডিজিটাল শার্কস",
-      description: "নিরাপত্তা গবেষণা এবং নৈতিক হ্যাকিং এ বিশেষজ্ঞ দল।",
-      avatar: "", // Empty avatar for testing fallback
-      members: 8,
-      maxMembers: 15,
-      ranking: 12,
-      totalPoints: 6200,
-      createdDate: "20 Feb 2024",
-      owner: "রহিম আলী",
-      ownerAvatar: "", // Empty owner avatar for testing fallback
-      status: "active",
-      eventParticipations: 5,
-      challenges: 32,
-      isJoined: false,
-    },
-    {
-      id: 3,
-      name: "কোড ব্রেকার্স",
-      description: "ওয়েব সিকিউরিটি এবং রিভার্স ইঞ্জিনিয়ারিং এর উপর দক্ষ।",
-      avatar: "/images/industry-certifications.webp",
-      members: 15,
-      maxMembers: 25,
-      ranking: 8,
-      totalPoints: 7300,
-      createdDate: "10 Mar 2024",
-      owner: "ফাতিমা নাজমা",
-      ownerAvatar: "/images/learning-paths-asset.webp",
-      status: "active",
-      eventParticipations: 6,
-      challenges: 38,
-      isJoined: true,
-    },
-    {
-      id: 4,
-      name: "ফোরেনসিক্স ফিউরিস",
-      description: "ডিজিটাল ফোরেনসিক্স এবং মেলওয়্যার বিশ্লেষণে বিশেষজ্ঞ।",
-      avatar: "", // Empty avatar for testing fallback
-      members: 6,
-      maxMembers: 12,
-      ranking: 18,
-      totalPoints: 4100,
-      createdDate: "25 Mar 2024",
-      owner: "করিম হোসেন",
-      ownerAvatar: "/images/real-world-scenarios.webp",
-      status: "active",
-      eventParticipations: 3,
-      challenges: 18,
-      isJoined: false,
-    },
-  ];
+  const teams: Team[] = (data.teams || []).map((t: any, i: number) => ({
+    id: t.id ?? i + 1,
+    name: t.name ?? t.title ?? `Team ${i + 1}`,
+    description: t.description ?? t.desc ?? "",
+    avatar: t.avatar ?? t.imageUrl ?? (t.logo ? t.logo : "https://placehold.co/96x96.png"),
+    members: t.members ?? t.membersCount ?? 0,
+    maxMembers: t.maxMembers ?? t.teamSize ?? 5,
+    ranking: t.ranking ?? 0,
+    totalPoints: t.totalPoints ?? t.points ?? 0,
+    createdDate: t.createdAt ?? t.createdDate ?? "",
+    owner: t.owner ?? t.host ?? "",
+    ownerAvatar: t.ownerAvatar ?? t.hostAvatar ?? "https://placehold.co/48x48.png",
+    status: t.status ?? "active",
+    eventParticipations: t.eventParticipations ?? 0,
+    challenges: t.challenges ?? 0,
+    isJoined: t.isJoined ?? false,
+  }));
 
   const filteredTeams = teams.filter((team) => {
     const matchesSearch = team.name
