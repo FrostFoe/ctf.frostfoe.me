@@ -3,6 +3,7 @@
 import { useState, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useUser } from "@/hooks/user-context";
 
 function SignupForm() {
   const [username, setUsername] = useState("");
@@ -13,6 +14,7 @@ function SignupForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const returnUrl = searchParams.get("returnUrl") || "/dashboard";
+  const { refetch } = useUser();
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,7 +47,12 @@ function SignupForm() {
         return;
       }
 
-      await new Promise(resolve => setTimeout(resolve, 100));
+      // Refresh user context to ensure the client updates promptly
+      try {
+        await refetch();
+      } catch (e) {
+        await new Promise(resolve => setTimeout(resolve, 200));
+      }
       router.push(returnUrl);
       router.refresh();
     } catch {

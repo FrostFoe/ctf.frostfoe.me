@@ -1,5 +1,4 @@
 import crypto from "crypto";
-import bcrypt from "bcrypt";
 import { supabaseAdmin } from "./supabase";
 import { sanitize } from "./utils";
 
@@ -13,7 +12,7 @@ export interface User {
 interface SupabaseUser {
   id: string;
   username: string;
-  password_hash?: string;
+  password?: string;
   role: "player" | "admin";
   created_at?: string;
   updated_at?: string;
@@ -31,20 +30,15 @@ function formatUser(dbUser: SupabaseUser): Omit<User, "password"> {
 }
 
 /**
- * Hash password using bcrypt
+ * In this setup passwords are stored as plaintext (not recommended) and compared directly.
  */
-async function hashPassword(password: string): Promise<string> {
-  return bcrypt.hash(password, 10);
+function hashPassword(password: string): Promise<string> {
+  // Not hashing; just return the plaintext password so interface is preserved
+  return Promise.resolve(password);
 }
 
-/**
- * Compare password with hash
- */
-async function comparePassword(
-  password: string,
-  hash: string
-): Promise<boolean> {
-  return bcrypt.compare(password, hash);
+function comparePassword(password: string, stored: string): Promise<boolean> {
+  return Promise.resolve(password === stored);
 }
 
 /**
@@ -82,10 +76,7 @@ export async function login(credentials: {
     const user = users[0] as SupabaseUser;
 
     // Verify password
-    const isValid = await comparePassword(
-      sanitizedPassword,
-      user.password_hash || ""
-    );
+    const isValid = await comparePassword(sanitizedPassword, user.password || "");
 
     if (!isValid) {
       return { error: "Invalid credentials", status: 401 };
@@ -164,7 +155,7 @@ export async function signup(credentials: {
       .from("users")
       .insert({
         username: sanitizedUsername,
-        password_hash: passwordHash,
+        password: passwordHash,
         role: "player",
       })
       .select()

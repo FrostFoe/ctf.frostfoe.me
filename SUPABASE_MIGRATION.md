@@ -4,7 +4,7 @@
 User authentication data has been migrated from `data.json` to Supabase. Events, challenges, and other CTF data remain in `data.json`.
 
 **What moved to Supabase:**
-- Users table (id, username, password_hash, role, timestamps)
+- Users table (id, username, password, role, timestamps)
 - Sessions table (session tokens, expiry, user references)
 
 **What stays in data.json:**
@@ -25,7 +25,7 @@ User authentication data has been migrated from `data.json` to Supabase. Events,
 - Execute the SQL
 
 This creates:
-- `users` table with fields: id, username, password_hash, role, created_at, updated_at
+- `users` table with fields: id (UUID via uuid-ossp), username, password (plaintext), role, created_at, updated_at
 - `sessions` table with fields: id, user_id, session_token, created_at, expires_at, last_activity
 - Proper indexes and foreign key constraints
 
@@ -62,9 +62,9 @@ Try logging in with:
 ### users table
 ```sql
 CREATE TABLE users (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   username VARCHAR(255) UNIQUE NOT NULL,
-  password_hash VARCHAR(255) NOT NULL,
+   password VARCHAR(255) NOT NULL,
   role VARCHAR(50) DEFAULT 'player',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -74,7 +74,7 @@ CREATE TABLE users (
 ### sessions table
 ```sql
 CREATE TABLE sessions (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   session_token VARCHAR(255) UNIQUE NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -87,7 +87,7 @@ CREATE TABLE sessions (
 
 1. **Login**: 
    - Query `users` table by username
-   - Compare bcrypt password hash
+   - Compare plaintext password directly (NOTE: insecure; use bcrypt or similar in production)
    - Create session token, store in `sessions` table
    - Return session token as cookie
 
@@ -112,8 +112,8 @@ export async function getMe(sessionId: string)
 
 ## Security Notes
 
-✅ **Implemented:**
-- Bcrypt password hashing (10 rounds)
+- ⚠️ **Implemented:**
+- Plaintext password storage and comparison (this is insecure and NOT recommended for production)
 - Session expiry (7 days)
 - httpOnly cookies
 - Last activity tracking
@@ -134,7 +134,7 @@ export async function getMe(sessionId: string)
 
 **Login fails with "Invalid credentials":**
 - Verify users were created in SQL migration
-- Check password hashes (demo/admin users have bcrypt hashes included in SQL)
+- Check that demo/admin users exist and have a plaintext password as defined
 
 **Sessions not persisting:**
 - Verify `sessions` table exists in Supabase

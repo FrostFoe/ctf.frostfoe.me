@@ -3,7 +3,7 @@
 ## What's Changed
 
 ✅ **User authentication is now powered by Supabase**
-- Users table: stores username, password_hash, role
+- Users table: stores username, password (plaintext), role
 - Sessions table: stores session tokens and expiry
 - Bcrypt password hashing for security
 - 7-day session expiry with last activity tracking

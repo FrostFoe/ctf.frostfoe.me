@@ -3,6 +3,7 @@
 import { useState, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useUser } from "@/hooks/user-context";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
@@ -12,6 +13,7 @@ function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const returnUrl = searchParams.get("returnUrl") || "/dashboard";
+  const { refetch } = useUser();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,10 +35,16 @@ function LoginForm() {
         return;
       }
 
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
+      // Refresh user context so client-side components can reflect authentication state
+      try {
+        await refetch();
+      } catch (e) {
+        // If refetch fails for some reason, fall back to a short delay
+        await new Promise(resolve => setTimeout(resolve, 200));
+      }
       // Redirect based on user role
       const redirectUrl = data.user.role === "admin" ? "/admin" : "/dashboard";
+      // Navigate once user context is updated
       router.push(redirectUrl);
       router.refresh();
     } catch {
